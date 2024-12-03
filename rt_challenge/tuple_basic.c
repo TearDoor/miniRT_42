@@ -1,10 +1,8 @@
-#include <stdio.h>
-#include "include/tuples.h"
-#include "include/utils.h"
+#include "tuples.h"
 
 t_tuple	point(double x, double y, double z)
 {
-	t_tuple new_point;
+	t_tuple	new_point;
 
 	new_point.x = x;
 	new_point.y = y;
@@ -15,7 +13,7 @@ t_tuple	point(double x, double y, double z)
 
 t_tuple	vector(double x, double y, double z)
 {
-	t_tuple new_point;
+	t_tuple	new_point;
 
 	new_point.x = x;
 	new_point.y = y;
@@ -30,19 +28,18 @@ void	print_tuple(t_tuple tuple)
 		printf("Vector: ");
 	else
 		printf("Point: ");
-	printf("x:%.4f y:%.4f z:%.4f\n", tuple.x, tuple.y, tuple.z);
+	printf("x:%.5f y:%.5f z:%.5f\n", tuple.x, tuple.y, tuple.z);
 }
 
-bool	tuple_equal(t_tuple t1, t_tuple t2)
+int	tuple_equal(t_tuple t1, t_tuple t2)
 {
 	if (!equal(t1.x, t2.x))
-		return (false);
+		return (0);
 	if (!equal(t1.y, t2.y))
-		return (false);
+		return (0);
 	if (!equal(t1.z, t2.z))
-		return (false);
+		return (0);
 	if (!equal(t1.w, t2.w))
-		return (false);
-	return (true);
+		return (0);
+	return (1);
 }
-

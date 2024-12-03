@@ -1,6 +1,5 @@
 #include <stdlib.h>
-#include <stdio.h>
-#include "include/tuples.h"
+#include "tuples.h"
 
 t_tuple	tuple_add(t_tuple t1, t_tuple t2)
 {

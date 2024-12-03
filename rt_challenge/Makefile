@@ -1,6 +1,6 @@
 NAME	= raytrace
 
-SRC		= main.c tuple_basic.c tuple_arith.c \
+SRC		= main.c tuple_basic.c tuple_arith.c tuple_advanced.c \
 			utils.c
 OBJ_DIR	= objs
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
