@@ -1,2 +1,4 @@
+raytrace
 *.out
 *.ppm
+*.o

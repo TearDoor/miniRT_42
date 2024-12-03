@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <unistd.h>
 
 int	main(void)
 {
@@ -25,7 +26,8 @@ int	main(void)
 	img_height = 256;
 	printf("P3\n");
 	printf("%d %d\n255\n", img_width, img_height);
-	for (int j = 0; j < img_height; j++)
+	for (int j = 0; j < img_height; j++) {
+		dprintf(STDERR_FILENO, "\rScanlines remaining: %d", img_height - j);
 		for (int i = 0; i < img_width; i++)
 		{
 			r = (double)i / (img_width - 1);
@@ -34,5 +36,7 @@ int	main(void)
 			ig = (int)(255.999 * g);
 			printf("%d %d 0\n", ir, ig);
 		}
+	}
+	dprintf(STDERR_FILENO, "\rDone.                        \n");
 	return (0);
 }
