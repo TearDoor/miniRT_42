@@ -2,6 +2,7 @@ raytrace
 *.out
 *.ppm
 *.o
+*.a
 
 cmake/
 .cache/

@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 10:16:09 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/04 10:16:12 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/04 17:00:18 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ t_tuple	vector_normalize(t_tuple vec);
 double	vector_dot_product(t_tuple v1, t_tuple v2);
 t_tuple	vector_cross_product(t_tuple v1, t_tuple v2);
 
-int	equal(double a, double b);
+int		equal(double a, double b);
 
 #endif
