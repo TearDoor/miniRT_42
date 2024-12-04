@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 09:59:15 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/04 10:11:46 by tkok-kea         ###   ########.fr       */
+/*   Created: 2024/12/04 10:15:27 by tkok-kea          #+#    #+#             */
+/*   Updated: 2024/12/04 10:15:29 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tuples.h"
+#include <math.h>
+#define EPSILON 0.00001
 
-int	main(void)
+int	equal(double a, double b)
 {
-	t_tuple t1, t2, t3, t4;
-
-	t1 = vector(1, 2, 3);
-	t2 = vector(1, 2, 3);
-	t3 = vector_cross_product(t1, t2);
-	t4 = vector_cross_product(t2, t1);
-
-	print_tuple(t3);
-	print_tuple(t4);
-	printf("magnitude: %f\n", vector_magnitude(t3));
-	printf("dot product: %f\n", vector_dot_product(t1, t2));
-	return (0);
+	if (fabs(a - b) < EPSILON)
+		return (1);
+	else
+		return (0);
 }

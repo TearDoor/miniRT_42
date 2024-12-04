@@ -1,22 +1,18 @@
-NAME	= raytrace
+NAME	= libtuples.a
 
-SRC		= main.c
-
+SRC		= tuple_basic.c tuple_arith.c tuple_advanced.c \
+			utils.c
 OBJ_DIR	= objs
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
-# tuples library
-TUP_DIR	= ./tuples
-LIBTUP	= $(TUP_DIR)/libtuples.a
-
 CC		= gcc
-CFLAGS	= -Iinclude -I$(TUP_DIR)
+CFLAGS	= -I./include
 RM		= rm -rf
 
 all: $(NAME)
 
-$(NAME): $(OBJS) | $(LIBTUP)
-			$(CC) $(CFLAGS) -o $@ $^ $(LIBTUP) -lm
+$(NAME): $(OBJS)
+			ar rcs $@ $^
 
 $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 			$(CC) $(CFLAGS) -c $< -o $@
@@ -24,12 +20,8 @@ $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 $(OBJ_DIR):
 			mkdir $@
 
-$(LIBTUP):
-			make -C $(TUP_DIR)
-
 clean:
 			$(RM) $(OBJ_DIR)
-			make fclean -C $(TUP_DIR)
 
 fclean: clean
 	$(RM) $(NAME)

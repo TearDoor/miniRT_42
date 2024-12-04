@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tuple_advanced.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/04 09:59:38 by tkok-kea          #+#    #+#             */
+/*   Updated: 2024/12/04 10:03:40 by tkok-kea         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "tuples.h"
 #include <math.h>
 #include <stdlib.h>
@@ -47,6 +59,10 @@ double	vector_dot_product(t_tuple v1, t_tuple v2)
 		+ (v1.w * v2.w));
 }
 
+/* returns a vector (v1 x v2) that is both perpendicular to both v1 and v2 
+ * Using right hand rule, if the index finger is v1, middle finger is v2,
+ * then the thumb is the direction of v1 x v2
+ * the operation is anticommutative, meaning v1 x v2 = -(v2 x v1) */
 t_tuple	vector_cross_product(t_tuple v1, t_tuple v2)
 {
 	t_tuple	cross;
