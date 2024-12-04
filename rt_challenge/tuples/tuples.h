@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 10:16:09 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/04 17:00:18 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/04 17:52:40 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ typedef struct s_tuple
 	double	w;
 }	t_tuple;
 
+typedef struct s_color
+{
+	double	r;
+	double	g;
+	double	b;
+}	t_color;
+
 t_tuple	point(double x, double y, double z);
 t_tuple	vector(double x, double y, double z);
 void	print_tuple(t_tuple tuple);
@@ -38,6 +45,14 @@ double	vector_magnitude(t_tuple vec);
 t_tuple	vector_normalize(t_tuple vec);
 double	vector_dot_product(t_tuple v1, t_tuple v2);
 t_tuple	vector_cross_product(t_tuple v1, t_tuple v2);
+
+t_color	color(double r, double g, double b);
+void	print_color(t_color color);
+
+t_color	color_add(t_color c1, t_color c2);
+t_color	color_subtract(t_color c1, t_color c2);
+t_color	color_mult(t_color c1, t_color c2);
+t_color	color_scalar_mult(t_color color, double scalar);
 
 int		equal(double a, double b);
 

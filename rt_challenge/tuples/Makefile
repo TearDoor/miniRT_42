@@ -1,7 +1,9 @@
 NAME	= libtuples.a
 
 SRC		= tuple_basic.c tuple_arith.c tuple_advanced.c \
-			utils.c
+		  colors.c color_operations.c \
+		  utils.c
+
 OBJ_DIR	= objs
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
