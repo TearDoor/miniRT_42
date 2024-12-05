@@ -6,12 +6,13 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 10:11:12 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/04 10:11:16 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:34:23 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "tuples.h"
+#include <stdio.h>
+#include "utils.h"
 
 t_tuple	tuple_add(t_tuple t1, t_tuple t2)
 {

@@ -6,11 +6,11 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:44:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/04 17:49:22 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:35:44 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tuples.h"
+#include "utils.h"
 
 t_color	color_add(t_color c1, t_color c2)
 {

@@ -6,11 +6,12 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:33:35 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/04 17:38:35 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:35:27 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tuples.h"
+#include "utils.h"
+#include <stdio.h>
 
 t_color	color(double r, double g, double b)
 {

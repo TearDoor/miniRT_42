@@ -6,11 +6,12 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 10:11:19 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/04 10:11:22 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:29:44 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tuples.h"
+#include "utils.h"
+#include <stdio.h>
 
 t_tuple	point(double x, double y, double z)
 {

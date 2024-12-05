@@ -6,13 +6,14 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 09:59:38 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/04 10:03:40 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:34:50 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tuples.h"
+#include "utils.h"
 #include <math.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 /* the size/length of a vector
  * calculated using pythagoras' theorem

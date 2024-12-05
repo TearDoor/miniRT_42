@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tuples.h                                           :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 10:16:09 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/04 17:52:40 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:29:30 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TUPLES_H
-# define TUPLES_H
-
-# include <stdio.h>
+#ifndef UTILS_H
+# define UTILS_H
 
 typedef struct s_tuple
 {
@@ -29,6 +27,13 @@ typedef struct s_color
 	double	g;
 	double	b;
 }	t_color;
+
+typedef struct s_canvas
+{
+	int		width;
+	int		height;
+	t_color	**pixels;
+}	t_canvas;
 
 t_tuple	point(double x, double y, double z);
 t_tuple	vector(double x, double y, double z);

@@ -10,7 +10,9 @@ file (GLOB_RECURSE sources
 add_executable(raytrace ${sources})
 
 target_include_directories(raytrace PUBLIC "${CMAKE_SOURCE_DIR}/include")
-target_include_directories(raytrace PUBLIC "${CMAKE_SOURCE_DIR}/tuples")
-target_link_libraries(raytrace PUBLIC "${CMAKE_SOURCE_DIR}/tuples/libtuples.a")
+target_include_directories(raytrace PUBLIC "${CMAKE_SOURCE_DIR}/utils")
+target_link_libraries(raytrace PUBLIC "${CMAKE_SOURCE_DIR}/utils/libutils.a")
 target_include_directories(raytrace PUBLIC "${CMAKE_SOURCE_DIR}/libft_42")
 target_link_libraries(raytrace PUBLIC "${CMAKE_SOURCE_DIR}/libft_42/libft.a")
+target_include_directories(raytrace PUBLIC "${CMAKE_SOURCE_DIR}/mlx_linux")
+target_link_libraries(raytrace PUBLIC "${CMAKE_SOURCE_DIR}/mlx_linux/libmlx_linux.a")

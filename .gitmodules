@@ -1,3 +1,6 @@
 [submodule "rt_challenge/libft_42"]
 	path = rt_challenge/libft_42
 	url = git@github.com:TearDoor/libft_42.git
+[submodule "rt_challenge/mlx_linux"]
+	path = rt_challenge/mlx_linux
+	url = git@github.com:42Paris/minilibx-linux.git
