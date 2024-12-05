@@ -6,11 +6,16 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 09:59:15 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/04 16:56:17 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/05 22:09:17 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tuples.h"
+#include "utils.h"
+#include "mlx.h"
+#include <stdio.h>
+
+#define WIDTH 900
+#define HEIGHT 550
 
 typedef struct s_proj
 {
@@ -32,27 +37,35 @@ t_proj	tick(t_proj proj, t_env env)
 	return (proj);
 }
 
-int	main(void)
+t_canvas	cannon(void)
 {
 	t_proj	proj;
 	t_env	env;
 	int		ticks;
+	t_canvas	cvs;
+	t_color		c;
+	void		*mlx;
+	void		*mlx_win;
 
 	proj.position = point(0, 1, 0);
-	proj.velocity = vector_normalize(vector(1, 1, 0));
+	proj.velocity = vector_normalize(vector(1, 1.8, 0));
 	env.gravity = vector(0, -0.1, 0);
 	env.wind = vector(-0.01, 0, 0);
 
-	proj.velocity = tuple_scalar_mult(proj.velocity, 1.0);
+	cvs = canvas(WIDTH, HEIGHT);
+	c = color(0, 0, 1);
+
+	proj.velocity = tuple_scalar_mult(proj.velocity, 11.25);
 	ticks = 0;
 	while (proj.position.y > 0)
 	{
 		printf("position: X=%.2f Y=%.2f\n", proj.position.x, proj.position.y);
 		printf("veclocity: X=%.2f Y=%.2f\n", proj.velocity.x, proj.velocity.y);
+		write_pixel(cvs, proj.position.x, HEIGHT - proj.position.y, c);
 		proj = tick(proj, env);
 		ticks++;
 	}
 	printf("position: X=%.2f Y=%.2f\n", proj.position.x, proj.position.y);
 	printf("ticks: %d\n", ticks);
-	return (0);
+	return (cvs);
 }

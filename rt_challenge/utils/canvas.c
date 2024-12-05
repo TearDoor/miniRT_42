@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:25:08 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/05 16:40:26 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/05 18:30:07 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "libft.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <fcntl.h>
+#include <math.h>
 
 t_canvas	canvas(int width, int height)
 {
@@ -46,7 +48,7 @@ int	clamp(double val)
 	else if (val <= 0)
 		return (0);
 	else
-		return ((int)val);
+		return (round(val));
 }
 
 void	print_color_ascii(t_color color)
@@ -60,8 +62,12 @@ void	canvas_to_ppm(t_canvas canvas)
 {
 	int	i;
 	int	j;
-	t_color c1 = color(1, 0.8, 0.6);
+	int	fd;
 
+	fd = open("output.ppm", O_CREAT | O_WRONLY | O_TRUNC, 0666);
+	if (fd == -1)
+		perror("open: ");
+	dup2(fd, STDOUT_FILENO);
 	printf("P3\n");
 	printf("%d %d\n", canvas.width, canvas.height);
 	printf("255\n");
@@ -71,7 +77,7 @@ void	canvas_to_ppm(t_canvas canvas)
 		i = 0;
 		while (i < canvas.width)
 		{
-			print_color_ascii(c1);
+			print_color_ascii(canvas.pixels[j][i]);
 			if (i != canvas.width - 1)
 				printf(" ");
 			else
@@ -81,5 +87,6 @@ void	canvas_to_ppm(t_canvas canvas)
 		printf("\n");
 		j++;
 	}
+	close(fd);
 }
 
