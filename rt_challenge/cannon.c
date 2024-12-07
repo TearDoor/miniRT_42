@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 09:59:15 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/05 22:09:17 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/06 15:06:22 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_canvas	cannon(void)
 	env.wind = vector(-0.01, 0, 0);
 
 	cvs = canvas(WIDTH, HEIGHT);
-	c = color(0, 0, 1);
+	c = color(0.5, 0.5, 0.5);
 
 	proj.velocity = tuple_scalar_mult(proj.velocity, 11.25);
 	ticks = 0;
