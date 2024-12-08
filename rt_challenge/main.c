@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 09:59:15 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/07 21:24:09 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/08 19:49:20 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "mlx.h"
 #include "minirt.h"
 #include <stdlib.h>
-#include <stdio.h>
+#include "stdio.h"
 
 int	close_win(int keycode, t_mlx *mlx)
 {
@@ -72,12 +72,19 @@ int	main(void)
 {
 	t_mlx		mlx_obj;
 	t_canvas	cvs;
-	t_sqmat		mat;
+	t_sqmat		mat1;
+	t_sqmat		mat2;
 
-	mat = create_matrix(2);
-	fill_matrix(&mat, 2, 4.0, 5, 5.6, 7.0);
-	printf("%f\n", mat.rows[1][1]);
-	printf("%f\n", mat.elems[1]);
+	mat1 = create_matrix(4);
+	fill_matrix(&mat1, 4, 4.0, 5.8, 5.6, 7.0, 4.5, 5.6, 4.5, 9.0, \
+						9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
+	mat2 = create_matrix(4);
+	fill_matrix(&mat2, 4, 4.0, 5.8, 5.6, 7.0, 4.5, 5.6, 4.5, 9.0, \
+						4.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
+	print_matrix(mat1);
+	print_matrix(mat2);
+	if (matrix_equal(mat1, mat2))
+		printf("Same\n");
 	mlx_obj.mlx = mlx_init();
 	return (0);
 }
