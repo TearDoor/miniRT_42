@@ -1,30 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix.h                                           :+:      :+:    :+:   */
+/*   matrix_mult.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/06 16:35:21 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/09 21:12:07 by tkok-kea         ###   ########.fr       */
+/*   Created: 2024/12/09 20:24:11 by tkok-kea          #+#    #+#             */
+/*   Updated: 2024/12/09 20:35:50 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATRIX_H
-# define MATRIX_H
+#include "matrix.h"
 
-typedef struct s_sqmat
+t_sqmat	matrix_mult(t_sqmat m1, t_sqmat m2)
 {
-	double	*elems;
-	double	**rows;
-	int		order;
-}	t_sqmat;
+	int		i;
+	int		j;
+	int		k;
+	t_sqmat	m3;
 
-t_sqmat	create_matrix(int order);
-void	fill_matrix(t_sqmat *mat, int order, ...);
-void	print_matrix(t_sqmat mat);
-int		matrix_equal(t_sqmat m1, t_sqmat m2);
-
-t_sqmat	matrix_mult(t_sqmat m1, t_sqmat m2);
-
-#endif
+	m3 = create_matrix(m1.order);
+	j = 0;
+	while (j < m1.order)
+	{
+		i = 0;
+		while (i < m1.order)
+		{
+			k = 0;
+			m3.rows[j][i] = 0;
+			while (k < m1.order)
+			{
+				m3.rows[j][i] += m1.rows[j][k] * m2.rows[k][i];
+				k++;
+			}
+			i++;
+		}
+		j++;
+	}
+	return (m3);
+}

@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 09:59:15 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/08 19:49:20 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/09 21:10:51 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,17 +74,20 @@ int	main(void)
 	t_canvas	cvs;
 	t_sqmat		mat1;
 	t_sqmat		mat2;
+	t_sqmat		mat3;
 
 	mat1 = create_matrix(4);
-	fill_matrix(&mat1, 4, 4.0, 5.8, 5.6, 7.0, 4.5, 5.6, 4.5, 9.0, \
-						9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
+	fill_matrix(&mat1, 4, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, \
+						9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0);
 	mat2 = create_matrix(4);
-	fill_matrix(&mat2, 4, 4.0, 5.8, 5.6, 7.0, 4.5, 5.6, 4.5, 9.0, \
-						4.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
+	fill_matrix(&mat2, 4, -2.0, 1.0, 2.0, 3.0, 3.0, 2.0, 1.0, -1.0, \
+						4.0, 3.0, 6.0, 5.0, 1.0, 2.0, 7.0, 8.0);
 	print_matrix(mat1);
 	print_matrix(mat2);
 	if (matrix_equal(mat1, mat2))
 		printf("Same\n");
+	mat3 = matrix_mult(mat1, mat2);
+	print_matrix(mat3);
 	mlx_obj.mlx = mlx_init();
 	return (0);
 }

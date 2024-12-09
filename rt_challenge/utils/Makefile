@@ -3,7 +3,7 @@ NAME	= libutils.a
 SRC		= tuple_basic.c tuple_arith.c tuple_advanced.c \
 		  colors.c color_operations.c \
 		  canvas.c canvas_to_ppm.c \
-		  matrix.c \
+		  matrix.c matrix_mult.c \
 		  utils.c
 
 OBJ_DIR	= objs

@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:47:00 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/08 19:46:10 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/09 20:53:15 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	print_matrix(t_sqmat mat)
 	{
 		i = 0;
 		while (i < mat.order)
-			printf("%f ", mat.rows[j][i++]);
+			printf("%.2f ", mat.rows[j][i++]);
 		printf("\n");
 		j++;
 	}
