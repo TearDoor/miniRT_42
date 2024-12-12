@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 09:59:15 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/09 21:10:51 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/12 19:27:59 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "matrix.h"
 #include "mlx.h"
 #include "minirt.h"
+#include "libft.h"
 #include <stdlib.h>
 #include "stdio.h"
 
@@ -70,24 +71,29 @@ void	canvas_to_mlxwin(t_canvas *cvs, t_mlx *mlx)
 
 int	main(void)
 {
-	t_mlx		mlx_obj;
-	t_canvas	cvs;
-	t_sqmat		mat1;
-	t_sqmat		mat2;
-	t_sqmat		mat3;
+	t_mlx	mlx_obj;
+	t_mat4	mat1;
+	t_mat4	mat2;
+	t_tuple	tup;
 
-	mat1 = create_matrix(4);
-	fill_matrix(&mat1, 4, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, \
-						9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0);
-	mat2 = create_matrix(4);
-	fill_matrix(&mat2, 4, -2.0, 1.0, 2.0, 3.0, 3.0, 2.0, 1.0, -1.0, \
-						4.0, 3.0, 6.0, 5.0, 1.0, 2.0, 7.0, 8.0);
+	mlx_obj.mlx = mlx_init();
+	mat1 = (t_mat4){{
+	{1, 2, 3, 4},
+	{2, 4, 4, 2},
+	{8, 6, 4, 1},
+	{0, 0, 0, 1}
+	}};
+	mat2 = (t_mat4){{
+	{-2, 1, 2, 3},
+	{3, 2, 1, -1},
+	{4, 3, 6, 5},
+	{1, 2, 7, 8}
+	}};
+	tup = point(1, 2, 3);
 	print_matrix(mat1);
 	print_matrix(mat2);
-	if (matrix_equal(mat1, mat2))
-		printf("Same\n");
-	mat3 = matrix_mult(mat1, mat2);
-	print_matrix(mat3);
-	mlx_obj.mlx = mlx_init();
+	print_matrix(matrix_mult(mat1, mat2));
+	print_tuple(tup);
+	print_tuple(matrix_tuple_mult(mat1, tup));
 	return (0);
 }

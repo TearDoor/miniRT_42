@@ -14,7 +14,7 @@ LFT_DIR	= ../libft_42
 LIBFT	= $(LFT_DIR)/libft.a
 
 CC		= gcc
-CFLAGS	= -I./include -I$(LFT_DIR)
+CFLAGS	= -I$(LFT_DIR)
 RM		= rm -rf
 
 all: $(NAME)

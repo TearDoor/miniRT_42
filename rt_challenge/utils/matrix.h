@@ -6,25 +6,26 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:35:21 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/09 21:12:07 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/12 19:23:21 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MATRIX_H
 # define MATRIX_H
 
-typedef struct s_sqmat
+# define MAT_SIZE 4
+
+#include "utils.h"
+
+typedef struct s_mat4
 {
-	double	*elems;
-	double	**rows;
-	int		order;
-}	t_sqmat;
+	double	mat[MAT_SIZE][MAT_SIZE];
+}	t_mat4;
 
-t_sqmat	create_matrix(int order);
-void	fill_matrix(t_sqmat *mat, int order, ...);
-void	print_matrix(t_sqmat mat);
-int		matrix_equal(t_sqmat m1, t_sqmat m2);
+void	print_matrix(t_mat4 mat);
+int		matrix_equal(t_mat4 mat1, t_mat4 mat2);
 
-t_sqmat	matrix_mult(t_sqmat m1, t_sqmat m2);
+t_mat4	matrix_mult(t_mat4 mat1, t_mat4 mat2);
+t_tuple	matrix_tuple_mult(t_mat4 mat, t_tuple tup);
 
 #endif

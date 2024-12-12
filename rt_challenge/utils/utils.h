@@ -6,19 +6,23 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 10:16:09 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/05 22:05:02 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/12 19:19:13 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-typedef struct s_tuple
+typedef union u_tuple
 {
-	double	x;
-	double	y;
-	double	z;
-	double	w;
+	double	elems[4];
+	struct
+	{
+		double	x;
+		double	y;
+		double	z;
+		double	w;
+	};
 }	t_tuple;
 
 typedef struct s_color

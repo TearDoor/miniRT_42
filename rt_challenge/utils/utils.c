@@ -6,12 +6,12 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 10:15:27 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/04 10:15:29 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/12 18:41:54 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#define EPSILON 0.00001
+#define EPSILON 0.000001
 
 int	equal(double a, double b)
 {
