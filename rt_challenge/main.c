@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 09:59:15 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/12 19:27:59 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/13 22:04:29 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,26 +74,19 @@ int	main(void)
 	t_mlx	mlx_obj;
 	t_mat4	mat1;
 	t_mat4	mat2;
+	t_mat4	mat3;
 	t_tuple	tup;
 
 	mlx_obj.mlx = mlx_init();
 	mat1 = (t_mat4){{
-	{1, 2, 3, 4},
-	{2, 4, 4, 2},
-	{8, 6, 4, 1},
-	{0, 0, 0, 1}
-	}};
-	mat2 = (t_mat4){{
-	{-2, 1, 2, 3},
-	{3, 2, 1, -1},
-	{4, 3, 6, 5},
-	{1, 2, 7, 8}
+	{-5,2,6,-8},
+	{1,-5,1,8},
+	{7,7,-6,-7},
+	{1,-3,7,4}
 	}};
 	tup = point(1, 2, 3);
-	print_matrix(mat1);
+	mat3 = matrix_mult(mat1, mat1);
+	matrix_invert(id_matrix().mat, mat2.mat);
 	print_matrix(mat2);
-	print_matrix(matrix_mult(mat1, mat2));
-	print_tuple(tup);
-	print_tuple(matrix_tuple_mult(mat1, tup));
 	return (0);
 }

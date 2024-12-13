@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:47:00 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/12 18:51:22 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/13 21:59:08 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	print_matrix(t_mat4 mat)
 		i = 0;
 		while (i < MAT_SIZE)
 		{
-			printf("%.2f ", mat.mat[j][i]);
+			printf("%.5f ", mat.mat[j][i]);
 			i++;
 		}
 		printf("\n");
@@ -52,4 +52,24 @@ int	matrix_equal(t_mat4 mat1, t_mat4 mat2)
 		j++;
 	}
 	return (1);
+}
+
+t_mat4	matrix_transpose(t_mat4 mat)
+{
+	t_mat4	tp;
+	int		i;
+	int		j;
+
+	j = 0;
+	while (j < MAT_SIZE)
+	{
+		i = 0;
+		while (i < MAT_SIZE)
+		{
+			tp.mat[i][j] = mat.mat[j][i];
+			i++;
+		}
+		j++;
+	}
+	return (tp);
 }

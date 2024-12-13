@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:35:21 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/12 19:23:21 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/13 22:14:03 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define MAT_SIZE 4
 
-#include "utils.h"
+# include "utils.h"
 
 typedef struct s_mat4
 {
@@ -24,8 +24,13 @@ typedef struct s_mat4
 
 void	print_matrix(t_mat4 mat);
 int		matrix_equal(t_mat4 mat1, t_mat4 mat2);
+t_mat4	matrix_transpose(t_mat4 mat);
 
 t_mat4	matrix_mult(t_mat4 mat1, t_mat4 mat2);
 t_tuple	matrix_tuple_mult(t_mat4 mat, t_tuple tup);
+t_mat4	id_matrix(void);
+
+int		matrix_invert(double mat[][4], double inv[][4]);
+double	determinant3(double mat3[3][3]);
 
 #endif

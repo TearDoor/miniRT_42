@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 20:24:11 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/12 19:24:50 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/13 15:50:58 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,17 @@ t_tuple	matrix_tuple_mult(t_mat4 mat, t_tuple tup)
 		i++;
 	}
 	return (res);
+}
+
+t_mat4	id_matrix(void)
+{
+	t_mat4	id;
+
+	id = (t_mat4){{
+	{1, 0, 0, 0},
+	{0, 1, 0, 0},
+	{0, 0, 1, 0},
+	{0, 0, 0, 1},
+	}};
+	return (id);
 }
