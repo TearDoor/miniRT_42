@@ -4,6 +4,7 @@ SRC		= tuple_basic.c tuple_arith.c tuple_advanced.c \
 		  colors.c color_operations.c \
 		  canvas.c canvas_to_ppm.c \
 		  matrix.c matrix_mult.c matrix_invert.c matrix_invert_utils.c \
+		  transformation_matrices.c rotation_matrices.c \
 		  utils.c
 
 OBJ_DIR	= objs

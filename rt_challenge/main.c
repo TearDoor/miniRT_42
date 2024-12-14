@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 09:59:15 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/13 22:04:29 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/14 21:59:09 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 #include "matrix.h"
 #include "mlx.h"
 #include "minirt.h"
-#include "libft.h"
 #include <stdlib.h>
-#include "stdio.h"
 
 int	close_win(int keycode, t_mlx *mlx)
 {
@@ -72,21 +70,14 @@ void	canvas_to_mlxwin(t_canvas *cvs, t_mlx *mlx)
 int	main(void)
 {
 	t_mlx	mlx_obj;
-	t_mat4	mat1;
-	t_mat4	mat2;
-	t_mat4	mat3;
+	t_mat4	trans = rotation_z(M_PI / 2);
 	t_tuple	tup;
 
 	mlx_obj.mlx = mlx_init();
-	mat1 = (t_mat4){{
-	{-5,2,6,-8},
-	{1,-5,1,8},
-	{7,7,-6,-7},
-	{1,-3,7,4}
-	}};
-	tup = point(1, 2, 3);
-	mat3 = matrix_mult(mat1, mat1);
-	matrix_invert(id_matrix().mat, mat2.mat);
-	print_matrix(mat2);
+	tup = point(0,1,0);
+	tup = matrix_tuple_mult(trans, tup);
+	print_tuple(tup);
+	tup = matrix_tuple_mult(matrix_invert(trans), tup);
+	print_tuple(tup);
 	return (0);
 }

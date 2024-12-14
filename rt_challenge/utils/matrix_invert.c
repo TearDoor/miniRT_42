@@ -6,14 +6,15 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 16:01:59 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/13 22:14:09 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/14 20:52:25 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
 #include "utils.h"
+#include "libft.h"
 
-void	submatrix4(double mat4[4][4], double mat3[3][3], int row, int col)
+static void	submatrix4(double mat4[4][4], double mat3[3][3], int row, int col)
 {
 	int	i;
 	int	j;
@@ -40,7 +41,7 @@ void	submatrix4(double mat4[4][4], double mat3[3][3], int row, int col)
 	}
 }
 
-double	cofactor4(double mat4[4][4], int row, int col)
+static double	cofactor4(double mat4[4][4], int row, int col)
 {
 	double	mat3[3][3];
 
@@ -51,7 +52,7 @@ double	cofactor4(double mat4[4][4], int row, int col)
 		return (determinant3(mat3) * -1);
 }
 
-double	determinant4(double mat4[4][4])
+static double	determinant4(double mat4[4][4])
 {
 	double	det;
 	int		i;
@@ -66,17 +67,19 @@ double	determinant4(double mat4[4][4])
 	return (det);
 }
 
-int	matrix_invert(double mat[][4], double inv[][4])
+t_mat4	matrix_invert(t_mat4 mat)
 {
+	t_mat4	inv;
 	double	det;
 	double	c;
 	int		i;
 	int		j;
 
-	det = determinant4(mat);
+	det = determinant4(mat.mat);
 	if (equal(det, 0.0))
 	{
-		return (1);
+		ft_putendl_fd("Warning: matrix not invertible.", STDERR_FILENO);
+		return (id_matrix());
 	}
 	j = 0;
 	while (j < 4)
@@ -84,11 +87,11 @@ int	matrix_invert(double mat[][4], double inv[][4])
 		i = 0;
 		while (i < 4)
 		{
-			c = cofactor4(mat, j, i);
-			inv[i][j] = c / det;
+			c = cofactor4(mat.mat, j, i);
+			inv.mat[i][j] = c / det;
 			i++;
 		}
 		j++;
 	}
-	return (0);
+	return (inv);
 }
