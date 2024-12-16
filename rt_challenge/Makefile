@@ -1,6 +1,7 @@
-NAME	= raytrace
+NAME	=	raytrace
 
-SRC		= main.c cannon.c
+SRC		=	main.c cannon.c \
+			rays.c
 
 OBJ_DIR	= objs
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))

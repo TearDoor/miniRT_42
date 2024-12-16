@@ -6,15 +6,16 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 09:59:15 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/14 21:59:09 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/16 21:08:16 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-#include "matrix.h"
+#include "rays.h"
 #include "mlx.h"
 #include "minirt.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 int	close_win(int keycode, t_mlx *mlx)
 {
@@ -69,15 +70,21 @@ void	canvas_to_mlxwin(t_canvas *cvs, t_mlx *mlx)
 
 int	main(void)
 {
-	t_mlx	mlx_obj;
-	t_mat4	trans = rotation_z(M_PI / 2);
-	t_tuple	tup;
+	t_ray		ray1;
+	t_sphere	s1;
+	t_list		*xs;
+	t_intersect	*inter;
 
-	mlx_obj.mlx = mlx_init();
-	tup = point(0,1,0);
-	tup = matrix_tuple_mult(trans, tup);
-	print_tuple(tup);
-	tup = matrix_tuple_mult(matrix_invert(trans), tup);
-	print_tuple(tup);
+	ray1 = ray(point(0, 0, -5), vector(0, 0, 1));
+	s1 = sphere(1);
+	xs = check_intersect(s1, ray1);
+	inter = (t_intersect *)xs->content;
+	printf("t= %f id= %d\n", inter->t, inter->obj.id);
+	xs = xs->next;
+	inter = (t_intersect *)xs->content;
+	printf("t= %f id= %d\n", inter->t, inter->obj.id);
+	print_tuple(ray1.origin);
+	print_tuple(ray1.direction);
+	print_tuple(position(ray1, -1));
 	return (0);
 }
