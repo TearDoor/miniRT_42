@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:47:40 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/16 21:10:12 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/18 18:10:15 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,47 +35,19 @@ t_sphere	sphere(int id)
 		id,
 		(t_tuple){{0, 0, 0, 1}},
 		1,
+		id_matrix(),
 	});
 }
 
-t_intersect	*intersection(double t, t_sphere obj)
+void	set_transform(t_sphere *s, t_mat4 m)
 {
-	t_intersect	*inter;
-
-	inter = malloc(sizeof(t_intersect));
-	printf("%f\n", t);
-	inter->t = t;
-	inter->obj = obj;
-	return (inter);
+	s->transform = matrix_mult(m, s->transform);
 }
 
-t_list	*calculate_xs(double a, double b, double discriminant, t_sphere sphere)
+t_ray	transform_ray(t_ray ray, t_mat4 transform)
 {
-	t_list		*xs;
-
-	xs = NULL;
-	ft_lstadd_back(&xs, ft_lstnew((void *)intersection(\
-									(-b - sqrt(discriminant)) / (2 * a), sphere)));
-	ft_lstadd_back(&xs, ft_lstnew((void *)intersection(\
-									(-b + sqrt(discriminant)) / (2 * a), sphere)));
-	return (xs);
-}
-
-t_list	*check_intersect(t_sphere sphere, t_ray ray)
-{
-	t_tuple	sphere_to_ray;
-	double	a;
-	double	b;
-	double	c;
-	double	discriminant;
-
-	sphere_to_ray = tuple_subtract(ray.origin, sphere.origin);
-	a = vector_dot_product(ray.direction, ray.direction);
-	b = 2 * vector_dot_product(ray.direction, sphere_to_ray);
-	c = vector_dot_product(sphere_to_ray, sphere_to_ray) - 1;
-	discriminant = pow(b, 2) - (4 * a * c);
-	if (discriminant < 0)
-		return (NULL);
-	else
-		return (calculate_xs(a, b, discriminant, sphere));
+	return ((t_ray){
+		matrix_tuple_mult(transform, ray.origin),
+		matrix_tuple_mult(transform, ray.direction),
+	});
 }

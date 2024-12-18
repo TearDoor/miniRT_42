@@ -21,16 +21,17 @@ RM		= rm -rf
 all: $(NAME)
 
 $(NAME): $(OBJS)
-			ar rcs $@ $^
+			@ar rcs $@ $^
+			@echo "Utils library compile complete."
 
 $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR) $(LIBFT)
-			$(CC) $(CFLAGS) -c $< -o $@
+			@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
-			mkdir $@
+			@mkdir $@
 
 $(LIBFT):
-			make -C $(LFT_DIR)
+			@make -C $(LFT_DIR)
 
 clean:
 			$(RM) $(OBJ_DIR)

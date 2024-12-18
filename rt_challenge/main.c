@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 09:59:15 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/16 21:08:16 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/18 21:41:17 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	canvas_to_mlxwin(t_canvas *cvs, t_mlx *mlx)
 	mlx->mlx_win = mlx_new_window(mlx->mlx, cvs->width, cvs->height, "Cannon");
 	img.img = mlx_new_image(mlx->mlx, cvs->width, cvs->height);
 	img.addr = mlx_get_data_addr(img.img, &img.bbp, \
-		&img.line_length, &img.endian);
+								&img.line_length, &img.endian);
 	j = 0;
 	while (j < cvs->height)
 	{
@@ -71,20 +71,18 @@ void	canvas_to_mlxwin(t_canvas *cvs, t_mlx *mlx)
 int	main(void)
 {
 	t_ray		ray1;
+	t_ray		ray2;
 	t_sphere	s1;
 	t_list		*xs;
 	t_intersect	*inter;
+	t_mat4		transform = scaling_mat(2, 2, 2);
 
 	ray1 = ray(point(0, 0, -5), vector(0, 0, 1));
 	s1 = sphere(1);
+	set_transform(&s1, transform);
 	xs = check_intersect(s1, ray1);
-	inter = (t_intersect *)xs->content;
-	printf("t= %f id= %d\n", inter->t, inter->obj.id);
-	xs = xs->next;
-	inter = (t_intersect *)xs->content;
-	printf("t= %f id= %d\n", inter->t, inter->obj.id);
-	print_tuple(ray1.origin);
-	print_tuple(ray1.direction);
-	print_tuple(position(ray1, -1));
+	inter = hit(xs);
+	ray2 = transform_ray(ray1, transform);
+	wall();
 	return (0);
 }

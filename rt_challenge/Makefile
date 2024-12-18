@@ -1,7 +1,8 @@
 NAME	=	raytrace
 
-SRC		=	main.c cannon.c \
-			rays.c
+SRC		=	main.c \
+			cannon.c wall.c \
+			rays.c intersect.c 
 
 OBJ_DIR	= objs
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
@@ -27,13 +28,15 @@ $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 			$(CC) $(CFLAGS) -c $< -o $@ -Imlx_linux -O3
 
 $(OBJ_DIR):
-			mkdir $@
+			@mkdir $@
 
 $(LIBUTIL):
-			make -C $(UTIL_DIR)
+			@echo "utils for minirt not found. Creating..."
+			@make -C $(UTIL_DIR)
 
 $(LIBFT):
-			make -C $(LFT_DIR)
+			@echo "libft not found. Creating..."
+			@make -C $(LFT_DIR)
 
 clean:
 			$(RM) $(OBJ_DIR)
