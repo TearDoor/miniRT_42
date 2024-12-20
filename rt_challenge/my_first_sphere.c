@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wall.c                                             :+:      :+:    :+:   */
+/*   my_first_sphere.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:27:03 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/18 21:46:11 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/20 21:29:15 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ void	wall(void)
 	t_tuple		ray_vector;
 	t_list		*xs;
 	t_mlx		mlx;
+	t_light		light = point_light(color(1, 1, 1), point(5, 5, -5));
+	t_tuple		pt;
+	t_tuple		normal;
+	t_tuple		eye;
 
 	printf("start drawing.\n");
 	ray_origin = point(0, 0, -5);
@@ -44,8 +48,7 @@ void	wall(void)
 	cvs = canvas(PIXELS, PIXELS);
 	clr = color(1, 0, 0);
 	s1 = sphere(1);
-	set_transform(&s1, scaling_mat(0.5, 1, 1));
-	set_transform(&s1, shearing_mat((t_shear){1, 0, 0, 0, 0, 0}));
+	s1.material.color = (t_color){1, 0, 0};
 	j = 0;
 	while (j < PIXELS)
 	{
@@ -55,11 +58,17 @@ void	wall(void)
 		{
 			world_x = center - pix_size * i;
 			ray_position = point(world_x, world_y, wall_z);
-			ray_vector = tuple_subtract(ray_position, ray_origin);
+			ray_vector =  tuple_subtract(ray_position, ray_origin);
 			cam_ray = ray(ray_origin, vector_normalize(ray_vector));
 			xs = check_intersect(s1, cam_ray);
 			if (hit(xs) != NULL)
+			{
+				pt = position(cam_ray, hit(xs)->t);
+				normal = normal_at(hit(xs)->obj, pt);
+				eye = tuple_negate(cam_ray.direction);
+				clr = lighting(hit(xs)->obj.material, light, pt, eye, normal);
 				write_pixel(cvs, i, j, clr);
+			}
 			i++;
 		}
 		j++;

@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 09:59:15 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/18 21:41:17 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/20 20:51:39 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "mlx.h"
 #include "minirt.h"
 #include <stdlib.h>
+#include <math.h>
 #include <stdio.h>
 
 int	close_win(int keycode, t_mlx *mlx)
@@ -70,19 +71,16 @@ void	canvas_to_mlxwin(t_canvas *cvs, t_mlx *mlx)
 
 int	main(void)
 {
-	t_ray		ray1;
-	t_ray		ray2;
 	t_sphere	s1;
-	t_list		*xs;
-	t_intersect	*inter;
-	t_mat4		transform = scaling_mat(2, 2, 2);
+	t_tuple		pos = point(0, 0, 0);
+	t_color		res;
+	t_tuple		eyev = vector(0, 0, -1);
+	t_tuple		normalv = vector(0, 0, -1);
+	t_light		light = point_light(color(0, 0, 1), point(0, 0, 10));
 
-	ray1 = ray(point(0, 0, -5), vector(0, 0, 1));
 	s1 = sphere(1);
-	set_transform(&s1, transform);
-	xs = check_intersect(s1, ray1);
-	inter = hit(xs);
-	ray2 = transform_ray(ray1, transform);
+	pos = point(0, 0, 0);
+	res = lighting(material(), light, pos, eyev, normalv);
 	wall();
 	return (0);
 }
