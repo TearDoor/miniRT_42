@@ -6,15 +6,12 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:47:40 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/20 17:53:14 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/25 19:10:43 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rays.h"
-#include <math.h>
 #include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
 
 t_ray	ray(t_tuple point, t_tuple vector)
 {

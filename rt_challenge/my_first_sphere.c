@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:27:03 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/20 21:29:15 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/25 22:31:39 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	wall(void)
 				clr = lighting(hit(xs)->obj.material, light, pt, eye, normal);
 				write_pixel(cvs, i, j, clr);
 			}
+			ft_lstclear(&xs, free);
 			i++;
 		}
 		j++;
