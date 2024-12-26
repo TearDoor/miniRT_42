@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:27:03 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/25 22:31:39 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/26 18:00:32 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 void	wall(void)
 {
 	t_tuple		ray_origin;
-	t_sphere	s1;
+	t_obj		*s1;
 	double		wall_z;
 	double		wall_size;
 	double		pix_size;
@@ -48,7 +48,7 @@ void	wall(void)
 	cvs = canvas(PIXELS, PIXELS);
 	clr = color(1, 0, 0);
 	s1 = sphere(1);
-	s1.material.color = (t_color){1, 0, 0};
+	s1->material.color = (t_color){1, 0, 0};
 	j = 0;
 	while (j < PIXELS)
 	{
@@ -60,7 +60,7 @@ void	wall(void)
 			ray_position = point(world_x, world_y, wall_z);
 			ray_vector =  tuple_subtract(ray_position, ray_origin);
 			cam_ray = ray(ray_origin, vector_normalize(ray_vector));
-			xs = check_intersect(s1, cam_ray);
+			xs = check_intersect(*s1, cam_ray);
 			if (hit(xs) != NULL)
 			{
 				pt = position(cam_ray, hit(xs)->t);

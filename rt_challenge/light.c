@@ -6,14 +6,14 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:57:51 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/20 21:40:47 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/26 17:55:00 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rays.h"
 #include <math.h>
 
-t_tuple	normal_at(t_sphere sp, t_tuple world_point)
+t_tuple	normal_at(t_obj sp, t_tuple world_point)
 {
 	t_tuple	object_point;
 	t_tuple	object_normal;

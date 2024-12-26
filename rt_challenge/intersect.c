@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:04:22 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/25 22:32:29 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/26 17:55:00 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <math.h>
 #include <stdio.h>
 
-t_intersect	*intersection(double t, t_sphere obj)
+t_intersect	*intersection(double t, t_obj obj)
 {
 	t_intersect	*inter;
 
@@ -41,7 +41,7 @@ int	solve_quadratic(double a, double b, double c, double roots[2])
 	return (1);
 }
 
-void	line_sphere_intersection(t_sphere sphere, t_ray ray, t_list **list)
+void	line_sphere_intersection(t_obj sphere, t_ray ray, t_list **list)
 {
 	t_tuple	sphere_to_ray;
 	double	a;
@@ -82,7 +82,7 @@ t_intersect	*hit(t_list *intersects)
 	return (result);
 }
 
-t_list	*check_intersect(t_sphere sphere, t_ray ray)
+t_list	*check_intersect(t_obj sphere, t_ray ray)
 {
 	t_ray	ray2;
 	t_list	*x_list;
