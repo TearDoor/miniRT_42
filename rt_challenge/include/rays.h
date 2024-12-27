@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/26 17:57:29 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/27 18:24:14 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,6 @@ typedef struct s_light
 	t_tuple	position;
 }	t_light;
 
-typedef struct s_phong
-{
-	t_color	ambient;
-	t_color	diffuse;
-	t_color	specular;
-}	t_phong;
-
 typedef struct s_material
 {
 	t_color	color;
@@ -44,6 +37,15 @@ typedef struct s_material
 	double	specular;
 	double	shininess;
 }	t_material;
+
+typedef struct s_lightparams
+{
+	t_material	m;
+	t_light		light;
+	t_tuple		point;
+	t_tuple		eye_vec;
+	t_tuple		normal_vec;
+}	t_lightparams;
 
 typedef struct s_obj
 {
@@ -62,7 +64,7 @@ typedef struct s_world
 
 typedef struct s_intersect
 {
-	double		t;
+	double	t;
 	t_obj	obj;
 }	t_intersect;
 
@@ -82,7 +84,7 @@ t_ray		transform_ray(t_ray ray, t_mat4 transform);
 /* light and shading */
 t_tuple		normal_at(t_obj sp, t_tuple point);
 t_tuple		reflect(t_tuple v_in, t_tuple normal);
-t_color		lighting(t_material m, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv);
+t_color		lighting(t_lightparams params);
 
 void		set_transform(t_obj *s, t_mat4 m);
 

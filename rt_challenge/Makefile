@@ -1,8 +1,10 @@
 NAME	=	raytrace
 
+vpath %.c	srcs
+
 SRC		=	main.c \
 			cannon.c my_first_sphere.c \
-			rays.c intersect.c light.c world.c
+			rays.c intersect.c light.c lighting.c world.c
 
 OBJ_DIR	= objs
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))

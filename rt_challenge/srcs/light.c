@@ -6,12 +6,11 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:57:51 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/26 17:55:00 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/27 21:45:33 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rays.h"
-#include <math.h>
 
 t_tuple	normal_at(t_obj sp, t_tuple world_point)
 {
@@ -51,39 +50,4 @@ t_material	material(void)
 		.specular = 0.9,
 		.shininess = 200,
 	});
-}
-
-t_color	lighting(t_material m, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv)
-{
-	t_color	effective_color;
-	t_tuple	lightv;
-	t_color	ambient;
-	t_color	diffuse;
-	t_color	specular;
-	t_tuple	reflectv;
-	double	reflect_dot_eye;
-
-	effective_color = color_mult(m.color, light.intensity);
-	lightv = vector_normalize(tuple_subtract(light.position, point));
-	ambient = color_scalar_mult(effective_color, m.ambient);
-	if (vector_dot_product(lightv, normalv) < 0)
-	{
-		diffuse = (t_color){0, 0, 0};
-		specular = (t_color){0, 0, 0};
-	}
-	else
-	{
-		diffuse = color_scalar_mult(effective_color, m.diffuse);
-		diffuse = color_scalar_mult(diffuse, vector_dot_product(lightv, normalv));
-		reflectv = reflect(tuple_negate(lightv), normalv);
-		reflect_dot_eye = vector_dot_product(reflectv, eyev);
-		if (reflect_dot_eye < 0)
-			specular = (t_color){0, 0, 0};
-		else
-		{
-			specular = color_scalar_mult(light.intensity, m.specular);
-			specular = color_scalar_mult(specular, pow(reflect_dot_eye, m.shininess));
-		}
-	}
-	return (color_add(ambient, color_add(diffuse, specular)));
 }

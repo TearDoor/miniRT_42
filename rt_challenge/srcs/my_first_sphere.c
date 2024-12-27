@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:27:03 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/26 18:00:32 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/27 21:37:05 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@ void	wall(void)
 	t_list		*xs;
 	t_mlx		mlx;
 	t_light		light = point_light(color(1, 1, 1), point(5, 5, -5));
-	t_tuple		pt;
-	t_tuple		normal;
-	t_tuple		eye;
+	t_lightparams	params;
 
 	printf("start drawing.\n");
 	ray_origin = point(0, 0, -5);
@@ -63,10 +61,12 @@ void	wall(void)
 			xs = check_intersect(*s1, cam_ray);
 			if (hit(xs) != NULL)
 			{
-				pt = position(cam_ray, hit(xs)->t);
-				normal = normal_at(hit(xs)->obj, pt);
-				eye = tuple_negate(cam_ray.direction);
-				clr = lighting(hit(xs)->obj.material, light, pt, eye, normal);
+				params.point = position(cam_ray, hit(xs)->t);
+				params.normal_vec = normal_at(hit(xs)->obj, params.point);
+				params.eye_vec = tuple_negate(cam_ray.direction);
+				params.m = hit(xs)->obj.material;
+				params.light = light;
+				clr = lighting(params);
 				write_pixel(cvs, i, j, clr);
 			}
 			ft_lstclear(&xs, free);
