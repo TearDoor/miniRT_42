@@ -74,10 +74,13 @@ t_intersect	*intersection(double t, t_obj obj);
 t_light		point_light(t_color intensity, t_tuple position);
 t_obj		*sphere(int id);
 t_material	material(void);
+t_world		default_world(void);
+
 
 /* basic ray intersection */
 t_tuple		position(t_ray ray, double distance);
-t_list		*check_intersect(t_obj sphere, t_ray ray);
+void		check_intersect(t_obj sphere, t_ray ray, t_list **xs);
+t_list		*intersect_world(t_ray ray, t_world world);
 t_intersect	*hit(t_list *intersects);
 t_ray		transform_ray(t_ray ray, t_mat4 transform);
 

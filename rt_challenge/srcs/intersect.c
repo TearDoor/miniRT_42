@@ -41,6 +41,39 @@ int	solve_quadratic(double a, double b, double c, double roots[2])
 	return (1);
 }
 
+void	lstadd_sorted_t(t_list **lst, t_list *new)
+{
+	t_list		*curr;
+	t_intersect	*curr_x;
+	t_intersect	*new_x;
+
+	if (!lst)
+		return ;
+	if (*lst == NULL)
+		*lst = new;
+	else
+	{
+		curr = *lst;
+		curr_x = curr->content;
+		new_x = new->content;
+		if (new_x->t <= curr_x->t)
+		{
+			new->next = curr;
+			*lst = new;
+		}
+		else
+		{
+			while (curr->next && new_x->t > curr_x->t)
+			{
+				curr = curr->next;
+				curr_x = curr->content;
+			}
+			new->next = curr->next;
+			curr->next = new;
+		}
+	}
+}
+
 void	line_sphere_intersection(t_obj sphere, t_ray ray, t_list **list)
 {
 	t_tuple	sphere_to_ray;
@@ -55,8 +88,8 @@ void	line_sphere_intersection(t_obj sphere, t_ray ray, t_list **list)
 	c = vector_dot_product(sphere_to_ray, sphere_to_ray) - 1;
 	if (!solve_quadratic(a, b, c, roots))
 		return ;
-	ft_lstadd_back(list, ft_lstnew((void *)intersection(roots[0], sphere)));
-	ft_lstadd_back(list, ft_lstnew((void *)intersection(roots[1], sphere)));
+	lstadd_sorted_t(list, ft_lstnew((void *)intersection(roots[0], sphere)));
+	lstadd_sorted_t(list, ft_lstnew((void *)intersection(roots[1], sphere)));
 }
 
 t_intersect	*hit(t_list *intersects)
@@ -82,13 +115,10 @@ t_intersect	*hit(t_list *intersects)
 	return (result);
 }
 
-t_list	*check_intersect(t_obj sphere, t_ray ray)
+void	check_intersect(t_obj sphere, t_ray ray, t_list **xs)
 {
 	t_ray	ray2;
-	t_list	*x_list;
 
 	ray2 = transform_ray(ray, matrix_invert(sphere.transform));
-	x_list = NULL;
-	line_sphere_intersection(sphere, ray2, &x_list);
-	return (x_list);
+	line_sphere_intersection(sphere, ray2, xs);
 }

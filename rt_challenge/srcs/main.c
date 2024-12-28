@@ -80,8 +80,27 @@ void	canvas_to_mlxwin(t_canvas *cvs, t_mlx *mlx)
 	mlx_loop(mlx->mlx);
 }
 
+void	print_xs(t_list *xs)
+{
+	t_intersect *x;
+
+	while (xs)
+	{
+		x = xs->content;
+		printf("%f\n", x->t);
+		xs = xs->next;
+	}
+}
+
 int	main(void)
 {
-	wall();
+	t_world	world;
+	t_ray	r = ray(point(0, 0, -5), vector(0, 0, 1));
+	t_list	*xs;
+	t_intersect *x;
+
+	world = default_world();
+	xs = intersect_world(r, world);
+	print_xs(xs);
 	return (0);
 }

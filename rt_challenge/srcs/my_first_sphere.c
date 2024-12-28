@@ -36,6 +36,7 @@ void	wall(void)
 	t_mlx		mlx;
 	t_light		light = point_light(color(1, 1, 1), point(5, 5, -5));
 	t_lightparams	params;
+	t_world			world;
 
 	printf("start drawing.\n");
 	ray_origin = point(0, 0, -5);
@@ -58,7 +59,8 @@ void	wall(void)
 			ray_position = point(world_x, world_y, wall_z);
 			ray_vector =  tuple_subtract(ray_position, ray_origin);
 			cam_ray = ray(ray_origin, vector_normalize(ray_vector));
-			xs = check_intersect(*s1, cam_ray);
+			xs = NULL;
+			check_intersect(*s1, cam_ray, &xs);
 			if (hit(xs) != NULL)
 			{
 				params.point = position(cam_ray, hit(xs)->t);
