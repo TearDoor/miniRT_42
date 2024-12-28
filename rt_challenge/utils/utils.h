@@ -6,12 +6,14 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 10:16:09 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/20 18:11:19 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/28 21:48:46 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
+
+# include "libft.h"
 
 typedef union u_tuple
 {
@@ -69,5 +71,8 @@ void		write_pixel(t_canvas c, int x, int y, t_color color);
 void		canvas_to_ppm(t_canvas canvas);
 
 int			equal(double a, double b);
+int			solve_quadratic(double a, double b, double c, double roots[2]);
+void		lstadd_sorted(t_list **lst, t_list *new, \
+							int (*cmp)(t_list *, t_list *));
 
 #endif

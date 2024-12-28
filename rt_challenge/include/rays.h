@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/27 18:24:14 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/28 22:09:17 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,16 @@ typedef struct s_intersect
 	t_obj	obj;
 }	t_intersect;
 
+typedef struct s_comps
+{
+	double	t;
+	t_obj	obj;
+	t_tuple	point;
+	t_tuple	eyev;
+	t_tuple	normalv;
+	int		inside;
+}	t_comps;
+
 /* Constructors */
 t_ray		ray(t_tuple point, t_tuple vector);
 t_intersect	*intersection(double t, t_obj obj);
@@ -76,8 +86,7 @@ t_obj		*sphere(int id);
 t_material	material(void);
 t_world		default_world(void);
 
-
-/* basic ray intersection */
+/* ray intersection */
 t_tuple		position(t_ray ray, double distance);
 void		check_intersect(t_obj sphere, t_ray ray, t_list **xs);
 t_list		*intersect_world(t_ray ray, t_world world);
@@ -85,6 +94,7 @@ t_intersect	*hit(t_list *intersects);
 t_ray		transform_ray(t_ray ray, t_mat4 transform);
 
 /* light and shading */
+t_comps		prepare_computations(t_intersect *i, t_ray r);
 t_tuple		normal_at(t_obj sp, t_tuple point);
 t_tuple		reflect(t_tuple v_in, t_tuple normal);
 t_color		lighting(t_lightparams params);

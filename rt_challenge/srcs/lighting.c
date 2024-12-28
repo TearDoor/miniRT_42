@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 21:44:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/27 21:46:55 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/28 22:21:17 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include "rays.h"
 #include <math.h>
 
-static t_color	diffuse_calc(t_lightparams params, t_tuple lightv, t_color eff_color)
+static t_color	diffuse_calc(t_lightparams params, \
+							t_tuple lightv, t_color eff_color)
 {
 	double	diffuse_ratio;
 
@@ -58,4 +59,23 @@ t_color	lighting(t_lightparams params)
 	specular = specular_calc(params, lightv);
 	diffuse = diffuse_calc(params, lightv, effective_color);
 	return (color_add(ambient, color_add(diffuse, specular)));
+}
+
+t_comps	prepare_computations(t_intersect *i, t_ray r)
+{
+	t_comps	new;
+
+	new.t = i->t;
+	new.obj = i->obj;
+	new.point = position(r, new.t);
+	new.eyev = tuple_negate(r.direction);
+	new.normalv = normal_at(i->obj, new.point);
+	if (vector_dot_product(new.normalv, new.eyev) < 0)
+	{
+		new.inside = 1;
+		new.normalv = tuple_negate(new.normalv);
+	}
+	else
+		new.inside = 0;
+	return (new);
 }

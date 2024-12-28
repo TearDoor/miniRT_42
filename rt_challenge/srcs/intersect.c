@@ -6,13 +6,11 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:04:22 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/26 17:55:00 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/28 21:57:27 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rays.h"
-#include <math.h>
-#include <stdio.h>
 
 t_intersect	*intersection(double t, t_obj obj)
 {
@@ -24,54 +22,17 @@ t_intersect	*intersection(double t, t_obj obj)
 	return (inter);
 }
 
-int	solve_quadratic(double a, double b, double c, double roots[2])
+int	lstcmp_xs(t_list *l1, t_list *l2)
 {
-	double	discriminant;
-	double	q;
+	t_intersect	*x1;
+	t_intersect	*x2;
 
-	discriminant = pow(b, 2) - (4 * a * c);
-	if (discriminant < 0)
+	x1 = l1->content;
+	x2 = l2->content;
+	if (x1->t >= x2->t)
+		return (1);
+	else
 		return (0);
-	if (b > 0)
-		q = -0.5 * (b + sqrt(discriminant));
-	else
-		q = -0.5 * (b - sqrt(discriminant));
-	roots[0] = q / a;
-	roots[1] = c / q;
-	return (1);
-}
-
-void	lstadd_sorted_t(t_list **lst, t_list *new)
-{
-	t_list		*curr;
-	t_intersect	*curr_x;
-	t_intersect	*new_x;
-
-	if (!lst)
-		return ;
-	if (*lst == NULL)
-		*lst = new;
-	else
-	{
-		curr = *lst;
-		curr_x = curr->content;
-		new_x = new->content;
-		if (new_x->t <= curr_x->t)
-		{
-			new->next = curr;
-			*lst = new;
-		}
-		else
-		{
-			while (curr->next && new_x->t > curr_x->t)
-			{
-				curr = curr->next;
-				curr_x = curr->content;
-			}
-			new->next = curr->next;
-			curr->next = new;
-		}
-	}
 }
 
 void	line_sphere_intersection(t_obj sphere, t_ray ray, t_list **list)
@@ -88,8 +49,18 @@ void	line_sphere_intersection(t_obj sphere, t_ray ray, t_list **list)
 	c = vector_dot_product(sphere_to_ray, sphere_to_ray) - 1;
 	if (!solve_quadratic(a, b, c, roots))
 		return ;
-	lstadd_sorted_t(list, ft_lstnew((void *)intersection(roots[0], sphere)));
-	lstadd_sorted_t(list, ft_lstnew((void *)intersection(roots[1], sphere)));
+	lstadd_sorted(list, ft_lstnew((void *)intersection(roots[0], sphere)), \
+					&lstcmp_xs);
+	lstadd_sorted(list, ft_lstnew((void *)intersection(roots[1], sphere)), \
+					&lstcmp_xs);
+}
+
+void	check_intersect(t_obj sphere, t_ray ray, t_list **xs)
+{
+	t_ray	ray2;
+
+	ray2 = transform_ray(ray, matrix_invert(sphere.transform));
+	line_sphere_intersection(sphere, ray2, xs);
 }
 
 t_intersect	*hit(t_list *intersects)
@@ -105,20 +76,10 @@ t_intersect	*hit(t_list *intersects)
 		curr_xs = curr->content;
 		if (curr_xs->t >= 0)
 		{
-			if (result == NULL)
-				result = curr_xs;
-			else if (curr_xs->t < result->t)
-				result = curr_xs;
+			result = curr->content;
+			break ;
 		}
 		curr = curr->next;
 	}
 	return (result);
-}
-
-void	check_intersect(t_obj sphere, t_ray ray, t_list **xs)
-{
-	t_ray	ray2;
-
-	ray2 = transform_ray(ray, matrix_invert(sphere.transform));
-	line_sphere_intersection(sphere, ray2, xs);
 }

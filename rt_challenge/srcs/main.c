@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 09:59:15 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/26 17:59:45 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/28 22:14:47 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	canvas_to_mlxwin(t_canvas *cvs, t_mlx *mlx)
 
 void	print_xs(t_list *xs)
 {
-	t_intersect *x;
+	t_intersect	*x;
 
 	while (xs)
 	{
@@ -95,12 +95,14 @@ void	print_xs(t_list *xs)
 int	main(void)
 {
 	t_world	world;
-	t_ray	r = ray(point(0, 0, -5), vector(0, 0, 1));
-	t_list	*xs;
-	t_intersect *x;
+	t_ray	r = ray(point(0, 0, 0), vector(0, 0, 1));
+	t_obj	*s = sphere(1);
+	t_intersect *x = intersection(1, *s);
+	t_comps comps;
 
 	world = default_world();
-	xs = intersect_world(r, world);
-	print_xs(xs);
+	comps = prepare_computations(x, r);
+	printf("%d\n", comps.inside);
+	print_tuple(comps.normalv);
 	return (0);
 }
