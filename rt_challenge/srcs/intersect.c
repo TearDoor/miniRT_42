@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:04:22 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/28 21:57:27 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/29 14:49:18 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	check_intersect(t_obj sphere, t_ray ray, t_list **xs)
 	line_sphere_intersection(sphere, ray2, xs);
 }
 
-t_intersect	*hit(t_list *intersects)
+t_intersect	*checkhit(t_list *intersects)
 {
 	t_list		*curr;
 	t_intersect	*curr_xs;

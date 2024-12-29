@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:47:40 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/26 17:59:09 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/29 19:22:11 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ t_obj	*sphere(int id)
 	return (new);
 }
 
-void	set_transform(t_obj *s, t_mat4 m)
+void	set_transform(t_obj *o, t_mat4 m)
 {
-	s->transform = matrix_mult(m, s->transform);
+	o->transform = matrix_mult(m, o->transform);
 }
 
 t_ray	transform_ray(t_ray ray, t_mat4 transform)

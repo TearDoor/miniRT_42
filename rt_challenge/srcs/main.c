@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 09:59:15 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/28 22:14:47 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/29 19:34:17 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,15 +94,12 @@ void	print_xs(t_list *xs)
 
 int	main(void)
 {
-	t_world	world;
-	t_ray	r = ray(point(0, 0, 0), vector(0, 0, 1));
-	t_obj	*s = sphere(1);
-	t_intersect *x = intersection(1, *s);
-	t_comps comps;
+	t_mat4		t;
+	t_camera	cam;
 
-	world = default_world();
-	comps = prepare_computations(x, r);
-	printf("%d\n", comps.inside);
-	print_tuple(comps.normalv);
+	t = view_transform(point(1, 3, 2), point(4, -2, 8), vector(1, 1, 0));
+	cam = new_camera(125, 200, M_PI / 2);
+	print_matrix(t);
+	printf("%.5f\n", cam.pix_size);
 	return (0);
 }

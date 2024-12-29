@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/28 22:09:17 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/29 19:27:00 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,15 @@ typedef struct s_comps
 	int		inside;
 }	t_comps;
 
+typedef struct s_camera
+{
+	int		hsize;
+	int		vsize;
+	double	fov;
+	t_mat4	transform;
+	double	pix_size;
+}	t_camera;
+
 /* Constructors */
 t_ray		ray(t_tuple point, t_tuple vector);
 t_intersect	*intersection(double t, t_obj obj);
@@ -85,12 +94,13 @@ t_light		point_light(t_color intensity, t_tuple position);
 t_obj		*sphere(int id);
 t_material	material(void);
 t_world		default_world(void);
+t_camera	new_camera(int hsize, int vsize, double fov);
 
 /* ray intersection */
 t_tuple		position(t_ray ray, double distance);
 void		check_intersect(t_obj sphere, t_ray ray, t_list **xs);
 t_list		*intersect_world(t_ray ray, t_world world);
-t_intersect	*hit(t_list *intersects);
+t_intersect	*checkhit(t_list *intersects);
 t_ray		transform_ray(t_ray ray, t_mat4 transform);
 
 /* light and shading */
@@ -98,7 +108,11 @@ t_comps		prepare_computations(t_intersect *i, t_ray r);
 t_tuple		normal_at(t_obj sp, t_tuple point);
 t_tuple		reflect(t_tuple v_in, t_tuple normal);
 t_color		lighting(t_lightparams params);
+t_color		color_at(t_world w, t_ray r);
 
-void		set_transform(t_obj *s, t_mat4 m);
+void		set_transform(t_obj *o, t_mat4 m);
+
+/* views and cameras */
+t_mat4		view_transform(t_tuple from, t_tuple to, t_tuple up);
 
 #endif

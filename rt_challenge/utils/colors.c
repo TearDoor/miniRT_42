@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:33:35 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/05 16:35:27 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/29 14:54:01 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ t_color	color(double r, double g, double b)
 
 void	print_color(t_color color)
 {
-	printf("r: %f g: %f b: %f\n", color.r, color.g, color.b);
+	printf("r: %.5f g: %.5f b: %.5f\n", color.r, color.g, color.b);
 }

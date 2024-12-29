@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 21:44:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/28 22:21:17 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/29 14:50:57 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,18 @@ t_color	lighting(t_lightparams params)
 	return (color_add(ambient, color_add(diffuse, specular)));
 }
 
+t_color	shade_hit(t_world world, t_comps comp)
+{
+	t_lightparams	params;
+
+	params.m = comp.obj.material;
+	params.light = world.light;
+	params.point = comp.point;
+	params.eye_vec = comp.eyev;
+	params.normal_vec = comp.normalv;
+	return (lighting(params));
+}
+
 t_comps	prepare_computations(t_intersect *i, t_ray r)
 {
 	t_comps	new;
@@ -78,4 +90,18 @@ t_comps	prepare_computations(t_intersect *i, t_ray r)
 	else
 		new.inside = 0;
 	return (new);
+}
+
+t_color	color_at(t_world w, t_ray r)
+{
+	t_list		*intersections;
+	t_intersect	*hit;
+	t_comps		comp;
+
+	intersections = intersect_world(r, w);
+	hit = checkhit(intersections);
+	if (!hit)
+		return (color(0, 0, 0));
+	comp = prepare_computations(hit, r);
+	return (shade_hit(w, comp));
 }
