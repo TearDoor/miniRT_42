@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/29 19:27:00 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/30 21:28:32 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ typedef struct s_camera
 	int		vsize;
 	double	fov;
 	t_mat4	transform;
+	double	half_width;
+	double	half_height;
 	double	pix_size;
 }	t_camera;
 
@@ -114,5 +116,7 @@ void		set_transform(t_obj *o, t_mat4 m);
 
 /* views and cameras */
 t_mat4		view_transform(t_tuple from, t_tuple to, t_tuple up);
+t_ray		ray_for_pixel(t_camera cam, int px, int py);
+t_canvas	render(t_camera cam, t_world w);
 
 #endif

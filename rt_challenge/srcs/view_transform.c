@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 17:41:12 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/29 19:32:35 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/30 22:35:12 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,53 @@ t_camera	new_camera(int hsize, int vsize, double fov)
 		vsize,
 		fov,
 		id_matrix(),
+		half_width,
+		half_height,
 		(half_width * 2) / hsize,
 	});
+}
+
+t_ray	ray_for_pixel(t_camera cam, int px, int py)
+{
+	double	xoffset;
+	double	yoffset;
+	double	worldx;
+	double	worldy;
+	t_tuple	pixel;
+	t_tuple	origin;
+	t_tuple	direction;
+
+	xoffset = ((double)px + 0.5) * cam.pix_size;
+	yoffset = ((double)py + 0.5) * cam.pix_size;
+	worldx = cam.half_width - xoffset;
+	worldy = cam.half_height - yoffset;
+	pixel = matrix_tuple_mult(matrix_invert(cam.transform), point(worldx, worldy, -1));
+	origin = matrix_tuple_mult(matrix_invert(cam.transform), point(0, 0, 0));
+	direction = vector_normalize(tuple_subtract(pixel, origin));
+	return (ray(origin, direction));
+}
+
+t_canvas	render(t_camera cam, t_world w)
+{
+	t_canvas	cvs;
+	int			i;
+	int			j;
+	t_ray		r;
+	t_color		clr;
+
+	cvs = canvas(cam.hsize, cam.vsize);
+	j = 0;
+	while (j < cam.vsize)
+	{
+		i = 0;
+		while (i < cam.hsize)
+		{
+			r = ray_for_pixel(cam, i, j);
+			clr = color_at(w, r);
+			write_pixel(cvs, i, j, clr);
+			i++;
+		}
+		j++;
+	}
+	return (cvs);
 }

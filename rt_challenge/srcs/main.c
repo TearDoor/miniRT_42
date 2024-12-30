@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 09:59:15 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/29 19:34:17 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/30 22:34:53 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	canvas_to_mlxwin(t_canvas *cvs, t_mlx *mlx)
 	int			i;
 	int			j;
 
-	mlx->mlx_win = mlx_new_window(mlx->mlx, cvs->width, cvs->height, "Cannon");
+	mlx->mlx_win = mlx_new_window(mlx->mlx, cvs->width, cvs->height, "miniRT");
 	img.img = mlx_new_image(mlx->mlx, cvs->width, cvs->height);
 	img.addr = mlx_get_data_addr(img.img, &img.bbp, \
 								&img.line_length, &img.endian);
@@ -94,12 +94,18 @@ void	print_xs(t_list *xs)
 
 int	main(void)
 {
-	t_mat4		t;
+	t_world		w;
 	t_camera	cam;
+	t_canvas	cvs;
+	t_mlx		mlx;
 
-	t = view_transform(point(1, 3, 2), point(4, -2, 8), vector(1, 1, 0));
-	cam = new_camera(125, 200, M_PI / 2);
-	print_matrix(t);
-	printf("%.5f\n", cam.pix_size);
+	cam = new_camera(500, 500, M_PI / 3);
+	cam.transform = view_transform(point(0, 0, 3), point(0, 0, 0), vector(0, 1, 0));
+	w = default_world();
+	print_matrix(cam.transform);
+	matrix_invert(cam.transform);
+	cvs = render(cam, w);
+	mlx.mlx = mlx_init();
+	canvas_to_mlxwin(&cvs, &mlx);
 	return (0);
 }
