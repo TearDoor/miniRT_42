@@ -94,18 +94,6 @@ void	print_xs(t_list *xs)
 
 int	main(void)
 {
-	t_world		w;
-	t_camera	cam;
-	t_canvas	cvs;
-	t_mlx		mlx;
-
-	cam = new_camera(500, 500, M_PI / 3);
-	cam.transform = view_transform(point(0, 0, 3), point(0, 0, 0), vector(0, 1, 0));
-	w = default_world();
-	print_matrix(cam.transform);
-	matrix_invert(cam.transform);
-	cvs = render(cam, w);
-	mlx.mlx = mlx_init();
-	canvas_to_mlxwin(&cvs, &mlx);
+	scene_one();
 	return (0);
 }

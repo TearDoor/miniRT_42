@@ -95,6 +95,7 @@ t_intersect	*intersection(double t, t_obj obj);
 t_light		point_light(t_color intensity, t_tuple position);
 t_obj		*sphere(int id);
 t_material	material(void);
+t_world		new_world(void);
 t_world		default_world(void);
 t_camera	new_camera(int hsize, int vsize, double fov);
 

@@ -12,6 +12,15 @@
 
 #include "rays.h"
 
+t_world	new_world(void)
+{
+	t_world	new;
+
+	new.objs = NULL;
+	new.light = point_light(color(1, 1, 1), point(-10, 10, -10));
+	return (new);
+}
+
 t_world	default_world(void)
 {
 	t_world		new;

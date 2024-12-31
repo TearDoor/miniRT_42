@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:40:49 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/26 16:49:34 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2024/12/31 10:50:03 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ void		canvas_to_mlxwin(t_canvas *cvs, t_mlx *mlx);
 
 t_canvas	cannon(void);
 void		wall(void);
+void		scene_one(void);
 
 #endif
