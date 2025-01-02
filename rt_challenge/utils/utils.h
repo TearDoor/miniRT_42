@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 10:16:09 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/28 21:48:46 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/02 17:58:56 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define UTILS_H
 
 # include "libft.h"
+
+# define EPSILON 0.000001
 
 typedef union u_tuple
 {

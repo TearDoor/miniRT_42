@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/30 21:28:32 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/02 18:20:16 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_lightparams
 	t_tuple		point;
 	t_tuple		eye_vec;
 	t_tuple		normal_vec;
+	int			in_shadow;
 }	t_lightparams;
 
 typedef struct s_obj
@@ -76,6 +77,7 @@ typedef struct s_comps
 	t_tuple	eyev;
 	t_tuple	normalv;
 	int		inside;
+	t_tuple	over_point;
 }	t_comps;
 
 typedef struct s_camera
@@ -107,11 +109,11 @@ t_intersect	*checkhit(t_list *intersects);
 t_ray		transform_ray(t_ray ray, t_mat4 transform);
 
 /* light and shading */
-t_comps		prepare_computations(t_intersect *i, t_ray r);
 t_tuple		normal_at(t_obj sp, t_tuple point);
 t_tuple		reflect(t_tuple v_in, t_tuple normal);
 t_color		lighting(t_lightparams params);
 t_color		color_at(t_world w, t_ray r);
+int			is_shadowed(t_world w, t_tuple point);
 
 void		set_transform(t_obj *o, t_mat4 m);
 

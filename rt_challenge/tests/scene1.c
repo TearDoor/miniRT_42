@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 10:48:35 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/31 10:49:44 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/02 18:56:08 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 void	scene_one(void)
 {
 	t_world w;
-	t_obj	*s1, s2, s3;
+	t_obj	*s1, *s2, *s3;
 	t_obj	*floor;
 	t_obj	*lwall;
 	t_obj	*rwall;
@@ -47,7 +47,30 @@ void	scene_one(void)
 	set_transform(rwall, translate_mat(0, 0, 5));
 	rwall->material = floor->material;
 	ft_lstadd_back(&w.objs, ft_lstnew(rwall));
-	cam = new_camera(500, 250, M_PI / 3);
+	s1 = sphere(3);
+	set_transform(s1, translate_mat(-0.5, 1, 0.5));
+	s1->material = material();
+	s1->material.color = color(0.1, 1, 0.5);
+	s1->material.diffuse = 0.7;
+	s1->material.specular = 0.3;
+	ft_lstadd_back(&w.objs, ft_lstnew(s1));
+	s2 = sphere(4);
+	set_transform(s2, scaling_mat(0.5, 0.5, 0.5));
+	set_transform(s2, translate_mat(1.5, 0.5, -0.5));
+	s2->material = material();
+	s2->material.color = color(0.5, 1, 0.1);
+	s2->material.diffuse = 0.7;
+	s2->material.specular = 0.3;
+	ft_lstadd_back(&w.objs, ft_lstnew(s2));
+	s3 = sphere(4);
+	set_transform(s3, scaling_mat(0.33, 0.33, 0.33));
+	set_transform(s3, translate_mat(-1.5, 0.33, -0.75));
+	s3->material = material();
+	s3->material.color = color(1, 0.8, 0.1);
+	s3->material.diffuse = 0.7;
+	s3->material.specular = 0.3;
+	ft_lstadd_back(&w.objs, ft_lstnew(s3));
+	cam = new_camera(500, 250, M_PI / 4);
 	cam.transform = view_transform(point(0, 1.5, -5), point(0, 1, 0), vector(0, 1, 0));
 	cvs = render(cam, w);
 	mlx.mlx = mlx_init();

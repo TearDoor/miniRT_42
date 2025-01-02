@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   shadows.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 09:59:15 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/02 18:33:16 by tkok-kea         ###   ########.fr       */
+/*   Created: 2025/01/02 17:44:56 by tkok-kea          #+#    #+#             */
+/*   Updated: 2025/01/02 17:51:40 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
 #include "rays.h"
-#include "mlx.h"
-#include "minirt.h"
-#include <stdlib.h>
-#include <math.h>
-#include <stdio.h>
 
-void	print_xs(t_list *xs)
+int	is_shadowed(t_world w, t_tuple point)
 {
-	t_intersect	*x;
+	t_tuple		direction;
+	double		distance;
+	t_ray		shadow_ray;
+	t_intersect	*hit;
 
-	while (xs)
-	{
-		x = xs->content;
-		printf("%f\n", x->t);
-		xs = xs->next;
-	}
-}
-
-int	main(void)
-{
-	scene_one();
-	return (0);
+	direction = tuple_subtract(w.light.position, point);
+	distance = vector_magnitude(direction);
+	direction = vector_normalize(direction);
+	shadow_ray = ray(point, direction);
+	hit = checkhit(intersect_world(shadow_ray, w));
+	if (hit && hit->t < distance)
+		return (1);
+	else
+		return (0);
 }
