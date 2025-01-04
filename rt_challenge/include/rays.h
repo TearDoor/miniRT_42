@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/02 18:20:16 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/04 21:38:14 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,19 @@ typedef struct s_lightparams
 	int			in_shadow;
 }	t_lightparams;
 
+typedef enum e_obj_type
+{
+	OBJ_SPHERE,
+	OBJ_PLANE,
+}	t_obj_type;
+
 typedef struct s_obj
 {
-	int			id;
-	t_tuple		origin;
-	double		radius;
+	t_obj_type	type;
 	t_mat4		transform;
 	t_material	material;
+	void		(*local_intersect)(struct s_obj, t_ray, t_list **);
+	t_tuple		(*local_normal_at)(t_tuple);
 }	t_obj;
 
 typedef struct s_world
@@ -103,7 +109,8 @@ t_camera	new_camera(int hsize, int vsize, double fov);
 
 /* ray intersection */
 t_tuple		position(t_ray ray, double distance);
-void		check_intersect(t_obj sphere, t_ray ray, t_list **xs);
+void		check_intersect(t_obj obj, t_ray ray, t_list **xs);
+int			lstcmp_xs(t_list *l1, t_list *l2);
 t_list		*intersect_world(t_ray ray, t_world world);
 t_intersect	*checkhit(t_list *intersects);
 t_ray		transform_ray(t_ray ray, t_mat4 transform);

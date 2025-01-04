@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 10:48:35 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/02 18:56:08 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/04 21:14:03 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	scene_one(void)
 	s3->material.diffuse = 0.7;
 	s3->material.specular = 0.3;
 	ft_lstadd_back(&w.objs, ft_lstnew(s3));
-	cam = new_camera(500, 250, M_PI / 4);
+	cam = new_camera(500, 250, M_PI / 3);
 	cam.transform = view_transform(point(0, 1.5, -5), point(0, 1, 0), vector(0, 1, 0));
 	cvs = render(cam, w);
 	mlx.mlx = mlx_init();

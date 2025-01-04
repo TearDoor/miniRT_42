@@ -4,6 +4,7 @@ vpath %.c	srcs tests srcs/minilibx
 
 SRC		=	main.c \
 			cannon.c my_first_sphere.c scene1.c \
+			objects.c \
 			color_at.c light.c lighting.c shadows.c \
 			rays.c intersect.c world.c view_transform.c \
 			mlx_showimage.c

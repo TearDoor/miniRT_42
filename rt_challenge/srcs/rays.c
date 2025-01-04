@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:47:40 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/29 19:22:11 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/04 21:10:07 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,6 @@ t_ray	ray(t_tuple point, t_tuple vector)
 t_tuple	position(t_ray ray, double distance)
 {
 	return (tuple_add(ray.origin, tuple_scalar_mult(ray.direction, distance)));
-}
-
-t_obj	*sphere(int id)
-{
-	t_obj	*new;
-
-	new = ft_calloc(1, sizeof(t_obj));
-	new->id = id;
-	new->origin = point(0, 0, 0);
-	new->radius = 1;
-	new->transform = id_matrix();
-	new->material = material();
-	return (new);
 }
 
 void	set_transform(t_obj *o, t_mat4 m)

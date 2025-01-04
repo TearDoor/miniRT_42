@@ -6,22 +6,22 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:57:51 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/27 21:45:33 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/04 21:38:45 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rays.h"
 
-t_tuple	normal_at(t_obj sp, t_tuple world_point)
+t_tuple	normal_at(t_obj obj, t_tuple world_point)
 {
-	t_tuple	object_point;
-	t_tuple	object_normal;
+	t_tuple	local_point;
+	t_tuple	local_normal;
 	t_tuple	world_normal;
 
-	object_point = matrix_tuple_mult(matrix_invert(sp.transform), world_point);
-	object_normal = tuple_subtract(object_point, sp.origin);
+	local_point = matrix_tuple_mult(matrix_invert(obj.transform), world_point);
+	local_normal = obj.local_normal_at(local_point);
 	world_normal = matrix_tuple_mult(\
-				matrix_transpose(matrix_invert(sp.transform)), object_normal);
+				matrix_transpose(matrix_invert(obj.transform)), local_normal);
 	world_normal.w = 0;
 	return (vector_normalize(world_normal));
 }
