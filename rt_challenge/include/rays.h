@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/04 21:38:14 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/05 22:13:31 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef enum e_obj_type
 {
 	OBJ_SPHERE,
 	OBJ_PLANE,
+	OBJ_CYL,
 }	t_obj_type;
 
 typedef struct s_obj
@@ -101,7 +102,10 @@ typedef struct s_camera
 t_ray		ray(t_tuple point, t_tuple vector);
 t_intersect	*intersection(double t, t_obj obj);
 t_light		point_light(t_color intensity, t_tuple position);
-t_obj		*sphere(int id);
+t_obj		*new_obj(void);
+t_obj		*sphere(void);
+t_obj		*plane(void);
+t_obj		*cylinder(void);
 t_material	material(void);
 t_world		new_world(void);
 t_world		default_world(void);

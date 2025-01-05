@@ -1,10 +1,10 @@
 NAME	=	raytrace
 
-vpath %.c	srcs tests srcs/minilibx
+vpath %.c	srcs tests srcs/minilibx srcs/objects
 
 SRC		=	main.c \
 			cannon.c my_first_sphere.c scene1.c \
-			objects.c \
+			objects.c sphere.c plane.c cylinder.c \
 			color_at.c light.c lighting.c shadows.c \
 			rays.c intersect.c world.c view_transform.c \
 			mlx_showimage.c
@@ -22,6 +22,7 @@ LIBFT	= $(LFT_DIR)/libft.a
 
 CC		= gcc
 CFLAGS	= -Iinclude -I$(UTIL_DIR) -I$(LFT_DIR)
+CFLAGS	+= -Wall -Wextra
 RM		= rm -rf
 
 all: $(NAME)

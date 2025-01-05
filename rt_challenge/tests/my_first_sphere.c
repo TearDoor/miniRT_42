@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:27:03 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/29 14:49:18 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/05 16:11:06 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	wall(void)
 	t_mlx		mlx;
 	t_light		light = point_light(color(1, 1, 1), point(5, 5, -5));
 	t_lightparams	params;
-	t_world			world;
 
 	printf("start drawing.\n");
 	ray_origin = point(0, 0, -5);
@@ -46,7 +45,7 @@ void	wall(void)
 	center = wall_size / 2;
 	cvs = canvas(PIXELS, PIXELS);
 	clr = color(1, 0, 0);
-	s1 = sphere(1);
+	s1 = sphere();
 	s1->material.color = (t_color){1, 0, 0};
 	j = 0;
 	while (j < PIXELS)

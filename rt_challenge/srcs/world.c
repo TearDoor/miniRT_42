@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 17:23:10 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/26 17:39:26 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/05 16:11:54 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ t_world	default_world(void)
 
 	new.objs = NULL;
 	new.light = point_light(color(1, 1, 1), point(-10, 10, -10));
-	s1 = sphere(1);
+	s1 = sphere();
 	s1->material.color = color(0.8, 1.0, 0.6);
 	s1->material.diffuse = 0.7;
 	s1->material.specular = 0.2;
 	ft_lstadd_back(&new.objs, ft_lstnew(s1));
-	s2 = sphere(2);
+	s2 = sphere();
 	set_transform(s2, scaling_mat(0.5, 0.5, 0.5));
 	ft_lstadd_back(&new.objs, ft_lstnew(s2));
 	return (new);

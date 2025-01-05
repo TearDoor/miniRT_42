@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   objects.c                                          :+:      :+:    :+:   */
+/*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/04 17:56:54 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/04 21:40:52 by tkok-kea         ###   ########.fr       */
+/*   Created: 2025/01/05 16:39:54 by tkok-kea          #+#    #+#             */
+/*   Updated: 2025/01/05 17:27:51 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "utils.h"
 #include "rays.h"
 
-t_obj	*new_obj(void)
-{
-	t_obj	*newobj;
-
-	newobj = malloc(sizeof(t_obj));
-	newobj->transform = id_matrix();
-	newobj->material = material();
-	return (newobj);
-}
-
-void	line_sphere_intersection(t_obj sphere, t_ray ray, t_list **list)
+static void	line_sphere_intersection(t_obj sphere, t_ray ray, t_list **list)
 {
 	t_tuple	sphere_to_ray;
 	double	a;
@@ -42,12 +33,16 @@ void	line_sphere_intersection(t_obj sphere, t_ray ray, t_list **list)
 					&lstcmp_xs);
 }
 
-t_tuple	sphere_normal_at(t_tuple local_point)
+/* normal of a point on a sphere is 
+ * the vector from the sphere's origin to the point (point - origin)
+ * since we assume a unit sphere (origin at 0,0,0) we can just return
+ * the point (but w is 0 instead of 1 because it is a vector)*/
+static t_tuple	sphere_normal_at(t_tuple local_point)
 {
 	return (vector(local_point.x, local_point.y, local_point.z));
 }
 
-t_obj	*sphere(int id)
+t_obj	*sphere(void)
 {
 	t_obj	*new;
 

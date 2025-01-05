@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 09:59:15 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/06 15:06:22 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/05 16:12:33 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ t_canvas	cannon(void)
 	int		ticks;
 	t_canvas	cvs;
 	t_color		c;
-	void		*mlx;
-	void		*mlx_win;
 
 	proj.position = point(0, 1, 0);
 	proj.velocity = vector_normalize(vector(1, 1.8, 0));
