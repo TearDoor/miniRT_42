@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:47:40 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/04 21:10:07 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/06 13:50:38 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_ray	ray(t_tuple point, t_tuple vector)
 	});
 }
 
+/* position = origin + t * direction */
 t_tuple	position(t_ray ray, double distance)
 {
 	return (tuple_add(ray.origin, tuple_scalar_mult(ray.direction, distance)));
@@ -34,7 +35,7 @@ void	set_transform(t_obj *o, t_mat4 m)
 t_ray	transform_ray(t_ray ray, t_mat4 transform)
 {
 	return ((t_ray){
-		matrix_tuple_mult(transform, ray.origin),
-		matrix_tuple_mult(transform, ray.direction),
+		.origin = matrix_tuple_mult(transform, ray.origin),
+		.direction = matrix_tuple_mult(transform, ray.direction),
 	});
 }

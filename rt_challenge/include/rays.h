@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/05 22:13:31 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/06 16:06:12 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include "utils.h"
 # include "libft.h"
 # include "matrix.h"
+
+# define CYL_MAX 0.5
+# define CYL_MIN -0.5
 
 typedef struct s_ray
 {
@@ -53,6 +56,7 @@ typedef enum e_obj_type
 	OBJ_SPHERE,
 	OBJ_PLANE,
 	OBJ_CYL,
+	OBJ_CONE,
 }	t_obj_type;
 
 typedef struct s_obj
@@ -132,5 +136,8 @@ void		set_transform(t_obj *o, t_mat4 m);
 t_mat4		view_transform(t_tuple from, t_tuple to, t_tuple up);
 t_ray		ray_for_pixel(t_camera cam, int px, int py);
 t_canvas	render(t_camera cam, t_world w);
+
+/* utils */
+void		cyl_intersect_caps(t_obj cyl, t_ray ray, t_list **list);
 
 #endif
