@@ -6,20 +6,12 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 21:59:21 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/06 15:40:32 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/06 21:14:00 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rays.h"
 #include <math.h>
-
-static int	check_bounds(double t, t_ray ray)
-{
-	double	y;
-
-	y = ray.origin.y + t * ray.direction.y;
-	return ((y > CYL_MIN) && (y < CYL_MAX));
-}
 
 static void	cylinder_intersect(t_obj cyl, t_ray ray, t_list **list)
 {
@@ -38,9 +30,9 @@ static void	cylinder_intersect(t_obj cyl, t_ray ray, t_list **list)
 	c = pow(ray.origin.x, 2) + pow(ray.origin.z, 2) - 1;
 	if (!solve_quadratic(a, b, c, roots))
 		return ;
-	if (check_bounds(roots[0], ray))
+	if (check_bounds(roots[0], ray, CYL_MAX, CYL_MIN))
 		lstadd_sorted(list, ft_lstnew(intersection(roots[0], cyl)), &lstcmp_xs);
-	if (check_bounds(roots[1], ray))
+	if (check_bounds(roots[1], ray, CYL_MAX, CYL_MIN))
 		lstadd_sorted(list, ft_lstnew(intersection(roots[1], cyl)), &lstcmp_xs);
 	cyl_intersect_caps(cyl, ray, list);
 }
@@ -48,7 +40,7 @@ static void	cylinder_intersect(t_obj cyl, t_ray ray, t_list **list)
 /* if cylinder side (not end cap)
  * normal of cylinder at a point on cylinder is
  * point - center (ignore y value) */
-static t_tuple	cylinder_normal(t_tuple point)
+static t_tuple	cylinder_normal_at(t_tuple point)
 {
 	double	dist;
 
@@ -69,6 +61,6 @@ t_obj	*cylinder(void)
 	new_cyl = new_obj();
 	new_cyl->type = OBJ_CYL;
 	new_cyl->local_intersect = &cylinder_intersect;
-	new_cyl->local_normal_at = &cylinder_normal;
+	new_cyl->local_normal_at = &cylinder_normal_at;
 	return (new_cyl);
 }

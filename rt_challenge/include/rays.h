@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/06 16:06:12 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/06 21:45:17 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 # define CYL_MAX 0.5
 # define CYL_MIN -0.5
+# define CONE_MAX 1
+# define CONE_MIN 0
 
 typedef struct s_ray
 {
@@ -110,6 +112,7 @@ t_obj		*new_obj(void);
 t_obj		*sphere(void);
 t_obj		*plane(void);
 t_obj		*cylinder(void);
+t_obj		*cone(void);
 t_material	material(void);
 t_world		new_world(void);
 t_world		default_world(void);
@@ -138,6 +141,7 @@ t_ray		ray_for_pixel(t_camera cam, int px, int py);
 t_canvas	render(t_camera cam, t_world w);
 
 /* utils */
+int			check_bounds(double t, t_ray ray, double max, double min);
 void		cyl_intersect_caps(t_obj cyl, t_ray ray, t_list **list);
 
 #endif

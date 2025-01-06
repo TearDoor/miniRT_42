@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 10:48:35 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/06 15:17:26 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/06 21:33:28 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	scene_one(void)
 	t_world w;
 	t_obj	*s1, *s2, *s3;
 	t_obj	*cyl1;
+	t_obj	*cone1;
 	t_obj	*floor;
 	t_obj	*lwall;
 	t_obj	*celling;
@@ -27,11 +28,14 @@ void	scene_one(void)
 	t_mlx		mlx;
 
 	w = new_world();
+	cone1 = cone();
+	set_transform(cone1, translate_mat(0, 1, 0));
+	ft_lstadd_back(&w.objs, ft_lstnew(cone1));
 	cyl1 = cylinder();
-	set_transform(cyl1, rotation_x(M_PI / 4));
+	set_transform(cyl1, scaling_mat(1, 10, 1));
+	set_transform(cyl1, rotation_z(M_PI / 4));
 	set_transform(cyl1, translate_mat(0, 2, 0.5));
 	cyl1->material.color = color(0.1, 0.1, 0.5);
-	ft_lstadd_back(&w.objs, ft_lstnew(cyl1));
 	floor = plane();
 	ft_lstadd_back(&w.objs, ft_lstnew(floor));
 	lwall = plane();
@@ -41,7 +45,7 @@ void	scene_one(void)
 	celling = plane();
 	set_transform(celling, translate_mat(0, 4, 0));
 	ft_lstadd_back(&w.objs, ft_lstnew(celling));
-	w.light = point_light(color(1, 1, 1), point(-5, 1, -5));
+	w.light = point_light(color(1, 1, 1), point(-5, 2, -5));
 	s1 = sphere();
 	set_transform(s1, translate_mat(0, 1, 0.5));
 	s1->material = material();
