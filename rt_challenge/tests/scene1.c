@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 10:48:35 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/06 21:33:28 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/07 21:11:28 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ void	scene_one(void)
 
 	w = new_world();
 	cone1 = cone();
+	set_transform(cone1, rotation_z(M_PI / 4));
+	set_transform(cone1, rotation_y(M_PI / 3));
 	set_transform(cone1, translate_mat(0, 1, 0));
+	cone1->material.color = color(0.1, 0.1, 0.8);
 	ft_lstadd_back(&w.objs, ft_lstnew(cone1));
 	cyl1 = cylinder();
 	set_transform(cyl1, scaling_mat(1, 10, 1));
@@ -69,7 +72,7 @@ void	scene_one(void)
 	s3->material.specular = 0.3;
 	ft_lstadd_back(&w.objs, ft_lstnew(s3));
 	cam = new_camera(500, 250, M_PI / 3);
-	cam.transform = view_transform(point(0, 1.5, -10), point(0, 1, 0), vector(0, 1, 0));
+	cam.transform = view_transform(point(0, 1.5, -5), point(0, 1, 0), vector(0, 1, 0));
 	cvs = render(cam, w);
 	mlx.mlx = mlx_init();
 	canvas_to_mlxwin(&cvs, &mlx);

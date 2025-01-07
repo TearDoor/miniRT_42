@@ -6,13 +6,14 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:33:42 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/06 21:45:56 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/07 21:13:08 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rays.h"
 #include <math.h>
 
+/* a cone's radius at any given y is the absolute value of that y */
 static int	cone_check_caps(t_ray ray, double t, double y)
 {
 	double	x;
@@ -44,7 +45,9 @@ void	cone_intersect(t_obj cone, t_ray ray, t_list **list)
 	double	roots[2];
 
 	a = sq(ray.direction.x) - sq(ray.direction.y) + sq(ray.direction.z);
-	b = (2 * ray.origin.x * ray.direction.x) - (2 * ray.origin.y * ray.direction.y) + (2 * ray.origin.z * ray.direction.z);
+	b = (2 * ray.origin.x * ray.direction.x) - \
+		(2 * ray.origin.y * ray.direction.y) + \
+		(2 * ray.origin.z * ray.direction.z);
 	c = sq(ray.origin.x) - sq(ray.origin.y) + sq(ray.origin.z);
 	if (equal(a, 0))
 	{
@@ -53,10 +56,10 @@ void	cone_intersect(t_obj cone, t_ray ray, t_list **list)
 		else
 			lstadd_sorted(list, ft_lstnew(intersection(-c / (2 * b), cone)), &lstcmp_xs);
 	}
-	else if (!solve_quadratic(a, b, c, roots))
-		return ;
 	else
 	{
+		if (!solve_quadratic(a, b, c, roots))
+			return ;
 		if (check_bounds(roots[0], ray, CONE_MAX, CONE_MIN))
 			lstadd_sorted(list, ft_lstnew(intersection(roots[0], cone)), &lstcmp_xs);
 		if (check_bounds(roots[1], ray, CONE_MAX, CONE_MIN))
