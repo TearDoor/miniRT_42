@@ -13,6 +13,33 @@
 #include "rays.h"
 #include <math.h>
 
+static int	check_caps(t_ray ray, double t);
+
+/* finds the intersection of the ray with whole plane where
+ * the top and bottom caps reside (plane_intersect)
+ * check_cap checks if the intersection falls within radius of cylinder */
+void	cyl_intersect_caps(t_obj cyl, t_ray ray, t_list **list)
+{
+	double	t;
+
+	t = (CYL_MIN - ray.origin.y) / ray.direction.y;
+	if (check_caps(ray, t))
+		add_to_intersections(t, cyl, list);
+	t = (CYL_MAX - ray.origin.y) / ray.direction.y;
+	if (check_caps(ray, t))
+		add_to_intersections(t, cyl, list);
+}
+
+static int	check_caps(t_ray ray, double t)
+{
+	double	x;
+	double	z;
+
+	x = ray.origin.x + t * ray.direction.x;
+	z = ray.origin.z + t * ray.direction.z;
+	return (pow(x, 2) + pow(z, 2) <= 1);
+}
+
 static void	cylinder_intersect(t_obj cyl, t_ray ray, t_list **list)
 {
 	double	a;
@@ -31,9 +58,9 @@ static void	cylinder_intersect(t_obj cyl, t_ray ray, t_list **list)
 	if (!solve_quadratic(a, b, c, roots))
 		return ;
 	if (check_bounds(roots[0], ray, CYL_MAX, CYL_MIN))
-		lstadd_sorted(list, ft_lstnew(intersection(roots[0], cyl)), &lstcmp_xs);
+		add_to_intersections(roots[0], cyl, list);
 	if (check_bounds(roots[1], ray, CYL_MAX, CYL_MIN))
-		lstadd_sorted(list, ft_lstnew(intersection(roots[1], cyl)), &lstcmp_xs);
+		add_to_intersections(roots[1], cyl, list);
 	cyl_intersect_caps(cyl, ray, list);
 }
 

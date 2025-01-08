@@ -24,8 +24,7 @@ static void	plane_intersection(t_obj pl, t_ray ray, t_list **list)
 	if (fabs(ray.direction.y) < EPSILON)
 		return ;
 	t = -ray.origin.y / ray.direction.y;
-	lstadd_sorted(list, ft_lstnew((void *)intersection(t, pl)), \
-					&lstcmp_xs);
+	add_to_intersections(t, pl, list);
 }
 
 static t_tuple	plane_normal_at(t_tuple local_point)

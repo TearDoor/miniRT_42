@@ -57,5 +57,6 @@ t_color	color_at(t_world w, t_ray r)
 	if (!hit)
 		return (color(0, 0, 0));
 	comp = prepare_computations(hit, r);
+	ft_lstclear(&intersections, free);
 	return (shade_hit(w, comp));
 }

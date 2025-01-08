@@ -27,10 +27,8 @@ static void	line_sphere_intersection(t_obj sphere, t_ray ray, t_list **list)
 	c = vector_dot_product(sphere_to_ray, sphere_to_ray) - 1;
 	if (!solve_quadratic(a, b, c, roots))
 		return ;
-	lstadd_sorted(list, ft_lstnew((void *)intersection(roots[0], sphere)), \
-					&lstcmp_xs);
-	lstadd_sorted(list, ft_lstnew((void *)intersection(roots[1], sphere)), \
-					&lstcmp_xs);
+	add_to_intersections(roots[0], sphere, list);
+	add_to_intersections(roots[1], sphere, list);
 }
 
 /* normal of a point on a sphere is 

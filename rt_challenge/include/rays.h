@@ -121,7 +121,7 @@ t_camera	new_camera(int hsize, int vsize, double fov);
 /* ray intersection */
 t_tuple		position(t_ray ray, double distance);
 void		check_intersect(t_obj obj, t_ray ray, t_list **xs);
-int			lstcmp_xs(t_list *l1, t_list *l2);
+void		add_to_intersections(double t, t_obj obj, t_list **list);
 t_list		*intersect_world(t_ray ray, t_world world);
 t_intersect	*checkhit(t_list *intersects);
 t_ray		transform_ray(t_ray ray, t_mat4 transform);
@@ -142,6 +142,5 @@ t_canvas	render(t_camera cam, t_world w);
 
 /* utils */
 int			check_bounds(double t, t_ray ray, double max, double min);
-void		cyl_intersect_caps(t_obj cyl, t_ray ray, t_list **list);
 
 #endif

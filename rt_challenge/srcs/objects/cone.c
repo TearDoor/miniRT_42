@@ -30,13 +30,15 @@ void	cone_intersect_caps(t_obj cone, t_ray ray, t_list **list)
 
 	t = (CONE_MIN - ray.origin.y) / ray.direction.y;
 	if (cone_check_caps(ray, t, CONE_MIN))
-		lstadd_sorted(list, ft_lstnew(intersection(t, cone)), &lstcmp_xs);
+		add_to_intersections(t, cone, list);
 	t = (CONE_MAX - ray.origin.y) / ray.direction.y;
 	if (cone_check_caps(ray, t, CONE_MAX))
-		lstadd_sorted(list, ft_lstnew(intersection(t, cone)), &lstcmp_xs);
+		add_to_intersections(t, cone, list);
 }
 
-/* */
+/* when a is 0 it means the ray is parallel to one of cone halves,
+ * which might have 1 intersection. unless b is also 0 then there would 
+ * be no intersection */
 void	cone_intersect(t_obj cone, t_ray ray, t_list **list)
 {
 	double	a;
@@ -54,18 +56,15 @@ void	cone_intersect(t_obj cone, t_ray ray, t_list **list)
 		if (equal(b, 0))
 			return ;
 		else
-			lstadd_sorted(list, ft_lstnew(intersection(-c / (2 * b), cone)), &lstcmp_xs);
+			add_to_intersections(-c / (2 * b), cone, list);
 	}
-	else
-	{
-		if (!solve_quadratic(a, b, c, roots))
-			return ;
-		if (check_bounds(roots[0], ray, CONE_MAX, CONE_MIN))
-			lstadd_sorted(list, ft_lstnew(intersection(roots[0], cone)), &lstcmp_xs);
-		if (check_bounds(roots[1], ray, CONE_MAX, CONE_MIN))
-			lstadd_sorted(list, ft_lstnew(intersection(roots[1], cone)), &lstcmp_xs);
-		cone_intersect_caps(cone, ray, list);
-	}
+	else if (!solve_quadratic(a, b, c, roots))
+		return ;
+	if (check_bounds(roots[0], ray, CONE_MAX, CONE_MIN))
+		add_to_intersections(roots[0], cone, list);
+	if (check_bounds(roots[1], ray, CONE_MAX, CONE_MIN))
+		add_to_intersections(roots[1], cone, list);
+	cone_intersect_caps(cone, ray, list);
 }
 
 t_tuple	cone_normal_at(t_tuple point)
