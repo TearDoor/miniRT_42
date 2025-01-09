@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 10:16:09 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/06 18:06:20 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:58:01 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ t_color		color_scalar_mult(t_color color, double scalar);
 int			clamp(double val);
 
 t_canvas	canvas(int width, int height);
+void		free_canvas(t_canvas cvs);
 void		write_pixel(t_canvas c, int x, int y, t_color color);
 void		canvas_to_ppm(t_canvas canvas);
 

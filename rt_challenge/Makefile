@@ -6,7 +6,7 @@ SRC		=	main.c \
 			cannon.c my_first_sphere.c scene1.c \
 			objects.c sphere.c plane.c cylinder.c cone.c \
 			color_at.c light.c lighting.c shadows.c \
-			rays.c intersect.c world.c view_transform.c \
+			rays.c intersect.c world.c camera.c \
 			mlx_showimage.c
 
 OBJ_DIR	= objs

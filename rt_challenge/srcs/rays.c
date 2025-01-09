@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:47:40 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/06 13:50:38 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/08 16:23:53 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_tuple	position(t_ray ray, double distance)
 void	set_transform(t_obj *o, t_mat4 m)
 {
 	o->transform = matrix_mult(m, o->transform);
+	o->inverse_transform = matrix_invert(o->transform);
 }
 
 t_ray	transform_ray(t_ray ray, t_mat4 transform)

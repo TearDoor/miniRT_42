@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:25:08 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/07 21:35:44 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:57:39 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,14 @@ void	write_pixel(t_canvas c, int x, int y, t_color color)
 		return ;
 	}
 	c.pixels[y][x] = color;
+}
+
+void	free_canvas(t_canvas cvs)
+{
+	int	i;
+
+	i = 0;
+	while (i < cvs.height)
+		free(cvs.pixels[i++]);
+	free(cvs.pixels);
 }

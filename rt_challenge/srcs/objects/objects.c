@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 17:56:54 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/06 18:56:11 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/08 16:28:20 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_obj	*new_obj(void)
 
 	newobj = malloc(sizeof(t_obj));
 	newobj->transform = id_matrix();
+	newobj->inverse_transform = id_matrix();
 	newobj->material = material();
 	return (newobj);
 }

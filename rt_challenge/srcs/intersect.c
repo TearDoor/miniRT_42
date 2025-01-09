@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:04:22 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/04 21:28:10 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/08 17:12:35 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	check_intersect(t_obj obj, t_ray ray, t_list **xs)
 {
 	t_ray	local_ray;
 
-	local_ray = transform_ray(ray, matrix_invert(obj.transform));
+	local_ray = transform_ray(ray, obj.inverse_transform);
 	obj.local_intersect(obj, local_ray, xs);
 }
 

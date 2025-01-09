@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:32:10 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/02 18:33:16 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:50:08 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 #include "linux_keys.h"
 #include "mlx.h"
 
-int	close_win(t_mlx *mlx)
+int	close_win(t_rt *rt)
 {
-	mlx_destroy_window(mlx->mlx, mlx->mlx_win);
-	mlx_destroy_display(mlx->mlx);
-	free(mlx->mlx);
+	mlx_destroy_image(rt->mlx, rt->img.img);
+	mlx_destroy_window(rt->mlx, rt->mlx_win);
+	mlx_destroy_display(rt->mlx);
+	free(rt->mlx);
+	free_canvas(rt->canvas);
 	exit(EXIT_SUCCESS);
 	return (0);
 }
 
-int	keypress(int keycode, t_mlx *fdf)
+int	keypress(int keycode, t_rt *fdf)
 {
 	if (keycode == ESC)
 		close_win(fdf);
@@ -48,29 +50,28 @@ void	ft_mlx_pixel_put(t_imgdata *img, int x, int y, t_color color)
 	*(unsigned int *)dst = color_convert(color);
 }
 
-void	canvas_to_mlxwin(t_canvas *cvs, t_mlx *mlx)
+void	canvas_to_mlxwin(t_canvas *cvs, t_rt *rt)
 {
-	t_imgdata	img;
 	int			i;
 	int			j;
 
-	mlx->mlx_win = mlx_new_window(mlx->mlx, cvs->width, cvs->height, "miniRT");
-	img.img = mlx_new_image(mlx->mlx, cvs->width, cvs->height);
-	img.addr = mlx_get_data_addr(img.img, &img.bbp, \
-								&img.line_length, &img.endian);
+	rt->mlx_win = mlx_new_window(rt->mlx, cvs->width, cvs->height, "miniRT");
+	rt->img.img = mlx_new_image(rt->mlx, cvs->width, cvs->height);
+	rt->img.addr = mlx_get_data_addr(rt->img.img, &rt->img.bbp, \
+								&rt->img.line_length, &rt->img.endian);
 	j = 0;
 	while (j < cvs->height)
 	{
 		i = 0;
 		while (i < cvs->width)
 		{
-			ft_mlx_pixel_put(&img, i, j, cvs->pixels[j][i]);
+			ft_mlx_pixel_put(&rt->img, i, j, cvs->pixels[j][i]);
 			i++;
 		}
 		j++;
 	}
-	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, img.img, 0, 0);
-	mlx_hook(mlx->mlx_win, 2, 1L >> 0, keypress, mlx);
-	mlx_hook(mlx->mlx_win, 17, 0, close_win, mlx);
-	mlx_loop(mlx->mlx);
+	mlx_put_image_to_window(rt->mlx, rt->mlx_win, rt->img.img, 0, 0);
+	mlx_hook(rt->mlx_win, 2, 1L >> 0, keypress, rt);
+	mlx_hook(rt->mlx_win, 17, 0, close_win, rt);
+	mlx_loop(rt->mlx);
 }

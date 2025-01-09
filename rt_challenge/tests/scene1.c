@@ -6,13 +6,23 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 10:48:35 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/07 21:11:28 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/08 17:24:40 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rays.h"
 #include "minirt.h"
 #include "mlx.h"
+#include <sys/time.h>
+#include <stdio.h>
+
+size_t	curr_time(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+}
 
 void	scene_one(void)
 {
@@ -24,21 +34,21 @@ void	scene_one(void)
 	t_obj	*lwall;
 	t_obj	*celling;
 	t_camera	cam;
-	t_canvas	cvs;
-	t_mlx		mlx;
+	t_rt		rt;
+	size_t		start_time;
 
+	start_time = curr_time();
 	w = new_world();
 	cone1 = cone();
 	set_transform(cone1, rotation_z(M_PI / 4));
 	set_transform(cone1, rotation_y(M_PI / 3));
-	set_transform(cone1, translate_mat(0, 1, 0));
+	set_transform(cone1, translate_mat(2, 1, 0));
 	cone1->material.color = color(0.1, 0.1, 0.8);
 	ft_lstadd_back(&w.objs, ft_lstnew(cone1));
 	cyl1 = cylinder();
-	set_transform(cyl1, scaling_mat(1, 10, 1));
-	set_transform(cyl1, rotation_z(M_PI / 4));
-	set_transform(cyl1, translate_mat(0, 2, 0.5));
+	set_transform(cyl1, translate_mat(-2, 2, 0.5));
 	cyl1->material.color = color(0.1, 0.1, 0.5);
+	ft_lstadd_back(&w.objs, ft_lstnew(cyl1));
 	floor = plane();
 	ft_lstadd_back(&w.objs, ft_lstnew(floor));
 	lwall = plane();
@@ -55,6 +65,7 @@ void	scene_one(void)
 	s1->material.color = color(0.1, 1, 0.5);
 	s1->material.diffuse = 0.7;
 	s1->material.specular = 0.3;
+	ft_lstadd_back(&w.objs, ft_lstnew(s1));
 	s2 = sphere();
 	set_transform(s2, scaling_mat(0.5, 0.5, 0.5));
 	set_transform(s2, translate_mat(1.5, 0.5, -0.5));
@@ -71,9 +82,11 @@ void	scene_one(void)
 	s3->material.diffuse = 0.7;
 	s3->material.specular = 0.3;
 	ft_lstadd_back(&w.objs, ft_lstnew(s3));
-	cam = new_camera(500, 250, M_PI / 3);
+	cam = new_camera(500, 500, M_PI / 3);
 	cam.transform = view_transform(point(0, 1.5, -5), point(0, 1, 0), vector(0, 1, 0));
-	cvs = render(cam, w);
-	mlx.mlx = mlx_init();
-	canvas_to_mlxwin(&cvs, &mlx);
+	rt.canvas = render(cam, w);
+	ft_lstclear(&w.objs, free);
+	rt.mlx = mlx_init();
+	printf("Time taken to render: %lu\n", curr_time() - start_time);
+	canvas_to_mlxwin(&rt.canvas, &rt);
 }

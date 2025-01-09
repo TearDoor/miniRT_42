@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 17:23:10 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/05 16:11:54 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/08 17:19:13 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_world	default_world(void)
 	return (new);
 }
 
+/* checks if the ray intersects with all the objects in the world */
 t_list	*intersect_world(t_ray ray, t_world world)
 {
 	t_list	*xs;

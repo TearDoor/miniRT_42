@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:27:03 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/05 16:11:06 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:42:38 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	wall(void)
 	t_ray		cam_ray;
 	t_tuple		ray_vector;
 	t_list		*xs;
-	t_mlx		mlx;
+	t_rt		mlx;
 	t_light		light = point_light(color(1, 1, 1), point(5, 5, -5));
 	t_lightparams	params;
 

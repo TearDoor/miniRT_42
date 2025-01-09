@@ -6,21 +6,21 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/06 21:45:17 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/08 16:56:03 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYS_H
 # define RAYS_H
 
-# include "utils.h"
-# include "libft.h"
-# include "matrix.h"
-
 # define CYL_MAX 0.5
 # define CYL_MIN -0.5
 # define CONE_MAX 1
 # define CONE_MIN 0
+
+# include "utils.h"
+# include "libft.h"
+# include "matrix.h"
 
 typedef struct s_ray
 {
@@ -65,6 +65,7 @@ typedef struct s_obj
 {
 	t_obj_type	type;
 	t_mat4		transform;
+	t_mat4		inverse_transform;
 	t_material	material;
 	void		(*local_intersect)(struct s_obj, t_ray, t_list **);
 	t_tuple		(*local_normal_at)(t_tuple);
@@ -99,6 +100,7 @@ typedef struct s_camera
 	int		vsize;
 	double	fov;
 	t_mat4	transform;
+	t_mat4	inverse_transform;
 	double	half_width;
 	double	half_height;
 	double	pix_size;
