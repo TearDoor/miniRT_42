@@ -1,8 +1,8 @@
 NAME	=	raytrace
 
-vpath %.c	srcs tests srcs/minilibx srcs/objects
+vpath %.c	srcs tests srcs/minilibx srcs/objects srcs/raytracing
 
-SRC		=	main.c \
+SRC		=	main.c simple_utils.c \
 			cannon.c my_first_sphere.c scene1.c \
 			objects.c sphere.c plane.c cylinder.c cone.c \
 			color_at.c light.c lighting.c shadows.c \
@@ -20,7 +20,7 @@ LIBUTIL	= $(UTIL_DIR)/libutils.a
 LFT_DIR	= ./libft_42
 LIBFT	= $(LFT_DIR)/libft.a
 
-CC		= gcc
+CC		= cc
 CFLAGS	= -Iinclude -I$(UTIL_DIR) -I$(LFT_DIR)
 CFLAGS	+= -Wall -Wextra
 RM		= rm -rf
@@ -41,7 +41,6 @@ $(LIBUTIL):
 			@make -C $(UTIL_DIR)
 
 $(LIBFT):
-			@echo "libft not found. Creating..."
 			@make -C $(LFT_DIR)
 
 clean:

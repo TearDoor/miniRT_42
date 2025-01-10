@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 10:48:35 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/08 17:24:40 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/09 15:40:10 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	curr_time(void)
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
-void	scene_one(void)
+void	scene_one(t_rt rt)
 {
 	t_world w;
 	t_obj	*s1, *s2, *s3;
@@ -34,7 +34,6 @@ void	scene_one(void)
 	t_obj	*lwall;
 	t_obj	*celling;
 	t_camera	cam;
-	t_rt		rt;
 	size_t		start_time;
 
 	start_time = curr_time();
@@ -82,11 +81,10 @@ void	scene_one(void)
 	s3->material.diffuse = 0.7;
 	s3->material.specular = 0.3;
 	ft_lstadd_back(&w.objs, ft_lstnew(s3));
-	cam = new_camera(500, 500, M_PI / 3);
+	cam = new_camera(WIDTH, HEIGHT, M_PI / 3);
 	cam.transform = view_transform(point(0, 1.5, -5), point(0, 1, 0), vector(0, 1, 0));
 	rt.canvas = render(cam, w);
 	ft_lstclear(&w.objs, free);
-	rt.mlx = mlx_init();
 	printf("Time taken to render: %lu\n", curr_time() - start_time);
 	canvas_to_mlxwin(&rt.canvas, &rt);
 }

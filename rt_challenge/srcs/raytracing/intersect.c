@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:04:22 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/08 17:12:35 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:04:46 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,3 +50,17 @@ t_intersect	*checkhit(t_list *intersects)
 	}
 	return (NULL);
 }
+
+/*
+void	print_xs(t_list *xs)
+{
+	t_intersect	*x;
+
+	while (xs)
+	{
+		x = xs->content;
+		printf("%f\n", x->t);
+		xs = xs->next;
+	}
+}
+*/
