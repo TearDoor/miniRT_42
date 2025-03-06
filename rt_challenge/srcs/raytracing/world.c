@@ -17,6 +17,7 @@ t_world	new_world(void)
 	t_world	new;
 
 	new.objs = NULL;
+	new.obj_arr = NULL;
 	new.light = point_light(color(1, 1, 1), point(-10, 10, -10));
 	return (new);
 }
@@ -38,6 +39,18 @@ t_world	default_world(void)
 	set_transform(s2, scaling_mat(0.5, 0.5, 0.5));
 	ft_lstadd_back(&new.objs, ft_lstnew(s2));
 	return (new);
+}
+
+#include <stdio.h>
+t_obj*	list_to_array_obj(t_list *list)
+{
+	t_obj* obj_arr;
+	size_t list_size;
+
+	printf("size = %d\n", ft_lstsize(list));
+	list_size = ft_lstsize(list);
+	obj_arr = malloc(sizeof(t_obj) * (list_size + 1));
+	return (obj_arr);
 }
 
 /* checks if the ray intersects with all the objects in the world */

@@ -93,6 +93,7 @@ t_canvas	render(t_camera cam, t_world w)
 
 	cvs = canvas(cam.hsize, cam.vsize);
 	cam.inverse_transform = matrix_invert(cam.transform);
+	w.obj_arr = list_to_array_obj(w.objs);
 	j = 0;
 	while (j < cam.vsize)
 	{
