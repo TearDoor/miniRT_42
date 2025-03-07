@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 17:23:10 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/08 17:19:13 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/07 14:41:19 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ t_world	new_world(void)
 	t_world	new;
 
 	new.objs = NULL;
+	new.obj_arr = NULL;
 	new.obj_count = 0;
 	new.light = point_light(color(1, 1, 1), point(-10, 10, -10));
+	new.total_color = malloc(sizeof(int));
+	new.total_inter = malloc(sizeof(int));
 	return (new);
 }
 
@@ -47,19 +50,22 @@ void	add_obj_to_world(t_world *w, t_obj *obj)
 	w->obj_count++;
 }
 
-void	list_to_array_obj(t_obj arr[], t_list *list)
+t_obj	*list_to_array_obj(t_list *list)
 {
+	t_obj	*arr;
 	t_list	*curr;
 	int		i;
 
 	curr = list;
 	i = 0;
+	arr = malloc(sizeof(t_obj) * ft_lstsize(list));
 	while (curr)
 	{
 		arr[i] = *(t_obj *)(curr->content);
 		i++;
 		curr = curr->next;
 	}
+	return (arr);
 }
 
 /* checks if the ray intersects with all the objects in the world */

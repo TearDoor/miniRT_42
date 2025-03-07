@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:57:51 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/04 21:38:45 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:28:56 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ t_tuple	normal_at(t_obj obj, t_tuple world_point)
 	t_tuple	local_normal;
 	t_tuple	world_normal;
 
-	local_point = matrix_tuple_mult(matrix_invert(obj.transform), world_point);
+	local_point = matrix_tuple_mult(obj.inverse_transform, world_point);
 	local_normal = obj.local_normal_at(local_point);
 	world_normal = matrix_tuple_mult(\
-				matrix_transpose(matrix_invert(obj.transform)), local_normal);
+				matrix_transpose(obj.inverse_transform), local_normal);
 	world_normal.w = 0;
 	return (vector_normalize(world_normal));
 }

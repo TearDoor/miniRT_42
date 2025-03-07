@@ -6,23 +6,13 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 10:48:35 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/09 15:40:10 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/07 15:56:46 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rays.h"
 #include "minirt.h"
-#include "mlx.h"
-#include <sys/time.h>
 #include <stdio.h>
-
-size_t	curr_time(void)
-{
-	struct timeval	time;
-
-	gettimeofday(&time, NULL);
-	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
-}
 
 void	scene_one(t_rt rt)
 {

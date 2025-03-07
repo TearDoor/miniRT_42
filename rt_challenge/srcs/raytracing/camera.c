@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   view_transform.c                                   :+:      :+:    :+:   */
+/*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 17:41:12 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/08 17:12:02 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/07 14:49:53 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ t_ray	ray_for_pixel(t_camera cam, int px, int py)
 	return (ray(origin, direction));
 }
 
+#include <stdio.h>
+
 t_canvas	render(t_camera cam, t_world w)
 {
 	t_canvas	cvs;
@@ -93,7 +95,9 @@ t_canvas	render(t_camera cam, t_world w)
 
 	cvs = canvas(cam.hsize, cam.vsize);
 	cam.inverse_transform = matrix_invert(cam.transform);
-	list_to_array_obj(w.obj_arr, w.objs);
+	w.obj_arr = list_to_array_obj(w.objs);
+	*w.total_inter = 0;
+	*w.total_color = 0;
 	j = 0;
 	while (j < cam.vsize)
 	{
@@ -107,5 +111,6 @@ t_canvas	render(t_camera cam, t_world w)
 		}
 		j++;
 	}
+	printf("inter: %lu color %lu\n", *w.total_inter, *w.total_color);
 	return (cvs);
 }

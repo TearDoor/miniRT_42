@@ -6,12 +6,13 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 17:05:58 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/10 17:07:16 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/07 15:56:10 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
+#include <sys/time.h>
 
 void	error_exit(char *msg)
 {
@@ -31,4 +32,12 @@ void	free_split(char **split)
 		cptr++;
 	}
 	free(split);
+}
+
+size_t	curr_time(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }

@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/08 16:56:03 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:00:16 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "libft.h"
 # include "matrix.h"
 # include <stdlib.h>
+# include <stdint.h>
 
 typedef struct s_ray
 {
@@ -76,8 +77,10 @@ typedef struct s_world
 {
 	t_list	*objs;
 	size_t	obj_count;
-	t_obj	obj_arr[10];
+	t_obj	*obj_arr;
 	t_light	light;
+	uint64_t *total_inter;
+	uint64_t *total_color;
 }	t_world;
 
 typedef struct s_intersect
@@ -128,7 +131,7 @@ t_tuple		position(t_ray ray, double distance);
 void		check_intersect(t_obj obj, t_ray ray, t_list **xs);
 void		add_to_intersections(double t, t_obj obj, t_list **list);
 void		add_obj_to_world(t_world *w, t_obj *obj);
-void		list_to_array_obj(t_obj[], t_list *list);
+t_obj		*list_to_array_obj(t_list *list);
 t_list		*intersect_world(t_ray ray, t_world world);
 t_intersect	*checkhit(t_list *intersects);
 t_ray		transform_ray(t_ray ray, t_mat4 transform);
@@ -149,5 +152,7 @@ t_canvas	render(t_camera cam, t_world w);
 
 /* utils */
 int			check_bounds(double t, t_ray ray, double max, double min);
+
+size_t		curr_time(void);
 
 #endif
