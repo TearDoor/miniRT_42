@@ -17,7 +17,7 @@ t_world	new_world(void)
 	t_world	new;
 
 	new.objs = NULL;
-	new.obj_arr = NULL;
+	new.obj_count = 0;
 	new.light = point_light(color(1, 1, 1), point(-10, 10, -10));
 	return (new);
 }
@@ -41,32 +41,39 @@ t_world	default_world(void)
 	return (new);
 }
 
-#include <stdio.h>
-t_obj*	list_to_array_obj(t_list *list)
+void	add_obj_to_world(t_world *w, t_obj *obj)
 {
-	t_obj* obj_arr;
-	size_t list_size;
+	ft_lstadd_back(&w->objs, ft_lstnew(obj));
+	w->obj_count++;
+}
 
-	printf("size = %d\n", ft_lstsize(list));
-	list_size = ft_lstsize(list);
-	obj_arr = malloc(sizeof(t_obj) * (list_size + 1));
-	return (obj_arr);
+void	list_to_array_obj(t_obj arr[], t_list *list)
+{
+	t_list	*curr;
+	int		i;
+
+	curr = list;
+	i = 0;
+	while (curr)
+	{
+		arr[i] = *(t_obj *)(curr->content);
+		i++;
+		curr = curr->next;
+	}
 }
 
 /* checks if the ray intersects with all the objects in the world */
 t_list	*intersect_world(t_ray ray, t_world world)
 {
 	t_list	*xs;
-	t_list	*curr;
-	t_obj	*obj;
+	size_t	i;
 
 	xs = NULL;
-	curr = world.objs;
-	while (curr)
+	i = 0;
+	while (i < world.obj_count)
 	{
-		obj = curr->content;
-		check_intersect(*obj, ray, &xs);
-		curr = curr->next;
+		check_intersect(world.obj_arr[i], ray, &xs);
+		i++;
 	}
 	return (xs);
 }

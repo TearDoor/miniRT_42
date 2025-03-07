@@ -76,7 +76,7 @@ typedef struct s_world
 {
 	t_list	*objs;
 	size_t	obj_count;
-	t_obj	*obj_arr;
+	t_obj	obj_arr[10];
 	t_light	light;
 }	t_world;
 
@@ -127,7 +127,8 @@ t_camera	new_camera(int hsize, int vsize, double fov);
 t_tuple		position(t_ray ray, double distance);
 void		check_intersect(t_obj obj, t_ray ray, t_list **xs);
 void		add_to_intersections(double t, t_obj obj, t_list **list);
-t_obj		*list_to_array_obj(t_list *list);
+void		add_obj_to_world(t_world *w, t_obj *obj);
+void		list_to_array_obj(t_obj[], t_list *list);
 t_list		*intersect_world(t_ray ray, t_world world);
 t_intersect	*checkhit(t_list *intersects);
 t_ray		transform_ray(t_ray ray, t_mat4 transform);
