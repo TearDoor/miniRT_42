@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pattern.c                                          :+:      :+:    :+:   */
+/*   pattern.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/07 22:13:43 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/08 17:58:49 by tkok-kea         ###   ########.fr       */
+/*   Created: 2025/03/08 17:26:33 by tkok-kea          #+#    #+#             */
+/*   Updated: 2025/03/08 17:47:47 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pattern.h"
-#include <math.h>
+#ifndef PATTERN_H
+# define PATTERN_H
 
-t_pattern	stripe_pattern(t_color a, t_color b)
-{
-	return ((t_pattern){a, b});
-}
+# include "utils.h"
 
-t_color	stripe_at(t_pattern patt, t_tuple p)
+typedef struct s_pattern
 {
-	if ((int)floor(p.x) % 2 == 0)
-		return (patt.a);
-	else
-		return (patt.b);
-}
+	t_color	a;
+	t_color	b;
+}	t_pattern;
+
+t_pattern	stripe_pattern(t_color a, t_color b);
+t_color		stripe_at(t_pattern patt, t_tuple p);
+
+#endif

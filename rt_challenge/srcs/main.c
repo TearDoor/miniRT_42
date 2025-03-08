@@ -6,12 +6,13 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 09:59:15 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/10 17:18:51 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/08 17:59:41 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "minirt.h"
+#include "pattern.h"
 #include <stdlib.h>
 #include <fcntl.h>
 #include <stdio.h>
@@ -38,14 +39,10 @@ int	check_arg(int argc, char *argv[])
 void	parse_line(char *line)
 {
 	char	**info;
-	int		i;
 
 	if (*line == '\n')
 		return ;
 	info = ft_split(line, ' ');
-	i = 0;
-	while (info[i])
-		printf("%s\n", info[i++]);
 	free_split(info);
 }
 

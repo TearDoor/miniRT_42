@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/07 16:00:16 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/08 18:08:41 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,20 @@ typedef struct s_light
 	t_tuple	position;
 }	t_light;
 
+typedef enum e_patt_type
+{
+	NONE,
+	STRIPES,
+}	t_patt_type;
+
 typedef struct s_material
 {
-	t_color	color;
-	double	ambient;
-	double	diffuse;
-	double	specular;
-	double	shininess;
+	t_color		color;
+	double		ambient;
+	double		diffuse;
+	double		specular;
+	double		shininess;
+	t_patt_type	patt_type;
 }	t_material;
 
 typedef struct s_lightparams
@@ -79,8 +86,8 @@ typedef struct s_world
 	size_t	obj_count;
 	t_obj	*obj_arr;
 	t_light	light;
-	uint64_t *total_inter;
-	uint64_t *total_color;
+	uint64_t	*total_inter;
+	uint64_t	*total_color;
 }	t_world;
 
 typedef struct s_intersect

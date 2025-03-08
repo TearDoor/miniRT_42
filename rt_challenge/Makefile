@@ -23,7 +23,7 @@ LIBFT	= $(LFT_DIR)/libft.a
 
 CC		= cc
 CFLAGS	= -Iinclude -I$(UTIL_DIR) -I$(LFT_DIR)
-CFLAGS	+= -Wall -Wextra -g3
+CFLAGS	+= -Wall -Wextra
 RM		= rm -rf
 
 all: $(NAME)
@@ -53,5 +53,11 @@ fclean: clean
 
 re: fclean all
 
-.phony: all clean fclean re
+cleancore:
+			$(RM) $(OBJ_DIR)
+
+# only remakes the main raytracing code without touching libft and libutils
+recore: cleancore all
+
+.phony: all clean fclean re cleancore recore
 
