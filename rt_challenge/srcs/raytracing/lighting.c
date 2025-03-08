@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "pattern.h"
 #include "utils.h"
 #include "rays.h"
 #include <math.h>
@@ -50,7 +51,7 @@ t_color	lighting(t_lightparams params)
 	t_color	diffuse;
 	t_color	specular;
 
-	effective_color = color_mult(params.m.color, params.light.intensity);
+	effective_color = color_mult(params.color, params.light.intensity);
 	ambient = color_scalar_mult(effective_color, params.m.ambient);
 	if (params.in_shadow)
 		return (ambient);

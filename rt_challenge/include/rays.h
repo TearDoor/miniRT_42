@@ -21,6 +21,7 @@
 # include "utils.h"
 # include "libft.h"
 # include "matrix.h"
+# include "pattern.h"
 # include <stdlib.h>
 # include <stdint.h>
 
@@ -36,12 +37,6 @@ typedef struct s_light
 	t_tuple	position;
 }	t_light;
 
-typedef enum e_patt_type
-{
-	NONE,
-	STRIPES,
-}	t_patt_type;
-
 typedef struct s_material
 {
 	t_color		color;
@@ -49,7 +44,7 @@ typedef struct s_material
 	double		diffuse;
 	double		specular;
 	double		shininess;
-	t_patt_type	patt_type;
+	t_pattern*	pattern;
 }	t_material;
 
 typedef struct s_lightparams
@@ -60,6 +55,7 @@ typedef struct s_lightparams
 	t_tuple		eye_vec;
 	t_tuple		normal_vec;
 	int			in_shadow;
+	t_color		color;
 }	t_lightparams;
 
 typedef enum e_obj_type

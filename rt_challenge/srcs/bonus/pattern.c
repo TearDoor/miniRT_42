@@ -12,10 +12,16 @@
 
 #include "pattern.h"
 #include <math.h>
+#include <stdlib.h>
 
-t_pattern	stripe_pattern(t_color a, t_color b)
+t_pattern	*stripe_pattern(t_color a, t_color b)
 {
-	return ((t_pattern){a, b});
+	t_pattern	*new_pattern;
+
+	new_pattern = malloc(sizeof(t_pattern));
+	new_pattern->a = a;
+	new_pattern->b = b;
+	return (new_pattern);
 }
 
 t_color	stripe_at(t_pattern patt, t_tuple p)

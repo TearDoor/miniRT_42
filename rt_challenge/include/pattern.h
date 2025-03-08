@@ -15,13 +15,19 @@
 
 # include "utils.h"
 
+typedef enum e_patt_type
+{
+	NONE,
+	STRIPES,
+}	t_patt_type;
+
 typedef struct s_pattern
 {
 	t_color	a;
 	t_color	b;
 }	t_pattern;
 
-t_pattern	stripe_pattern(t_color a, t_color b);
+t_pattern	*stripe_pattern(t_color a, t_color b);
 t_color		stripe_at(t_pattern patt, t_tuple p);
 
 #endif

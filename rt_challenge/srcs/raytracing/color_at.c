@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "pattern.h"
 #include "rays.h"
 
 static t_color	shade_hit(t_world world, t_comps comp)
@@ -24,6 +25,10 @@ static t_color	shade_hit(t_world world, t_comps comp)
 	params.normal_vec = comp.normalv;
 	startime = curr_time();
 	params.in_shadow = is_shadowed(world, comp.over_point);
+	if (params.m.pattern == NULL)
+		params.color = params.m.color;
+	else
+		params.color = stripe_at(*params.m.pattern, params.point);
 	shadow_time = curr_time() - startime;
 	*world.total_inter += shadow_time;
 	return (lighting(params));
