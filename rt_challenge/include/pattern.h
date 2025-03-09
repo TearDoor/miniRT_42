@@ -47,10 +47,19 @@ typedef struct s_gradient_pattern
 	t_color		b;
 }	t_gradient_pattern;
 
+typedef struct s_ring_pattern
+{
+	t_pattern	pattern;
+	t_color		a;
+	t_color		b;
+}	t_ring_pattern;
+
 t_pattern	init_pattern(void);
+void		set_pattern_transform(t_pattern *patt, t_mat4 m);
 t_color		pattern_at_shape(const t_pattern *patt, const t_obj *obj, \
 							t_tuple point);
 t_pattern	*stripe_pattern(t_color a, t_color b);
 t_pattern	*gradient_pattern(t_color a, t_color b);
+t_pattern	*ring_pattern(t_color a, t_color b);
 
 #endif

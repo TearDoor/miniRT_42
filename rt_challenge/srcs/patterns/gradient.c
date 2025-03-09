@@ -27,7 +27,7 @@ t_color	gradient_at(const t_pattern *patt, t_tuple p)
 
 t_pattern	*gradient_pattern(t_color a, t_color b)
 {
-	t_stripe_pattern	*new_gradient;
+	t_gradient_pattern	*new_gradient;
 
 	new_gradient = malloc(sizeof(t_stripe_pattern));
 	new_gradient->pattern = init_pattern();

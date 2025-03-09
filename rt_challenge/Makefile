@@ -7,7 +7,7 @@ SRC		=	main.c simple_utils.c \
 			rays.c intersect.c world.c camera.c \
 			mlx_showimage.c
 SRC		+=	objects.c sphere.c plane.c cylinder.c cone.c 
-SRC		+=	pattern.c stripes.c gradient.c
+SRC		+=	pattern.c stripes.c gradient.c rings.c
 # test scenes
 SRC		+=	cannon.c my_first_sphere.c scene1.c 
 

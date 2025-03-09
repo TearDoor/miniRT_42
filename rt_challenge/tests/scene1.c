@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "matrix.h"
+#include "pattern.h"
 #include "rays.h"
 #include "minirt.h"
 #include <stdio.h>
@@ -32,14 +34,18 @@ void	scene_one(t_rt rt)
 	set_transform(cone1, rotation_z(M_PI / 4));
 	set_transform(cone1, rotation_y(M_PI / 3));
 	set_transform(cone1, translate_mat(2, 1, 0));
+	cone1->material.pattern = ring_pattern(color(0,0,0), color(1,1,1));
+	set_pattern_transform(cone1->material.pattern, scaling_mat(0.1, 0.1, 0.1));
 	add_obj_to_world(&w, cone1);
 	cone1->material.color = color(0.1, 0.1, 0.8);
 	cyl1 = cylinder();
+	set_transform(cyl1, rotation_x(M_PI / 3));
 	set_transform(cyl1, translate_mat(-2, 2, 0.5));
-	cyl1->material.color = color(0.1, 0.1, 0.5);
+	cyl1->material.pattern = ring_pattern(color(0,0,0), color(1,1,1));
+	set_pattern_transform(cyl1->material.pattern, scaling_mat(0.1, 0.1, 0.1));
 	add_obj_to_world(&w, cyl1);
 	floor = plane();
-	floor->material.pattern = gradient_pattern(color(0,0.8,0), color(0,0,0.8));
+	floor->material.pattern = ring_pattern(color(0,0.8,0), color(0,0,0.8));
 	add_obj_to_world(&w, floor);
 	lwall = plane();
 	set_transform(lwall, rotation_x(M_PI / 2));
@@ -52,17 +58,17 @@ void	scene_one(t_rt rt)
 	add_obj_to_world(&w, celling);
 	w.light = point_light(color(1, 1, 1), point(-5, 2, -5));
 	s1 = sphere();
-	set_transform(s1, translate_mat(0, 1, 0.5));
+	set_transform(s1, translate_mat(0, 1, 3));
 	s1->material.color = color(0.1, 1, 0.5);
 	s1->material.diffuse = 0.7;
 	s1->material.specular = 0.3;
-	s1->material.pattern = gradient_pattern(color(0.5,0,0), color(0,1,0));
 	add_obj_to_world(&w, s1);
 	s2 = sphere();
 	set_transform(s2, scaling_mat(0.5, 0.5, 0.5));
 	set_transform(s2, translate_mat(1.5, 0.5, -0.5));
 	s2->material.diffuse = 0.7;
 	s2->material.pattern = stripe_pattern(color(1,1,1), color(0,0,0.6));
+	set_pattern_transform(s2->material.pattern, scaling_mat(0.2, 0.2, 0.2));
 	s2->material.specular = 0.3;
 	add_obj_to_world(&w, s2);
 	s3 = sphere();

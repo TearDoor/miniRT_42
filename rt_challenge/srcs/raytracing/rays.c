@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "rays.h"
+#include "pattern.h"
 #include <unistd.h>
 
 t_ray	ray(t_tuple point, t_tuple vector)
@@ -29,6 +30,8 @@ t_tuple	position(t_ray ray, double distance)
 
 void	set_transform(t_obj *o, t_mat4 m)
 {
+	if (o == NULL)
+		return ;
 	o->transform = matrix_mult(m, o->transform);
 	o->inverse_transform = matrix_invert(o->transform);
 }

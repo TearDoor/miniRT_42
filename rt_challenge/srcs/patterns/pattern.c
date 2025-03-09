@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "pattern.h"
+#include "matrix.h"
 #include "rays.h"
 
 t_pattern	init_pattern(void)
@@ -24,6 +25,14 @@ t_color	pattern_at_shape(const t_pattern *patt, const t_obj *obj, t_tuple w_pt)
 	t_tuple	pattern_point;
 
 	object_point = matrix_tuple_mult(obj->inverse_transform, w_pt);
-	pattern_point = matrix_tuple_mult(obj->inverse_transform, object_point);
+	pattern_point = matrix_tuple_mult(patt->inver_trans_mat, object_point);
 	return (patt->pattern_at(patt, pattern_point));
+}
+
+void	set_pattern_transform(t_pattern *patt, t_mat4 m)
+{
+	if (patt == NULL)
+		return ;
+	patt->trans_mat = matrix_mult(m, patt->trans_mat);
+	patt->inver_trans_mat = matrix_invert(patt->trans_mat);
 }
