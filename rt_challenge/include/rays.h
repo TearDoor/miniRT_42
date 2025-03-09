@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/08 18:08:41 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/09 16:38:21 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,8 @@ typedef struct s_material
 	double		diffuse;
 	double		specular;
 	double		shininess;
-	t_pattern*	pattern;
+	t_pattern	*pattern;
 }	t_material;
-
-typedef struct s_lightparams
-{
-	t_material	m;
-	t_light		light;
-	t_tuple		point;
-	t_tuple		eye_vec;
-	t_tuple		normal_vec;
-	int			in_shadow;
-	t_color		color;
-}	t_lightparams;
 
 typedef enum e_obj_type
 {
@@ -75,6 +64,17 @@ typedef struct s_obj
 	void		(*local_intersect)(struct s_obj, t_ray, t_list **);
 	t_tuple		(*local_normal_at)(t_tuple);
 }	t_obj;
+
+typedef struct s_lightparams
+{
+	t_material	m;
+	t_obj		obj;
+	t_light		light;
+	t_tuple		point;
+	t_tuple		eye_vec;
+	t_tuple		normal_vec;
+	int			in_shadow;
+}	t_lightparams;
 
 typedef struct s_world
 {

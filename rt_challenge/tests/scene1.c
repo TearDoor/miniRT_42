@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 10:48:35 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/07 15:56:46 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/09 16:41:51 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,16 @@ void	scene_one(t_rt rt)
 	lwall = plane();
 	set_transform(lwall, rotation_x(M_PI / 2));
 	set_transform(lwall, translate_mat(0, 0, 10));
+	lwall->material.pattern = stripe_pattern(color(0,0,0), color(0.8,0.8,0.8));
 	add_obj_to_world(&w, lwall);
 	celling = plane();
 	set_transform(celling, translate_mat(0, 4, 0));
+	celling->material.pattern = stripe_pattern(color(0,0,0), color(0.8,0.8,0.8));
 	add_obj_to_world(&w, celling);
 	w.light = point_light(color(1, 1, 1), point(-5, 2, -5));
 	s1 = sphere();
+	set_transform(s1, rotation_y(M_PI / 2));
 	set_transform(s1, translate_mat(0, 1, 0.5));
-	s1->material = material();
 	s1->material.color = color(0.1, 1, 0.5);
 	s1->material.diffuse = 0.7;
 	s1->material.specular = 0.3;
@@ -60,15 +62,13 @@ void	scene_one(t_rt rt)
 	s2 = sphere();
 	set_transform(s2, scaling_mat(0.5, 0.5, 0.5));
 	set_transform(s2, translate_mat(1.5, 0.5, -0.5));
-	s2->material = material();
-	s2->material.color = color(0.5, 1, 0.1);
 	s2->material.diffuse = 0.7;
+	s2->material.pattern = stripe_pattern(color(1,1,1), color(0,0,0.6));
 	s2->material.specular = 0.3;
 	add_obj_to_world(&w, s2);
 	s3 = sphere();
 	set_transform(s3, scaling_mat(0.33, 0.33, 0.33));
 	set_transform(s3, translate_mat(-1.5, 0.33, -0.75));
-	s3->material = material();
 	s3->material.color = color(1, 0.8, 0.1);
 	s3->material.diffuse = 0.7;
 	s3->material.specular = 0.3;

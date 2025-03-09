@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:22:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/07 16:51:26 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/09 16:41:51 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,13 @@ static t_color	shade_hit(t_world world, t_comps comp)
 	uint64_t startime, shadow_time;
 
 	params.m = comp.obj.material;
+	params.obj = comp.obj;
 	params.light = world.light;
 	params.point = comp.over_point;
 	params.eye_vec = comp.eyev;
 	params.normal_vec = comp.normalv;
 	startime = curr_time();
 	params.in_shadow = is_shadowed(world, comp.over_point);
-	if (params.m.pattern == NULL)
-		params.color = params.m.color;
-	else
-		params.color = stripe_at(*params.m.pattern, params.point);
 	shadow_time = curr_time() - startime;
 	*world.total_inter += shadow_time;
 	return (lighting(params));
@@ -55,6 +52,7 @@ static t_comps	prepare_computations(t_intersect *i, t_ray r)
 	return (comps);
 }
 
+// TODO: remove time measuring stuff
 t_color	color_at(t_world w, t_ray r)
 {
 	t_list		*intersections;
