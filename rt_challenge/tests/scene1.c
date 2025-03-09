@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 10:48:35 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/09 16:41:51 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/09 22:38:51 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	scene_one(t_rt rt)
 	cyl1->material.color = color(0.1, 0.1, 0.5);
 	add_obj_to_world(&w, cyl1);
 	floor = plane();
-	floor->material.pattern = stripe_pattern(color(0,0,0), color(0.8,0.8,0.8));
+	floor->material.pattern = gradient_pattern(color(0,0.8,0), color(0,0,0.8));
 	add_obj_to_world(&w, floor);
 	lwall = plane();
 	set_transform(lwall, rotation_x(M_PI / 2));
@@ -52,12 +52,11 @@ void	scene_one(t_rt rt)
 	add_obj_to_world(&w, celling);
 	w.light = point_light(color(1, 1, 1), point(-5, 2, -5));
 	s1 = sphere();
-	set_transform(s1, rotation_y(M_PI / 2));
 	set_transform(s1, translate_mat(0, 1, 0.5));
 	s1->material.color = color(0.1, 1, 0.5);
 	s1->material.diffuse = 0.7;
 	s1->material.specular = 0.3;
-	s1->material.pattern = stripe_pattern(color(0,0,0), color(1,1,1));
+	s1->material.pattern = gradient_pattern(color(0.5,0,0), color(0,1,0));
 	add_obj_to_world(&w, s1);
 	s2 = sphere();
 	set_transform(s2, scaling_mat(0.5, 0.5, 0.5));

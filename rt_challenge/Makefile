@@ -1,14 +1,15 @@
 NAME	=	raytrace
 
-vpath %.c	srcs tests srcs/minilibx srcs/objects srcs/raytracing srcs/bonus
+vpath %.c	srcs tests srcs/minilibx srcs/objects srcs/raytracing srcs/patterns
 
 SRC		=	main.c simple_utils.c \
-			cannon.c my_first_sphere.c scene1.c \
-			objects.c sphere.c plane.c cylinder.c cone.c \
 			color_at.c light.c lighting.c shadows.c \
 			rays.c intersect.c world.c camera.c \
-			mlx_showimage.c \
-			pattern.c
+			mlx_showimage.c
+SRC		+=	objects.c sphere.c plane.c cylinder.c cone.c 
+SRC		+=	pattern.c stripes.c gradient.c
+# test scenes
+SRC		+=	cannon.c my_first_sphere.c scene1.c 
 
 OBJ_DIR	= objs
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
@@ -21,18 +22,19 @@ LIBUTIL	= $(UTIL_DIR)/libutils.a
 LFT_DIR	= ./libft_42
 LIBFT	= $(LFT_DIR)/libft.a
 
-CC		= cc
-CFLAGS	= -Iinclude -I$(UTIL_DIR) -I$(LFT_DIR)
-CFLAGS	+= -Wall -Wextra
-RM		= rm -rf
+CC		=	cc
+CFLAGS	=	-Iinclude -I$(UTIL_DIR) -I$(LFT_DIR)
+CFLAGS	+=	-Wall -Wextra
+RM		=	rm -rf
 
 all: $(NAME)
 
 $(NAME): $(OBJS) | $(LIBUTIL) $(LIBFT)
-			$(CC) $(CFLAGS) -o $@ $^ $(LIBUTIL) $(LIBFT) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+			@$(CC) $(CFLAGS) -o $@ $^ $(LIBUTIL) $(LIBFT) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+			@echo "miniRT compiled"
 
 $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
-			$(CC) $(CFLAGS) -c $< -o $@ -Imlx_linux -O3
+			$(CC) $(CFLAGS) -c $< -o $@ -Imlx_linux
 
 $(OBJ_DIR):
 			@mkdir $@

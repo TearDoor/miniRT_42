@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 17:41:12 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/07 14:49:53 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/09 22:41:25 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "matrix.h"
 #include "rays.h"
 #include <math.h>
+#include <stdio.h>
 
 t_mat4	view_transform(t_tuple from, t_tuple to, t_tuple up)
 {
@@ -82,8 +83,6 @@ t_ray	ray_for_pixel(t_camera cam, int px, int py)
 	direction = vector_normalize(tuple_subtract(pixel, origin));
 	return (ray(origin, direction));
 }
-
-#include <stdio.h>
 
 t_canvas	render(t_camera cam, t_world w)
 {

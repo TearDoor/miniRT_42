@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 17:23:10 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/07 14:41:19 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/09 22:42:09 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_world	new_world(void)
 	new.obj_arr = NULL;
 	new.obj_count = 0;
 	new.light = point_light(color(1, 1, 1), point(-10, 10, -10));
-	new.total_color = malloc(sizeof(int));
-	new.total_inter = malloc(sizeof(int));
+	new.total_color = ft_calloc(sizeof(int), 1);
+	new.total_inter = ft_calloc(sizeof(int), 1);
 	return (new);
 }
 
