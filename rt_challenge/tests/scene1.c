@@ -83,6 +83,5 @@ void	scene_one(t_rt rt)
 	printf("count = %ld\n", w.obj_count);
 	rt.canvas = render(cam, w);
 	printf("Time taken to render: %lu\n", curr_time() - start_time);
-	ft_lstclear(&w.objs, free);
 	canvas_to_mlxwin(&rt.canvas, &rt);
 }

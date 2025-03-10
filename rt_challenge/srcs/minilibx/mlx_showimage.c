@@ -16,11 +16,13 @@
 
 int	close_win(t_rt *rt)
 {
+	free_canvas(rt->canvas);
+	ft_lstclear(&rt->world.objs, free);
+	free(rt->world.obj_arr);
 	mlx_destroy_image(rt->mlx, rt->img.img_ptr);
 	mlx_destroy_window(rt->mlx, rt->mlx_win);
 	mlx_destroy_display(rt->mlx);
 	free(rt->mlx);
-	free_canvas(rt->canvas);
 	exit(EXIT_SUCCESS);
 	return (0);
 }

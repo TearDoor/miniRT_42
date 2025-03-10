@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 17:26:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/09 22:45:09 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/10 11:23:45 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ t_color		pattern_at_shape(const t_pattern *patt, const t_obj *obj, \
 t_pattern	*stripe_pattern(t_color a, t_color b);
 t_pattern	*gradient_pattern(t_color a, t_color b);
 t_pattern	*ring_pattern(t_color a, t_color b);
+t_pattern	*checkers_pattern(t_color a, t_color b);
 
 #endif

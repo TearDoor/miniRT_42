@@ -7,6 +7,7 @@ by tkok-kea and hni-xuan
 - [ ] Controlling the rotation and position of objects while program is runnning
     - [ ] Menu
     - [ ] Fix the bug when forward vector is parallel to up vector (no cross product)
+- [ ] Check and fix memory leaks
 
 ### Optimization
 - [ ] Find performance bottlenecks

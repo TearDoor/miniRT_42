@@ -7,7 +7,7 @@ SRC		=	main.c simple_utils.c \
 			rays.c intersect.c world.c camera.c \
 			mlx_showimage.c
 SRC		+=	objects.c sphere.c plane.c cylinder.c cone.c 
-SRC		+=	pattern.c stripes.c gradient.c rings.c
+SRC		+=	pattern.c stripes.c gradient.c rings.c checkers.c
 # test scenes
 SRC		+=	cannon.c my_first_sphere.c scene1.c 
 
@@ -57,6 +57,7 @@ re: fclean all
 
 cleancore:
 			$(RM) $(OBJ_DIR)
+			$(RM) $(NAME)
 
 # only remakes the main raytracing code without touching libft and libutils
 recore: cleancore all
