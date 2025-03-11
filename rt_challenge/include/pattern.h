@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 17:26:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/10 11:23:45 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/11 17:02:46 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,20 @@ typedef struct s_ring_pattern
 	t_color		a;
 	t_color		b;
 }	t_ring_pattern;
+
+typedef struct s_uv_pattern
+{
+	double	width;
+	double	height;
+	t_color	a;
+	t_color	b;
+}	t_uv_pattern;
+
+typedef struct s_point2d
+{
+	double	u;
+	double	v;
+}	t_point2d;
 
 t_pattern	init_pattern(void);
 void		set_pattern_transform(t_pattern *patt, t_mat4 m);
