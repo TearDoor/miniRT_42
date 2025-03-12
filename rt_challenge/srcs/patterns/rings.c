@@ -24,7 +24,6 @@ t_color	ring_at(const t_pattern *patt, t_tuple p)
 		return (ring->a);
 	else
 		return (ring->b);
-
 }
 
 t_pattern	*ring_pattern(t_color a, t_color b)

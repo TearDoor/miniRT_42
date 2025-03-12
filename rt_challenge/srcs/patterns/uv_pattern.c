@@ -13,6 +13,7 @@
 #include "pattern.h"
 #include <math.h>
 
+// Returns the color at coordinates (u, v) for a given 2d pattern
 t_color	uv_pattern_at(t_uv_pattern *uv_patt, double u, double v)
 {
 	int	u2;
@@ -26,7 +27,23 @@ t_color	uv_pattern_at(t_uv_pattern *uv_patt, double u, double v)
 		return (uv_patt->b);
 }
 
-t_point2d	spherical_map(t_tuple point3d)
+/*
+* Finds the corresponding 2d coordinates (u, v) 
+* of a 3d point(x,y,z) on a sphere
+*/
+t_point2d	spherical_map(t_tuple p)
 {
-	return ((t_point2d){0, 0});
+	double		theta;
+	double		radius;
+	double		phi;
+	double		raw_u;
+	t_point2d	p2d;
+
+	theta = atan2(p.x, p.z);
+	radius = vector_magnitude(vector(p.x, p.y, p.z));
+	phi = acos(p.y / radius);
+	raw_u = theta / (2 * M_PI);
+	p2d.u = 1 - (raw_u + 0.5);
+	p2d.v = 1 - phi / M_PI;
+	return (p2d);
 }
