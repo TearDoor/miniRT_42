@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 17:26:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/11 17:02:46 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/12 21:18:03 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 
 typedef struct s_obj		t_obj;
 typedef struct s_pattern	t_pattern;
+typedef struct s_point2d	t_point2d;
 typedef t_color				(*t_pattern_at)(const t_pattern *, t_tuple);
+typedef t_color				(*t_uv_pattern_at)(const t_pattern *, t_point2d);
 
 typedef enum e_patt_type
 {
@@ -56,11 +58,20 @@ typedef struct s_ring_pattern
 
 typedef struct s_uv_pattern
 {
-	double	width;
-	double	height;
-	t_color	a;
-	t_color	b;
+	t_pattern		pattern;
+	t_uv_pattern_at	uv_pattern_at;
+	double			width;
+	double			height;
+	t_color			a;
+	t_color			b;
 }	t_uv_pattern;
+
+typedef struct s_uv_image
+{
+	t_pattern		pattern;
+	t_uv_pattern_at	uv_pattern_at;
+	t_canvas		*cvs;
+}	t_uv_image;
 
 typedef struct s_point2d
 {
@@ -76,5 +87,9 @@ t_pattern	*stripe_pattern(t_color a, t_color b);
 t_pattern	*gradient_pattern(t_color a, t_color b);
 t_pattern	*ring_pattern(t_color a, t_color b);
 t_pattern	*checkers_pattern(t_color a, t_color b);
+
+t_color		pattern_at_3d_to_2d(const t_pattern *patt, t_tuple p);
+t_pattern	*uv_checkers(double width, double height, t_color a, t_color b);
+t_pattern	*uv_image(t_canvas *cvs);
 
 #endif

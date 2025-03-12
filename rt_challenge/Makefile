@@ -1,6 +1,6 @@
 NAME	=	raytrace
 
-vpath %.c	srcs tests srcs/minilibx srcs/objects srcs/raytracing srcs/patterns
+vpath %.c	srcs tests srcs/minilibx srcs/objects srcs/raytracing srcs/patterns srcs/ppm
 
 SRC		=	main.c simple_utils.c \
 			color_at.c light.c lighting.c shadows.c \
@@ -8,9 +8,10 @@ SRC		=	main.c simple_utils.c \
 			mlx_showimage.c
 SRC		+=	objects.c sphere.c plane.c cylinder.c cone.c 
 SRC		+=	pattern.c stripes.c gradient.c rings.c checkers.c \
-			uv_pattern.c
+			uv_pattern.c uv_image.c \
+
 # test scenes
-SRC		+=	cannon.c my_first_sphere.c scene1.c 
+SRC		+=	cannon.c my_first_sphere.c scene1.c earth.c
 
 OBJ_DIR	= objs
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))

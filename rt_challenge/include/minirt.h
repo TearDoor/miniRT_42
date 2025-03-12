@@ -6,15 +6,15 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:40:49 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/09 17:11:45 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/12 21:30:50 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# define WIDTH 500
-# define HEIGHT 500
+# define WIDTH 1000
+# define HEIGHT 1000
 
 # include "utils.h"
 # include "rays.h"
@@ -40,10 +40,10 @@ typedef struct s_rt
 void		canvas_to_mlxwin(t_canvas *cvs, t_rt *mlx);
 
 void		error_exit(char *msg);
-void		free_split(char **split);
 
 t_canvas	cannon(void);
 void		wall(void);
 void		scene_one(t_rt rt);
+void		earth(t_rt rt);
 
 #endif

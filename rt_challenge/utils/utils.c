@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 10:15:27 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/06 18:05:55 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/12 20:18:41 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,17 @@ void	lstadd_sorted(t_list **lst, t_list *new, int (*cmp)(t_list *, t_list *))
 double	sq(double x)
 {
 	return (pow(x, 2));
+}
+
+void	free_split(char **split)
+{
+	char	**cptr;
+
+	cptr = split;
+	while (*cptr)
+	{
+		free(*cptr);
+		cptr++;
+	}
+	free(split);
 }

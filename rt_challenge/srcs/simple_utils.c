@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 17:05:58 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/07 15:56:10 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/12 20:18:41 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,6 @@ void	error_exit(char *msg)
 	ft_putstr_fd("Error\n", STDERR_FILENO);
 	ft_putendl_fd(msg, STDERR_FILENO);
 	exit(1);
-}
-
-void	free_split(char **split)
-{
-	char	**cptr;
-
-	cptr = split;
-	while (*cptr)
-	{
-		free(*cptr);
-		cptr++;
-	}
-	free(split);
 }
 
 size_t	curr_time(void)
