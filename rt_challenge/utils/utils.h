@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 10:16:09 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/12 20:19:47 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/13 22:23:51 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,6 @@ int			solve_quadratic(double a, double b, double c, double roots[2]);
 void		lstadd_sorted(t_list **lst, t_list * nw, \
 							int (*cmp)(t_list *, t_list *));
 double		sq(double x);
-void		free_split(char **split);
+void		free_split(void **split);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 09:59:15 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/12 21:28:34 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/13 22:30:03 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	parse_line(char *line)
 	if (*line == '\n')
 		return ;
 	info = ft_split(line, ' ');
-	free_split(info);
+	free_split((void **)info);
 }
 
 t_world	parse_world(int fd)

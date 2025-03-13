@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:46:25 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/12 20:21:26 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/13 22:04:01 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ t_color	parse_color(char *red, char *green, char *blue, double color_scale)
 	return (color(r, g, b));
 }
 
+/*
+ * added a reset after parsing so that the program can parse multiple files
+ */
 void	store_color_to_canvas(t_canvas *cvs, t_color c)
 {
 	static int	col = 0;
@@ -53,6 +56,11 @@ void	store_color_to_canvas(t_canvas *cvs, t_color c)
 	{
 		++row;
 		col = 0;
+	}
+	if (col == cvs->width -1 && row == cvs->height - 1)
+	{
+		col = 0;
+		row = 0;
 	}
 	return ;
 }
