@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 16:26:14 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/12 21:14:47 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/14 21:49:57 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,50 +29,22 @@ t_color	uv_checker_pattern_at(const t_pattern *patt, t_point2d uv)
 		return (uv_patt->b);
 }
 
-/*
-* Finds the corresponding 2d coordinates (u, v) 
-* of a 3d point(x,y,z) on a sphere
-*/
-t_point2d	spherical_map(t_tuple p)
-{
-	double		theta;
-	double		radius;
-	double		phi;
-	double		raw_u;
-	t_point2d	p2d;
-
-	theta = atan2(p.x, p.z);
-	radius = vector_magnitude(vector(p.x, p.y, p.z));
-	phi = acos(p.y / radius);
-	raw_u = theta / (2 * M_PI);
-	p2d.u = 1 - (raw_u + 0.5);
-	p2d.v = 1 - phi / M_PI;
-	return (p2d);
-}
-
-t_point2d	cylindrical_map(t_tuple p)
-{
-	double		theta;
-	double		raw_u;
-	t_point2d	p2d;
-
-	theta = atan2(p.x, p.z);
-	raw_u = theta / (2 * M_PI);
-	p2d.u = 1 - (raw_u + 0.5);
-	p2d.v = fmod(p.y, 1.0);
-	return (p2d);
-}
-
 t_color	pattern_at_3d_to_2d(const t_pattern *patt, t_tuple p)
 {
 	t_point2d		uv_point;
 	t_uv_pattern	*uv_patt;
 
 	uv_patt = (t_uv_pattern *)patt;
-	uv_point = spherical_map(p);
+	uv_point = patt->mapping_func(p);
 	return (uv_patt->uv_pattern_at(patt, uv_point));
 }
 
+/*
+ * width to height ratios for nice square checkerboard patterns
+ * sphere 2 to 1
+ * cylinder 16 to 2
+ * cone 20 to 1
+*/
 t_pattern	*uv_checkers(double width, double height, t_color a, t_color b)
 {
 	t_uv_pattern	*uv_patt;

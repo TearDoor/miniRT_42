@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 21:59:21 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/06 21:14:00 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:18:37 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ t_obj	*cylinder(void)
 	new_cyl->type = OBJ_CYL;
 	new_cyl->local_intersect = &cylinder_intersect;
 	new_cyl->local_normal_at = &cylinder_normal_at;
+	new_cyl->mapping_func = &cylindrical_map;
 	return (new_cyl);
 }

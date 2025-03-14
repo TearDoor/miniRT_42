@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 22:13:43 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/09 22:08:26 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:17:06 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,13 @@
 
 t_pattern	init_pattern(void)
 {
-	return ((t_pattern){id_matrix(), id_matrix(), NULL});
+	return ((t_pattern){id_matrix(), id_matrix(), NULL, NULL});
+}
+
+void	set_pattern(t_obj *obj, t_pattern *patt)
+{
+	obj->material.pattern = patt;
+	patt->mapping_func = obj->mapping_func;
 }
 
 t_color	pattern_at_shape(const t_pattern *patt, const t_obj *obj, t_tuple w_pt)

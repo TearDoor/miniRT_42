@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/14 15:59:20 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/14 16:22:54 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_obj
 	t_material	material;
 	void		(*local_intersect)(struct s_obj, t_ray, t_list **);
 	t_tuple		(*local_normal_at)(t_tuple);
+	t_mapping	mapping_func;
 }	t_obj;
 
 typedef struct s_lightparams

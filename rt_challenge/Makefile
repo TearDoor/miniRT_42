@@ -9,6 +9,7 @@ SRC		=	main.c simple_utils.c \
 SRC		+=	objects.c sphere.c plane.c cylinder.c cone.c 
 SRC		+=	pattern.c stripes.c gradient.c rings.c checkers.c \
 			uv_pattern.c uv_image.c normalmap.c \
+			mappings.c
 
 # test scenes
 SRC		+=	cannon.c my_first_sphere.c scene1.c earth.c

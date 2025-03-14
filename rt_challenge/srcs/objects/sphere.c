@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 16:39:54 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/05 17:27:51 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:17:46 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ t_obj	*sphere(void)
 	new->type = OBJ_SPHERE;
 	new->local_intersect = &line_sphere_intersection;
 	new->local_normal_at = &sphere_normal_at;
+	new->mapping_func = &spherical_map;
 	return (new);
 }
