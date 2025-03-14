@@ -87,6 +87,6 @@ int	main(int argc, char *argv[])
 		exit(1);
 	}
 	printf("Parsing complete.\n");
-	earth(rt);
+	scene_one(rt);
 	return (0);
 }

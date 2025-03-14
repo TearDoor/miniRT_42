@@ -41,5 +41,6 @@ t_obj	*plane(void)
 	new_plane->type = OBJ_PLANE;
 	new_plane->local_normal_at = &plane_normal_at;
 	new_plane->local_intersect = &plane_intersection;
+	new_plane->mapping_func = &planar_map;
 	return (new_plane);
 }

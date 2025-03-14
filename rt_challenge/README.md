@@ -4,6 +4,8 @@ My first RayTracer with MiniLibX
 ## References
 [The Ray Tracer Challenge](http://raytracerchallenge.com) - Most of the methods of implementing a raytracer is based on this book
 
+[Texture Mapping](http://raytracerchallenge.com/bonus/texture-mapping.html) - Bonus of the raytracer challenge book.
+
 Explaination of dot products and cross products - [BetterExplained](https://betterexplained.com)
 
 ## Texture Files

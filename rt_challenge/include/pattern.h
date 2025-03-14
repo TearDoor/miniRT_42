@@ -95,6 +95,7 @@ t_pattern	*checkers_pattern(t_color a, t_color b);
 t_point2d	spherical_map(t_tuple p);
 t_point2d	cylindrical_map(t_tuple p);
 t_point2d	cone_map(t_tuple p);
+t_point2d	planar_map(t_tuple p);
 
 t_color		pattern_at_3d_to_2d(const t_pattern *patt, t_tuple p);
 t_pattern	*uv_checkers(double width, double height, t_color a, t_color b);

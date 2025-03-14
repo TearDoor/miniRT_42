@@ -51,7 +51,7 @@ void	scene_one(t_rt rt)
 	set_pattern(cyl2, uv_checkers(32, 4, color(0,0,0), color(1,1,1)));
 	add_obj_to_world(&w, cyl2);
 	floor = plane();
-	floor->material.pattern = checkers_pattern(color(0,0.8,0), color(0,0,0.8));
+	set_pattern(floor, checkers_pattern(color(0, 0, 0), color(1, 1, 1)));
 	add_obj_to_world(&w, floor);
 	lwall = plane();
 	set_transform(lwall, rotation_x(M_PI / 2));

@@ -47,17 +47,7 @@ t_point2d	cylindrical_map(t_tuple p)
 	return (p2d);
 }
 
-t_point2d	cone_map(t_tuple p)
+t_point2d	planar_map(t_tuple p)
 {
-	double		theta;
-	double		horizontal_dist;
-	double		raw_u;
-	t_point2d	p2d;
-
-	theta = atan2(p.x, p.z);
-	horizontal_dist = sqrt(sq(p.x) + sq(p.z));
-	raw_u = theta / (2 * M_PI);
-	p2d.u = 1 - (raw_u + 0.5);
-	p2d.v = p.y;
-	return (p2d);
+	return ((t_point2d){fmod(p.x, 1), fmod(p.z, 1)});
 }
