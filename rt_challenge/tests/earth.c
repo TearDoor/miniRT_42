@@ -6,60 +6,18 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 21:24:46 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/13 22:33:48 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/14 14:08:12 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include <stdio.h>
-
-t_tuple	color_to_normal(t_color clr)
-{
-	double	x;
-	double	y;
-	double	z;
-
-	x = (clr.r * 2.0) - 1.0;
-	y = (clr.g * 2.0) - 1.0;
-	z = (clr.b * 2.0) - 1.0;
-	return (vector(x, y, z));
-}
-
-t_tuple	**colormap_to_normalmap(t_canvas *cvs)
-{
-	t_tuple	**normals;
-	int		i;
-	int		j;
-
-	normals = malloc(sizeof(t_tuple *) * cvs->height + 1);
-	printf("%d %d\n", cvs->width, cvs->height);
-	j = 0;
-	while (j < cvs->height)
-	{
-		normals[j] = malloc(sizeof(t_tuple) * cvs->width);
-		i = 0;
-		while (i < cvs->width)
-		{
-			normals[j][i] = color_to_normal(cvs->pixels[j][i]);
-			i++;
-		}
-		j++;
-	}
-	normals[j] = NULL;
-	return (normals);
-}
 
 void	earth(t_rt rt)
 {
 	t_world		w;
 	t_camera	cam;
 	t_obj		*s1;
-	t_canvas	temp;
-	t_tuple		**normals;
 
-	temp = canvas_from_ppm("earthbump1k.ppm");
-	normals = colormap_to_normalmap(&temp);
-	free_split((void **)normals);
 	w = new_world();
 	w.light = point_light(color(1, 1, 1), point(0, 1, -2));
 	s1 = sphere();

@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 17:26:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/12 21:18:03 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/14 16:06:36 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_point2d
 
 t_pattern	init_pattern(void);
 void		set_pattern_transform(t_pattern *patt, t_mat4 m);
+
 t_color		pattern_at_shape(const t_pattern *patt, const t_obj *obj, \
 							t_tuple point);
 t_pattern	*stripe_pattern(t_color a, t_color b);
@@ -91,5 +92,7 @@ t_pattern	*checkers_pattern(t_color a, t_color b);
 t_color		pattern_at_3d_to_2d(const t_pattern *patt, t_tuple p);
 t_pattern	*uv_checkers(double width, double height, t_color a, t_color b);
 t_pattern	*uv_image(t_canvas *cvs);
+
+t_tuple	**normal_map(char *filename);
 
 #endif

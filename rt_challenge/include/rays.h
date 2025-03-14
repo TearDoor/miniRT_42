@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/10 20:03:00 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/14 15:59:20 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_material
 	double		specular;
 	double		shininess;
 	t_pattern	*pattern;
+	t_tuple		**normalmap;
 }	t_material;
 
 typedef enum e_obj_type

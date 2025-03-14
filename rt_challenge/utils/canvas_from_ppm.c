@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:46:25 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/13 22:04:01 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/14 16:01:45 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_canvas	parse_dimensions(int fd)
 	width = ft_atoi(dimensions[0]);
 	height = ft_atoi(dimensions[1]);
 	free(line);
-	free_split(dimensions);
+	free_split((void **)dimensions);
 	return (canvas(width, height));
 }
 
@@ -57,7 +57,7 @@ void	store_color_to_canvas(t_canvas *cvs, t_color c)
 		++row;
 		col = 0;
 	}
-	if (col == cvs->width -1 && row == cvs->height - 1)
+	if (col == cvs->width && row == cvs->height)
 	{
 		col = 0;
 		row = 0;
@@ -89,7 +89,7 @@ void	parse_pixel_data(t_canvas *cvs, int fd)
 			i += 3;
 		}
 		free(line);
-		free_split(values);
+		free_split((void **)values);
 		line = get_next_line(fd);
 	}
 }
