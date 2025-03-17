@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:22:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/09 16:41:51 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/17 20:22:51 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static t_color	shade_hit(t_world world, t_comps comp)
 	t_lightparams	params;
 	uint64_t startime, shadow_time;
 
-	params.m = comp.obj.material;
-	params.obj = comp.obj;
+	params.m = comp.obj->material;
+	params.obj = *comp.obj;
 	params.light = world.light;
 	params.point = comp.over_point;
 	params.eye_vec = comp.eyev;
@@ -36,10 +36,10 @@ static t_comps	prepare_computations(t_intersect *i, t_ray r)
 	t_comps	comps;
 
 	comps.t = i->t;
-	comps.obj = i->obj;
+	comps.obj = &i->obj;
 	comps.point = position(r, comps.t);
 	comps.eyev = tuple_negate(r.direction);
-	comps.normalv = normal_at(i->obj, comps.point);
+	comps.normalv = normal_at(comps.obj, comps.point);
 	if (vector_dot_product(comps.normalv, comps.eyev) < 0)
 	{
 		comps.inside = 1;

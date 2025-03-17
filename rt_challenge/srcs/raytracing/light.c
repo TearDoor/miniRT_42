@@ -6,22 +6,55 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:57:51 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/14 15:59:56 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/17 21:59:41 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rays.h"
+#include <stdio.h>
+#include <math.h>
 
-t_tuple	normal_at(t_obj obj, t_tuple world_point)
+t_mat4	tbn_matrix(t_tuple normal)
+{
+	t_tuple	tangent;
+	t_tuple	bitangent;
+	t_tuple	up;
+
+	normal = vector_normalize(normal);
+	up = vector(0, 1, 0);
+	if (fabs(vector_dot_product(up, normal)) >= 0.99)
+		up = vector(1, 0, 0);
+	tangent = vector_cross_product(up, normal);
+	tangent = vector_normalize(tangent);
+	bitangent = vector_cross_product(tangent, normal);
+	bitangent = vector_normalize(bitangent);
+	return (
+		(t_mat4){{
+			{tangent.x, bitangent.x, normal.x, 0},
+			{tangent.y, bitangent.y, normal.y, 0},
+			{tangent.z, bitangent.z, normal.z, 0},
+			{0, 0, 0, 1},
+		}});
+}
+
+t_tuple	normal_at(t_obj *obj, t_tuple world_point)
 {
 	t_tuple	local_point;
 	t_tuple	local_normal;
+	t_tuple	map_normal;
 	t_tuple	world_normal;
 
-	local_point = matrix_tuple_mult(obj.inverse_transform, world_point);
-	local_normal = obj.local_normal_at(local_point);
+	local_point = matrix_tuple_mult(obj->inverse_transform, world_point);
+	local_normal = obj->local_normal_at(local_point);
+	if (obj->material.normalmap != NULL)
+	{
+		map_normal = get_normal_from_map(obj->material.normalmap, \
+											obj->mapping_func(local_point));
+		local_normal = matrix_tuple_mult(tbn_matrix(local_normal), map_normal);
+		local_normal = vector_normalize(local_normal);
+	}
 	world_normal = matrix_tuple_mult(\
-				matrix_transpose(obj.inverse_transform), local_normal);
+				matrix_transpose(obj->inverse_transform), local_normal);
 	world_normal.w = 0;
 	return (vector_normalize(world_normal));
 }

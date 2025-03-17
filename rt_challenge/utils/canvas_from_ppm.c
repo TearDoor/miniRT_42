@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:46:25 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/14 16:01:45 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/17 13:51:26 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,9 @@ void	store_color_to_canvas(t_canvas *cvs, t_color c)
 	if (col == cvs->width)
 	{
 		++row;
+		if (row == cvs->height)
+			row = 0;
 		col = 0;
-	}
-	if (col == cvs->width && row == cvs->height)
-	{
-		col = 0;
-		row = 0;
 	}
 	return ;
 }

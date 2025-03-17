@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:21:32 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/11 15:28:12 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/17 12:53:18 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,9 @@ t_pattern	*checkers_pattern(t_color a, t_color b)
 	new_checkers->a = a;
 	new_checkers->b = b;
 	return ((t_pattern *)new_checkers);
+}
+
+t_pattern	*bw_checkers(void)
+{
+	return (checkers_pattern(color(1, 1, 1), color(0, 0, 0)));
 }

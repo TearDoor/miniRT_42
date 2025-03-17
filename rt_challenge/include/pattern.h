@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 17:26:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/14 21:17:43 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/17 21:08:35 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,9 @@ t_color		pattern_at_shape(const t_pattern *patt, const t_obj *obj, \
 t_pattern	*stripe_pattern(t_color a, t_color b);
 t_pattern	*gradient_pattern(t_color a, t_color b);
 t_pattern	*ring_pattern(t_color a, t_color b);
+t_pattern	*bw_ring(void);
 t_pattern	*checkers_pattern(t_color a, t_color b);
+t_pattern	*bw_checkers(void);
 
 t_point2d	spherical_map(t_tuple p);
 t_point2d	cylindrical_map(t_tuple p);
@@ -99,8 +101,12 @@ t_point2d	planar_map(t_tuple p);
 
 t_color		pattern_at_3d_to_2d(const t_pattern *patt, t_tuple p);
 t_pattern	*uv_checkers(double width, double height, t_color a, t_color b);
+t_pattern	*bw_uv_checkers(float width, float height);
+
 t_pattern	*uv_image(t_canvas *cvs);
 
-t_tuple		**normal_map(char *filename);
+t_canvas	*normal_map(char *filename);
+void		set_normal_from_file(t_obj *obj, char *filename);
+t_tuple		get_normal_from_map(t_canvas *cvs, t_point2d uv);
 
 #endif

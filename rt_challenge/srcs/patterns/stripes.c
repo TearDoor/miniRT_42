@@ -6,14 +6,14 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:06:48 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/14 21:44:51 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/17 13:36:09 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pattern.h"
 #include <math.h>
 
-t_color	stripe_at(const t_pattern *patt, t_tuple p)
+static t_color	stripe_at(const t_pattern *patt, t_tuple p)
 {
 	t_stripe_pattern	*stripe;
 

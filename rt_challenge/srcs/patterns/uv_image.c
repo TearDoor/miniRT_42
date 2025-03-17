@@ -6,19 +6,19 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 20:24:50 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/13 16:16:46 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/17 21:00:46 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pattern.h"
 #include <math.h>
 
-t_color	pixel_at(t_canvas *cvs, int x, int y)
+static t_color	pixel_at(t_canvas *cvs, int x, int y)
 {
 	return (cvs->pixels[y][x]);
 }
 
-t_color	uv_pattern_at(const t_pattern *patt, t_point2d uv)
+t_color	uv_image_pattern_at(const t_pattern *patt, t_point2d uv)
 {
 	t_uv_image	*uv_img;
 	double		x;
@@ -38,7 +38,7 @@ t_pattern	*uv_image(t_canvas *cvs)
 	uv_image = malloc(sizeof(t_uv_image));
 	uv_image->pattern = init_pattern();
 	uv_image->pattern.pattern_at = pattern_at_3d_to_2d;
-	uv_image->uv_pattern_at = &uv_pattern_at;
+	uv_image->uv_pattern_at = &uv_image_pattern_at;
 	uv_image->cvs = cvs;
 	return ((t_pattern *)uv_image);
 }

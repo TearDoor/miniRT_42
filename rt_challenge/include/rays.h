@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/14 16:22:54 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/17 20:24:40 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_material
 	double		specular;
 	double		shininess;
 	t_pattern	*pattern;
-	t_tuple		**normalmap;
+	t_canvas	*normalmap;
 }	t_material;
 
 typedef enum e_obj_type
@@ -97,7 +97,7 @@ typedef struct s_intersect
 typedef struct s_comps
 {
 	double	t;
-	t_obj	obj;
+	t_obj	*obj;
 	t_tuple	point;
 	t_tuple	eyev;
 	t_tuple	normalv;
@@ -142,7 +142,7 @@ t_intersect	*checkhit(t_list *intersects);
 t_ray		transform_ray(t_ray ray, t_mat4 transform);
 
 /* light and shading */
-t_tuple		normal_at(t_obj sp, t_tuple point);
+t_tuple		normal_at(t_obj *obj, t_tuple point);
 t_tuple		reflect(t_tuple v_in, t_tuple normal);
 t_color		lighting(t_lightparams params);
 t_color		color_at(t_world w, t_ray r);

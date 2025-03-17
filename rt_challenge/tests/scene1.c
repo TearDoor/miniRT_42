@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 10:48:35 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/14 21:35:56 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/17 13:30:37 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	scene_one(t_rt rt)
 	add_obj_to_world(&w, cone1);
 	cone1->material.color = color(0.1, 0.1, 0.8);
 	cyl1 = cylinder();
+	set_pattern(cyl1, bw_ring());
 	set_transform(cyl1, rotation_x(M_PI / 3));
 	set_transform(cyl1, translate_mat(-2, 2, 0.5));
-	cyl1->material.pattern = ring_pattern(color(0,0,0), color(1,1,1));
 	set_pattern_transform(cyl1->material.pattern, scaling_mat(0.1, 0.1, 0.1));
 	add_obj_to_world(&w, cyl1);
 	t_obj	*cyl2 = cylinder();
@@ -51,7 +51,7 @@ void	scene_one(t_rt rt)
 	set_pattern(cyl2, uv_checkers(32, 4, color(0,0,0), color(1,1,1)));
 	add_obj_to_world(&w, cyl2);
 	floor = plane();
-	set_pattern(floor, checkers_pattern(color(0, 0, 0), color(1, 1, 1)));
+	set_pattern(floor, bw_checkers());
 	add_obj_to_world(&w, floor);
 	lwall = plane();
 	set_transform(lwall, rotation_x(M_PI / 2));

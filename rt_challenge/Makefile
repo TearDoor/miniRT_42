@@ -8,7 +8,7 @@ SRC		=	main.c simple_utils.c \
 			mlx_showimage.c
 SRC		+=	objects.c sphere.c plane.c cylinder.c cone.c 
 SRC		+=	pattern.c stripes.c gradient.c rings.c checkers.c \
-			uv_pattern.c uv_image.c normalmap.c \
+			uv_pattern.c uv_checkers.c uv_image.c normalmap.c \
 			mappings.c
 
 # test scenes

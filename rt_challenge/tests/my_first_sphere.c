@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:27:03 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/08 15:42:38 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:24:26 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	wall(void)
 			if (checkhit(xs) != NULL)
 			{
 				params.point = position(cam_ray, checkhit(xs)->t);
-				params.normal_vec = normal_at(checkhit(xs)->obj, params.point);
+				params.normal_vec = normal_at(&checkhit(xs)->obj, params.point);
 				params.eye_vec = tuple_negate(cam_ray.direction);
 				params.m = checkhit(xs)->obj.material;
 				params.light = light;

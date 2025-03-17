@@ -6,14 +6,14 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:21:40 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/10 11:21:41 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/17 13:36:22 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pattern.h"
 #include <math.h>
 
-t_color	ring_at(const t_pattern *patt, t_tuple p)
+static t_color	ring_at(const t_pattern *patt, t_tuple p)
 {
 	t_ring_pattern	*ring;
 	double			distance;
@@ -36,4 +36,9 @@ t_pattern	*ring_pattern(t_color a, t_color b)
 	new_ring->a = a;
 	new_ring->b = b;
 	return ((t_pattern *)new_ring);
+}
+
+t_pattern	*bw_ring(void)
+{
+	return (ring_pattern(color(1, 1, 1), color(0, 0, 0)));
 }
