@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 17:56:54 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/08 16:28:20 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:21:57 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	lstcmp_xs(t_list *l1, t_list *l2)
 		return (0);
 }
 
-void	add_to_intersections(double t, t_obj obj, t_list **list)
+void	add_to_intersections(double t, t_obj *obj, t_list **list)
 {
 	t_intersect	*new_intersect;
 

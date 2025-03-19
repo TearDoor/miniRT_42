@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/17 20:24:40 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:34:16 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_obj
 	t_mat4		transform;
 	t_mat4		inverse_transform;
 	t_material	material;
-	void		(*local_intersect)(struct s_obj, t_ray, t_list **);
+	void		(*local_intersect)(struct s_obj*, t_ray, t_list **);
 	t_tuple		(*local_normal_at)(t_tuple);
 	t_mapping	mapping_func;
 }	t_obj;
@@ -70,7 +70,7 @@ typedef struct s_obj
 typedef struct s_lightparams
 {
 	t_material	m;
-	t_obj		obj;
+	t_obj		*obj;
 	t_light		light;
 	t_tuple		point;
 	t_tuple		eye_vec;
@@ -91,7 +91,7 @@ typedef struct s_world
 typedef struct s_intersect
 {
 	double	t;
-	t_obj	obj;
+	t_obj	*obj;
 }	t_intersect;
 
 typedef struct s_comps
@@ -119,7 +119,7 @@ typedef struct s_camera
 
 /* Constructors */
 t_ray		ray(t_tuple point, t_tuple vector);
-t_intersect	*intersection(double t, t_obj obj);
+t_intersect	*intersection(double t, t_obj *obj);
 t_light		point_light(t_color intensity, t_tuple position);
 t_obj		*new_obj(void);
 t_obj		*sphere(void);
@@ -133,8 +133,8 @@ t_camera	new_camera(int hsize, int vsize, double fov);
 
 /* ray intersection */
 t_tuple		position(t_ray ray, double distance);
-void		check_intersect(t_obj obj, t_ray ray, t_list **xs);
-void		add_to_intersections(double t, t_obj obj, t_list **list);
+void		check_intersect(t_obj *obj, t_ray ray, t_list **list);
+void		add_to_intersections(double t, t_obj *obj, t_list **list);
 void		add_obj_to_world(t_world *w, t_obj *obj);
 t_obj		*list_to_array_obj(t_list *list);
 t_list		*intersect_world(t_ray ray, t_world world);

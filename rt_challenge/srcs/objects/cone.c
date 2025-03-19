@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:33:42 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/14 21:24:30 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:25:43 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	cone_check_caps(t_ray ray, double t, double y)
 	return (pow(x, 2) + pow(z, 2) <= fabs(y));
 }
 
-void	cone_intersect_caps(t_obj cone, t_ray ray, t_list **list)
+void	cone_intersect_caps(t_obj *cone, t_ray ray, t_list **list)
 {
 	double	t;
 
@@ -40,7 +40,7 @@ void	cone_intersect_caps(t_obj cone, t_ray ray, t_list **list)
 /* when a is 0 it means the ray is parallel to one of cone halves,
  * which might have 1 intersection. unless b is also 0 then there would 
  * be no intersection */
-void	cone_intersect(t_obj cone, t_ray ray, t_list **list)
+void	cone_intersect(t_obj *cone, t_ray ray, t_list **list)
 {
 	double	a;
 	double	b;

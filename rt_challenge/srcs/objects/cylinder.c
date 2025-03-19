@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 21:59:21 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/14 17:18:37 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:25:16 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	check_caps(t_ray ray, double t);
 /* finds the intersection of the ray with whole plane where
  * the top and bottom caps reside (plane_intersect)
  * check_cap checks if the intersection falls within radius of cylinder */
-void	cyl_intersect_caps(t_obj cyl, t_ray ray, t_list **list)
+void	cyl_intersect_caps(t_obj *cyl, t_ray ray, t_list **list)
 {
 	double	t;
 
@@ -40,7 +40,7 @@ static int	check_caps(t_ray ray, double t)
 	return (pow(x, 2) + pow(z, 2) <= 1);
 }
 
-static void	cylinder_intersect(t_obj cyl, t_ray ray, t_list **list)
+static void	cylinder_intersect(t_obj *cyl, t_ray ray, t_list **list)
 {
 	double	a;
 	double	b;

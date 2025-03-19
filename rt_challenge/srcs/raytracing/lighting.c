@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 21:44:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/17 17:43:44 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/19 14:27:29 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_color	lighting(t_lightparams params)
 
 	if (params.m.pattern != NULL)
 		params.m.color = pattern_at_shape(params.m.pattern, \
-											&params.obj, params.point);
+											params.obj, params.point);
 	effective_color = color_mult(params.m.color, params.light.intensity);
 	ambient = color_scalar_mult(effective_color, params.m.ambient);
 	if (params.in_shadow)

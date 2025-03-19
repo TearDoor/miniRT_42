@@ -6,14 +6,14 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 16:39:54 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/14 17:17:46 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:35:48 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "rays.h"
 
-static void	line_sphere_intersection(t_obj sphere, t_ray ray, t_list **list)
+static void	line_sphere_intersection(t_obj *obj, t_ray ray, t_list **list)
 {
 	t_tuple	sphere_to_ray;
 	double	a;
@@ -27,8 +27,8 @@ static void	line_sphere_intersection(t_obj sphere, t_ray ray, t_list **list)
 	c = vector_dot_product(sphere_to_ray, sphere_to_ray) - 1;
 	if (!solve_quadratic(a, b, c, roots))
 		return ;
-	add_to_intersections(roots[0], sphere, list);
-	add_to_intersections(roots[1], sphere, list);
+	add_to_intersections(roots[0], obj, list);
+	add_to_intersections(roots[1], obj, list);
 }
 
 /* normal of a point on a sphere is 

@@ -6,13 +6,13 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:04:22 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/09 14:04:46 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:31:29 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rays.h"
 
-t_intersect	*intersection(double t, t_obj obj)
+t_intersect	*intersection(double t, t_obj *obj)
 {
 	t_intersect	*inter;
 
@@ -26,12 +26,28 @@ t_intersect	*intersection(double t, t_obj obj)
  * transformation matrix
  * then checks if the transformed ray intersects the object
  * by using the object's local_intersect function */
-void	check_intersect(t_obj obj, t_ray ray, t_list **xs)
+void	check_intersect(t_obj *obj, t_ray ray, t_list **xs)
 {
 	t_ray	local_ray;
 
-	local_ray = transform_ray(ray, obj.inverse_transform);
-	obj.local_intersect(obj, local_ray, xs);
+	local_ray = transform_ray(ray, obj->inverse_transform);
+	obj->local_intersect(obj, local_ray, xs);
+}
+
+/* checks if the ray intersects with all the objects in the world */
+t_list	*intersect_world(t_ray ray, t_world world)
+{
+	t_list	*xs;
+	size_t	i;
+
+	xs = NULL;
+	i = 0;
+	while (i < world.obj_count)
+	{
+		check_intersect(&world.obj_arr[i], ray, &xs);
+		i++;
+	}
+	return (xs);
 }
 
 /* returns the first non-negative intersection if any */

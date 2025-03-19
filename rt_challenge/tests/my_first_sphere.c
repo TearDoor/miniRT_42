@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:27:03 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/17 16:24:26 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:34:36 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ void	wall(void)
 			ray_vector =  tuple_subtract(ray_position, ray_origin);
 			cam_ray = ray(ray_origin, vector_normalize(ray_vector));
 			xs = NULL;
-			check_intersect(*s1, cam_ray, &xs);
+			check_intersect(s1, cam_ray, &xs);
 			if (checkhit(xs) != NULL)
 			{
 				params.point = position(cam_ray, checkhit(xs)->t);
-				params.normal_vec = normal_at(&checkhit(xs)->obj, params.point);
+				params.normal_vec = normal_at(checkhit(xs)->obj, params.point);
 				params.eye_vec = tuple_negate(cam_ray.direction);
-				params.m = checkhit(xs)->obj.material;
+				params.m = checkhit(xs)->obj->material;
 				params.light = light;
 				clr = lighting(params);
 				write_pixel(cvs, i, j, clr);

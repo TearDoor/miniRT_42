@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:57:51 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/17 21:59:41 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:35:22 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ t_tuple	normal_at(t_obj *obj, t_tuple world_point)
 	return (vector_normalize(world_normal));
 }
 
+/*
+ * r = in - (normal * 2 * (in . normal))
+*/
 t_tuple	reflect(t_tuple v_in, t_tuple normal)
 {
 	t_tuple	temp;

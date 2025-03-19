@@ -12,7 +12,7 @@ SRC		+=	pattern.c stripes.c gradient.c rings.c checkers.c \
 			mappings.c
 
 # test scenes
-SRC		+=	cannon.c my_first_sphere.c scene1.c earth.c
+SRC		+=	cannon.c my_first_sphere.c scene1.c earth.c leak_test.c
 
 OBJ_DIR	= objs
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
