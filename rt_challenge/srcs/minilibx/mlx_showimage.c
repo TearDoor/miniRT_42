@@ -6,19 +6,19 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:32:10 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/10 16:55:41 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/19 20:38:37 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "linux_keys.h"
 #include "mlx.h"
+#include <stdio.h>
 
 int	close_win(t_rt *rt)
 {
+	free_world(&rt->world);
 	free_canvas(rt->canvas);
-	ft_lstclear(&rt->world.objs, free);
-	free(rt->world.obj_arr);
 	mlx_destroy_image(rt->mlx, rt->img.img_ptr);
 	mlx_destroy_window(rt->mlx, rt->mlx_win);
 	mlx_destroy_display(rt->mlx);
@@ -27,10 +27,11 @@ int	close_win(t_rt *rt)
 	return (0);
 }
 
-int	keypress(int keycode, t_rt *fdf)
+int	keypress(t_keycodes key, t_rt *rt)
 {
-	if (keycode == ESC)
-		close_win(fdf);
+	if (key == ESC)
+		close_win(rt);
+	printf("%d pressed\n", key);
 	return (0);
 }
 

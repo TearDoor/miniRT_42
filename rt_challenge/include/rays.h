@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/19 15:34:16 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/19 20:38:31 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ t_obj		*cone(void);
 t_material	material(void);
 t_world		new_world(void);
 t_world		default_world(void);
+void		free_world(t_world *w);
 t_camera	new_camera(int hsize, int vsize, double fov);
 
 /* ray intersection */

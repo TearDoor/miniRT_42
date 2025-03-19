@@ -6,13 +6,23 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 16:48:25 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/26 16:49:03 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/19 20:33:30 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LINUX_KEYS_H
 # define LINUX_KEYS_H
 
-# define ESC 65307
+typedef enum e_keycodes
+{
+	ESC = 65307,
+	W = 119,
+	A = 97,
+	S = 115,
+	D = 100,
+	R = 114,
+	F = 102,
+	SPC = 32,
+}	t_keycodes;
 
 #endif

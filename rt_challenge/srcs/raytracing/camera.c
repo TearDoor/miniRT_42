@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 17:41:12 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/19 14:56:25 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/19 17:45:58 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,6 @@ t_canvas	render(t_camera cam, t_world w)
 		}
 		j++;
 	}
+	free(w.obj_arr);
 	return (cvs);
 }
