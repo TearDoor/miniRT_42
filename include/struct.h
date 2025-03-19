@@ -15,6 +15,17 @@
 
 # include "minirt.h"
 
+typedef enum s_obj_id
+{
+	ambient,
+	camera,
+	light,
+	plane,
+	cylinder,
+	cone,
+	sphere
+}	t_obj_id;
+
 typedef struct s_atof
 {
 	float	whole_num;
@@ -26,45 +37,51 @@ typedef struct s_atof
 
 typedef struct s_ambient
 {
-	float	ratio;
-	int		*color;
+	t_obj_id	id;
+	float		ratio;
+	int			*color;
 }	t_ambient;
 
 typedef struct s_camera
 {
-	float	*coordinate;
-	float	*vector;
-	int		fov;
+	t_obj_id	id;
+	float		*coordinate;
+	float		*vector;
+	int			fov;
 }	t_camera;
 
 typedef struct s_light
 {
-	float	*coordinate;
-	float	ratio;
-	int		*color;
+	t_obj_id	id;
+	float		*coordinate;
+	float		ratio;
+	int			*color;
 }	t_light;
 
 typedef struct s_sphere
 {
-	float	*coordinate;
-	float	diameter;
-	int		*color;
+	t_obj_id	id;
+	float		*coordinate;
+	float		diameter;
+	int			*color;
 }	t_sphere;
 
 typedef struct s_plane
 {
-	float	*coordinate;
-	float	*vector;
-	int		*color;
+	t_obj_id	id;
+	float		*coordinate;
+	float		*vector;
+	int			*color;
 }	t_plane;
 
 typedef struct s_cylinder
 {
-	float	*coordinate;
-	float	*vector;
-	float	diameter;
-	float	height;
-	int		*color;
+	t_obj_id	id;
+	float		*coordinate;
+	float		*vector;
+	float		diameter;
+	float		height;
+	int			*color;
 }	t_cylinder;
 
 typedef struct s_img
@@ -76,6 +93,19 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
+typedef union s_shape
+{
+	t_sphere	sphere;
+	t_cylinder	cylinder;
+	t_plane		plane;
+}	t_shape;
+
+typedef struct s_obj
+{
+	t_obj_id	id;
+	t_shape		shape;
+}	t_obj;
+
 typedef struct s_minirt
 {
 	void		*mlx;
@@ -84,9 +114,6 @@ typedef struct s_minirt
 	t_ambient	*ambient;
 	t_camera	*camera;
 	t_light		*light;
-	t_sphere	*sphere;
-	t_plane		*plane;
-	t_cylinder	*cylinder;
 }	t_minirt;
 
 #endif

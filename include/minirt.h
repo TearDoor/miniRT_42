@@ -46,13 +46,13 @@ void	execute_minirt(t_minirt *rt);
 int		handle_keypress(int keycode, t_minirt *rt);
 
 // parsing
-t_minirt	*parse_file(int fd);
-void		store_info(char **info, t_minirt *rt);
-void		parse_ambient(char **info, t_minirt *rt);
-void		parse_camera(char **info, t_minirt *rt);
-void		parse_light(char **info, t_minirt *rt);
-void		parse_plane(char **info, t_minirt *rt);
-void		parse_sphere(char **info, t_minirt *rt);
-void		parse_cylinder(char **info, t_minirt *rt);
+int		parse_file(int fd, t_minirt *rt);
+int		store_info(char **info, t_minirt *rt);
+void	parse_ambient(char **info, t_minirt *rt);
+void	parse_camera(char **info, t_minirt *rt);
+void	parse_light(char **info, t_minirt *rt);
+void	parse_plane(char **info, t_minirt *rt);
+void	parse_sphere(char **info, t_minirt *rt);
+void	parse_cylinder(char **info, t_minirt *rt);
 
 #endif

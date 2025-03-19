@@ -12,9 +12,8 @@
 
 #include "minirt.h"
 
-t_minirt	*parse_file(int fd)
+void	parse_file(t_minirt *rt, int fd)
 {
-	t_minirt	*rt;
 	char		*line;
 	char		**info;
 
@@ -23,19 +22,19 @@ t_minirt	*parse_file(int fd)
 	while (line)
 	{
 		filter_line(line, &info);
-		store_info(info, rt);
+		if (store_info(info, rt))
+			
 		free(line);
 		free_arr(info);
 		line = get_next_line(fd);
 	}
-	return (rt);
 }
 
-void	store_info(char **info, t_minirt *rt)
+int	store_info(char **info, t_minirt *rt)
 {
 	printf("info[0] = %s\n", info[0]); // debug
 	if (!info || !info[0])
-		return ;
+		return (0);
 	else if (ft_strcmp(info[0], "A") == 0)
 		parse_ambient(info, rt);
 	else if (ft_strcmp(info[0], "C") == 0)
@@ -47,7 +46,8 @@ void	store_info(char **info, t_minirt *rt)
 	else if (ft_strcmp(info[0], "sp") == 0)
 		parse_sphere(info, rt);
 	else if (ft_strcmp(info[0], "cy") == 0)
-		parse_cylinder(info, rt);	
+		parse_cylinder(info, rt);
+	return (0);
 }
 
 void	parse_ambient(char **info, t_minirt *rt)
