@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 17:26:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/17 21:08:35 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/20 15:58:25 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,9 @@ t_color		pattern_at_3d_to_2d(const t_pattern *patt, t_tuple p);
 t_pattern	*uv_checkers(double width, double height, t_color a, t_color b);
 t_pattern	*bw_uv_checkers(float width, float height);
 
+t_canvas	*parse_map(char *filename);
 t_pattern	*uv_image(t_canvas *cvs);
-
-t_canvas	*normal_map(char *filename);
+void		set_img_from_file(t_obj *obj, char *filename);
 void		set_normal_from_file(t_obj *obj, char *filename);
 t_tuple		get_normal_from_map(t_canvas *cvs, t_point2d uv);
 

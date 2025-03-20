@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 13:01:01 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/19 21:06:46 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/20 17:47:24 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	leak_test(t_rt rt)
 	t_obj	*floor = plane();
 	set_transform(floor, translate_mat(0, -1, 0));
 	add_obj_to_world(&rt.world, floor);
-	rt.canvas = render(cam, rt.world);
-	canvas_to_mlxwin(&rt.canvas, &rt);
+	render_to_mlximg(&cam, &rt.world, &rt.img);
+	mlx_showimg(&rt);
 	return ;
 }

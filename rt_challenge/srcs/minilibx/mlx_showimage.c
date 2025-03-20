@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:32:10 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/19 20:38:37 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/20 21:48:12 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 int	close_win(t_rt *rt)
 {
 	free_world(&rt->world);
-	free_canvas(rt->canvas);
 	mlx_destroy_image(rt->mlx, rt->img.img_ptr);
 	mlx_destroy_window(rt->mlx, rt->mlx_win);
 	mlx_destroy_display(rt->mlx);
@@ -53,6 +52,15 @@ void	ft_mlx_pixel_put(t_imgdata *img, int x, int y, t_color color)
 	*(unsigned int *)dst = color_convert(color);
 }
 
+void	mlx_showimg(t_rt *rt)
+{
+	mlx_put_image_to_window(rt->mlx, rt->mlx_win, rt->img.img_ptr, 0, 0);
+	mlx_hook(rt->mlx_win, 2, 1L >> 0, keypress, rt);
+	mlx_hook(rt->mlx_win, 17, 0, close_win, rt);
+	mlx_loop(rt->mlx);
+}
+
+/*
 void	canvas_to_mlxwin(t_canvas *cvs, t_rt *rt)
 {
 	int			i;
@@ -74,3 +82,4 @@ void	canvas_to_mlxwin(t_canvas *cvs, t_rt *rt)
 	mlx_hook(rt->mlx_win, 17, 0, close_win, rt);
 	mlx_loop(rt->mlx);
 }
+*/

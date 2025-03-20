@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 17:56:54 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/19 15:21:57 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:25:56 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,26 @@ int	check_bounds(double t, t_ray ray, double max, double min)
 
 	y = ray.origin.y + t * ray.direction.y;
 	return ((y > min) && (y < max));
+}
+
+void	free_object(void *ptr)
+{
+	t_obj	*obj;
+
+	obj = (t_obj *)ptr;
+	if (obj->material.image != NULL)
+	{
+		free_canvas(*obj->material.image);
+		free(obj->material.image);
+	}
+	if (obj->material.normalmap != NULL)
+	{
+		free_canvas(*obj->material.normalmap);
+		free(obj->material.normalmap);
+	}
+	if (obj->material.pattern != NULL)
+		free(obj->material.pattern);
+	free(obj);
 }
 
 static int	lstcmp_xs(t_list *l1, t_list *l2)

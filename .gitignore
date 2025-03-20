@@ -1,4 +1,4 @@
-raytrace
+miniRT
 *.out
 *.ppm
 *.o

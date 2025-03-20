@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/19 20:38:31 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/20 15:27:38 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_material
 	double		shininess;
 	t_pattern	*pattern;
 	t_canvas	*normalmap;
+	t_canvas	*image;
 }	t_material;
 
 typedef enum e_obj_type
@@ -158,6 +159,7 @@ t_canvas	render(t_camera cam, t_world w);
 
 /* utils */
 int			check_bounds(double t, t_ray ray, double max, double min);
+void		free_object(void *ptr);
 
 size_t		curr_time(void);
 

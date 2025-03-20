@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 17:23:10 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/19 20:38:20 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/20 14:57:13 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,5 @@ t_obj	*list_to_array_obj(t_list *list)
 
 void	free_world(t_world *w)
 {
-	ft_lstclear(&w->objs, free);
+	ft_lstclear(&w->objs, free_object);
 }

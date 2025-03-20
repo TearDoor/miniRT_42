@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 10:48:35 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/17 13:30:37 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/20 21:34:59 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ void	scene_one(t_rt rt)
 	add_obj_to_world(&w, s3);
 	cam = new_camera(WIDTH, HEIGHT, M_PI / 3);
 	cam.transform = view_transform(point(0, 1.5, -5), point(0, 1, 0), vector(0, 1, 0));
+	rt.world = w;
 	printf("count = %ld\n", w.obj_count);
-	rt.canvas = render(cam, w);
+	render_to_mlximg(&cam, &w, &rt.img);
 	printf("Time taken to render: %lu\n", curr_time() - start_time);
-	canvas_to_mlxwin(&rt.canvas, &rt);
 }

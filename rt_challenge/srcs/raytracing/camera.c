@@ -6,15 +6,16 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 17:41:12 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/19 17:45:58 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/20 21:47:32 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "matrix.h"
 #include "rays.h"
+#include "minirt.h"
+#include <mlx.h>
 #include <math.h>
-#include <stdio.h>
 
 t_mat4	view_transform(t_tuple from, t_tuple to, t_tuple up)
 {
@@ -82,6 +83,32 @@ t_ray	ray_for_pixel(t_camera cam, int px, int py)
 	return (ray(origin, direction));
 }
 
+void	render_to_mlximg(t_camera *cam, t_world *w, t_imgdata *img)
+{
+	int		i;
+	int		j;
+	t_ray	r;
+	t_color	clr;
+
+	cam->inverse_transform = matrix_invert(cam->transform);
+	w->obj_arr = list_to_array_obj(w->objs);
+	j = 0;
+	while (j < cam->vsize)
+	{
+		i = 0;
+		while (i < cam->hsize)
+		{
+			r = ray_for_pixel(*cam, i, j);
+			clr = color_at(*w, r);
+			ft_mlx_pixel_put(img, i, j, clr);
+			i++;
+		}
+		j++;
+	}
+	free(w->obj_arr);
+}
+
+/*
 t_canvas	render(t_camera cam, t_world w)
 {
 	t_canvas	cvs;
@@ -109,3 +136,4 @@ t_canvas	render(t_camera cam, t_world w)
 	free(w.obj_arr);
 	return (cvs);
 }
+*/

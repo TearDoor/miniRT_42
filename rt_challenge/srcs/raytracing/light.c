@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:57:51 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/19 15:35:22 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/20 15:27:53 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ t_material	material(void)
 		.specular = 0.9,
 		.shininess = 200,
 		.pattern = NULL,
+		.image = NULL,
 		.normalmap = NULL,
 	});
 }
