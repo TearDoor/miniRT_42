@@ -6,15 +6,15 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:40:49 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/20 21:42:39 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/21 22:29:36 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# define WIDTH 500
-# define HEIGHT 500
+# define WIDTH 1000
+# define HEIGHT 1000
 # define UI_PAD	300
 
 # include "utils.h"
@@ -36,6 +36,7 @@ typedef struct s_rt
 	void		*mlx_win;
 	t_imgdata	img;
 	t_world		world;
+	t_camera	cam;
 }	t_rt;
 
 void		ft_mlx_pixel_put(t_imgdata *img, int x, int y, t_color color);
