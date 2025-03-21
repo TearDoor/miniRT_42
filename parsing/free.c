@@ -12,48 +12,44 @@
 
 #include "minirt.h"
 
-void	free_acl_plane(t_minirt *rt)
+void	typecast_shape(t_obj *tmp)
 {
-	if (rt->ambient)
+	if (tmp->id == PLANE)
 	{
-		free(rt->ambient->color);
-		free(rt->ambient);
+		free(tmp->shape.plane.coordinate);
+		free(tmp->shape.plane.color);
+		free(tmp->shape.plane.vector);
 	}
-	if (rt->camera)
+	else if (tmp->id == CYLINDER)
 	{
-		free(rt->camera->coordinate);
-		free(rt->camera->vector);
-		free(rt->camera);
+		free(tmp->shape.cylinder.coordinate);
+		free(tmp->shape.cylinder.vector);
+		free(tmp->shape.cylinder.color);
 	}
-	if (rt->light)
+	else if (tmp->id == SPHERE)
 	{
-		free(rt->light->coordinate);
-		free(rt->light->color);
-		free(rt->light);
-	}
-	if (rt->plane)
-	{
-		free(rt->plane->coordinate);;
-		free(rt->plane->color);
-		free(rt->plane->vector);
-		free(rt->plane);
-	}
+		free(tmp->shape.sphere.coordinate);
+		free(tmp->shape.sphere.color);
+	}	
 }
 
 void	free_shape(t_minirt *rt)
 {
-	if (rt->sphere)
+	t_obj	*obj;
+	t_obj	*tmp;
+
+	free(rt->ambient.color);
+	free(rt->camera.coordinate);
+	free(rt->camera.vector);
+	free(rt->light.color);
+	free(rt->light.coordinate);
+	obj = rt->obj_list;
+	while (obj)
 	{
-		free(rt->sphere->coordinate);
-		free(rt->sphere->color);
-		free(rt->sphere);
-	}
-	if (rt->cylinder)
-	{
-		free(rt->cylinder->coordinate);
-		free(rt->cylinder->color);
-		free(rt->cylinder->vector);
-		free(rt->cylinder);
+		tmp = obj;
+		obj = obj->next;
+		typecast_shape(tmp);
+		free(tmp);
 	}
 	free(rt);
 }

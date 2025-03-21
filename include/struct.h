@@ -17,13 +17,13 @@
 
 typedef enum s_obj_id
 {
-	ambient,
-	camera,
-	light,
-	plane,
-	cylinder,
-	cone,
-	sphere
+	ZERO,
+	AMBIENT,
+	CAMERA,
+	LIGHT,
+	PLANE,
+	CYLINDER,
+	SPHERE
 }	t_obj_id;
 
 typedef struct s_atof
@@ -102,8 +102,11 @@ typedef union s_shape
 
 typedef struct s_obj
 {
-	t_obj_id	id;
-	t_shape		shape;
+	t_obj_id		id;
+	t_shape			shape;
+	char			*texture_file;
+	char			*bump_file;
+	struct s_obj	*next;
 }	t_obj;
 
 typedef struct s_minirt
@@ -111,9 +114,10 @@ typedef struct s_minirt
 	void		*mlx;
 	void		*win;
 	t_img		*img;
-	t_ambient	*ambient;
-	t_camera	*camera;
-	t_light		*light;
+	t_obj		*obj_list;
+	t_ambient	ambient;
+	t_camera	camera;
+	t_light		light;
 }	t_minirt;
 
 #endif

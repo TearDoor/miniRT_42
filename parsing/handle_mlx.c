@@ -17,7 +17,6 @@ void	execute_minirt(t_minirt *rt)
 	rt->mlx = mlx_init();
 	if (rt->mlx == NULL)
 	{
-		free_acl_plane(rt);
 		free_shape(rt);
 		print_error("Error: Fails to open window");
 		exit(1);
@@ -45,7 +44,6 @@ int	close_window(t_minirt *rt)
 	mlx_destroy_display(rt->mlx);
 	if (rt->img)
 		free(rt->img);
-	free_acl_plane(rt);
 	free_shape(rt);
 	ft_printf("%sWindow is closed. Bye !! %s\n", YELLOW, YELLOW);
 	ft_printf("%s", RESET_COLOR);

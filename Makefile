@@ -4,7 +4,7 @@ OBJ_DIR = ./objs/
 PARSING_DIR = ./parsing/
 
 FILE = main
-PARSING_FILES = parse utils parse_shape free handle_mlx
+PARSING_FILES = parse handle_mlx free parse_shape utils utils2
 
 OBJS	= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILE)))
 OBJS	+= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(PARSING_FILES)))

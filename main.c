@@ -26,11 +26,13 @@ int	main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		return (print_error("Invalid file"));
-	if (parse_file(fd, rt) == 0)
+	rt = ft_calloc(sizeof(t_minirt), 1);
+	if (parse_file(fd, rt))
 	{
-		execute_minirt(rt);
-		free_acl_plane(rt);
-		free_shape(rt);
+		// execute_minirt(rt);
+		// free_acl_plane(rt);
+		printf("Oh No\n");
 	}
+	free_shape(rt);
 	return (0);
 }

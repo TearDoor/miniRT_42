@@ -12,122 +12,131 @@
 
 #include "minirt.h"
 
-void	parse_file(t_minirt *rt, int fd)
+int	parse_file(int fd, t_minirt *rt)
 {
-	char		*line;
-	char		**info;
+	char	*line;
+	char	**info;
+	int		invalid;
 
-	rt = ft_calloc(1, sizeof(t_minirt));
 	line = get_next_line(fd);
-	while (line)
+	invalid = 0;
+	while (line && !invalid)
 	{
 		filter_line(line, &info);
 		if (store_info(info, rt))
-			
+			invalid = 1;
 		free(line);
 		free_arr(info);
 		line = get_next_line(fd);
 	}
+	if (line)
+		free(line);
+	if (!invalid && validate_file(rt))
+		invalid = 1;
+	close(fd);
+	// printf("invalid = %d\n", invalid); // debug
+	return (invalid);
 }
 
 int	store_info(char **info, t_minirt *rt)
 {
-	printf("info[0] = %s\n", info[0]); // debug
+	// printf("info[0] = %s\n", info[0]); // debug
 	if (!info || !info[0])
 		return (0);
 	else if (ft_strcmp(info[0], "A") == 0)
-		parse_ambient(info, rt);
+		return (parse_ambient(info, rt));
 	else if (ft_strcmp(info[0], "C") == 0)
-		parse_camera(info, rt);
+		return (parse_camera(info, rt));
 	else if (ft_strcmp(info[0], "L") == 0)
-		parse_light(info, rt);
+		return (parse_light(info, rt));
 	else if (ft_strcmp(info[0], "pl") == 0)
-		parse_plane(info, rt);
+		return (parse_shape(PLANE, info, rt));
 	else if (ft_strcmp(info[0], "sp") == 0)
-		parse_sphere(info, rt);
+		return (parse_shape(SPHERE, info, rt));
 	else if (ft_strcmp(info[0], "cy") == 0)
-		parse_cylinder(info, rt);
+		return (parse_shape(CYLINDER, info, rt));
 	return (0);
 }
 
-void	parse_ambient(char **info, t_minirt *rt)
+int	parse_ambient(char **info, t_minirt *rt)
 {
-	t_ambient	*ambient;
+	t_ambient	ambient;
 	char		**color;
 	int			i;
 
 	i = -1;
-	ambient = malloc(sizeof(t_ambient));
-	ambient->ratio = ft_atof(info[1]);
-	printf("info[1] = %f\n", ambient->ratio); // debug
-	ambient->color = malloc(sizeof(int) * COLOR_RGB);
+	if (rt->ambient.id)
+		return (print_error("Too many A argument"));
+	ambient.id = AMBIENT;
+	ambient.ratio = ft_atof(info[1]);
+	// printf("info[1] = %f\n", ambient.ratio); // debug
+	ambient.color = malloc(sizeof(int) * NUM_ARG_FIXED);
 	color = ft_split(info[2], ',');
-	while (++i < COLOR_RGB)
+	while (++i < NUM_ARG_FIXED)
 	{
-		ambient->color[i] = ft_atoi(color[i]);
-		// printf("color = %d\n", ambient->color[i]); // debug
+		ambient.color[i] = ft_atoi(color[i]);
+		// printf("color = %d\n", ambient.color[i]); // debug
 	}
 	rt->ambient = ambient;
 	free_arr(color);
+	return (0);
 }
 
-void	parse_camera(char **info, t_minirt *rt)
+int	parse_camera(char **info, t_minirt *rt)
 {
-	t_camera	*camera;
+	t_camera	camera;
 	char		**coords;
 	char		**vector;
 	int			i;
 
 	i = -1;
-	camera = malloc(sizeof(t_camera));
-	camera->coordinate = malloc(sizeof(float) * COORDS_XYZ);
-	camera->vector = malloc(sizeof(float) * VECTORS);
+	if (rt->camera.id)
+		return (print_error("Too many C argument"));
+	camera.id = CAMERA;
+	camera.coordinate = malloc(sizeof(float) * NUM_ARG_FIXED);
+	camera.vector = malloc(sizeof(float) * NUM_ARG_FIXED);
 	coords = ft_split(info[1], ',');
-	while (++i < COORDS_XYZ)
-	{
-		camera->coordinate[i] = ft_atof(coords[i]);
-		// printf("coords = %f\n", camera->coordinate[i]);
-	}
 	vector = ft_split(info[2], ',');
-	i = -1;
-	while (++i < VECTORS)
+	while (++i < NUM_ARG_FIXED)
 	{
-		camera->vector[i] = ft_atof(vector[i]);
-		// printf("vector = %f\n", camera->vector[i]);
+		camera.coordinate[i] = ft_atof(coords[i]);
+		camera.vector[i] = ft_atof(vector[i]);
+		// printf("coords = %f\n", camera.coordinate[i]);
+		// printf("vector = %f\n", camera.vector[i]);
 	}
-	camera->fov = ft_atoi(info[3]);
-	// printf("fov = %d\n", camera->fov); //debug
+	camera.fov = ft_atoi(info[3]);
+	// printf("fov = %d\n", camera.fov); //debug
 	rt->camera = camera;
 	free_arr(coords);
 	free_arr(vector);
+	return (0);
 }
 
-void	parse_light(char **info, t_minirt *rt)
+int	parse_light(char **info, t_minirt *rt)
 {
-	t_light	*light;
+	t_light	light;
 	char	**color;
 	char	**coords;
 	int		i;
 
 	i = -1;
-	light = malloc(sizeof(t_light));
-	light->coordinate = malloc(sizeof(float) * COORDS_XYZ);
+	if (rt->light.id)
+		return (print_error("Too many L argument"));
+	light.id = LIGHT;
+	light.coordinate = malloc(sizeof(float) * NUM_ARG_FIXED);
+	light.color = malloc(sizeof(int) * NUM_ARG_FIXED);
 	coords = ft_split(info[1], ',');
-	while (++i < COORDS_XYZ)
-	{
-		light->coordinate[i] = ft_atof(coords[i]);
-		// printf("coords = %f\n", light->coordinate[i]);
-	}
-	light->ratio = ft_atof(info[2]);
-	light->color = malloc(sizeof(int) * COLOR_RGB);
 	color = ft_split(info[3], ',');
-	i = -1;
-	while (++i < COLOR_RGB)
+	light.ratio = ft_atof(info[2]);
+	while (++i < NUM_ARG_FIXED)
 	{
-		light->color[i] = ft_atoi(color[i]);
+		light.coordinate[i] = ft_atof(coords[i]);
+		// printf("coords = %f\n", light->coordinate[i]);
+		light.color[i] = ft_atoi(color[i]);
 		// printf("coords = %d\n", light->color[i]);
 	}
 	rt->light = light;
 	free_arr(coords);
 	free_arr(color);
+	return (0);
 }

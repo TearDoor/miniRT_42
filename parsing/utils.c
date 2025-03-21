@@ -68,7 +68,7 @@ void	filter_line(char *line, char ***info)
 	while (line && line[++i])
 		if (line[i] == '\t' || line[i] == '\n')
 			line[i] = ' ';
-	printf("line = (%s)\n", line);
+	// printf("line = (%s)\n", line);
 	*info = ft_split(line , ' ');
 }
 
@@ -81,11 +81,11 @@ int	print_error(char *msg)
 
 int	validate_file(t_minirt *rt)
 {
-	if (!rt->ambient)
+	if (!rt->ambient.id)
     	return (print_error("Missing ambient lighting (A)"));
-	if (!rt->camera)
+	if (!rt->camera.id)
 		return (print_error("Missing camera (C)"));
-	if (!rt->light)
+	if (!rt->light.id)
 		return (print_error("Missing light (L)"));
 	return (0);
 }
