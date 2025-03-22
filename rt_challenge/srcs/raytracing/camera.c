@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 17:41:12 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/20 21:47:32 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/22 21:04:37 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ t_ray	ray_for_pixel(t_camera cam, int px, int py)
 	return (ray(origin, direction));
 }
 
+#include <stdio.h>
 void	render_to_mlximg(t_camera *cam, t_world *w, t_imgdata *img)
 {
 	int		i;
@@ -90,7 +91,9 @@ void	render_to_mlximg(t_camera *cam, t_world *w, t_imgdata *img)
 	t_ray	r;
 	t_color	clr;
 
+	printf("abc\n");
 	cam->inverse_transform = matrix_invert(cam->transform);
+	printf("abc\n");
 	w->obj_arr = list_to_array_obj(w->objs);
 	j = 0;
 	while (j < cam->vsize)

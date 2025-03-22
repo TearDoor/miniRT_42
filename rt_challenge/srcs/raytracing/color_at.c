@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:22:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/19 15:32:42 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/22 21:37:07 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static t_comps	prepare_computations(t_intersect *i, t_ray r)
 	return (comps);
 }
 
-// TODO: remove time measuring stuff
 t_color	color_at(t_world w, t_ray r)
 {
 	t_list		*intersections;

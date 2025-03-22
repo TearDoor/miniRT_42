@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:32:10 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/21 22:33:03 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/22 21:32:25 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,11 @@ int	keypress(t_keycodes key, t_rt *rt)
 	if (key == ESC)
 		close_win(rt);
 	printf("%d pressed\n", key);
-	render_to_mlximg(&rt->cam, &rt->world, &rt->img);
+	if (key == D)
+		rt->world.light.position.x++;
+	else if (key == A)
+		rt->world.light.position.x--;
+	mlx_showimg(rt);
 	return (0);
 }
 
@@ -57,9 +61,12 @@ void	mlx_showimg(t_rt *rt)
 {
 	render_to_mlximg(&rt->cam, &rt->world, &rt->img);
 	mlx_put_image_to_window(rt->mlx, rt->mlx_win, rt->img.img_ptr, 0, 0);
+}
+
+void	ft_mlx_hooks(t_rt *rt)
+{
 	mlx_hook(rt->mlx_win, 2, 1L >> 0, keypress, rt);
 	mlx_hook(rt->mlx_win, 17, 0, close_win, rt);
-	mlx_loop(rt->mlx);
 }
 
 /*
