@@ -6,12 +6,12 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 16:39:54 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/19 15:35:48 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:22:31 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-#include "rays.h"
+#include "raytracing.h"
 
 static void	line_sphere_intersection(t_obj *obj, t_ray ray, t_list **list)
 {

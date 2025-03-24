@@ -6,12 +6,12 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 14:07:09 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/20 15:54:51 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:23:35 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-#include "rays.h"
+#include "raytracing.h"
 #include <math.h>
 
 t_tuple	color_to_normal(t_color clr)

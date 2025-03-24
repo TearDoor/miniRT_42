@@ -6,19 +6,19 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:40:49 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/22 21:35:17 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/24 22:03:45 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# define WIDTH 1000
-# define HEIGHT 1000
+# define WIDTH 500
+# define HEIGHT 500
 # define UI_PAD	300
 
 # include "utils.h"
-# include "rays.h"
+# include "raytracing.h"
 # include <mlx.h>
 
 typedef struct s_imgdata

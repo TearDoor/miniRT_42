@@ -6,12 +6,11 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:57:51 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/20 15:27:53 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/24 21:19:37 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rays.h"
-#include <stdio.h>
+#include "raytracing.h"
 #include <math.h>
 
 t_mat4	tbn_matrix(t_tuple normal)
@@ -74,19 +73,5 @@ t_light	point_light(t_color intensity, t_tuple position)
 {
 	return ((t_light){
 		intensity, position
-	});
-}
-
-t_material	material(void)
-{
-	return ((t_material){
-		.color = (t_color){1, 1, 1},
-		.ambient = 0.1,
-		.diffuse = 0.9,
-		.specular = 0.9,
-		.shininess = 200,
-		.pattern = NULL,
-		.image = NULL,
-		.normalmap = NULL,
 	});
 }

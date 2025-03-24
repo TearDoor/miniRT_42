@@ -6,11 +6,11 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 17:23:10 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/20 14:57:13 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:21:10 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rays.h"
+#include "raytracing.h"
 
 t_world	new_world(void)
 {

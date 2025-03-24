@@ -6,13 +6,13 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 17:41:12 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/22 21:04:37 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/24 21:57:24 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "matrix.h"
-#include "rays.h"
+#include "raytracing.h"
 #include "minirt.h"
 #include <mlx.h>
 #include <math.h>
@@ -25,6 +25,8 @@ t_mat4	view_transform(t_tuple from, t_tuple to, t_tuple up)
 	t_mat4	orientation;
 
 	forward = vector_normalize(tuple_subtract(to, from));
+	if (fabs(vector_dot_product(forward, up)) >= 0.99)
+		up = vector(1, 0, 0);
 	left = vector_cross_product(forward, vector_normalize(up));
 	true_up = vector_cross_product(left, forward);
 	orientation = (t_mat4){{
@@ -83,7 +85,6 @@ t_ray	ray_for_pixel(t_camera cam, int px, int py)
 	return (ray(origin, direction));
 }
 
-#include <stdio.h>
 void	render_to_mlximg(t_camera *cam, t_world *w, t_imgdata *img)
 {
 	int		i;
@@ -91,9 +92,7 @@ void	render_to_mlximg(t_camera *cam, t_world *w, t_imgdata *img)
 	t_ray	r;
 	t_color	clr;
 
-	printf("abc\n");
 	cam->inverse_transform = matrix_invert(cam->transform);
-	printf("abc\n");
 	w->obj_arr = list_to_array_obj(w->objs);
 	j = 0;
 	while (j < cam->vsize)

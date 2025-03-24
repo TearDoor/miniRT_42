@@ -6,11 +6,11 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 17:26:17 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/19 15:24:46 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:22:07 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rays.h"
+#include "raytracing.h"
 #include <math.h>
 
 /* point = ray.origin + t * ray.direction 

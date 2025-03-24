@@ -6,13 +6,13 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 22:13:43 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/14 17:17:06 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:22:53 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pattern.h"
 #include "matrix.h"
-#include "rays.h"
+#include "raytracing.h"
 
 t_pattern	init_pattern(void)
 {

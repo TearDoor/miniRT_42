@@ -6,11 +6,11 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 21:59:21 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/19 15:25:16 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:22:00 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rays.h"
+#include "raytracing.h"
 #include <math.h>
 
 static int	check_caps(t_ray ray, double t);

@@ -6,12 +6,12 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:22:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/22 21:37:07 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:20:40 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pattern.h"
-#include "rays.h"
+#include "raytracing.h"
 #include <stdio.h>
 
 static t_color	shade_hit(t_world world, t_comps comp)

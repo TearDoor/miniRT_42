@@ -6,12 +6,12 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:33:42 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/19 15:25:43 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:22:07 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pattern.h"
-#include "rays.h"
+#include "raytracing.h"
 #include <math.h>
 
 /* a cone's radius at any given y is the absolute value of that y */

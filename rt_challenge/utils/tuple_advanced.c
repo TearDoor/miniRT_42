@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 09:59:38 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/05 16:34:50 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/24 21:54:07 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,11 @@ t_tuple	vector_cross_product(t_tuple v1, t_tuple v2)
 {
 	t_tuple	cross;
 
+	if (fabs(vector_dot_product(v1, v2)) >= 0.99)
+	{
+		printf("Warning: cross product of two parallel vectors.\n");
+		exit(1);
+	}
 	cross.w = 0;
 	cross.x = (v1.y * v2.z) - (v1.z * v2.y);
 	cross.y = (v1.z * v2.x) - (v1.x * v2.z);

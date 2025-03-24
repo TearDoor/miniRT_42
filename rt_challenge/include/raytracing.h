@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rays.h                                             :+:      :+:    :+:   */
+/*   raytracing.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/20 15:27:38 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/24 21:19:37 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYS_H
-# define RAYS_H
+#ifndef RAYTRACING_H
+# define RAYTRACING_H
 
 # define CYL_MAX 0.5
 # define CYL_MIN -0.5
@@ -22,8 +22,7 @@
 # include "libft.h"
 # include "matrix.h"
 # include "pattern.h"
-# include <stdlib.h>
-# include <stdint.h>
+# include "objects.h"
 
 typedef struct s_ray
 {
@@ -36,37 +35,6 @@ typedef struct s_light
 	t_color	intensity;
 	t_tuple	position;
 }	t_light;
-
-typedef struct s_material
-{
-	t_color		color;
-	double		ambient;
-	double		diffuse;
-	double		specular;
-	double		shininess;
-	t_pattern	*pattern;
-	t_canvas	*normalmap;
-	t_canvas	*image;
-}	t_material;
-
-typedef enum e_obj_type
-{
-	OBJ_SPHERE,
-	OBJ_PLANE,
-	OBJ_CYL,
-	OBJ_CONE,
-}	t_obj_type;
-
-typedef struct s_obj
-{
-	t_obj_type	type;
-	t_mat4		transform;
-	t_mat4		inverse_transform;
-	t_material	material;
-	void		(*local_intersect)(struct s_obj*, t_ray, t_list **);
-	t_tuple		(*local_normal_at)(t_tuple);
-	t_mapping	mapping_func;
-}	t_obj;
 
 typedef struct s_lightparams
 {
@@ -85,8 +53,6 @@ typedef struct s_world
 	size_t	obj_count;
 	t_obj	*obj_arr;
 	t_light	light;
-	uint64_t	*total_inter;
-	uint64_t	*total_color;
 }	t_world;
 
 typedef struct s_intersect
@@ -122,12 +88,6 @@ typedef struct s_camera
 t_ray		ray(t_tuple point, t_tuple vector);
 t_intersect	*intersection(double t, t_obj *obj);
 t_light		point_light(t_color intensity, t_tuple position);
-t_obj		*new_obj(void);
-t_obj		*sphere(void);
-t_obj		*plane(void);
-t_obj		*cylinder(void);
-t_obj		*cone(void);
-t_material	material(void);
 t_world		new_world(void);
 t_world		default_world(void);
 void		free_world(t_world *w);
@@ -150,16 +110,10 @@ t_color		lighting(t_lightparams params);
 t_color		color_at(t_world w, t_ray r);
 int			is_shadowed(t_world w, t_tuple point);
 
-void		set_transform(t_obj *o, t_mat4 m);
-
 /* views and cameras */
 t_mat4		view_transform(t_tuple from, t_tuple to, t_tuple up);
 t_ray		ray_for_pixel(t_camera cam, int px, int py);
 t_canvas	render(t_camera cam, t_world w);
-
-/* utils */
-int			check_bounds(double t, t_ray ray, double max, double min);
-void		free_object(void *ptr);
 
 size_t		curr_time(void);
 

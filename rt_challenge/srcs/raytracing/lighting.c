@@ -6,13 +6,13 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 21:44:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/19 14:27:29 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:20:54 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pattern.h"
 #include "utils.h"
-#include "rays.h"
+#include "raytracing.h"
 #include <math.h>
 
 static t_color	diffuse_calc(t_lightparams params, \

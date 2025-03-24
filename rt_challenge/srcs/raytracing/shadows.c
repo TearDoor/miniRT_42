@@ -6,11 +6,11 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 17:44:56 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/01/08 15:08:46 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:21:00 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rays.h"
+#include "raytracing.h"
 
 int	is_shadowed(t_world w, t_tuple point)
 {

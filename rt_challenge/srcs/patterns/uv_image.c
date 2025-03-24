@@ -6,12 +6,12 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 20:24:50 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/20 15:56:38 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:23:24 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pattern.h"
-#include "rays.h"
+#include "raytracing.h"
 #include <math.h>
 
 static t_color	pixel_at(t_canvas *cvs, int x, int y)

@@ -6,11 +6,11 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:04:22 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/19 15:31:29 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:20:28 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rays.h"
+#include "raytracing.h"
 
 t_intersect	*intersection(double t, t_obj *obj)
 {

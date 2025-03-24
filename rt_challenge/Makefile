@@ -4,7 +4,7 @@ vpath %.c	srcs tests srcs/minilibx srcs/objects srcs/raytracing srcs/patterns sr
 
 SRC		=	main.c simple_utils.c \
 			color_at.c light.c lighting.c shadows.c \
-			rays.c intersect.c world.c camera.c \
+			rays.c intersect.c intersect_utils.c world.c camera.c \
 			mlx_showimage.c
 SRC		+=	objects.c sphere.c plane.c cylinder.c cone.c 
 SRC		+=	pattern.c stripes.c gradient.c rings.c checkers.c \

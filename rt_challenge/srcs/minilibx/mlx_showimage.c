@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:32:10 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/22 21:32:25 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/24 22:26:35 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,14 @@ int	keypress(t_keycodes key, t_rt *rt)
 	if (key == ESC)
 		close_win(rt);
 	printf("%d pressed\n", key);
-	if (key == D)
-		rt->world.light.position.x++;
-	else if (key == A)
-		rt->world.light.position.x--;
+	if (key == UP)
+		rt->cam.transform = matrix_mult(translate_mat(0, -1, 0), rt->cam.transform);
+	else if (key == DOWN)
+		rt->cam.transform = matrix_mult(translate_mat(0, 1, 0), rt->cam.transform);
+	else if (key == LEFT)
+		rt->cam.transform = matrix_mult(translate_mat(-1, 0, 0), rt->cam.transform);
+	else if (key == RIGHT)
+		rt->cam.transform = matrix_mult(translate_mat(1, 0, 0), rt->cam.transform);
 	mlx_showimg(rt);
 	return (0);
 }
@@ -65,7 +69,7 @@ void	mlx_showimg(t_rt *rt)
 
 void	ft_mlx_hooks(t_rt *rt)
 {
-	mlx_hook(rt->mlx_win, 2, 1L >> 0, keypress, rt);
+	mlx_key_hook(rt->mlx_win, keypress, rt);
 	mlx_hook(rt->mlx_win, 17, 0, close_win, rt);
 }
 

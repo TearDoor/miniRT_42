@@ -6,13 +6,12 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 10:48:35 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/22 21:08:24 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:23:53 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
 #include "pattern.h"
-#include "rays.h"
 #include "minirt.h"
 #include <stdio.h>
 
