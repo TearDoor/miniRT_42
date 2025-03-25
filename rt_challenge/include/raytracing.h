@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/24 21:19:37 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/25 18:54:14 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_camera
 	int		hsize;
 	int		vsize;
 	double	fov;
+	t_mat4	initial_transform;
 	t_mat4	transform;
 	t_mat4	inverse_transform;
 	double	half_width;

@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 17:41:12 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/24 21:57:24 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/25 22:38:50 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_camera	new_camera(int hsize, int vsize, double fov)
 		half_height = half_view;
 	}
 	return ((t_camera){
-		hsize, vsize, fov, id_matrix(), id_matrix(),
+		hsize, vsize, fov, id_matrix(), id_matrix(), id_matrix(),
 		half_width, half_height,
 		(half_width * 2) / hsize,
 	});
@@ -85,6 +85,7 @@ t_ray	ray_for_pixel(t_camera cam, int px, int py)
 	return (ray(origin, direction));
 }
 
+// TODO: add progress bar
 void	render_to_mlximg(t_camera *cam, t_world *w, t_imgdata *img)
 {
 	int		i;

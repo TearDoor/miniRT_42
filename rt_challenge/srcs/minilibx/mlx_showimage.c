@@ -6,14 +6,13 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:32:10 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/24 22:26:35 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/25 22:48:22 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "linux_keys.h"
 #include "mlx.h"
-#include <stdio.h>
+#include "mlx_utils.h"
 
 int	close_win(t_rt *rt)
 {
@@ -23,23 +22,6 @@ int	close_win(t_rt *rt)
 	mlx_destroy_display(rt->mlx);
 	free(rt->mlx);
 	exit(EXIT_SUCCESS);
-	return (0);
-}
-
-int	keypress(t_keycodes key, t_rt *rt)
-{
-	if (key == ESC)
-		close_win(rt);
-	printf("%d pressed\n", key);
-	if (key == UP)
-		rt->cam.transform = matrix_mult(translate_mat(0, -1, 0), rt->cam.transform);
-	else if (key == DOWN)
-		rt->cam.transform = matrix_mult(translate_mat(0, 1, 0), rt->cam.transform);
-	else if (key == LEFT)
-		rt->cam.transform = matrix_mult(translate_mat(-1, 0, 0), rt->cam.transform);
-	else if (key == RIGHT)
-		rt->cam.transform = matrix_mult(translate_mat(1, 0, 0), rt->cam.transform);
-	mlx_showimg(rt);
 	return (0);
 }
 
@@ -67,9 +49,24 @@ void	mlx_showimg(t_rt *rt)
 	mlx_put_image_to_window(rt->mlx, rt->mlx_win, rt->img.img_ptr, 0, 0);
 }
 
+int	mouse_press(t_keycodes button, int x, int y, t_rt *rt)
+{
+	(void)x;
+	(void)y;
+	if (button == MW_UP)
+		rt->cam.transform = matrix_mult(translate_mat(0, 0, 1), rt->cam.transform);
+	else if (button == MW_DOWN)
+		rt->cam.transform = matrix_mult(translate_mat(0, 0, -1), rt->cam.transform);
+	else
+		return (0);
+	mlx_showimg(rt);
+	return (0);
+}
+
 void	ft_mlx_hooks(t_rt *rt)
 {
 	mlx_key_hook(rt->mlx_win, keypress, rt);
+	mlx_mouse_hook(rt->mlx_win, mouse_press, rt);
 	mlx_hook(rt->mlx_win, 17, 0, close_win, rt);
 }
 

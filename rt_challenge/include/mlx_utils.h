@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   leak_test.c                                        :+:      :+:    :+:   */
+/*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/19 13:01:01 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/25 22:30:26 by tkok-kea         ###   ########.fr       */
+/*   Created: 2025/03/25 14:48:53 by tkok-kea          #+#    #+#             */
+/*   Updated: 2025/03/25 22:51:33 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#ifndef MLX_UTILS_H
+# define MLX_UTILS_H
 
-void	leak_test(t_rt *rt)
-{
-	rt->world = default_world();
-	rt->cam = new_camera(WIDTH, HEIGHT, M_PI / 8);
-	rt->cam.transform = view_transform(point(0, 0, -10), point(0, 0, 0), vector(0, 1, 0));
-	rt->cam.initial_transform = rt->cam.transform;
-	t_obj	*floor = plane();
-	set_transform(floor, translate_mat(0, -1, 0));
-	add_obj_to_world(&rt->world, floor);
-	return ;
-}
+# include "linux_keys.h"
+
+struct	s_rt;
+
+int	close_win(struct s_rt *rt);
+int	keypress(t_keycodes key, struct s_rt *rt);
+
+#endif
