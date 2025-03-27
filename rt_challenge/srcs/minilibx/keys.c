@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 14:38:36 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/25 22:34:54 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/27 21:58:10 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	keypress(t_keycodes key, t_rt *rt)
 		rt->cam.transform = matrix_mult(rotation_y(-M_PI / 16), rt->cam.transform);
 	else if (key == BSPC)
 		rt->cam.transform = rt->cam.initial_transform;
+	else if (key == SPC)
+		rt->low_res *= -1;
 	else
 		return (0);
 	mlx_showimg(rt);

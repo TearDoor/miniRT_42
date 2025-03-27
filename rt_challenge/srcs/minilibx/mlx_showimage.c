@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:32:10 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/25 22:48:22 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/27 22:00:31 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,14 @@ void	ft_mlx_pixel_put(t_imgdata *img, int x, int y, t_color color)
 
 void	mlx_showimg(t_rt *rt)
 {
-	render_to_mlximg(&rt->cam, &rt->world, &rt->img);
+	if (rt->low_res == 1)
+		render_to_mlximg(&rt->cam, &rt->world, &rt->img);
+	else
+		render_mlximg_lowres(&rt->cam, &rt->world, &rt->img);
 	mlx_put_image_to_window(rt->mlx, rt->mlx_win, rt->img.img_ptr, 0, 0);
 }
 
+#include <stdio.h>
 int	mouse_press(t_keycodes button, int x, int y, t_rt *rt)
 {
 	(void)x;
@@ -57,6 +61,10 @@ int	mouse_press(t_keycodes button, int x, int y, t_rt *rt)
 		rt->cam.transform = matrix_mult(translate_mat(0, 0, 1), rt->cam.transform);
 	else if (button == MW_DOWN)
 		rt->cam.transform = matrix_mult(translate_mat(0, 0, -1), rt->cam.transform);
+	else if (button == MB_L)
+		printf("left\n");
+	else if (button == MB_R)
+		printf("right\n");
 	else
 		return (0);
 	mlx_showimg(rt);

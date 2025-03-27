@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 10:48:35 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/24 20:23:53 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/27 21:51:08 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	scene_one(t_rt rt)
 	s3->material.specular = 0.3;
 	add_obj_to_world(&w, s3);
 	cam = new_camera(WIDTH, HEIGHT, M_PI / 3);
-	cam.transform = view_transform(point(0, 1.5, -5), point(0, 1, 0), vector(0, 1, 0));
+	init_view_matrix(&cam, point(0, 1.5, -5), point(0, 1, 0), vector(0, 1, 0));
 	rt.world = w;
 	printf("count = %ld\n", w.obj_count);
 	render_to_mlximg(&cam, &w, &rt.img);

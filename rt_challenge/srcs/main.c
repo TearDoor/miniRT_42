@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:38:46 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/24 15:40:10 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/27 22:10:49 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int	init_rt(int fd, char *path, t_rt *rt)
 	img.addr = mlx_get_data_addr(img.img_ptr, &img.bbp, \
 								&img.size_line, &img.endian);
 	rt->img = img;
+	rt->low_res = -1;
 	return (0);
 }
 

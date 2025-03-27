@@ -6,12 +6,12 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 20:24:50 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/24 20:23:24 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/27 21:52:35 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pattern.h"
-#include "raytracing.h"
+#include "objects.h"
 #include <math.h>
 
 static t_color	pixel_at(t_canvas *cvs, int x, int y)
@@ -36,6 +36,11 @@ t_pattern	*uv_image(t_canvas *cvs)
 {
 	t_uv_image	*uv_image;
 
+	if (cvs == NULL)
+	{
+		ft_putendl_fd("No image saved in object's material", STDERR_FILENO);
+		return (NULL);
+	}
 	uv_image = malloc(sizeof(t_uv_image));
 	uv_image->pattern = init_pattern();
 	uv_image->pattern.pattern_at = pattern_at_3d_to_2d;
