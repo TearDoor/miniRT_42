@@ -6,15 +6,15 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:24:06 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/14 21:17:21 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/28 20:20:13 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pattern.h"
 #include <math.h>
 /*
- * A series of functions to find the 2d point (u,v) given
- * a 3d point(x, y, z) different for each shape
+ * A series of functions to find map a 3d point(xyz) to a 2d point(uv)
+ * for various object types
  */
 
 t_point2d	spherical_map(t_tuple p)

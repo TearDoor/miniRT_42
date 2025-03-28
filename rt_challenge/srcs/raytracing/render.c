@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 21:41:08 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/27 22:18:13 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/28 17:01:21 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,19 +89,15 @@ void	render_mlximg_lowres(t_camera *cam, t_world *w, t_imgdata *img)
 	int		j;
 	t_ray	r;
 	t_color	clr;
-	int		low_res_width;
-	int		low_res_height;
 
-	low_res_width = cam->hsize / DOWNSCALE;
-	low_res_height = cam->vsize / DOWNSCALE;
 	cam->inverse_transform = matrix_invert(cam->transform);
 	w->obj_arr = list_to_array_obj(w->objs);
 	j = 0;
-	while (j < low_res_height)
+	while (j < cam->vsize / DOWNSCALE)
 	{
 		printf("\rRemaining lines: %d", cam->vsize - j);
 		i = 0;
-		while (i < low_res_width)
+		while (i < cam->vsize / DOWNSCALE)
 		{
 			r = ray_for_pixel(*cam, i * DOWNSCALE, j * DOWNSCALE);
 			clr = color_at(*w, r);

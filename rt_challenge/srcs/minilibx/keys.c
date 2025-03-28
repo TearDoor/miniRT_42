@@ -6,13 +6,27 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 14:38:36 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/27 21:58:10 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/28 15:35:08 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "mlx_utils.h"
 #include <stdio.h>
+
+void	toggle_lowres(int *lowres)
+{
+	if (*lowres)
+	{
+		printf("Changing to full resolution\n");
+		*lowres = 0;
+	}
+	else
+	{
+		printf("Changing to low resoultion\n");
+		*lowres = 1;
+	}
+}
 
 int	keypress(t_keycodes key, t_rt *rt)
 {
@@ -46,7 +60,7 @@ int	keypress(t_keycodes key, t_rt *rt)
 	else if (key == BSPC)
 		rt->cam.transform = rt->cam.initial_transform;
 	else if (key == SPC)
-		rt->low_res *= -1;
+		toggle_lowres(&rt->low_res);
 	else
 		return (0);
 	mlx_showimg(rt);

@@ -11,5 +11,7 @@ Explaination of dot products and cross products - [BetterExplained](https://bett
 ## Texture Files
 The earth texture/bump map files used are downloaded from [this website](http://planetpixelemporium.com/earth.html) (see "color map")
 
+More textures from [Poly Haven](https://polyhaven.com/textures)
+
 Converted from jpg to ppm using [ImageMagick](https://imagemagick.org/script/download.php). Command used:
 `$ magick image.jpg -compress none image.ppm`

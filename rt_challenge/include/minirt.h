@@ -6,17 +6,16 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:40:49 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/27 22:14:13 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/28 22:01:51 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# define WIDTH 1000
+# define WIDTH 1500
 # define HEIGHT 1000
-# define DOWNSCALE 10
-# define UI_PAD	300
+# define DOWNSCALE 4
 
 # include "utils.h"
 # include "raytracing.h"
