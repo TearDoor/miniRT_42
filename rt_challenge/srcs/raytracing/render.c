@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 21:41:08 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/28 17:01:21 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/29 18:03:52 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	render_mlximg_lowres(t_camera *cam, t_world *w, t_imgdata *img)
 	{
 		printf("\rRemaining lines: %d", cam->vsize - j);
 		i = 0;
-		while (i < cam->vsize / DOWNSCALE)
+		while (i < cam->hsize / DOWNSCALE)
 		{
 			r = ray_for_pixel(*cam, i * DOWNSCALE, j * DOWNSCALE);
 			clr = color_at(*w, r);

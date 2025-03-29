@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 21:24:46 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/28 17:39:59 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/29 22:39:56 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	earth(t_rt *rt)
 
 	start = curr_time();
 	rt->world = new_world();
-	rt->world.light = point_light(color(1, 1, 1), point(0, 0, -2));
+	rt->world.light = point_light(color(1, 1, 1), point(0, 4, -4));
 	s1 = sphere();
 	s1->material.ambient = 0.5;
 	s1->material.diffuse = 0.9;
@@ -28,6 +28,7 @@ void	earth(t_rt *rt)
 	s1->material.shininess = 10;
 	set_img_from_file(s1, "earthmap1k.ppm");
 	set_pattern(s1, uv_image(s1->material.image));
+	s1->material.color = color(0.4, 0.4, 0);
 	set_transform(s1, scaling_mat(1.5, 1.5, 1.5));
 	set_normal_from_file(s1, "earthnormal1k.ppm");
 	set_transform(s1, rotation_y(M_PI / 2));

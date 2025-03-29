@@ -6,12 +6,13 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:38:46 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/28 21:59:38 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/29 22:33:29 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "minirt.h"
+#include "mlx_utils.h"
 #include <stdlib.h>
 #include <fcntl.h>
 #include <stdio.h>
@@ -89,7 +90,7 @@ int	main(int argc, char *argv[])
 		exit(1);
 	}
 	printf("Parsing complete.\n");
-	leak_test(&rt);
+	earth(&rt);
 	ft_mlx_hooks(&rt);
 	mlx_showimg(&rt);
 	mlx_loop(rt.mlx);

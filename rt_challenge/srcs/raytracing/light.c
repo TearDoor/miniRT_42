@@ -6,13 +6,17 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:57:51 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/24 21:19:37 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/29 22:41:48 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracing.h"
 #include <math.h>
 
+/*
+ * Important part of building tbn matrix: handedness of coordinate system
+ * the postion of vectors matter when calling function cross(up, normal)
+ */
 t_mat4	tbn_matrix(t_tuple normal)
 {
 	t_tuple	tangent;
@@ -25,7 +29,7 @@ t_mat4	tbn_matrix(t_tuple normal)
 		up = vector(1, 0, 0);
 	tangent = vector_cross_product(up, normal);
 	tangent = vector_normalize(tangent);
-	bitangent = vector_cross_product(tangent, normal);
+	bitangent = vector_cross_product(normal, tangent);
 	bitangent = vector_normalize(bitangent);
 	return (
 		(t_mat4){{

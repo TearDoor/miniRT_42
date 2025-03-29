@@ -6,13 +6,14 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:32:10 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/28 15:35:43 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/29 22:15:16 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "mlx.h"
 #include "mlx_utils.h"
+#include <stdio.h>
 
 int	close_win(t_rt *rt)
 {
@@ -52,7 +53,6 @@ void	mlx_showimg(t_rt *rt)
 	mlx_put_image_to_window(rt->mlx, rt->mlx_win, rt->img.img_ptr, 0, 0);
 }
 
-#include <stdio.h>
 int	mouse_press(t_keycodes button, int x, int y, t_rt *rt)
 {
 	(void)x;
