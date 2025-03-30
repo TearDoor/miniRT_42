@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:32:10 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/29 22:15:16 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/30 19:14:04 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,8 @@ void	mlx_showimg(t_rt *rt)
 
 int	mouse_press(t_keycodes button, int x, int y, t_rt *rt)
 {
-	(void)x;
-	(void)y;
-	if (button == MW_UP)
-		rt->cam.transform = matrix_mult(translate_mat(0, 0, 1), rt->cam.transform);
-	else if (button == MW_DOWN)
-		rt->cam.transform = matrix_mult(translate_mat(0, 0, -1), rt->cam.transform);
-	else if (button == MB_L)
+	printf("x: %d, y: %d\n", x, y);
+	if (button == MB_L)
 		printf("left\n");
 	else if (button == MB_R)
 		printf("right\n");
@@ -75,6 +70,7 @@ void	ft_mlx_hooks(t_rt *rt)
 {
 	mlx_key_hook(rt->mlx_win, keypress, rt);
 	mlx_mouse_hook(rt->mlx_win, mouse_press, rt);
+	mlx_hook(rt->mlx_win, 05, (1L << 3), mouse_release, rt);
 	mlx_hook(rt->mlx_win, 17, 0, close_win, rt);
 }
 

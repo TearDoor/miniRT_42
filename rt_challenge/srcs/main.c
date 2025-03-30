@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:38:46 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/29 22:33:29 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/30 19:08:22 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	main(int argc, char *argv[])
 		exit(1);
 	}
 	printf("Parsing complete.\n");
-	earth(&rt);
+	leak_test(&rt);
 	ft_mlx_hooks(&rt);
 	mlx_showimg(&rt);
 	mlx_loop(rt.mlx);
