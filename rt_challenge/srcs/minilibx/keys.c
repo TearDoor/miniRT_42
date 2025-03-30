@@ -58,7 +58,6 @@ int	keypress(t_keycodes key, t_rt *rt)
 {
 	if (key == ESC)
 		close_win(rt);
-	printf("%d pressed\n", key);
 	if (camera_transform(key, rt))
 		return (0);
 	if (key == BSPC)
@@ -68,5 +67,6 @@ int	keypress(t_keycodes key, t_rt *rt)
 	else
 		return (0);
 	mlx_showimg(rt);
+	printf("%d pressed\n", key);
 	return (0);
 }

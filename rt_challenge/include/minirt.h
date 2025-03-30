@@ -19,6 +19,9 @@
 
 # include "utils.h"
 # include "raytracing.h"
+# include "mlx_utils.h"
+
+typedef struct s_mouse t_mouse;
 
 typedef struct s_imgdata
 {
@@ -37,6 +40,7 @@ typedef struct s_rt
 	t_world		world;
 	t_camera	cam;
 	int			low_res;
+	t_mouse		mouse;
 }	t_rt;
 
 void		ft_mlx_pixel_put(t_imgdata *img, int x, int y, t_color color);

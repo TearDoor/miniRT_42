@@ -74,6 +74,7 @@ int	init_rt(int fd, char *path, t_rt *rt)
 								&img.size_line, &img.endian);
 	rt->img = img;
 	rt->low_res = -1;
+	rt->mouse.status = NOT_PRESSED;
 	return (0);
 }
 

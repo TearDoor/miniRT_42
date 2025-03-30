@@ -13,7 +13,6 @@
 #include "minirt.h"
 #include "mlx.h"
 #include "mlx_utils.h"
-#include <stdio.h>
 
 int	close_win(t_rt *rt)
 {
@@ -53,24 +52,12 @@ void	mlx_showimg(t_rt *rt)
 	mlx_put_image_to_window(rt->mlx, rt->mlx_win, rt->img.img_ptr, 0, 0);
 }
 
-int	mouse_press(t_keycodes button, int x, int y, t_rt *rt)
-{
-	printf("x: %d, y: %d\n", x, y);
-	if (button == MB_L)
-		printf("left\n");
-	else if (button == MB_R)
-		printf("right\n");
-	else
-		return (0);
-	mlx_showimg(rt);
-	return (0);
-}
-
 void	ft_mlx_hooks(t_rt *rt)
 {
 	mlx_key_hook(rt->mlx_win, keypress, rt);
 	mlx_mouse_hook(rt->mlx_win, mouse_press, rt);
 	mlx_hook(rt->mlx_win, 05, (1L << 3), mouse_release, rt);
+	mlx_hook(rt->mlx_win, 06, (1L << 6), mouse_move, rt);
 	mlx_hook(rt->mlx_win, 17, 0, close_win, rt);
 }
 
