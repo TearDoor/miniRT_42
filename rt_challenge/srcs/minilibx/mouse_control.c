@@ -24,7 +24,6 @@ t_obj	*pick_object(t_rt *rt, int x, int y)
 	t_intersect	*hit;
 	t_obj		*hit_object;
 
-	rt->world.obj_arr = list_to_array_obj(rt->world.objs);
 	ray = ray_for_pixel(rt->cam, x, y);
 	intersects = intersect_world(ray, rt->world);
 	hit = checkhit(intersects);
@@ -83,7 +82,7 @@ int	distance_since_last(int x, int y, int last_x, int last_y)
 	int	distance;
 
 	distance = sqrt(sq(x - last_x) + sq(y - last_y));
-	return (distance);
+	return (distance > MIN_MOVE_TO_UPDATE);
 }
 
 int	mouse_move(int x, int y, t_rt *rt)
@@ -93,10 +92,10 @@ int	mouse_move(int x, int y, t_rt *rt)
 
 	if (rt->mouse.status == NOT_PRESSED || rt->mouse.held_obj == NULL)
 		return (1);
-	if (distance_since_last(x, y, rt->mouse.last_x, rt->mouse.last_y) > 50)
+	if (distance_since_last(x, y, rt->mouse.last_x, rt->mouse.last_y))
 	{
-		delta_x = rt->mouse.last_x - x;
-		delta_y = rt->mouse.last_y - y;
+		delta_x = (rt->mouse.last_x - x) / MOUSE_RATIO;
+		delta_y = (rt->mouse.last_y - y) / MOUSE_RATIO;
 		printf("%d %d \n", delta_x, delta_y);
 		set_transform(rt->mouse.held_obj, translate_mat(delta_x, delta_y, 0));
 		mlx_showimg(rt);

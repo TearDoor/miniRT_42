@@ -22,8 +22,6 @@ t_intersect	*intersection(double t, t_obj *obj)
 	return (inter);
 }
 
-#include <stdio.h>
-
 /* transforms the ray using the inverse of the object's
  * transformation matrix
  * then checks if the transformed ray intersects the object
@@ -41,13 +39,14 @@ t_list	*intersect_world(t_ray ray, t_world world)
 {
 	t_list	*xs;
 	size_t	i;
+	t_list	*obj_ptr;
 
 	xs = NULL;
-	i = 0;
-	while (i < world.obj_count)
+	obj_ptr = world.objs;
+	while (obj_ptr)
 	{
-		check_intersect(&world.obj_arr[i], ray, &xs);
-		i++;
+		check_intersect((t_obj *)obj_ptr->content, ray, &xs);
+		obj_ptr = obj_ptr->next;
 	}
 	return (xs);
 }

@@ -51,7 +51,6 @@ typedef struct s_world
 {
 	t_list	*objs;
 	size_t	obj_count;
-	t_obj	*obj_arr;
 	t_light	light;
 }	t_world;
 

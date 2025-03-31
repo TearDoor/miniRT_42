@@ -13,6 +13,7 @@
 #include "mlx.h"
 #include "minirt.h"
 #include "mlx_utils.h"
+#include "raytracing.h"
 #include <stdlib.h>
 #include <fcntl.h>
 #include <stdio.h>

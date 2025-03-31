@@ -8,6 +8,8 @@ My first RayTracer with MiniLibX
 
 Explaination of dot products and cross products - [BetterExplained](https://betterexplained.com)
 
+Mouse dragging movement calculation based on another miniRT submission - [ricardoreves](https://github.com/ricardoreves/42-minirt/blob/main/srcs/ui/mouse.c)
+
 ## Texture Files
 The earth texture/bump map files used are downloaded from [this website](http://planetpixelemporium.com/earth.html) (see "color map")
 

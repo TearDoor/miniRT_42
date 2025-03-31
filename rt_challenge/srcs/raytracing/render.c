@@ -43,7 +43,6 @@ void	render_to_mlximg(t_camera *cam, t_world *w, t_imgdata *img)
 	t_color	clr;
 
 	cam->inverse_transform = matrix_invert(cam->transform);
-	w->obj_arr = list_to_array_obj(w->objs);
 	j = 0;
 	while (j < cam->vsize)
 	{
@@ -59,7 +58,6 @@ void	render_to_mlximg(t_camera *cam, t_world *w, t_imgdata *img)
 		j++;
 	}
 	printf("\rRendering complete     \n");
-	free(w->obj_arr);
 }
 
 void	lowres_pixel_put(t_imgdata *img, int i, int j, t_color clr)
@@ -91,7 +89,6 @@ void	render_mlximg_lowres(t_camera *cam, t_world *w, t_imgdata *img)
 	t_color	clr;
 
 	cam->inverse_transform = matrix_invert(cam->transform);
-	w->obj_arr = list_to_array_obj(w->objs);
 	j = 0;
 	while (j < cam->vsize / DOWNSCALE)
 	{
@@ -107,7 +104,6 @@ void	render_mlximg_lowres(t_camera *cam, t_world *w, t_imgdata *img)
 		j++;
 	}
 	printf("\rRendering complete     \n");
-	free(w->obj_arr);
 }
 
 /*
