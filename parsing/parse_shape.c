@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_acl.c                                        :+:      :+:    :+:   */
+/*   parse_shape.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  #+#  +:+       +#+        */
+/*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-03-10 15:14:47 by root              #+#    #+#             */
-/*   Updated: 2025-03-10 15:14:47 by root             ###   ########.fr       */
+/*   Created: 2025/03/10 15:14:47 by root              #+#    #+#             */
+/*   Updated: 2025/03/31 11:46:30 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,15 @@ int	parse_shape(t_obj_id id, char **info, t_minirt *rt)
 	obj = ft_calloc(sizeof(t_obj), 1);
 	init_obj(obj, id, rt);
 	init_txr_bump(obj, info);
+	printf("bump = %s\n", obj->bump_file); //debug
 	if (id == PLANE)
 		parse_plane(info, obj);
 	else if (id == CYLINDER)
 		parse_cylinder(info, obj);
 	else if (id == SPHERE)
 		parse_sphere(info, obj);
+	rt->obj_count += 1;
+	// printf("obj_count: %d\n", rt->obj_count); // debug
 	return (0);
 }
 
@@ -45,8 +48,8 @@ void	parse_cylinder(char **info, t_obj *obj)
 	int			i;
 
 	i = -1;
-	cylinder.coordinate = malloc(sizeof(float) * NUM_ARG_FIXED);
-	cylinder.vector = malloc(sizeof(float) * NUM_ARG_FIXED);
+	cylinder.coordinate = malloc(sizeof(double) * NUM_ARG_FIXED);
+	cylinder.vector = malloc(sizeof(double) * NUM_ARG_FIXED);
 	cylinder.color = malloc(sizeof(int) * NUM_ARG_FIXED);
 	coords = ft_split(info[1], ',');
 	vector = ft_split(info[2], ',');
@@ -74,8 +77,8 @@ void	parse_plane(char **info, t_obj *obj)
 	int		i;
 
 	i = -1;
-	plane.coordinate = malloc(sizeof(float) * NUM_ARG_FIXED);
-	plane.vector = malloc(sizeof(float) * NUM_ARG_FIXED);
+	plane.coordinate = malloc(sizeof(double) * NUM_ARG_FIXED);
+	plane.vector = malloc(sizeof(double) * NUM_ARG_FIXED);
 	plane.color = malloc(sizeof(int) * NUM_ARG_FIXED);
 	coords = ft_split(info[1], ',');
 	vector = ft_split(info[2], ',');
@@ -102,7 +105,7 @@ void	parse_sphere(char **info, t_obj *obj)
 	char		**color;
 	int			i;
 
-	sphere.coordinate = malloc(sizeof(float) * NUM_ARG_FIXED);
+	sphere.coordinate = malloc(sizeof(double) * NUM_ARG_FIXED);
 	sphere.color = malloc(sizeof(int) * NUM_ARG_FIXED);
 	i = -1;
 	coords = ft_split(info[1], ',');

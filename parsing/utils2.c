@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  #+#  +:+       +#+        */
+/*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-03-21 04:15:46 by root              #+#    #+#             */
-/*   Updated: 2025-03-21 04:15:46 by root             ###   ########.fr       */
+/*   Created: 2025/03/21 04:15:46 by root              #+#    #+#             */
+/*   Updated: 2025/03/31 11:46:19 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	init_txr_bump(t_obj *obj, char **info)
 				obj->bump_file = info[4] + 5;
 			if (ft_strncmp(info[5], "bump", 4) == 0)
 				obj->bump_file = info[5] + 5;
-			// printf("info[5] = %s\n", obj->bump_file); //debug
 		}
 	}
 	else if (obj->id == CYLINDER)

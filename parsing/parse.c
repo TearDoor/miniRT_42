@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  #+#  +:+       +#+        */
+/*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-03-10 06:34:22 by root              #+#    #+#             */
-/*   Updated: 2025-03-10 06:34:22 by root             ###   ########.fr       */
+/*   Created: 2025/03/10 06:34:22 by root              #+#    #+#             */
+/*   Updated: 2025/03/31 11:33:56 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ int	parse_camera(char **info, t_minirt *rt)
 	if (rt->camera.id)
 		return (print_error("Too many C argument"));
 	camera.id = CAMERA;
-	camera.coordinate = malloc(sizeof(float) * NUM_ARG_FIXED);
-	camera.vector = malloc(sizeof(float) * NUM_ARG_FIXED);
+	camera.coordinate = malloc(sizeof(double) * NUM_ARG_FIXED);
+	camera.vector = malloc(sizeof(double) * NUM_ARG_FIXED);
 	coords = ft_split(info[1], ',');
 	vector = ft_split(info[2], ',');
 	while (++i < NUM_ARG_FIXED)
@@ -123,7 +123,7 @@ int	parse_light(char **info, t_minirt *rt)
 	if (rt->light.id)
 		return (print_error("Too many L argument"));
 	light.id = LIGHT;
-	light.coordinate = malloc(sizeof(float) * NUM_ARG_FIXED);
+	light.coordinate = malloc(sizeof(double) * NUM_ARG_FIXED);
 	light.color = malloc(sizeof(int) * NUM_ARG_FIXED);
 	coords = ft_split(info[1], ',');
 	color = ft_split(info[3], ',');

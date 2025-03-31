@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  #+#  +:+       +#+        */
+/*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-03-10 07:02:40 by root              #+#    #+#             */
-/*   Updated: 2025-03-10 07:02:40 by root             ###   ########.fr       */
+/*   Created: 2025/03/10 07:02:40 by root              #+#    #+#             */
+/*   Updated: 2025/03/31 11:35:20 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,61 +26,61 @@ typedef enum s_obj_id
 	SPHERE
 }	t_obj_id;
 
-typedef struct s_atof
+typedef struct s_atod
 {
-	float	whole_num;
-	float	fraction;
+	double	whole_num;
+	double	fraction;
 	int		decimal_point;
 	int		neg;
 	int		divisor;
-}	t_atof;
+}	t_atod;
 
 typedef struct s_ambient
 {
 	t_obj_id	id;
-	float		ratio;
+	double		ratio;
 	int			*color;
 }	t_ambient;
 
 typedef struct s_camera
 {
 	t_obj_id	id;
-	float		*coordinate;
-	float		*vector;
+	double		*coordinate;
+	double		*vector;
 	int			fov;
 }	t_camera;
 
 typedef struct s_light
 {
 	t_obj_id	id;
-	float		*coordinate;
-	float		ratio;
+	double		*coordinate;
+	double		ratio;
 	int			*color;
 }	t_light;
 
 typedef struct s_sphere
 {
 	t_obj_id	id;
-	float		*coordinate;
-	float		diameter;
+	double		*coordinate;
+	double		diameter;
 	int			*color;
 }	t_sphere;
 
 typedef struct s_plane
 {
 	t_obj_id	id;
-	float		*coordinate;
-	float		*vector;
+	double		*coordinate;
+	double		*vector;
 	int			*color;
 }	t_plane;
 
 typedef struct s_cylinder
 {
 	t_obj_id	id;
-	float		*coordinate;
-	float		*vector;
-	float		diameter;
-	float		height;
+	double		*coordinate;
+	double		*vector;
+	double		diameter;
+	double		height;
 	int			*color;
 }	t_cylinder;
 
@@ -115,6 +115,7 @@ typedef struct s_minirt
 	void		*win;
 	t_img		*img;
 	t_obj		*obj_list;
+	int			obj_count;
 	t_ambient	ambient;
 	t_camera	camera;
 	t_light		light;

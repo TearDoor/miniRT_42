@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  #+#  +:+       +#+        */
+/*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-03-09 13:31:41 by root              #+#    #+#             */
-/*   Updated: 2025-03-09 13:31:41 by root             ###   ########.fr       */
+/*   Created: 2025/03/09 13:31:41 by root              #+#    #+#             */
+/*   Updated: 2025/03/31 11:39:23 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	main(int argc, char **argv)
 	rt = ft_calloc(sizeof(t_minirt), 1);
 	if (parse_file(fd, rt))
 	{
-		// execute_minirt(rt);
-		// free_acl_plane(rt);
 		printf("Oh No\n");
+		free_shape(rt);
+		return (1);
 	}
 	free_shape(rt);
 	return (0);

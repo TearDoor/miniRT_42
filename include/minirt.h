@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  #+#  +:+       +#+        */
+/*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-03-09 13:28:10 by root              #+#    #+#             */
-/*   Updated: 2025-03-09 13:28:10 by root             ###   ########.fr       */
+/*   Created: 2025/03/09 13:28:10 by root              #+#    #+#             */
+/*   Updated: 2025/03/31 11:31:45 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 // utils
 int			print_error(char *msg);
 void		filter_line(char *line, char ***info);
-float		ft_atof(char *arg);
+double		ft_atof(char *arg);
 int			validate_file(t_minirt *rt);
 
 // free
