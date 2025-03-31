@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:40:49 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/30 19:14:45 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/31 19:09:55 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void		error_exit(char *msg);
 
 t_canvas	cannon(void);
 void		wall(void);
-void		scene_one(t_rt rt);
+void		scene_one(t_rt *rt);
 void		earth(t_rt *rt);
 void		leak_test(t_rt *rt);
 

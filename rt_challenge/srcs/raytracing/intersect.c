@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:04:22 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/24 20:20:28 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/31 23:32:19 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_intersect	*intersection(double t, t_obj *obj)
 	inter->obj = obj;
 	return (inter);
 }
+
+#include <stdio.h>
 
 /* transforms the ray using the inverse of the object's
  * transformation matrix

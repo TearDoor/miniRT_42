@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:32:10 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/30 19:14:04 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/31 23:51:27 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	ft_mlx_pixel_put(t_imgdata *img, int x, int y, t_color color)
 
 void	mlx_showimg(t_rt *rt)
 {
+	if (rt->mouse.held_obj)
+		print_matrix(rt->mouse.held_obj->transform);
 	if (rt->low_res == 0)
 		render_to_mlximg(&rt->cam, &rt->world, &rt->img);
 	else

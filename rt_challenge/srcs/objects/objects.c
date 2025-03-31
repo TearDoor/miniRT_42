@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 17:56:54 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/24 21:15:39 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/31 23:23:44 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ t_obj	*new_obj(void)
 	newobj->transform = id_matrix();
 	newobj->inverse_transform = id_matrix();
 	newobj->material = default_material();
+	newobj->local_intersect = NULL;
+	newobj->local_normal_at = NULL;
 	return (newobj);
 }
 

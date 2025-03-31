@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:38:46 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/30 19:08:22 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/31 19:36:22 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	init_rt(int fd, char *path, t_rt *rt)
 	rt->img = img;
 	rt->low_res = -1;
 	rt->mouse.status = NOT_PRESSED;
+	rt->mouse.held_obj = NULL;
 	return (0);
 }
 
@@ -90,7 +91,6 @@ int	main(int argc, char *argv[])
 		perror("close");
 		exit(1);
 	}
-	printf("Parsing complete.\n");
 	leak_test(&rt);
 	ft_mlx_hooks(&rt);
 	mlx_showimg(&rt);

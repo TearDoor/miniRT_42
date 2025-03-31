@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 14:48:53 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/30 19:07:16 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/31 18:39:58 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "matrix.h"
 
 struct	s_rt;
+struct	s_obj;
 
 typedef struct s_key_transfrom
 {
@@ -36,6 +37,7 @@ typedef struct s_mouse
 	int					last_x;
 	int					last_y;
 	enum e_mouse_status	status;
+	struct s_obj		*held_obj;
 }	t_mouse;
 
 void	ft_mlx_hooks(struct s_rt *rt);

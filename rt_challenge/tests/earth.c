@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 21:24:46 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/30 18:54:37 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/03/31 19:41:40 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@
 void	earth(t_rt *rt)
 {
 	t_obj		*s1;
-	size_t		start;
 
-	start = curr_time();
 	rt->world = new_world();
 	rt->world.light = point_light(color(1, 1, 1), point(0, 4, -4));
 	s1 = sphere();
@@ -34,6 +32,9 @@ void	earth(t_rt *rt)
 	set_transform(s1, rotation_y(M_PI / 2));
 	add_obj_to_world(&rt->world, s1);
 	rt->cam = new_camera(WIDTH, HEIGHT, M_PI / 3);
-	init_view_matrix(&rt->cam, point(0, 2, -5), point(0, 0, 0), vector(0, 1, 0));
-	printf("render time: %lu\n", curr_time() - start);
+	t_obj	*floor;
+	floor = plane();
+	add_obj_to_world(&rt->world, floor);
+	set_transform(floor, translate_mat(0, -1, 0));
+	init_view_matrix(&rt->cam, point(0, -2, -5), point(0, 0, 0), vector(0, 1, 0));
 }
