@@ -16,10 +16,8 @@
 # include "linux_keys.h"
 # include "matrix.h"
 
-//how much mouse pixel movement equal one unit world space movement
-# define MOUSE_RATIO 50
 //how much distance moved while dragging to register one move
-# define MIN_MOVE_TO_UPDATE 50
+# define MIN_MOVE_TO_UPDATE 25
 
 struct					s_rt;
 typedef struct s_obj	t_obj;

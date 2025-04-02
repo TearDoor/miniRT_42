@@ -10,8 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "matrix.h"
+#include "objects.h"
 #include "raytracing.h"
 #include "minirt.h"
+#include "utils.h"
+#include <math.h>
 
 t_obj	*pick_object(t_rt *rt, int x, int y)
 {
@@ -41,13 +45,31 @@ t_tuple	get_obj_position(t_obj *obj)
 	return (pos);
 }
 
+t_tuple	get_cam_forward(t_camera cam)
+{
+	t_tuple	dir;
+
+	dir = vector(
+			cam.transform.mat[0][2],
+			cam.transform.mat[1][2],
+			cam.transform.mat[2][2]);
+	dir = tuple_negate(dir);
+	return (vector_normalize(dir));
+}
+
 double	calculate_plane_intersection(t_camera cam, t_ray ray, t_tuple obj_pos)
 {
 	t_tuple	plane_normal;
 	t_tuple	plane_point;
+	double	denominator;
+	double	t;
 
+	plane_normal = get_cam_forward(cam);
 	plane_point = obj_pos;
-
+	denominator = vector_dot_product(ray.direction, plane_normal);
+	t = vector_dot_product(tuple_subtract(plane_point, ray.origin), \
+						plane_normal) / denominator;
+	return (t);
 }
 
 void	move_object(t_rt *rt, int x, int y)
@@ -55,9 +77,13 @@ void	move_object(t_rt *rt, int x, int y)
 	t_ray	select_ray;
 	t_tuple	curr_pos;
 	t_tuple	new_pos;
+	t_tuple	delta;
 	double	t;
 
 	select_ray = ray_for_pixel(rt->cam, x, y);
 	curr_pos = get_obj_position(rt->mouse.held_obj);
 	t = calculate_plane_intersection(rt->cam, select_ray, curr_pos);
+	new_pos = position(select_ray, t);
+	delta = tuple_subtract(new_pos, curr_pos);
+	set_transform(rt->mouse.held_obj, translate_mat(delta.x, delta.y, delta.z));
 }

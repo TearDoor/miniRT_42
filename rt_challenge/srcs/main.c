@@ -31,7 +31,7 @@ int	main(int argc, char *argv[])
 		perror("close");
 		exit(1);
 	}
-	leak_test(&rt);
+	scene_one(&rt);
 	ft_mlx_hooks(&rt);
 	mlx_showimg(&rt);
 	mlx_loop(rt.mlx);

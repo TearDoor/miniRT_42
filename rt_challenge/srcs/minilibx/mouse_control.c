@@ -19,8 +19,6 @@
 
 int	mouse_press(t_keycodes button, int x, int y, t_rt *rt)
 {
-	t_obj	*target;
-
 	if (rt->mouse.status != NOT_PRESSED)
 		return (1);
 	rt->mouse.last_x = x;
@@ -28,7 +26,6 @@ int	mouse_press(t_keycodes button, int x, int y, t_rt *rt)
 	if (button == MB_L)
 	{
 		rt->mouse.status = LEFT_PRESSED;
-		target = pick_object(rt, x, y);
 		rt->mouse.held_obj = pick_object(rt, x, y);
 		if (rt->mouse.held_obj)
 		{
