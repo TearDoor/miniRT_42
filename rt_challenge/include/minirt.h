@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:40:49 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/31 19:09:55 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/02 15:59:17 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include "utils.h"
 # include "raytracing.h"
 # include "mlx_utils.h"
-
-typedef struct s_mouse t_mouse;
 
 typedef struct s_imgdata
 {

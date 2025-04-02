@@ -2,10 +2,10 @@ NAME	=	miniRT
 
 vpath %.c	srcs tests srcs/minilibx srcs/objects srcs/raytracing srcs/patterns srcs/ppm
 
-SRC		=	main.c simple_utils.c \
+SRC		=	main.c simple_utils.c init_rt.c \
 			color_at.c light.c lighting.c shadows.c \
 			rays.c intersect.c intersect_utils.c world.c camera.c render.c \
-			mlx_showimage.c keys.c mouse_control.c
+			mlx_showimage.c keys.c mouse_control.c mouse_utils.c
 SRC		+=	objects.c sphere.c plane.c cylinder.c cone.c 
 SRC		+=	pattern.c stripes.c gradient.c rings.c checkers.c \
 			uv_pattern.c uv_checkers.c uv_image.c normalmap.c \
@@ -58,11 +58,11 @@ fclean: clean
 
 re: fclean all
 
+# only remakes the main raytracing code without touching libft and libutils
 cleancore:
 			$(RM) $(OBJ_DIR)
 			$(RM) $(NAME)
 
-# only remakes the main raytracing code without touching libft and libutils
 recore: cleancore all
 
 .phony: all clean fclean re cleancore recore

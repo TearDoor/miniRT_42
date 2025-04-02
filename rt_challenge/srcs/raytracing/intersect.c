@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:04:22 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/31 23:32:19 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/02 15:53:11 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	check_intersect(t_obj *obj, t_ray ray, t_list **xs)
 t_list	*intersect_world(t_ray ray, t_world world)
 {
 	t_list	*xs;
-	size_t	i;
 	t_list	*obj_ptr;
 
 	xs = NULL;
