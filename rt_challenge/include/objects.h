@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:26:44 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/24 21:16:58 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/03 20:27:59 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 # include "matrix.h"
 # include "pattern.h"
+
+# define CYL_MAX 1
+# define CYL_MIN -1
+# define CONE_MAX 1
+# define CONE_MIN 0
 
 struct	s_ray;
 
@@ -56,7 +61,7 @@ t_obj		*cylinder(void);
 t_obj		*cone(void);
 
 /* utils */
-void		set_transform(t_obj *o, t_mat4 m);
+void		apply_transform(t_obj *o, t_mat4 m);
 int			check_bounds(double t, struct s_ray ray, double max, double min);
 void		free_object(void *ptr);
 

@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 17:56:54 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/31 23:23:44 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/03 16:57:32 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	check_bounds(double t, t_ray ray, double max, double min)
 	return ((y > min) && (y < max));
 }
 
-void	set_transform(t_obj *o, t_mat4 m)
+void	apply_transform(t_obj *o, t_mat4 m)
 {
 	if (o == NULL)
 		return ;

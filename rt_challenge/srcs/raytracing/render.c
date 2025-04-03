@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 21:41:08 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/31 23:38:30 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/03 17:40:31 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,16 @@ void	lowres_pixel_put(t_imgdata *img, int i, int j, t_color clr)
 {
 	int	x;
 	int	y;
+	int	scale;
 
+	scale = WIDTH / LOW_RES_WIDTH;
 	y = 0;
-	while (y < DOWNSCALE)
+	while (y < scale)
 	{
 		x = 0;
-		while (x < DOWNSCALE)
+		while (x < scale)
 		{
-			ft_mlx_pixel_put(img, i * DOWNSCALE + x, j * DOWNSCALE + y, clr);
+			ft_mlx_pixel_put(img, i * scale + x, j * scale + y, clr);
 			x++;
 		}
 		y++;
@@ -87,16 +89,18 @@ void	render_mlximg_lowres(t_camera *cam, t_world *w, t_imgdata *img)
 	int		j;
 	t_ray	r;
 	t_color	clr;
+	int		scale;
 
+	scale = WIDTH / LOW_RES_WIDTH;
 	cam->inverse_transform = matrix_invert(cam->transform);
 	j = 0;
-	while (j < cam->vsize / DOWNSCALE)
+	while (j < cam->vsize / scale)
 	{
 		printf("\rRemaining lines: %d", cam->vsize - j);
 		i = 0;
-		while (i < cam->hsize / DOWNSCALE)
+		while (i < cam->hsize / scale)
 		{
-			r = ray_for_pixel(*cam, i * DOWNSCALE, j * DOWNSCALE);
+			r = ray_for_pixel(*cam, i * scale, j * scale);
 			clr = color_at(*w, r);
 			lowres_pixel_put(img, i, j, clr);
 			i++;

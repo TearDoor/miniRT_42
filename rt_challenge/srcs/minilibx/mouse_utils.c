@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 18:31:09 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/02 22:39:36 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/03 20:15:10 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ t_tuple	get_cam_forward(t_camera cam)
 	t_tuple	dir;
 
 	dir = vector(
-			cam.transform.mat[0][2],
-			cam.transform.mat[1][2],
+			cam.transform.mat[2][0],
+			cam.transform.mat[2][1],
 			cam.transform.mat[2][2]);
 	dir = tuple_negate(dir);
 	return (vector_normalize(dir));
@@ -85,5 +85,5 @@ void	move_object(t_rt *rt, int x, int y)
 	t = calculate_plane_intersection(rt->cam, select_ray, curr_pos);
 	new_pos = position(select_ray, t);
 	delta = tuple_subtract(new_pos, curr_pos);
-	set_transform(rt->mouse.held_obj, translate_mat(delta.x, delta.y, delta.z));
+	apply_transform(rt->mouse.held_obj, delta_vector_translate(delta));
 }

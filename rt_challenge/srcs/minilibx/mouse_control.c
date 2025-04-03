@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 16:25:02 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/02 18:39:33 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/03 17:54:03 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	mouse_press(t_keycodes button, int x, int y, t_rt *rt)
 		rt->mouse.held_obj = pick_object(rt, x, y);
 		if (rt->mouse.held_obj)
 		{
-			print_matrix(rt->mouse.held_obj->transform);
 			rt->low_res = 1;
 		}
 	}
@@ -68,7 +67,7 @@ int	check_distance_moved(int x, int y, int last_x, int last_y)
 	int	distance;
 
 	distance = sqrt(sq(x - last_x) + sq(y - last_y));
-	return (distance > MIN_MOVE_TO_UPDATE);
+	return (distance > WIDTH / STEPS_PER_WIDTH);
 }
 
 int	mouse_move(int x, int y, t_rt *rt)

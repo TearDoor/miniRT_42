@@ -6,17 +6,12 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/27 21:54:06 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/03 20:27:34 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYTRACING_H
 # define RAYTRACING_H
-
-# define CYL_MAX 0.5
-# define CYL_MIN -0.5
-# define CONE_MAX 1
-# define CONE_MIN 0
 
 # include "utils.h"
 # include "libft.h"
