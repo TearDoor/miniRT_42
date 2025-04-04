@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 14:48:53 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/03 17:46:50 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/04 15:37:01 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "matrix.h"
 
 //how much distance moved while dragging to register one move
-# define STEPS_PER_WIDTH 20
+# define STEPS_PER_WIDTH 15
 
 struct					s_rt;
 typedef struct s_obj	t_obj;

@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 14:38:36 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/03 18:00:37 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/04 15:15:55 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	camera_transform(t_keycodes key, t_rt *rt)
 		if (key == ptr->key)
 		{
 			rt->cam.transform = matrix_mult(ptr->transform, rt->cam.transform);
+			rt->low_res = 1;
 			mlx_showimg(rt);
 			return (1);
 		}

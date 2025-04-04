@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 16:25:02 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/03 17:54:03 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/04 15:37:19 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	mouse_press(t_keycodes button, int x, int y, t_rt *rt)
 
 /*
  * checks if the released button is the one being held
+ * applies z axis translations to the camera for a moving forward/zooming effect
 */
 int	mouse_release(t_keycodes button, int x, int y, t_rt *rt)
 {
@@ -51,6 +52,7 @@ int	mouse_release(t_keycodes button, int x, int y, t_rt *rt)
 	{
 		rt->mouse.status = NOT_PRESSED;
 		rt->mouse.held_obj = NULL;
+		return (0);
 	}
 	if (button == MW_UP)
 		rt->cam.transform = matrix_mult(translate_mat(0, 0, 1), \
@@ -58,6 +60,8 @@ int	mouse_release(t_keycodes button, int x, int y, t_rt *rt)
 	else if (button == MW_DOWN)
 		rt->cam.transform = matrix_mult(translate_mat(0, 0, -1), \
 							rt->cam.transform);
+	else
+		return (1);
 	mlx_showimg(rt);
 	return (0);
 }
