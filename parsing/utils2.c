@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "parse.h"
 
-void	init_obj(t_obj *obj, t_obj_id id, t_minirt *rt)
+void	init_obj(t_obj *obj, t_obj_id id, t_parse *rt)
 {
 	t_obj	*tmp;
 
@@ -28,6 +28,24 @@ void	init_obj(t_obj *obj, t_obj_id id, t_minirt *rt)
 			tmp = tmp->next;
 		tmp->next = obj;
 	}
+}
+
+t_light	*init_light(t_light *light, t_parse *rt)
+{
+	t_light	*tmp;
+
+	light = ft_calloc(sizeof(t_light), 1);
+	if (!(rt->light_list))
+		rt->light_list = light;
+	else
+	{
+		printf("this should be printed when got more than 2 L\n");
+		tmp = rt->light_list;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = light;
+	}
+	return (light);
 }
 
 void	init_txr_bump(t_obj *obj, char **info)

@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "parse.h"
 
-int	parse_file(int fd, t_minirt *rt)
+int	parse_file(int fd, t_parse *rt)
 {
 	char	*line;
 	char	**info;
@@ -38,9 +38,9 @@ int	parse_file(int fd, t_minirt *rt)
 	return (invalid);
 }
 
-int	store_info(char **info, t_minirt *rt)
+int	store_info(char **info, t_parse *rt)
 {
-	// printf("info[0] = %s\n", info[0]); // debug
+	printf("info[0] = %s\n", info[0]); // debug
 	if (!info || !info[0])
 		return (0);
 	else if (ft_strcmp(info[0], "A") == 0)
@@ -58,7 +58,7 @@ int	store_info(char **info, t_minirt *rt)
 	return (0);
 }
 
-int	parse_ambient(char **info, t_minirt *rt)
+int	parse_ambient(char **info, t_parse *rt)
 {
 	t_ambient	ambient;
 	char		**color;
@@ -68,9 +68,9 @@ int	parse_ambient(char **info, t_minirt *rt)
 	if (rt->ambient.id)
 		return (print_error("Too many A argument"));
 	ambient.id = AMBIENT;
-	ambient.ratio = ft_atof(info[1]);
+	ambient.ratio = ft_atod(info[1]);
 	// printf("info[1] = %f\n", ambient.ratio); // debug
-	ambient.color = malloc(sizeof(int) * NUM_ARG_FIXED);
+	ambient.color = malloc(sizeof(double) * NUM_ARG_FIXED);
 	color = ft_split(info[2], ',');
 	while (++i < NUM_ARG_FIXED)
 	{
@@ -82,7 +82,7 @@ int	parse_ambient(char **info, t_minirt *rt)
 	return (0);
 }
 
-int	parse_camera(char **info, t_minirt *rt)
+int	parse_camera(char **info, t_parse *rt)
 {
 	t_camera	camera;
 	char		**coords;
@@ -99,8 +99,8 @@ int	parse_camera(char **info, t_minirt *rt)
 	vector = ft_split(info[2], ',');
 	while (++i < NUM_ARG_FIXED)
 	{
-		camera.coordinate[i] = ft_atof(coords[i]);
-		camera.vector[i] = ft_atof(vector[i]);
+		camera.coordinate[i] = ft_atod(coords[i]);
+		camera.vector[i] = ft_atod(vector[i]);
 		// printf("coords = %f\n", camera.coordinate[i]);
 		// printf("vector = %f\n", camera.vector[i]);
 	}
@@ -112,30 +112,28 @@ int	parse_camera(char **info, t_minirt *rt)
 	return (0);
 }
 
-int	parse_light(char **info, t_minirt *rt)
+int	parse_light(char **info, t_parse *rt)
 {
-	t_light	light;
+	t_light	*light;
 	char	**color;
 	char	**coords;
 	int		i;
 
 	i = -1;
-	if (rt->light.id)
-		return (print_error("Too many L argument"));
-	light.id = LIGHT;
-	light.coordinate = malloc(sizeof(double) * NUM_ARG_FIXED);
-	light.color = malloc(sizeof(int) * NUM_ARG_FIXED);
+	light = init_light(light, rt);
+	light->id = LIGHT;
+	light->coordinate = malloc(sizeof(double) * NUM_ARG_FIXED);
+	light->color = malloc(sizeof(double) * NUM_ARG_FIXED);
 	coords = ft_split(info[1], ',');
 	color = ft_split(info[3], ',');
-	light.ratio = ft_atof(info[2]);
+	light->ratio = ft_atod(info[2]);
 	while (++i < NUM_ARG_FIXED)
 	{
-		light.coordinate[i] = ft_atof(coords[i]);
-		// printf("coords = %f\n", light->coordinate[i]);
-		light.color[i] = ft_atoi(color[i]);
-		// printf("coords = %d\n", light->color[i]);
+		light->coordinate[i] = ft_atod(coords[i]);
+		printf("coords = %f\n", light->coordinate[i]);
+		light->color[i] = ft_atoi(color[i]) / 255;
+		// printf("color = %f\n", light->color[i]);
 	}
-	rt->light = light;
 	free_arr(coords);
 	free_arr(color);
 	return (0);

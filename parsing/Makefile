@@ -1,10 +1,8 @@
 NAME = miniRT 
 
 OBJ_DIR = ./objs/
-PARSING_DIR = ./parsing/
 
-FILE = main
-PARSING_FILES = parse handle_mlx free parse_shape utils utils2
+FILE = main parse free parse_shape utils utils2
 
 OBJS	= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILE)))
 OBJS	+= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(PARSING_FILES)))
@@ -15,23 +13,23 @@ CFLAGS	+= -Wall -Wextra -g3 -fsanitize=address
 RM		= rm -rf
 
 # libft
-LFT_DIR	= ./libft_42
+LFT_DIR	= ../libft_42
 LIBFT	= $(LFT_DIR)/libft.a
 
 # mlx
-MLX_DIR = ./mlx_linux
+MLX_DIR = ../mlx_linux
 MLX		= $(MLX_DIR)/libmlx.a
 
 all: $(NAME)
 
-$(NAME): $(OBJS) | $(LIBFT) $(MLX)
-	$(CC) $(CFLAGS) -o $@ $^ $(LIBFT) $(MLX) -lXext -lX11 -lm 
+$(NAME): $(OBJS) | $(LIBFT) #$(MLX) $(MLX) -lXext -lX11 -lm 
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBFT) 
 
 $(OBJ_DIR)%.o: %.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@ -Imlx_linux -O3
+	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ_DIR)%.o: $(PARSING_DIR)%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@ -Imlx_linux -O3
+# $(OBJ_DIR)%.o: $(PARSING_DIR)%.c | $(OBJ_DIR)
+# 	$(CC) $(CFLAGS) -c $< -o $@ -Imlx_linux -O3
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)

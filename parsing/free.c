@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "parse.h"
 
 void	typecast_shape(t_obj *tmp)
 {
@@ -33,16 +33,26 @@ void	typecast_shape(t_obj *tmp)
 	}	
 }
 
-void	free_shape(t_minirt *rt)
+void	free_shape(t_parse *rt)
 {
 	t_obj	*obj;
 	t_obj	*tmp;
+	t_light	*light;
+	t_light	*tmp_light;
 
 	free(rt->ambient.color);
 	free(rt->camera.coordinate);
 	free(rt->camera.vector);
-	free(rt->light.color);
-	free(rt->light.coordinate);
+	light = rt->light_list;
+	while (light)
+	{
+		tmp_light = light;
+		printf("free tmp_light = %d\n", tmp_light->id); //debug
+		light = light->next;
+		free(tmp_light->color);
+		free(tmp_light->coordinate);
+		free(tmp_light);
+	}
 	obj = rt->obj_list;
 	while (obj)
 	{

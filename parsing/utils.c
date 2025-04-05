@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "parse.h"
 
 static void	check_neg(char **arg, int *neg)
 {
@@ -25,7 +25,7 @@ static void	check_neg(char **arg, int *neg)
 		(*arg)++;
 }
 
-double	ft_atof(char *arg)
+double	ft_atod(char *arg)
 {
 	t_atod	d_arg;
 	
@@ -79,13 +79,13 @@ int	print_error(char *msg)
 	return (1);
 }
 
-int	validate_file(t_minirt *rt)
+int	validate_file(t_parse *rt)
 {
 	if (!rt->ambient.id)
     	return (print_error("Missing ambient lighting (A)"));
 	if (!rt->camera.id)
 		return (print_error("Missing camera (C)"));
-	if (!rt->light.id)
+	if (!rt->light_list->id)
 		return (print_error("Missing light (L)"));
 	return (0);
 }

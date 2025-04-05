@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/minirt.h"
+#include "parse.h"
 
 int	main(int argc, char **argv)
 {
 	int			len;
 	int			fd;
-	t_minirt	*rt;
+	t_parse		*rt;
 
 	if (argc != 2)
 		return (print_error("Incorrect number of argument."));
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		return (print_error("Invalid file"));
-	rt = ft_calloc(sizeof(t_minirt), 1);
+	rt = ft_calloc(sizeof(t_parse), 1);
 	if (parse_file(fd, rt))
 	{
 		printf("Oh No\n");
