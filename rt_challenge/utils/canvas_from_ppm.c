@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:46:25 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/17 13:51:26 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/05 17:51:53 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ t_canvas	canvas_from_ppm(char *filename)
 	t_canvas	cvs;
 	char		*magic;
 
+	printf("Reading from file: %s\n", filename);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
@@ -117,5 +118,6 @@ t_canvas	canvas_from_ppm(char *filename)
 	free(magic);
 	cvs = parse_dimensions(fd);
 	parse_pixel_data(&cvs, fd);
+	printf("Finished reading.\n");
 	return (cvs);
 }

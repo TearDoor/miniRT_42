@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 10:48:35 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/03 20:22:25 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/05 22:50:36 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	scene_one(t_rt *rt)
 	t_obj	*celling;
 
 	w = new_world();
-	w.light = point_light(color(1, 1, 1), point(-5, 2, -5));
+	t_light *light1 = point_light(color(1, 1, 1), point(-5, 2, -5), 1);
+	add_light_to_world(&w, light1);
 	cone1 = cone();
 	apply_transform(cone1, rotation_z(M_PI / 4));
 	apply_transform(cone1, rotation_y(M_PI / 3));

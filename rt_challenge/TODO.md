@@ -20,8 +20,7 @@ by tkok-kea and hni-xuan
 ### Bonus
 - [x] Specular reflection
 - [x] Checkerboard pattern
-- [ ] Colored and multi-spot lights
+- [x] Colored and multi-spot lights
 - [x] Cone object
 - [x] Texture map
-    - [ ] add a progress bar while loading textures
 - [x] Bump map

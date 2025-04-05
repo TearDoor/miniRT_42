@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/03 20:27:34 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/05 22:45:02 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ typedef struct s_lightparams
 typedef struct s_world
 {
 	t_list	*objs;
+	t_list	*lights;
 	size_t	obj_count;
-	t_light	light;
 }	t_world;
 
 typedef struct s_intersect
@@ -82,17 +82,20 @@ typedef struct s_camera
 /* Constructors */
 t_ray		ray(t_tuple point, t_tuple vector);
 t_intersect	*intersection(double t, t_obj *obj);
-t_light		point_light(t_color intensity, t_tuple position);
+t_light		*point_light(t_color color, t_tuple position, double ratio);
 t_world		new_world(void);
 t_world		default_world(void);
 void		free_world(t_world *w);
 t_camera	new_camera(int hsize, int vsize, double fov);
 
+/* adding things to world */
+void		add_obj_to_world(t_world *w, t_obj *obj);
+void		add_light_to_world(t_world *w, t_light *light);
+
 /* ray intersection */
 t_tuple		position(t_ray ray, double distance);
 void		check_intersect(t_obj *obj, t_ray ray, t_list **list);
 void		add_to_intersections(double t, t_obj *obj, t_list **list);
-void		add_obj_to_world(t_world *w, t_obj *obj);
 t_obj		*list_to_array_obj(t_list *list);
 t_list		*intersect_world(t_ray ray, t_world world);
 t_intersect	*checkhit(t_list *intersects);
@@ -103,7 +106,7 @@ t_tuple		normal_at(t_obj *obj, t_tuple point);
 t_tuple		reflect(t_tuple v_in, t_tuple normal);
 t_color		lighting(t_lightparams params);
 t_color		color_at(t_world w, t_ray r);
-int			is_shadowed(t_world w, t_tuple point);
+int			is_shadowed(t_world w, t_tuple point, t_light *light);
 
 /* views and cameras */
 void		init_view_matrix(t_camera *cam, t_tuple from, t_tuple to, \

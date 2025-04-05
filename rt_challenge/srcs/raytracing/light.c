@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:57:51 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/30 18:33:28 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/05 22:44:42 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,17 @@ t_tuple	reflect(t_tuple v_in, t_tuple normal)
 	return (tuple_subtract(v_in, temp));
 }
 
-t_light	point_light(t_color intensity, t_tuple position)
+void	add_light_to_world(t_world *w, t_light *light)
 {
-	return ((t_light){
-		intensity, position
-	});
+	ft_lstadd_back(&w->lights, ft_lstnew(light));
+}
+
+t_light	*point_light(t_color color, t_tuple position, double ratio)
+{
+	t_light	*new_light;
+
+	new_light = malloc(sizeof(t_light));
+	new_light->intensity = color_scalar_mult(color, ratio);
+	new_light->position = position;
+	return (new_light);
 }

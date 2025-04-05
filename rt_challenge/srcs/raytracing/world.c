@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 17:23:10 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/27 17:40:39 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/05 21:50:00 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ t_world	new_world(void)
 	t_world	new;
 
 	new.objs = NULL;
+	new.lights = NULL;
 	new.obj_count = 0;
-	new.light = point_light(color(1, 1, 1), point(-10, 10, -10));
 	return (new);
 }
 
@@ -63,4 +63,5 @@ t_obj	*list_to_array_obj(t_list *list)
 void	free_world(t_world *w)
 {
 	ft_lstclear(&w->objs, free_object);
+	ft_lstclear(&w->lights, free);
 }

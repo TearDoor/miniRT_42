@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 21:24:46 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/04 15:17:28 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/05 22:47:18 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	earth(t_rt *rt)
 	t_obj		*s1;
 
 	rt->world = new_world();
-	rt->world.light = point_light(color(1, 1, 1), point(0, 4, -4));
+	t_light *light1 = point_light(color(1, 1, 1), point(-1, 5, -2), 0.6);
+	add_light_to_world(&rt->world, light1);
 	s1 = sphere();
 	s1->material.ambient = 0.5;
 	s1->material.diffuse = 0.9;
