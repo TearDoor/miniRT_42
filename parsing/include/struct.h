@@ -15,6 +15,25 @@
 
 # include "parse.h"
 
+typedef union u_tuple
+{
+	double	elems[4];
+	struct
+	{
+		double	x;
+		double	y;
+		double	z;
+		double	w;
+	};
+}	t_tuple;
+
+typedef struct s_color
+{
+	double	r;
+	double	g;
+	double	b;
+}	t_color;
+
 typedef enum s_obj_id
 {
 	ZERO,
@@ -39,14 +58,14 @@ typedef struct s_ambient
 {
 	t_obj_id	id;
 	double		ratio;
-	double		*color;
+	t_color		color;
 }	t_ambient;
 
 typedef struct s_camera
 {
 	t_obj_id	id;
-	double		*coordinate;
-	double		*vector;
+	t_tuple		coordinate;
+	t_tuple		vector;
 	int			fov;
 }	t_camera;
 

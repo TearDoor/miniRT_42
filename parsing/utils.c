@@ -85,7 +85,8 @@ int	validate_file(t_parse *rt)
     	return (print_error("Missing ambient lighting (A)"));
 	if (!rt->camera.id)
 		return (print_error("Missing camera (C)"));
-	if (!rt->light_list->id)
+	if (!rt->light_list)
 		return (print_error("Missing light (L)"));
+
 	return (0);
 }

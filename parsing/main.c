@@ -33,6 +33,7 @@ int	main(int argc, char **argv)
 		free_shape(rt);
 		return (1);
 	}
+	printf("ambient color = %f %f %f\n", rt->ambient.color.r, rt->ambient.color.g, rt->ambient.color.b); // debug
 	free_shape(rt);
 	return (0);
 }

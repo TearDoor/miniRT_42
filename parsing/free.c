@@ -40,9 +40,6 @@ void	free_shape(t_parse *rt)
 	t_light	*light;
 	t_light	*tmp_light;
 
-	free(rt->ambient.color);
-	free(rt->camera.coordinate);
-	free(rt->camera.vector);
 	light = rt->light_list;
 	while (light)
 	{

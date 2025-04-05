@@ -62,21 +62,15 @@ int	parse_ambient(char **info, t_parse *rt)
 {
 	t_ambient	ambient;
 	char		**color;
-	int			i;
 
-	i = -1;
 	if (rt->ambient.id)
 		return (print_error("Too many A argument"));
 	ambient.id = AMBIENT;
 	ambient.ratio = ft_atod(info[1]);
-	// printf("info[1] = %f\n", ambient.ratio); // debug
-	ambient.color = malloc(sizeof(double) * NUM_ARG_FIXED);
 	color = ft_split(info[2], ',');
-	while (++i < NUM_ARG_FIXED)
-	{
-		ambient.color[i] = ft_atoi(color[i]);
-		// printf("color = %d\n", ambient.color[i]); // debug
-	}
+	ambient.color.r = ft_atod(color[0]) / 255;
+	ambient.color.g = ft_atod(color[1]) / 255;
+	ambient.color.b = ft_atod(color[2]) / 255;
 	rt->ambient = ambient;
 	free_arr(color);
 	return (0);
@@ -93,17 +87,17 @@ int	parse_camera(char **info, t_parse *rt)
 	if (rt->camera.id)
 		return (print_error("Too many C argument"));
 	camera.id = CAMERA;
-	camera.coordinate = malloc(sizeof(double) * NUM_ARG_FIXED);
-	camera.vector = malloc(sizeof(double) * NUM_ARG_FIXED);
 	coords = ft_split(info[1], ',');
 	vector = ft_split(info[2], ',');
 	while (++i < NUM_ARG_FIXED)
 	{
-		camera.coordinate[i] = ft_atod(coords[i]);
-		camera.vector[i] = ft_atod(vector[i]);
-		// printf("coords = %f\n", camera.coordinate[i]);
-		// printf("vector = %f\n", camera.vector[i]);
+		camera.coordinate.elems[i] = ft_atod(coords[i]);
+		camera.vector.elems[i] = ft_atod(vector[i]);
+		printf("camera vector = %f\n", camera.coordinate.elems[i]); //debug
 	}
+	camera.coordinate.w = 0;
+	camera.vector.w = 1;
+	printf("camera vector = %f\n", camera.vector.w); //debug
 	camera.fov = ft_atoi(info[3]);
 	// printf("fov = %d\n", camera.fov); //debug
 	rt->camera = camera;
