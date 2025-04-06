@@ -10,8 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "linux_keys.h"
 #include "mlx_utils.h"
 #include "minirt.h"
+#include "raytracing.h"
 
 int	camera_transform(t_keycodes key, t_rt *rt)
 {
@@ -40,7 +42,26 @@ int	camera_transform(t_keycodes key, t_rt *rt)
 	return (0);
 }
 
-int	light_transform(t_keycodes key, t_rt *rt)
+static int	light_move(t_keycodes key, t_light *light)
+{
+	if (key == KEY_W)
+		++light->position.y;
+	else if (key == KEY_S)
+		--light->position.y;
+	else if (key == KEY_A)
+		--light->position.x;
+	else if (key == KEY_D)
+		++light->position.x;
+	else if (key == KEY_R)
+		++light->position.z;
+	else if (key == KEY_F)
+		--light->position.z;
+	else
+		return (0);
+	return (1);
+}
+
+int	light_control(t_keycodes key, t_rt *rt)
 {
 	static t_list	*selected_light_node = NULL;
 	t_light			*selected_light;
@@ -55,16 +76,16 @@ int	light_transform(t_keycodes key, t_rt *rt)
 			selected_light_node = selected_light_node->next;
 	}
 	selected_light = selected_light_node->content;
-	if (key == UP)
-		selected_light->position.y++;
-	else if (key == DOWN)
-		selected_light->position.y--;
-	else if (key == LEFT)
-		selected_light->position.x--;
-	else if (key == RIGHT)
-		selected_light->position.x++;
+	if (light_move(key, selected_light))
+	{
+		mlx_showimg(rt);
+		return (1);
+	}
 	else
 		return (0);
-	mlx_showimg(rt);
-	return (1);
+}
+
+int	obj_control(t_keycodes key, t_rt *rt)
+{
+	return (0);
 }

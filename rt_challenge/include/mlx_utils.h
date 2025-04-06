@@ -59,7 +59,8 @@ int		close_win(t_rt *rt);
 
 int		keypress(t_keycodes key, t_rt *rt);
 int		camera_transform(t_keycodes key, t_rt *rt);
-int		light_transform(t_keycodes key, t_rt *rt);
+int		light_control(t_keycodes key, t_rt *rt);
+int		obj_control(t_keycodes key, t_rt *rt);
 
 int		mouse_press(t_keycodes button, int x, int y, t_rt *rt);
 int		mouse_release(t_keycodes key, int x, int y, t_rt *rt);

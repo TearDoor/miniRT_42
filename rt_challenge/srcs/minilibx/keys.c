@@ -45,8 +45,8 @@ int	keypress(t_keycodes key, t_rt *rt)
 {
 	const t_ctrl_funcptr	ctrl_funcs[] = {
 	[CONTROL_CAM] = camera_transform,
-	[CONTROL_LIGHTS] = light_transform,
-	[CONTROL_OBJ] = NULL,
+	[CONTROL_LIGHTS] = light_control,
+	[CONTROL_OBJ] = obj_control,
 	};
 
 	printf("%d pressed\n", key);
