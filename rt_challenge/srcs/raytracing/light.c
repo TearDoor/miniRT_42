@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:57:51 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/05 22:44:42 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/06 21:13:31 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ t_mat4	tbn_matrix(t_tuple normal)
 		}});
 }
 
+/*
+ * changes the world point back to object point,
+ * calculates the normal of object point using the object's normal function
+ * then changes it back to object normal
+ */
 t_tuple	normal_at(t_obj *obj, t_tuple world_point)
 {
 	t_tuple	local_point;
@@ -73,11 +78,6 @@ t_tuple	reflect(t_tuple v_in, t_tuple normal)
 	return (tuple_subtract(v_in, temp));
 }
 
-void	add_light_to_world(t_world *w, t_light *light)
-{
-	ft_lstadd_back(&w->lights, ft_lstnew(light));
-}
-
 t_light	*point_light(t_color color, t_tuple position, double ratio)
 {
 	t_light	*new_light;
@@ -86,4 +86,9 @@ t_light	*point_light(t_color color, t_tuple position, double ratio)
 	new_light->intensity = color_scalar_mult(color, ratio);
 	new_light->position = position;
 	return (new_light);
+}
+
+void	add_light_to_world(t_world *w, t_light *light)
+{
+	ft_lstadd_back(&w->lights, ft_lstnew(light));
 }

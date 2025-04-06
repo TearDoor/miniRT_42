@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 17:56:54 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/03 16:57:32 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/06 21:39:16 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static t_material	default_material(void)
 {
 	return ((t_material){
-		.color = (t_color){1, 1, 1},
+		.color = (t_color){0.7, 0.7, 0.7},
 		.ambient = 0.1,
 		.diffuse = 0.9,
 		.specular = 0.9,

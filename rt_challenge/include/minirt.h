@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:40:49 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/03 18:06:44 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/06 21:06:47 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_rt
 	t_camera	cam;
 	int			low_res;
 	t_mouse		mouse;
+	t_control	controlling;
 }	t_rt;
 
 void		ft_mlx_pixel_put(t_imgdata *img, int x, int y, t_color color);

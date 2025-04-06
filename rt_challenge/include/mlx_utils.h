@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 14:48:53 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/04 15:37:01 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/06 21:51:18 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,22 @@
 //how much distance moved while dragging to register one move
 # define STEPS_PER_WIDTH 15
 
-struct					s_rt;
+typedef struct s_rt		t_rt;
 typedef struct s_obj	t_obj;
+typedef int				(*t_ctrl_funcptr)(t_keycodes, t_rt *);
 
 typedef struct s_key_transfrom
 {
 	t_keycodes	key;
 	t_mat4		transform;
 }	t_key_transform;
+
+typedef enum e_control
+{
+	CONTROL_CAM,
+	CONTROL_LIGHTS,
+	CONTROL_OBJ,
+}	t_control;
 
 enum e_mouse_status
 {
@@ -44,19 +52,21 @@ typedef struct s_mouse
 	t_tuple				initial_obj_pos;
 }	t_mouse;
 
-int		init_rt(char *path, struct s_rt *rt);
-void	ft_mlx_hooks(struct s_rt *rt);
-void	mlx_showimg(struct s_rt *rt);
-int		close_win(struct s_rt *rt);
+int		init_rt(char *path, t_rt *rt);
+void	ft_mlx_hooks(t_rt *rt);
+void	mlx_showimg(t_rt *rt);
+int		close_win(t_rt *rt);
 
-int		keypress(t_keycodes key, struct s_rt *rt);
+int		keypress(t_keycodes key, t_rt *rt);
+int		camera_transform(t_keycodes key, t_rt *rt);
+int		light_transform(t_keycodes key, t_rt *rt);
 
-int		mouse_press(t_keycodes button, int x, int y, struct s_rt *rt);
-int		mouse_release(t_keycodes key, int x, int y, struct s_rt *rt);
-int		mouse_move(int x, int y, struct s_rt *rt);
+int		mouse_press(t_keycodes button, int x, int y, t_rt *rt);
+int		mouse_release(t_keycodes key, int x, int y, t_rt *rt);
+int		mouse_move(int x, int y, t_rt *rt);
 
-t_obj	*pick_object(struct s_rt *rt, int x, int y);
+t_obj	*pick_object(t_rt *rt, int x, int y);
 t_tuple	get_obj_position(t_obj *obj);
-void	move_object(struct s_rt *obj, int x, int y);
+void	move_object(t_rt *obj, int x, int y);
 
 #endif

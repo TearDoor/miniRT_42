@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 16:48:25 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/29 22:08:41 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/06 20:08:14 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ typedef enum e_keycodes
 	RIGHT = 65363,
 	SPC = 32,
 	BSPC = 65288,
+	TAB = 65289,
+	KEY_1 = 49,
+	KEY_2 = 50,
+	KEY_3 = 51,
 	MB_L = 1,
 	MB_R = 3,
 	MW_UP = 4,
