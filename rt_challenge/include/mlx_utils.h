@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 14:48:53 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/06 21:51:18 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/07 16:39:58 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ int		mouse_move(int x, int y, t_rt *rt);
 t_obj	*pick_object(t_rt *rt, int x, int y);
 t_tuple	get_obj_position(t_obj *obj);
 void	move_object(t_rt *obj, int x, int y);
+t_tuple	get_obj_position(t_obj *obj);
 
 #endif

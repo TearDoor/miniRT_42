@@ -1,5 +1,44 @@
 # miniRT
-My first RayTracer with MiniLibX
+My first Raytracer with MiniLibX
+
+## Usage
+#### before running for first time
+clone the submodules [libft](https://github.com/TearDoor/libft_42) and [minilibx](https://github.com/42Paris/minilibx-linux) before compiling for the first time
+```sh
+git submodule update --init --recursive
+```
+Then, cd into mlx_linux and run `./configure` or `make` to compile mlx
+
+#### How to run the program
+pass a scene description with .rt extension as the first argument to the `miniRT` program
+
+example
+`./miniRT rt_files/sample.rt`
+
+### Controls
+#### Keyboard
+* `esc` quits the program
+* Press 1 to control the camera (default)
+* Press 2 to control the lights
+* Press 3 to control the objects' rotation
+* `Backspace` resets the camera postion and angle to default
+
+#### Camera controls
+
+* `WASD` changes the camera angle to tilt up/down or pan left/right
+* `QE` rolls the camera
+* `arrow keys` to move the camera up/down/left/right without changing angle
+
+#### Light controls
+
+* `TAB` changes the current selected light
+* `WASD` moves the selected light up/down/left/right
+* `RF` moves the selected light front/back
+
+#### Object controls
+
+* `TAB` changes the current selected object
+* `WS, AD, QE` rotates the object around its X,Y, and Z axis 
 
 ## References
 [The Ray Tracer Challenge](http://raytracerchallenge.com) - Most of the methods of implementing a raytracer is based on this book

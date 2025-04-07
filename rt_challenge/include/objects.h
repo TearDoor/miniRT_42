@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:26:44 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/03 20:27:59 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/07 21:56:39 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ typedef enum e_obj_type
 
 typedef struct s_obj
 {
-	t_obj_type	type;
-	t_mat4		transform;
-	t_mat4		inverse_transform;
-	t_material	material;
-	void		(*local_intersect)(struct s_obj*, struct s_ray, t_list **);
-	t_tuple		(*local_normal_at)(t_tuple);
-	t_mapping	mapping_func;
+	t_obj_type		type;
+	t_mat4			transform;
+	t_mat4			inverse_transform;
+	t_material		material;
+	void			(*local_intersect)(struct s_obj*, struct s_ray, t_list **);
+	t_tuple			(*local_normal_at)(t_tuple);
+	t_map_funcptr	mapping_func;
 }	t_obj;
 
 t_obj		*new_obj(void);

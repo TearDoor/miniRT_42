@@ -27,7 +27,7 @@ LIBFT	= $(LFT_DIR)/libft.a
 
 CC		=	cc
 CFLAGS	=	-Iinclude -I$(UTIL_DIR) -I$(LFT_DIR)
-CFLAGS	+=	-Wall -Wextra
+CsFLAGS	+=	-Wall -Wextra
 RM		=	rm -rf
 
 all: $(NAME)

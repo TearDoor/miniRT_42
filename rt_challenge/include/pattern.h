@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 17:26:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/20 15:58:25 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/07 20:50:49 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 typedef struct s_obj		t_obj;
 typedef struct s_pattern	t_pattern;
 typedef struct s_point2d	t_point2d;
-typedef t_point2d			(*t_mapping)(t_tuple);
-typedef t_color				(*t_pattern_at)(const t_pattern *, t_tuple);
+
+typedef t_point2d			(*t_map_funcptr)(t_tuple);
+typedef t_color				(*t_pattern_funcptr)(const t_pattern *, t_tuple);
 typedef t_color				(*t_uv_pattern_at)(const t_pattern *, t_point2d);
 
 typedef enum e_patt_type
@@ -31,10 +32,10 @@ typedef enum e_patt_type
 
 typedef struct s_pattern
 {
-	t_mat4			trans_mat;
-	t_mat4			inver_trans_mat;
-	t_pattern_at	pattern_at;
-	t_mapping		mapping_func;
+	t_mat4				trans_mat;
+	t_mat4				inver_trans_mat;
+	t_pattern_funcptr	pattern_at;
+	t_map_funcptr		mapping_func;
 }	t_pattern;
 
 typedef struct s_stripe_pattern

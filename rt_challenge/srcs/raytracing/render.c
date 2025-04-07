@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 21:41:08 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/03 17:40:31 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/07 17:42:36 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	render_to_mlximg(t_camera *cam, t_world *w, t_imgdata *img)
 	j = 0;
 	while (j < cam->vsize)
 	{
-		printf("\rRemaining lines: %d", cam->vsize - j);
+		printf("\rRendering: remaining lines %d", cam->vsize - j);
 		i = 0;
 		while (i < cam->hsize)
 		{
@@ -57,7 +57,7 @@ void	render_to_mlximg(t_camera *cam, t_world *w, t_imgdata *img)
 		}
 		j++;
 	}
-	printf("\rRendering complete     \n");
+	printf("\n");
 }
 
 void	lowres_pixel_put(t_imgdata *img, int i, int j, t_color clr)
@@ -96,7 +96,6 @@ void	render_mlximg_lowres(t_camera *cam, t_world *w, t_imgdata *img)
 	j = 0;
 	while (j < cam->vsize / scale)
 	{
-		printf("\rRemaining lines: %d", cam->vsize - j);
 		i = 0;
 		while (i < cam->hsize / scale)
 		{
@@ -107,7 +106,6 @@ void	render_mlximg_lowres(t_camera *cam, t_world *w, t_imgdata *img)
 		}
 		j++;
 	}
-	printf("\rRendering complete     \n");
 }
 
 /*
