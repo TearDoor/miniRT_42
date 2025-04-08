@@ -1,8 +1,9 @@
 NAME	=	miniRT
 
-vpath %.c	srcs tests srcs/minilibx srcs/objects srcs/raytracing srcs/patterns srcs/ppm
+vpath %.c	srcs tests srcs/minilibx srcs/objects srcs/raytracing srcs/patterns srcs/parsing
 
 SRC		=	main.c simple_utils.c init_rt.c \
+			parse.c parse_shape.c parse_utils.c parse_utils2.c free.c \
 			color_at.c light.c lighting.c shadows.c \
 			rays.c intersect.c intersect_utils.c world.c camera.c render.c \
 			mlx_showimage.c keys.c  key_utils.c mouse_control.c mouse_utils.c

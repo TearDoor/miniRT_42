@@ -41,7 +41,7 @@ void	print_tuple(t_tuple tuple)
 		printf("Vector: ");
 	else
 		printf("Point: ");
-	printf("x:%.5f y:%.5f z:%.5f\n", tuple.x, tuple.y, tuple.z);
+	printf("x:%.5f y:%.5f z:%.5f", tuple.x, tuple.y, tuple.z);
 }
 
 int	tuple_equal(t_tuple t1, t_tuple t2)

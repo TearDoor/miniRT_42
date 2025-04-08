@@ -61,10 +61,7 @@ int	keypress(t_keycodes key, t_rt *rt)
 	if (key == ESC)
 		close_win(rt);
 	if (change_mode(key, &rt->controlling))
-	{
-		ctrl_funcs[rt->controlling](key, rt);
 		return (0);
-	}
 	if (ctrl_funcs[rt->controlling](key, rt))
 		return (0);
 	if (key == BSPC)
