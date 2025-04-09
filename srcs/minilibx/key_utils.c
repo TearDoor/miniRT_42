@@ -77,8 +77,6 @@ int	light_control(t_keycodes key, t_rt *rt)
 			selected_light_node = selected_light_node->next;
 	}
 	selected_light = selected_light_node->content;
-	printf("Current selected light position: ");
-	print_tuple(selected_light->position);
 	if (light_transform(key, selected_light))
 	{
 		mlx_showimg(rt);
