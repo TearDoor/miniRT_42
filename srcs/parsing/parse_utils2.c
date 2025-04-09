@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 04:15:46 by root              #+#    #+#             */
-/*   Updated: 2025/04/08 17:34:21 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/09 17:03:23 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ void	init_obj(t_parse_obj *obj, t_obj_id id, t_parse *rt)
 	}
 }
 
-t_light	*init_light(t_light *light, t_parse *rt)
+t_parse_light	*init_light(t_parse_light *light, t_parse *rt)
 {
-	t_light	*tmp;
+	t_parse_light	*tmp;
 
-	light = ft_calloc(sizeof(t_light), 1);
+	light = ft_calloc(sizeof(t_parse_light), 1);
+	light->next = NULL;
 	if (!(rt->light_list))
 		rt->light_list = light;
 	else

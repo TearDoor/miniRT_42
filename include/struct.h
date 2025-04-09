@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 07:02:40 by root              #+#    #+#             */
-/*   Updated: 2025/04/08 17:16:43 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:57:13 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,22 @@ typedef struct s_ambient
 	t_color		color;
 }	t_ambient;
 
-typedef struct s_camera
+typedef struct s_parse_camera
 {
 	t_obj_id	id;
 	t_tuple		coordinate;
 	t_tuple		vector;
 	int			fov;
-}	t_camera;
+}	t_parse_camera;
 
-typedef struct s_light
+typedef struct s_parse_light
 {
-	t_obj_id		id;
-	double			*coordinate;
-	double			ratio;
-	double			*color;
-	struct s_light	*next;
-}	t_light;
+	t_obj_id				id;
+	t_tuple					coordinate;
+	double					ratio;
+	t_color					color;
+	struct s_parse_light	*next;
+}	t_parse_light;
 
 typedef struct s_sphere
 {
@@ -104,9 +104,9 @@ typedef struct s_parse_obj
 typedef struct s_parse
 {
 	t_parse_obj		*obj_list;
-	t_light		*light_list;
-	t_ambient	ambient;
-	t_camera	camera;
+	t_parse_light	*light_list;
+	t_ambient		ambient;
+	t_parse_camera	camera;
 }	t_parse;
 
 #endif

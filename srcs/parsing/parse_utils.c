@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 06:34:58 by root              #+#    #+#             */
-/*   Updated: 2025/04/08 17:26:46 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:35:47 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ double	ft_atod(char *arg)
 		if (*arg >= '0' && *arg <= '9')
 		{
 			if (!d_arg.decimal_point)
-			d_arg.whole_num = d_arg.whole_num * 10 + (*arg - '0');
+				d_arg.whole_num = d_arg.whole_num * 10 + (*arg - '0');
 			else if (d_arg.decimal_point)
 			{
 				// printf("arg = %c\n", *arg); // debug
@@ -69,7 +69,7 @@ void	filter_line(char *line, char ***info)
 		if (line[i] == '\t' || line[i] == '\n')
 			line[i] = ' ';
 	// printf("line = (%s)\n", line);
-	*info = ft_split(line , ' ');
+	*info = ft_split(line, ' ');
 }
 
 int	print_error(char *msg)
@@ -82,7 +82,7 @@ int	print_error(char *msg)
 int	validate_file(t_parse *rt)
 {
 	if (!rt->ambient.id)
-    	return (print_error("Missing ambient lighting (A)"));
+		return (print_error("Missing ambient lighting (A)"));
 	if (!rt->camera.id)
 		return (print_error("Missing camera (C)"));
 	if (!rt->light_list)

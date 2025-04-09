@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 06:34:22 by root              #+#    #+#             */
-/*   Updated: 2025/03/31 11:33:56 by hni-xuan         ###   ########.fr       */
+/*   Updated: 2025/04/09 17:03:23 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	parse_file(int fd, t_parse *rt)
 
 int	store_info(char **info, t_parse *rt)
 {
-	printf("info[0] = %s\n", info[0]); // debug
+	printf("info[0]= %s\n", info[0]); // debug
 	if (!info || !info[0])
 		return (0);
 	else if (ft_strcmp(info[0], "A") == 0)
@@ -72,16 +72,17 @@ int	parse_ambient(char **info, t_parse *rt)
 	ambient.color.g = ft_atod(color[1]) / 255;
 	ambient.color.b = ft_atod(color[2]) / 255;
 	rt->ambient = ambient;
+	print_color(ambient.color);
 	free_arr(color);
 	return (0);
 }
 
 int	parse_camera(char **info, t_parse *rt)
 {
-	t_camera	camera;
-	char		**coords;
-	char		**vector;
-	int			i;
+	t_parse_camera	camera;
+	char			**coords;
+	char			**vector;
+	int				i;
 
 	i = -1;
 	if (rt->camera.id)
@@ -89,15 +90,18 @@ int	parse_camera(char **info, t_parse *rt)
 	camera.id = CAMERA;
 	coords = ft_split(info[1], ',');
 	vector = ft_split(info[2], ',');
+	printf("cam pos ");
 	while (++i < NUM_ARG_FIXED)
 	{
 		camera.coordinate.elems[i] = ft_atod(coords[i]);
 		camera.vector.elems[i] = ft_atod(vector[i]);
-		printf("camera vector = %f\n", camera.coordinate.elems[i]); //debug
 	}
-	camera.coordinate.w = 0;
-	camera.vector.w = 1;
-	printf("camera vector = %f\n", camera.vector.w); //debug
+	print_tuple(camera.coordinate);
+	// NOTE: point w = 1, vector w = 0;
+	camera.coordinate.w = 1;
+	camera.vector.w = 0;
+	printf("camera direction ");
+	print_tuple(camera.vector);
 	camera.fov = ft_atoi(info[3]);
 	// printf("fov = %d\n", camera.fov); //debug
 	rt->camera = camera;
@@ -108,26 +112,28 @@ int	parse_camera(char **info, t_parse *rt)
 
 int	parse_light(char **info, t_parse *rt)
 {
-	t_light	*light;
-	char	**color;
-	char	**coords;
-	int		i;
+	t_parse_light	*light;
+	char			**color;
+	char			**coords;
+	int				i;
 
 	i = -1;
+	light = NULL;
 	light = init_light(light, rt);
 	light->id = LIGHT;
-	light->coordinate = malloc(sizeof(double) * NUM_ARG_FIXED);
-	light->color = malloc(sizeof(double) * NUM_ARG_FIXED);
 	coords = ft_split(info[1], ',');
 	color = ft_split(info[3], ',');
 	light->ratio = ft_atod(info[2]);
 	while (++i < NUM_ARG_FIXED)
 	{
-		light->coordinate[i] = ft_atod(coords[i]);
-		printf("coords = %f\n", light->coordinate[i]);
-		light->color[i] = ft_atoi(color[i]) / 255;
+		light->coordinate.elems[i] = ft_atod(coords[i]);
 		// printf("color = %f\n", light->color[i]);
 	}
+	light->coordinate.w = 1;
+	print_tuple(light->coordinate);
+	light->color.r = ft_atod(color[0]) / 255;
+	light->color.g = ft_atod(color[1]) / 255;
+	light->color.b = ft_atod(color[2]) / 255;
 	free_arr(coords);
 	free_arr(color);
 	return (0);

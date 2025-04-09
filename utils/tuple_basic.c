@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 10:11:19 by tkok-kea          #+#    #+#             */
-/*   Updated: 2024/12/05 16:29:44 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:18:21 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	print_tuple(t_tuple tuple)
 		printf("Vector: ");
 	else
 		printf("Point: ");
-	printf("x:%.5f y:%.5f z:%.5f", tuple.x, tuple.y, tuple.z);
+	printf("x:%.5f y:%.5f z:%.5f\n", tuple.x, tuple.y, tuple.z);
 }
 
 int	tuple_equal(t_tuple t1, t_tuple t2)

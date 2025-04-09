@@ -6,13 +6,14 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:38:46 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/08 17:16:24 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:39:24 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "minirt.h"
 #include "mlx_utils.h"
+#include "parse.h"
 #include <stdlib.h>
 #include <fcntl.h>
 #include <stdio.h>
@@ -22,15 +23,20 @@ int	check_arg(int argc, char *argv[]);
 int	main(int argc, char *argv[])
 {
 	int		fd;
+	t_parse	*parse_data;
 	t_rt	rt;
 
 	fd = check_arg(argc, argv);
 	init_rt(argv[1], &rt);
-	if (close(fd) < 0)
+	parse_data = ft_calloc(1, sizeof(t_parse));
+	if (parse_file(fd, parse_data))
 	{
-		perror("close");
-		exit(1);
+		printf("Error\n");
+		free_shape(parse_data);
+		return (1);
 	}
+	load_camera(&rt.cam, &parse_data->camera);
+	load_world(&rt.world, parse_data);
 	leak_test(&rt);
 	ft_mlx_hooks(&rt);
 	mlx_showimg(&rt);

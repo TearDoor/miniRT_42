@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025-03-11 14:52:59 by root              #+#    #+#             */
-/*   Updated: 2025/04/08 17:33:01 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:57:33 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void	typecast_shape(t_parse_obj *tmp)
 
 void	free_shape(t_parse *rt)
 {
-	t_parse_obj	*obj;
-	t_parse_obj	*tmp;
-	t_light	*light;
-	t_light	*tmp_light;
+	t_parse_obj		*obj;
+	t_parse_obj		*tmp;
+	t_parse_light	*light;
+	t_parse_light	*tmp_light;
 
 	light = rt->light_list;
 	while (light)
@@ -46,8 +46,6 @@ void	free_shape(t_parse *rt)
 		tmp_light = light;
 		printf("free tmp_light = %d\n", tmp_light->id); //debug
 		light = light->next;
-		free(tmp_light->color);
-		free(tmp_light->coordinate);
 		free(tmp_light);
 	}
 	obj = rt->obj_list;
