@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:40:49 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/06 21:06:47 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/10 14:46:22 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ void		wall(void);
 void		scene_one(t_rt *rt);
 void		earth(t_rt *rt);
 void		leak_test(t_rt *rt);
+void		map_test(t_rt *rt);
 
 #endif

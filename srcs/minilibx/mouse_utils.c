@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 18:31:09 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/03 20:15:10 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/10 15:50:18 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "raytracing.h"
 #include "minirt.h"
 #include "utils.h"
-#include <math.h>
 
 t_obj	*pick_object(t_rt *rt, int x, int y)
 {
@@ -39,9 +38,11 @@ t_tuple	get_obj_position(t_obj *obj)
 {
 	t_tuple	pos;
 
-	pos = point(obj->transform.mat[0][3], \
-				obj->transform.mat[1][3], \
-				obj->transform.mat[2][3]);
+	pos = point(
+			obj->transform.mat[0][3],
+			obj->transform.mat[1][3],
+			obj->transform.mat[2][3]
+			);
 	return (pos);
 }
 
@@ -67,8 +68,8 @@ double	calculate_plane_intersection(t_camera cam, t_ray ray, t_tuple obj_pos)
 	plane_normal = get_cam_forward(cam);
 	plane_point = obj_pos;
 	denominator = vector_dot_product(ray.direction, plane_normal);
-	t = vector_dot_product(tuple_subtract(plane_point, ray.origin), \
-						plane_normal) / denominator;
+	t = vector_dot_product(tuple_subtract(plane_point, ray.origin),
+			plane_normal) / denominator;
 	return (t);
 }
 

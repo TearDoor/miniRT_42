@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:57:51 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/06 21:13:31 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/10 17:11:56 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ t_tuple	normal_at(t_obj *obj, t_tuple world_point)
 	local_normal = obj->local_normal_at(local_point);
 	if (obj->material.normalmap != NULL)
 	{
-		map_normal = get_normal_from_map(obj->material.normalmap, \
-											obj->mapping_func(local_point));
+		map_normal = get_normal_from_map(obj->material.normalmap,
+				obj->mapping_func(local_point));
 		local_normal = matrix_tuple_mult(tbn_matrix(local_normal), map_normal);
 		local_normal = vector_normalize(local_normal);
 	}
-	world_normal = matrix_tuple_mult(\
-				matrix_transpose(obj->inverse_transform), local_normal);
+	world_normal = matrix_tuple_mult(
+			matrix_transpose(obj->inverse_transform), local_normal);
 	world_normal.w = 0;
 	return (vector_normalize(world_normal));
 }

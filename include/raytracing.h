@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/05 22:45:02 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/10 15:46:37 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,8 @@ t_color		color_at(t_world w, t_ray r);
 int			is_shadowed(t_world w, t_tuple point, t_light *light);
 
 /* views and cameras */
-void		init_view_matrix(t_camera *cam, t_tuple from, t_tuple to, \
-								t_tuple up);
+void		init_view_matrix(t_camera *cam, t_tuple from, t_tuple to,
+				t_tuple up);
 t_ray		ray_for_pixel(t_camera cam, int px, int py);
 t_canvas	render(t_camera cam, t_world w);
 

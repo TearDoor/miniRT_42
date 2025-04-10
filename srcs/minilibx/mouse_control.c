@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 16:25:02 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/04 15:37:19 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/10 15:52:37 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,19 @@ int	mouse_release(t_keycodes button, int x, int y, t_rt *rt)
 {
 	(void)x;
 	(void)y;
-	if ((rt->mouse.status == LEFT_PRESSED && button == MB_L) || \
-		(rt->mouse.status == RIGHT_PRESSED && button == MB_R))
+	if ((rt->mouse.status == LEFT_PRESSED && button == MB_L)
+		|| (rt->mouse.status == RIGHT_PRESSED && button == MB_R))
 	{
 		rt->mouse.status = NOT_PRESSED;
 		rt->mouse.held_obj = NULL;
 		return (0);
 	}
 	if (button == MW_UP)
-		rt->cam.transform = matrix_mult(translate_mat(0, 0, 1), \
-							rt->cam.transform);
+		rt->cam.transform = matrix_mult(translate_mat(0, 0, 1),
+				rt->cam.transform);
 	else if (button == MW_DOWN)
-		rt->cam.transform = matrix_mult(translate_mat(0, 0, -1), \
-							rt->cam.transform);
+		rt->cam.transform = matrix_mult(translate_mat(0, 0, -1),
+				rt->cam.transform);
 	else
 		return (1);
 	mlx_showimg(rt);

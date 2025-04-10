@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 21:41:08 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/07 17:42:36 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/10 15:35:40 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ t_ray	ray_for_pixel(t_camera cam, int px, int py)
 
 	worldx = cam.half_width - ((double)px + 0.5) * cam.pix_size;
 	worldy = cam.half_height - ((double)py + 0.5) * cam.pix_size;
-	pixel = matrix_tuple_mult(cam.inverse_transform, \
-								point(worldx, worldy, -1));
+	pixel = matrix_tuple_mult(cam.inverse_transform, point(worldx, worldy, -1));
 	origin = matrix_tuple_mult(cam.inverse_transform, point(0, 0, 0));
 	direction = vector_normalize(tuple_subtract(pixel, origin));
 	return (ray(origin, direction));

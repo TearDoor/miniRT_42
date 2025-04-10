@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:33:42 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/24 20:22:07 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/10 15:51:31 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	cone_intersect(t_obj *cone, t_ray ray, t_list **list)
 	double	roots[2];
 
 	a = sq(ray.direction.x) - sq(ray.direction.y) + sq(ray.direction.z);
-	b = (2 * ray.origin.x * ray.direction.x) - \
-		(2 * ray.origin.y * ray.direction.y) + \
-		(2 * ray.origin.z * ray.direction.z);
+	b = (2 * ray.origin.x * ray.direction.x)
+		- (2 * ray.origin.y * ray.direction.y)
+		+ (2 * ray.origin.z * ray.direction.z);
 	c = sq(ray.origin.x) - sq(ray.origin.y) + sq(ray.origin.z);
 	if (equal(a, 0))
 	{

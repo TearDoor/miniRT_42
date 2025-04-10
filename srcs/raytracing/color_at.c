@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:22:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/09 17:08:58 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/10 15:43:57 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ static t_comps	prepare_computations(t_intersect *i, t_ray r)
 	}
 	else
 		comps.inside = 0;
-	comps.over_point = tuple_add(comps.point, \
-							tuple_scalar_mult(comps.normalv, EPSILON));
+	comps.over_point = tuple_add(comps.point,
+			tuple_scalar_mult(comps.normalv, EPSILON));
 	return (comps);
 }
 
