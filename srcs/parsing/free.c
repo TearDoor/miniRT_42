@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025-03-11 14:52:59 by root              #+#    #+#             */
-/*   Updated: 2025/04/10 17:21:19 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/11 14:47:32 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	typecast_shape(t_parse_obj *tmp)
 	if (tmp->id == PLANE)
 	{
 		free(tmp->shape.plane.coordinate);
-		free(tmp->shape.plane.color);
 		free(tmp->shape.plane.vector);
 	}
 	else if (tmp->id == CYLINDER)
@@ -29,7 +28,6 @@ void	typecast_shape(t_parse_obj *tmp)
 	else if (tmp->id == SPHERE)
 	{
 		free(tmp->shape.sphere.coordinate);
-		free(tmp->shape.sphere.color);
 	}
 }
 

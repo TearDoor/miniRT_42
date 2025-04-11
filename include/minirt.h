@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:40:49 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/10 14:46:22 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/10 18:30:36 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,11 @@ void		render_to_mlximg(t_camera *cam, t_world *w, t_imgdata *img);
 void		render_mlximg_lowres(t_camera *cam, t_world *w, t_imgdata *img);
 void		canvas_to_mlxwin(t_canvas *cvs, t_rt *mlx);
 
+//simple utils
 void		error_exit(char *msg);
+size_t		curr_time(void);
 
+//tests
 t_canvas	cannon(void);
 void		wall(void);
 void		scene_one(t_rt *rt);

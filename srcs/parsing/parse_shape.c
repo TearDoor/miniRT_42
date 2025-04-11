@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:14:47 by root              #+#    #+#             */
-/*   Updated: 2025/04/08 17:29:00 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/11 14:45:51 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	parse_plane(char **info, t_parse_obj *obj)
 	i = -1;
 	plane.coordinate = malloc(sizeof(double) * NUM_ARG_FIXED);
 	plane.vector = malloc(sizeof(double) * NUM_ARG_FIXED);
-	plane.color = malloc(sizeof(double) * NUM_ARG_FIXED);
 	coords = ft_split(info[1], ',');
 	vector = ft_split(info[2], ',');
 	color = ft_split(info[3], ',');
@@ -86,9 +85,10 @@ void	parse_plane(char **info, t_parse_obj *obj)
 		plane.coordinate[i] = ft_atod(coords[i]);
 		// printf("coords = %f\n", plane.coordinate[i]); // debug
 		plane.vector[i] = ft_atod(vector[i]);
-		plane.color[i] = ft_atod(color[i]) / 255;
-		printf("plane color = %f\n", plane.color[i]); // debug
 	}
+	plane.color.r = ft_atod(color[0]) / 255;
+	plane.color.g = ft_atod(color[1]) / 255;
+	plane.color.b = ft_atod(color[2]) / 255;
 	free_arr(coords);
 	free_arr(vector);
 	free_arr(color);
@@ -103,7 +103,6 @@ void	parse_sphere(char **info, t_parse_obj *obj)
 	int			i;
 
 	sphere.coordinate = malloc(sizeof(double) * NUM_ARG_FIXED);
-	sphere.color = malloc(sizeof(double) * NUM_ARG_FIXED);
 	i = -1;
 	coords = ft_split(info[1], ',');
 	color = ft_split(info[3], ',');
@@ -111,9 +110,10 @@ void	parse_sphere(char **info, t_parse_obj *obj)
 	{
 		sphere.coordinate[i] = ft_atod(coords[i]);
 		// printf("coords = %f\n", sphere.coordinate[i]); // debug
-		sphere.color[i] = ft_atoi(color[i]) / 255;
-		printf("sphere color = %f\n", sphere.color[i]); // debug
 	}
+	sphere.color.r = ft_atod(color[0]) / 255;
+	sphere.color.g = ft_atod(color[1]) / 255;
+	sphere.color.b = ft_atod(color[2]) / 255;
 	sphere.diameter = ft_atod(info[2]);
 	free_arr(coords);
 	free_arr(color);

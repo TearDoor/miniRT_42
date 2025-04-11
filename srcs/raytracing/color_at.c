@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:22:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/10 15:43:57 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/10 18:03:22 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_color	color_at(t_world w, t_ray r)
 	if (!hit)
 	{
 		ft_lstclear(&intersections, free);
-		return (color(0, 0, 0));
+		return (w.ambient);
 	}
 	comp = prepare_computations(hit, r);
 	ft_lstclear(&intersections, free);

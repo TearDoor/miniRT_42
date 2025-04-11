@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/10 15:46:37 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/10 18:23:48 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_world
 	t_list	*objs;
 	t_list	*lights;
 	size_t	obj_count;
+	t_color	ambient;
 }	t_world;
 
 typedef struct s_intersect
@@ -113,7 +114,5 @@ void		init_view_matrix(t_camera *cam, t_tuple from, t_tuple to,
 				t_tuple up);
 t_ray		ray_for_pixel(t_camera cam, int px, int py);
 t_canvas	render(t_camera cam, t_world w);
-
-size_t		curr_time(void);
 
 #endif

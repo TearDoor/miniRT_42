@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:28:10 by root              #+#    #+#             */
-/*   Updated: 2025/04/09 16:38:38 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/11 13:43:26 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # define NUM_ARG_FIXED 3
 # define RESET_COLOR "\033[0m"
 # define YELLOW "\033[33m"
+
+typedef t_obj	*(*t_obj_cons_ptr)(t_shape *);
 
 // utils
 int				print_error(char *msg);

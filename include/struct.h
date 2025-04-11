@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 07:02:40 by root              #+#    #+#             */
-/*   Updated: 2025/04/09 16:57:13 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/11 14:45:17 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_sphere
 	t_obj_id	id;
 	double		*coordinate;
 	double		diameter;
-	float		*color;
+	t_color		color;
 }	t_sphere;
 
 typedef struct s_plane
@@ -72,7 +72,7 @@ typedef struct s_plane
 	t_obj_id	id;
 	double		*coordinate;
 	double		*vector;
-	float		*color;
+	t_color		color;
 }	t_plane;
 
 typedef struct s_cylinder
