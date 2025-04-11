@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  #+#  +:+       +#+        */
+/*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-03-11 14:52:59 by root              #+#    #+#             */
-/*   Updated: 2025/04/11 14:47:32 by tkok-kea         ###   ########.fr       */
+/*   Created: 2025/03/11 14:52:59 by root              #+#    #+#             */
+/*   Updated: 2025/04/11 16:54:38 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "../../include/parse.h"
 
 void	typecast_shape(t_parse_obj *tmp)
 {

@@ -6,11 +6,11 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:14:47 by root              #+#    #+#             */
-/*   Updated: 2025/04/11 14:45:51 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/11 16:55:22 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "../../include/parse.h"
 
 static void	parse_cy(char **info, t_cylinder *cylinder)
 {

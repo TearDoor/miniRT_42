@@ -6,11 +6,11 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 06:34:58 by root              #+#    #+#             */
-/*   Updated: 2025/04/09 15:35:47 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/11 16:55:33 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "../../include/parse.h"
 
 static void	check_neg(char **arg, int *neg)
 {

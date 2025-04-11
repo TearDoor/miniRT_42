@@ -6,11 +6,11 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 04:15:46 by root              #+#    #+#             */
-/*   Updated: 2025/04/09 17:03:23 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/11 16:55:59 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "../../include/parse.h"
 
 void	init_obj(t_parse_obj *obj, t_obj_id id, t_parse *rt)
 {

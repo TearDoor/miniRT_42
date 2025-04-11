@@ -6,11 +6,11 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 06:34:22 by root              #+#    #+#             */
-/*   Updated: 2025/04/09 17:03:23 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/11 16:56:07 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "../../include/parse.h"
 
 int	parse_file(int fd, t_parse *rt)
 {
@@ -125,10 +125,7 @@ int	parse_light(char **info, t_parse *rt)
 	color = ft_split(info[3], ',');
 	light->ratio = ft_atod(info[2]);
 	while (++i < NUM_ARG_FIXED)
-	{
 		light->coordinate.elems[i] = ft_atod(coords[i]);
-		// printf("color = %f\n", light->color[i]);
-	}
 	light->coordinate.w = 1;
 	print_tuple(light->coordinate);
 	light->color.r = ft_atod(color[0]) / 255;

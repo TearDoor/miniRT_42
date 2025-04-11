@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   load_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:00:11 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/11 14:49:47 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/11 16:55:09 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
-#include "raytracing.h"
-#include "minirt.h"
+#include "../../include/parse.h"
+#include "../../include/raytracing.h"
+#include "../../include/minirt.h"
 
 double	deg_to_rad(int deg)
 {
