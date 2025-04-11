@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:38:46 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/11 14:48:25 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/11 22:37:50 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ int	main(int argc, char *argv[])
 		return (1);
 	}
 	load_camera(&rt.cam, &parse_data->camera);
-	printf("parse complete\n");
 	load_world(&rt.world, parse_data);
-	leak_test(&rt);
 	ft_mlx_hooks(&rt);
 	mlx_showimg(&rt);
 	mlx_loop(rt.mlx);

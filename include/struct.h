@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 07:02:40 by root              #+#    #+#             */
-/*   Updated: 2025/04/11 17:58:54 by hni-xuan         ###   ########.fr       */
+/*   Updated: 2025/04/11 22:03:19 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,6 @@ typedef struct s_cy_cone
 	double		height;
 	t_color		color;
 }	t_cy_cone;
-
-typedef struct s_cone
-{
-	t_obj_id	id;
-	
-}	t_cone;
 
 typedef union s_shape
 {

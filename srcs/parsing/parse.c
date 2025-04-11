@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 06:34:22 by root              #+#    #+#             */
-/*   Updated: 2025/04/11 17:49:28 by hni-xuan         ###   ########.fr       */
+/*   Updated: 2025/04/11 22:36:46 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	store_info(char **info, t_parse *rt)
 	else if (ft_strcmp(info[0], "sc") == 0)
 		return (parse_shape(SINGLE_CONE, info, rt));
 	else if (ft_strcmp(info[0], "dc") == 0)
-		return (parse_shape(DOUBLE_CONE, info, rt));	
+		return (parse_shape(DOUBLE_CONE, info, rt));
 	return (0);
 }
 

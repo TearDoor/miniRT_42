@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:46:25 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/05 17:51:53 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/11 21:09:00 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ void	parse_pixel_data(t_canvas *cvs, int fd)
 		i = 0;
 		while (values[i] && values[i + 1])
 		{
-			new_color = parse_color(values[i], values[i + 1], \
-									values[i + 2], color_scale);
+			new_color = parse_color(values[i], values[i + 1],
+					values[i + 2], color_scale);
 			store_color_to_canvas(cvs, new_color);
 			i += 3;
 		}

@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 18:31:09 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/10 15:50:18 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/11 22:06:48 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,5 @@ void	move_object(t_rt *rt, int x, int y)
 	t = calculate_plane_intersection(rt->cam, select_ray, curr_pos);
 	new_pos = position(select_ray, t);
 	delta = tuple_subtract(new_pos, curr_pos);
-	apply_transform(rt->mouse.held_obj, delta_vector_translate(delta));
+	apply_transform(rt->mouse.held_obj, tuple_translate(delta));
 }

@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:14:47 by root              #+#    #+#             */
-/*   Updated: 2025/04/11 17:59:36 by hni-xuan         ###   ########.fr       */
+/*   Updated: 2025/04/11 21:22:24 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ void	parse_sphere(char **info, t_parse_obj *obj)
 	while (++i < NUM_ARG_FIXED)
 	{
 		sphere.coordinate.elems[i] = ft_atod(coords[i]);
-		printf("coords = %f\n", sphere.coordinate.elems[i]); // debug
 	}
+	print_tuple(sphere.coordinate);
 	sphere.color.r = ft_atod(color[0]) / 255;
 	sphere.color.g = ft_atod(color[1]) / 255;
 	sphere.color.b = ft_atod(color[2]) / 255;

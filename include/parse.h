@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:28:10 by root              #+#    #+#             */
-/*   Updated: 2025/04/11 18:01:49 by hni-xuan         ###   ########.fr       */
+/*   Updated: 2025/04/11 22:01:50 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void			parse_cy_cone(char **info, t_parse_obj *obj);
 //laod into world and camera
 void			load_camera(t_camera *cam, t_parse_camera *parse);
 void			load_world(t_world *world, t_parse *parse);
+void			load_objects(t_world *world, t_parse_obj *p_obj_list);
 
 void			parse_cy(char **info, t_cy_cone *cy_cone);
 void			init_obj(t_parse_obj *obj, t_obj_id id, t_parse *rt);

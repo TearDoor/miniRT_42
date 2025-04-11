@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 20:48:24 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/03 20:14:31 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/11 22:11:06 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,12 @@ t_mat4	translate_mat(double x, double y, double z)
 	);
 }
 
-t_mat4	delta_vector_translate(t_tuple delta)
+/*
+ * transform based on the xyz of a vector
+ * used for mouse movement (translate with delta vector)
+ * and parsing coordinates (translate with coordinate point)
+*/
+t_mat4	tuple_translate(t_tuple delta)
 {
 	return (translate_mat(delta.x, delta.y, delta.z));
 }
@@ -39,6 +44,11 @@ t_mat4	scaling_mat(double x, double y, double z)
 			{0, 0, 0, 1},
 		}}
 	);
+}
+
+t_mat4	equal_scaling_mat(double f)
+{
+	return (scaling_mat(f, f, f));
 }
 
 t_mat4	shearing_mat(t_shear params)
