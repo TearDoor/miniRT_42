@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 04:15:46 by root              #+#    #+#             */
-/*   Updated: 2025/04/11 16:55:59 by hni-xuan         ###   ########.fr       */
+/*   Updated: 2025/04/11 18:00:09 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,12 @@ int	ft_arrlen(char **arr)
 	while (arr[i])
 		i++;
 	return (i);
+}
+
+void	parse_cy(char **info, t_cy_cone *cylinder)
+{
+	// printf("info[3] = %s\n", info[3]); //debug
+	// printf("info[4] = %s\n", info[4]); //debug
+	cylinder->diameter = ft_atod(info[3]);
+	cylinder->height = ft_atod(info[4]);
 }

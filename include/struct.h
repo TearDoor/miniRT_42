@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 07:02:40 by root              #+#    #+#             */
-/*   Updated: 2025/04/11 14:45:17 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/11 17:58:54 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ typedef enum e_obj_id
 	LIGHT,
 	PLANE,
 	CYLINDER,
-	SPHERE
+	SPHERE,
+	SINGLE_CONE,
+	DOUBLE_CONE
 }	t_obj_id;
 
 typedef struct s_atod
@@ -62,7 +64,7 @@ typedef struct s_parse_light
 typedef struct s_sphere
 {
 	t_obj_id	id;
-	double		*coordinate;
+	t_tuple		coordinate;
 	double		diameter;
 	t_color		color;
 }	t_sphere;
@@ -70,25 +72,31 @@ typedef struct s_sphere
 typedef struct s_plane
 {
 	t_obj_id	id;
-	double		*coordinate;
-	double		*vector;
+	t_tuple		coordinate;
+	t_tuple		vector;
 	t_color		color;
 }	t_plane;
 
-typedef struct s_cylinder
+typedef struct s_cy_cone
 {
 	t_obj_id	id;
-	double		*coordinate;
-	double		*vector;
+	t_tuple		coordinate;
+	t_tuple		vector;
 	double		diameter;
 	double		height;
-	float		*color;
-}	t_cylinder;
+	t_color		color;
+}	t_cy_cone;
+
+typedef struct s_cone
+{
+	t_obj_id	id;
+	
+}	t_cone;
 
 typedef union s_shape
 {
 	t_sphere	sphere;
-	t_cylinder	cylinder;
+	t_cy_cone	cy_cone;
 	t_plane		plane;
 }	t_shape;
 

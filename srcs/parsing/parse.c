@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 06:34:22 by root              #+#    #+#             */
-/*   Updated: 2025/04/11 16:56:07 by hni-xuan         ###   ########.fr       */
+/*   Updated: 2025/04/11 17:49:28 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@ int	store_info(char **info, t_parse *rt)
 		return (parse_shape(SPHERE, info, rt));
 	else if (ft_strcmp(info[0], "cy") == 0)
 		return (parse_shape(CYLINDER, info, rt));
+	else if (ft_strcmp(info[0], "sc") == 0)
+		return (parse_shape(SINGLE_CONE, info, rt));
+	else if (ft_strcmp(info[0], "dc") == 0)
+		return (parse_shape(DOUBLE_CONE, info, rt));	
 	return (0);
 }
 
@@ -69,6 +73,7 @@ int	parse_ambient(char **info, t_parse *rt)
 	ambient.ratio = ft_atod(info[1]);
 	color = ft_split(info[2], ',');
 	ambient.color.r = ft_atod(color[0]) / 255;
+	printf("ambient color b = %f\n", ambient.color.b);
 	ambient.color.g = ft_atod(color[1]) / 255;
 	ambient.color.b = ft_atod(color[2]) / 255;
 	rt->ambient = ambient;

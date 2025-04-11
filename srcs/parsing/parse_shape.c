@@ -6,64 +6,57 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:14:47 by root              #+#    #+#             */
-/*   Updated: 2025/04/11 16:55:22 by hni-xuan         ###   ########.fr       */
+/*   Updated: 2025/04/11 17:59:36 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/parse.h"
 
-static void	parse_cy(char **info, t_cylinder *cylinder)
-{
-	// printf("info[3] = %s\n", info[3]); //debug
-	// printf("info[4] = %s\n", info[4]); //debug
-	cylinder->diameter = ft_atod(info[3]);
-	cylinder->height = ft_atod(info[4]);
-}
-
 int	parse_shape(t_obj_id id, char **info, t_parse *rt)
 {
 	t_parse_obj	*obj;
 
+	printf("check_id = %d\n", id);
 	obj = ft_calloc(sizeof(t_parse_obj), 1);
 	init_obj(obj, id, rt);
 	init_txr_bump(obj, info);
 	printf("bump = %s\n", obj->bump_file); //debug
 	if (id == PLANE)
 		parse_plane(info, obj);
-	else if (id == CYLINDER)
-		parse_cylinder(info, obj);
+	else if (id == CYLINDER || id == SINGLE_CONE || id == DOUBLE_CONE)
+		parse_cy_cone(info, obj);
 	else if (id == SPHERE)
 		parse_sphere(info, obj);
 	return (0);
 }
 
-void	parse_cylinder(char **info, t_parse_obj *obj)
+void	parse_cy_cone(char **info, t_parse_obj *obj)
 {
-	t_cylinder	cylinder;
+	t_cy_cone	cy_cone;
 	char		**coords;
 	char		**vector;
 	char		**color;
 	int			i;
 
 	i = -1;
-	cylinder.coordinate = malloc(sizeof(double) * NUM_ARG_FIXED);
-	cylinder.vector = malloc(sizeof(double) * NUM_ARG_FIXED);
-	cylinder.color = malloc(sizeof(double) * NUM_ARG_FIXED);
 	coords = ft_split(info[1], ',');
 	vector = ft_split(info[2], ',');
 	color = ft_split(info[5], ',');
 	while (++i < NUM_ARG_FIXED)
 	{
-		cylinder.coordinate[i] = ft_atod(coords[i]);
-		cylinder.vector[i] = ft_atod(vector[i]);
-		cylinder.color[i] = ft_atod(color[i]) / 255;
-		printf("cylinder color = %f\n", cylinder.color[i]); // debug
+		cy_cone.coordinate.elems[i] = ft_atod(coords[i]);
+		cy_cone.vector.elems[i] = ft_atod(vector[i]);
+		// printf("color = %s\n", color[i]); // debug
 	}
-	parse_cy(info, &cylinder);
+	parse_cy(info, &cy_cone);
+	cy_cone.color.r = ft_atod(color[0]) / 255;
+	cy_cone.color.g = ft_atod(color[1]) / 255;
+	cy_cone.color.b = ft_atod(color[2]) / 255;
+	printf("cy_cone color b = %f\n", cy_cone.color.b); // debug
 	free_arr(coords);
 	free_arr(vector);
 	free_arr(color);
-	obj->shape.cylinder = cylinder;
+	obj->shape.cy_cone = cy_cone;
 }
 
 void	parse_plane(char **info, t_parse_obj *obj)
@@ -75,16 +68,14 @@ void	parse_plane(char **info, t_parse_obj *obj)
 	int		i;
 
 	i = -1;
-	plane.coordinate = malloc(sizeof(double) * NUM_ARG_FIXED);
-	plane.vector = malloc(sizeof(double) * NUM_ARG_FIXED);
 	coords = ft_split(info[1], ',');
 	vector = ft_split(info[2], ',');
 	color = ft_split(info[3], ',');
 	while (++i < NUM_ARG_FIXED)
 	{
-		plane.coordinate[i] = ft_atod(coords[i]);
+		plane.coordinate.elems[i] = ft_atod(coords[i]);
 		// printf("coords = %f\n", plane.coordinate[i]); // debug
-		plane.vector[i] = ft_atod(vector[i]);
+		plane.vector.elems[i] = ft_atod(vector[i]);
 	}
 	plane.color.r = ft_atod(color[0]) / 255;
 	plane.color.g = ft_atod(color[1]) / 255;
@@ -102,14 +93,13 @@ void	parse_sphere(char **info, t_parse_obj *obj)
 	char		**color;
 	int			i;
 
-	sphere.coordinate = malloc(sizeof(double) * NUM_ARG_FIXED);
 	i = -1;
 	coords = ft_split(info[1], ',');
 	color = ft_split(info[3], ',');
 	while (++i < NUM_ARG_FIXED)
 	{
-		sphere.coordinate[i] = ft_atod(coords[i]);
-		// printf("coords = %f\n", sphere.coordinate[i]); // debug
+		sphere.coordinate.elems[i] = ft_atod(coords[i]);
+		printf("coords = %f\n", sphere.coordinate.elems[i]); // debug
 	}
 	sphere.color.r = ft_atod(color[0]) / 255;
 	sphere.color.g = ft_atod(color[1]) / 255;

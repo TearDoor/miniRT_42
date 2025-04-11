@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:28:10 by root              #+#    #+#             */
-/*   Updated: 2025/04/11 13:43:26 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/11 18:01:49 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int				validate_file(t_parse *rt);
 
 // free
 void			free_arr(char **arr);
-void			typecast_shape(t_parse_obj *tmp);
 void			free_shape(t_parse *rt);
 
 // parsing
@@ -46,12 +45,13 @@ int				parse_camera(char **info, t_parse *rt);
 int				parse_light(char **info, t_parse *rt);
 void			parse_plane(char **info, t_parse_obj *obj);
 void			parse_sphere(char **info, t_parse_obj *obj);
-void			parse_cylinder(char **info, t_parse_obj *obj);
+void			parse_cy_cone(char **info, t_parse_obj *obj);
 
 //laod into world and camera
 void			load_camera(t_camera *cam, t_parse_camera *parse);
 void			load_world(t_world *world, t_parse *parse);
 
+void			parse_cy(char **info, t_cy_cone *cy_cone);
 void			init_obj(t_parse_obj *obj, t_obj_id id, t_parse *rt);
 t_parse_light	*init_light(t_parse_light *light, t_parse *rt);
 void			init_txr_bump(t_parse_obj *obj, char **info);

@@ -6,30 +6,11 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 14:52:59 by root              #+#    #+#             */
-/*   Updated: 2025/04/11 16:54:38 by hni-xuan         ###   ########.fr       */
+/*   Updated: 2025/04/11 17:38:42 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/parse.h"
-
-void	typecast_shape(t_parse_obj *tmp)
-{
-	if (tmp->id == PLANE)
-	{
-		free(tmp->shape.plane.coordinate);
-		free(tmp->shape.plane.vector);
-	}
-	else if (tmp->id == CYLINDER)
-	{
-		free(tmp->shape.cylinder.coordinate);
-		free(tmp->shape.cylinder.vector);
-		free(tmp->shape.cylinder.color);
-	}
-	else if (tmp->id == SPHERE)
-	{
-		free(tmp->shape.sphere.coordinate);
-	}
-}
 
 void	free_shape(t_parse *rt)
 {
@@ -51,7 +32,7 @@ void	free_shape(t_parse *rt)
 	{
 		tmp = obj;
 		obj = obj->next;
-		typecast_shape(tmp);
+		printf("free id = %d\n", tmp->id);
 		free(tmp);
 	}
 	free(rt);
