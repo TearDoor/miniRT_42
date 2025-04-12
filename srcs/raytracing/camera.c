@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 17:41:12 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/27 21:54:39 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:27:52 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_mat4	view_transform(t_tuple from, t_tuple to, t_tuple up)
 	t_mat4	orientation;
 
 	forward = vector_normalize(tuple_subtract(to, from));
-	if (fabs(vector_dot_product(forward, up)) >= 0.99)
+	if (fabs(vector_dot_product(forward, up)) >= (1 - EPSILON))
 		up = vector(1, 0, 0);
 	left = vector_cross_product(forward, vector_normalize(up));
 	true_up = vector_cross_product(left, forward);

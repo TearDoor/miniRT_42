@@ -49,6 +49,8 @@ Explaination of dot products and cross products - [BetterExplained](https://bett
 
 Mouse dragging movement calculation based on another miniRT submission - [ricardoreves](https://github.com/ricardoreves/42-minirt/blob/main/srcs/ui/mouse.c)
 
+Rotation matrix to align two vectors formula - [link](https://gist.github.com/kevinmoran/b45980723e53edeb8a5a43c49f134724)
+
 ## Texture Files
 The earth texture/bump map files used are downloaded from [this website](http://planetpixelemporium.com/earth.html) (see "color map")
 

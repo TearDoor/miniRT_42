@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:26:44 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/11 22:30:32 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/12 22:44:32 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "matrix.h"
 # include "pattern.h"
 
-# define CYL_MAX 1
-# define CYL_MIN -1
+# define CYL_MAX 0.5
+# define CYL_MIN -0.5
 # define CONE_MAX 1
 # define CONE_MIN 0
 

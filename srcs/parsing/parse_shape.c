@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:14:47 by root              #+#    #+#             */
-/*   Updated: 2025/04/11 21:22:24 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/12 17:02:52 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void	parse_cy_cone(char **info, t_parse_obj *obj)
 		// printf("color = %s\n", color[i]); // debug
 	}
 	parse_cy(info, &cy_cone);
+	cy_cone.vector = vector_normalize(cy_cone.vector);
 	cy_cone.color.r = ft_atod(color[0]) / 255;
 	cy_cone.color.g = ft_atod(color[1]) / 255;
 	cy_cone.color.b = ft_atod(color[2]) / 255;
-	printf("cy_cone color b = %f\n", cy_cone.color.b); // debug
 	free_arr(coords);
 	free_arr(vector);
 	free_arr(color);
@@ -77,6 +77,7 @@ void	parse_plane(char **info, t_parse_obj *obj)
 		// printf("coords = %f\n", plane.coordinate[i]); // debug
 		plane.vector.elems[i] = ft_atod(vector[i]);
 	}
+	plane.vector = vector_normalize(plane.vector);
 	plane.color.r = ft_atod(color[0]) / 255;
 	plane.color.g = ft_atod(color[1]) / 255;
 	plane.color.b = ft_atod(color[2]) / 255;

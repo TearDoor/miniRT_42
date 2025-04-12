@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:35:21 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/11 22:06:47 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:50:25 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ t_mat4	shearing_mat(t_shear params);
 t_mat4	rotation_x(double radians);
 t_mat4	rotation_y(double radians);
 t_mat4	rotation_z(double radians);
+t_mat4	rot_vector_to_vector(t_tuple v1, t_tuple v2);
 
 #endif

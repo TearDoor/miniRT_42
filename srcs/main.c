@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:38:46 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/11 22:37:50 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/12 23:29:28 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	main(int argc, char *argv[])
 	t_rt	rt;
 
 	fd = check_arg(argc, argv);
-	init_rt(argv[1], &rt);
 	parse_data = ft_calloc(1, sizeof(t_parse));
 	if (parse_file(fd, parse_data))
 	{
@@ -35,6 +34,7 @@ int	main(int argc, char *argv[])
 		free_shape(parse_data);
 		return (1);
 	}
+	init_rt(argv[1], &rt);
 	load_camera(&rt.cam, &parse_data->camera);
 	load_world(&rt.world, parse_data);
 	ft_mlx_hooks(&rt);
