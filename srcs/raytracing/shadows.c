@@ -26,7 +26,7 @@ int	is_shadowed(t_world w, t_tuple point, t_light *light)
 	shadow_ray = ray(point, direction);
 	xs = intersect_world(shadow_ray, w);
 	hit = checkhit(xs);
-	if (hit && hit->t < distance)
+	if (hit && hit->t < distance - EPSILON)
 	{
 		ft_lstclear(&xs, free);
 		return (1);
