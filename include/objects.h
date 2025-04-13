@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:26:44 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/12 22:44:32 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/13 19:37:13 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define CYL_MIN -0.5
 # define CONE_MAX 1
 # define CONE_MIN 0
+# define DCONE_MIN -1
 
 struct	s_ray;
 
@@ -41,6 +42,7 @@ typedef enum e_obj_type
 	OBJ_PLANE,
 	OBJ_CYL,
 	OBJ_CONE,
+	OBJ_DCONE,
 }	t_obj_type;
 
 typedef struct s_obj

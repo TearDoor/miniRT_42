@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 22:00:38 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/12 23:31:16 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/13 19:49:07 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ void	align_orientation(t_obj *obj, t_tuple orient)
 t_obj	*load_sphere(t_shape *p_sphere)
 {
 	t_obj	*new_sphere;
+	double	radius;
 
 	new_sphere = sphere();
 	new_sphere->material.color = p_sphere->sphere.color;
-	apply_transform(new_sphere,
-		equal_scaling_mat(p_sphere->sphere.diameter / 2));
+	radius = p_sphere->sphere.diameter / 2;
+	apply_transform(new_sphere, equal_scaling_mat(radius));
 	apply_transform(new_sphere, tuple_translate(p_sphere->sphere.coordinate));
 	return (new_sphere);
 }
@@ -40,20 +41,36 @@ t_obj	*load_plane(t_shape *p_plane)
 	return (new_plane);
 }
 
+t_obj	*load_cyl_cone(t_obj *obj, t_shape *p_cyl_cone)
+{
+	double	radius;
+	double	height;
+
+	obj->material.color = p_cyl_cone->cy_cone.color;
+	radius = p_cyl_cone->cy_cone.diameter / 2;
+	height = p_cyl_cone->cy_cone.height;
+	apply_transform(obj, scaling_mat(radius, height, radius));
+	align_orientation(obj, p_cyl_cone->cy_cone.vector);
+	apply_transform(obj, tuple_translate(p_cyl_cone->cy_cone.coordinate));
+	return (obj);
+}
+
 t_obj	*load_cyl(t_shape *p_cyl)
 {
 	t_obj	*new_cyl;
-	double	diameter;
-	double	height;
 
 	new_cyl = cylinder();
-	new_cyl->material.color = p_cyl->cy_cone.color;
-	diameter = p_cyl->cy_cone.diameter;
-	height = p_cyl->cy_cone.height;
-	apply_transform(new_cyl, scaling_mat(diameter / 2, height, diameter / 2));
-	align_orientation(new_cyl, p_cyl->cy_cone.vector);
-	apply_transform(new_cyl, tuple_translate(p_cyl->cy_cone.coordinate));
+	new_cyl = load_cyl_cone(new_cyl, p_cyl);
 	return (new_cyl);
+}
+
+t_obj	*load_cone(t_shape *p_cone)
+{
+	t_obj	*new_cone;
+
+	new_cone = cone();
+	new_cone = load_cyl_cone(new_cone, p_cone);
+	return (new_cone);
 }
 
 void	load_objects(t_world *world, t_parse_obj *p_obj_list)
@@ -64,14 +81,14 @@ void	load_objects(t_world *world, t_parse_obj *p_obj_list)
 	[SPHERE] = load_sphere,
 	[PLANE] = load_plane,
 	[CYLINDER] = load_cyl,
+	[SINGLE_CONE] = load_cone,
+	[DOUBLE_CONE] = load_cone,
 	};
 
 	ptr = p_obj_list;
 	while (ptr)
 	{
 		new_obj = obj_cons[ptr->id](&ptr->shape);
-		print_matrix(new_obj->transform);
-		print_color(new_obj->material.color);
 		add_obj_to_world(world, new_obj);
 		ptr = ptr->next;
 	}
