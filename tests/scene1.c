@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 10:48:35 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/12 23:11:51 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/13 20:56:18 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	scene_one(t_rt *rt)
 	add_obj_to_world(&w, s3);
 	rt->cam = new_camera(WIDTH, HEIGHT, M_PI / 3);
 	init_view_matrix(&rt->cam, point(0, 1.5, -5), point(0, 0, 0), vector(0, 1, 0));
+	w.ambient = color(0.1, 0.1, 0.1);
 	rt->world = w;
 	printf("count = %ld\n", w.obj_count);
 }

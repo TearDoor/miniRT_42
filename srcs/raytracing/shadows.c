@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 17:44:56 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/13 17:00:33 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/13 21:17:39 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	is_shadowed(t_world w, t_tuple point, t_light *light)
 	shadow_ray = ray(point, direction);
 	xs = intersect_world(shadow_ray, w);
 	hit = checkhit(xs);
-	if (hit && hit->t < distance + EPSILON)
+	if (hit && hit->t < distance - EPSILON)
 	{
 		ft_lstclear(&xs, free);
 		return (1);
