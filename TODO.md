@@ -3,8 +3,8 @@ by tkok-kea and hni-xuan
 
 ### Mandatory
 - [ ] Parsing .rt files
-    - [ ] Making a atof function (how to parse floating point numbers)
-- [ ] Controlling the rotation and position of objects while program is runnning
+    - [x] Making a atof function (how to parse floating point numbers)
+- [x] Controlling the rotation and position of objects while program is runnning
     - [x] camera translation and rotation
     - [x] translation through mouse movement
     - [x] object rotation

@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 14:48:53 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/14 17:51:57 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/14 20:12:14 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "linux_keys.h"
 # include "matrix.h"
 
-//how much distance moved while dragging to register one move
-# define STEPS_PER_WIDTH 15
+//how many times to update when dragging an object from one end to the other
+# define STEPS_PER_WIDTH 20
 
 typedef struct s_rt		t_rt;
 typedef struct s_obj	t_obj;

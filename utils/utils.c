@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 10:15:27 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/13 22:22:52 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/14 19:01:25 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@ int	equal(double a, double b)
 		return (0);
 }
 
+/*
+ * Quadratic roots calculated differently than usual
+ * x = (-b ± sqrt(discriminant)) / 2a
+ * to avoid catastrophic cancellation 
+ * (loss of significance due to subtraction of two close values)
+ * 1. calculate one of the roots where b doesn't cause subtraction normally
+ * 2. use Vieta's formula (root1*root2 = c / a) to calculate the other
+ */
 int	solve_quadratic(double a, double b, double c, double roots[2])
 {
 	double	discriminant;
