@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 16:25:02 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/14 13:05:23 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/14 20:07:13 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,7 @@ int	mouse_press(t_keycodes button, int x, int y, t_rt *rt)
 		rt->mouse.status = LEFT_PRESSED;
 		rt->mouse.held_obj = pick_object(rt, x, y);
 		if (rt->mouse.held_obj)
-		{
 			rt->low_res = 1;
-		}
 	}
 	else if (button == MB_R)
 		rt->mouse.status = RIGHT_PRESSED;
