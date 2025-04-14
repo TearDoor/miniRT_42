@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:28:10 by root              #+#    #+#             */
-/*   Updated: 2025/04/11 18:01:49 by hni-xuan         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:54:01 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int				store_info(char **info, t_parse *rt);
 int				parse_ambient(char **info, t_parse *rt);
 int				parse_camera(char **info, t_parse *rt);
 int				parse_light(char **info, t_parse *rt);
-void			parse_plane(char **info, t_parse_obj *obj);
-void			parse_sphere(char **info, t_parse_obj *obj);
-void			parse_cy_cone(char **info, t_parse_obj *obj);
+int			parse_plane(char **info, t_parse_obj *obj);
+int			parse_sphere(char **info, t_parse_obj *obj);
+int			parse_cy_cone(char **info, t_parse_obj *obj);
 
 //laod into world and camera
 void			load_camera(t_camera *cam, t_parse_camera *parse);
@@ -56,5 +56,9 @@ void			init_obj(t_parse_obj *obj, t_obj_id id, t_parse *rt);
 t_parse_light	*init_light(t_parse_light *light, t_parse *rt);
 void			init_txr_bump(t_parse_obj *obj, char **info);
 int				ft_arrlen(char **arr);
+
+int				check_coords_vector(char **info, char ***vector, char ***coords);
+int				check_color(char **info, char ***color, char ***coords, char ***vector);
+int				check_arrlen(char **arr, int length);
 
 #endif
