@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:33:42 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/13 21:27:39 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/14 13:03:25 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	cone_intersect(t_obj *cone, t_ray ray, t_list **list)
 		if (equal(b, 0))
 			return ;
 		else
-			add_to_intersections(-c / (2 * b), cone, list);
+			if (check_bounds(-c / (2 * b), ray, CONE_MAX, get_cone_min(cone->type)))
+				add_to_intersections(-c / (2 * b), cone, list);
 	}
 	else if (!solve_quadratic(a, b, c, roots))
 		return ;
@@ -78,12 +79,14 @@ t_tuple	dcone_normal_at(t_tuple point)
 	double	y;
 	double	dist;
 
-	dist = pow(point.x, 2) + pow(point.z, 2);
+	dist = sq(point.x) + sq(point.z);
 	if (dist < 1 && point.y >= CONE_MAX - EPSILON)
 		return (vector(0, 1, 0));
 	else if (dist < 1 && point.y <= DCONE_MIN + EPSILON)
 		return (vector(0, -1, 0));
-	y = sqrt(sq(point.x) + sq(point.z));
+	if (equal(dist, 0))
+		return (vector(0, 0, 1));
+	y = sqrt(dist);
 	if (point.y > 0)
 		y = y * -1;
 	return (vector(point.x, y, point.z));

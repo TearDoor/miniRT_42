@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 21:42:04 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/12 22:12:10 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/14 13:21:18 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ static int	light_transform(t_keycodes key, t_light *light)
 		++light->position.z;
 	else if (key == KEY_F)
 		--light->position.z;
+	else if (key == KEY_Q)
+		light->on *= -1;
 	else
 		return (0);
 	return (1);

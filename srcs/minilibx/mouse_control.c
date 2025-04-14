@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 16:25:02 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/12 16:59:29 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/14 13:05:23 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	mouse_release(t_keycodes button, int x, int y, t_rt *rt)
 		rt->mouse.held_obj = NULL;
 		return (0);
 	}
+	rt->low_res = 1;
 	if (button == MW_UP)
 		rt->cam.transform = matrix_mult(translate_mat(0, 0, 5),
 				rt->cam.transform);
