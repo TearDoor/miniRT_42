@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 21:42:04 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/14 13:21:18 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/14 15:59:47 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int	light_control(t_keycodes key, t_rt *rt)
 	selected_light = selected_light_node->content;
 	if (light_transform(key, selected_light))
 	{
+		rt->low_res = 1;
 		mlx_showimg(rt);
 		return (1);
 	}
@@ -133,9 +134,13 @@ int	obj_control(t_keycodes key, t_rt *rt)
 		else
 			selected_obj_node = selected_obj_node->next;
 	}
-	selected_obj = selected_obj_node->content;
+	if (rt->mouse.held_obj)
+		selected_obj = rt->mouse.held_obj;
+	else
+		selected_obj = selected_obj_node->content;
 	if (obj_transform(key, selected_obj))
 	{
+		rt->low_res = 1;
 		mlx_showimg(rt);
 		return (1);
 	}

@@ -16,6 +16,10 @@ example
 `./miniRT rt_files/sample.rt`
 
 ### Controls
+#### Mouse
+* Scrolling mouse wheel moves the camera forwards and backwards
+* Objects can be pressed and held to move up/down/left/right based on camera angle
+
 #### Keyboard
 * `esc` quits the program
 * Press 1 to control the camera (default)
@@ -32,12 +36,14 @@ example
 #### Light controls
 
 * `TAB` changes the current selected light
+* `Q` to toggle the light on/off
 * `WASD` moves the selected light up/down/left/right
 * `RF` moves the selected light front/back
 
 #### Object controls
 
 * `TAB` changes the current selected object
+* If currently mouse is holding object, the object will be the controlled object
 * `WS, AD, QE` rotates the object around its X,Y, and Z axis 
 
 ## References

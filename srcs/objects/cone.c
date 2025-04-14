@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:33:42 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/14 13:03:25 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/14 17:58:13 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ void	cone_intersect(t_obj *cone, t_ray ray, t_list **list)
 		if (equal(b, 0))
 			return ;
 		else
-			if (check_bounds(-c / (2 * b), ray, CONE_MAX, get_cone_min(cone->type)))
-				add_to_intersections(-c / (2 * b), cone, list);
+			add_to_intersections(-c / (2 * b), cone, list);
 	}
 	else if (!solve_quadratic(a, b, c, roots))
 		return ;
