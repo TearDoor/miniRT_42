@@ -16,26 +16,24 @@ int	parse_file(int fd, t_parse *rt)
 {
 	char	*line;
 	char	**info;
-	int		invalid;
 
 	line = get_next_line(fd);
-	invalid = 0;
-	while (line && !invalid)
+	while (line && !rt->invalid)
 	{
 		filter_line(line, &info);
 		if (store_info(info, rt))
-			invalid = 1;
+			rt->invalid = 1;
 		free(line);
 		free_arr(info);
 		line = get_next_line(fd);
 	}
 	if (line)
 		free(line);
-	if (!invalid && validate_file(rt))
-		invalid = 1;
+	if (!rt->invalid && validate_file(rt))
+		rt->invalid = 1;
 	close(fd);
 	// printf("invalid = %d\n", invalid); // debug
-	return (invalid);
+	return (rt->invalid);
 }
 
 int	store_info(char **info, t_parse *rt)
@@ -72,16 +70,16 @@ int	parse_ambient(char **info, t_parse *rt)
 	if (rt->ambient.id)
 		return (print_error("Too many A argument"));
 	ambient.id = AMBIENT;
-	ambient.ratio = ft_atod(info[1]);
+	ambient.ratio = ft_atod(info[1], rt);
 	color = ft_split(info[2], ',');
 	if (ft_arrlen(color) != 3)
 	{
 		free_arr(color);
 		return (print_error("Invalid arguments for Ambient (color)"));
 	}
-	ambient.color.r = ft_atod(color[0]) / 255;
-	ambient.color.g = ft_atod(color[1]) / 255;
-	ambient.color.b = ft_atod(color[2]) / 255;
+	ambient.color.r = ft_atod(color[0], rt) / 255;
+	ambient.color.g = ft_atod(color[1], rt) / 255;
+	ambient.color.b = ft_atod(color[2], rt) / 255;
 	printf("ambient color b = %f\n", ambient.color.b); // debug
 	rt->ambient = ambient;
 	print_color(ambient.color); // debug
@@ -106,8 +104,8 @@ int	parse_camera(char **info, t_parse *rt)
 		return (print_error("Invalid arg for Camera (vector or coords)"));
 	while (++i < NUM_ARG_FIXED)
 	{
-		camera.coordinate.elems[i] = ft_atod(coords[i]);
-		camera.vector.elems[i] = ft_atod(vector[i]);
+		camera.coordinate.elems[i] = ft_atod(coords[i], rt);
+		camera.vector.elems[i] = ft_atod(vector[i], rt);
 	}
 	camera.coordinate.w = 1;
 	camera.vector.w = 0;
@@ -134,14 +132,14 @@ int	parse_light(char **info, t_parse *rt)
 	light->id = LIGHT;
 	if (check_coords_vector(info, NULL, &coords) || check_color(info, &color, &coords, NULL))
 		return (print_error("Invalid arguments for Light (coords or color)"));
-	light->ratio = ft_atod(info[2]);
+	light->ratio = ft_atod(info[2], rt);
 	while (++i < NUM_ARG_FIXED)
-		light->coordinate.elems[i] = ft_atod(coords[i]);
+		light->coordinate.elems[i] = ft_atod(coords[i], rt);
 	light->coordinate.w = 1;
 	print_tuple(light->coordinate); // debug
-	light->color.r = ft_atod(color[0]) / 255;
-	light->color.g = ft_atod(color[1]) / 255;
-	light->color.b = ft_atod(color[2]) / 255;
+	light->color.r = ft_atod(color[0], rt) / 255;
+	light->color.g = ft_atod(color[1], rt) / 255;
+	light->color.b = ft_atod(color[2], rt) / 255;
 	free_arr(coords);
 	free_arr(color);
 	return (0);

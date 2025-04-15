@@ -106,6 +106,7 @@ typedef struct s_parse
 	t_parse_light	*light_list;
 	t_ambient		ambient;
 	t_parse_camera	camera;
+	int				invalid;
 }	t_parse;
 
 #endif

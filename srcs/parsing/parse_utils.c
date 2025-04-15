@@ -12,20 +12,33 @@
 
 #include "../../include/parse.h"
 
-static void	check_neg(char **arg, int *neg)
+static void	parse_decimal_part(char *arg, t_atod *d_arg, t_parse *rt)
 {
-	while (**arg == ' ' || (**arg >= 9 && **arg <= 13))
-		(*arg)++;
-	if (**arg == '-')
+	while (*arg)
 	{
-		*neg = -1;
-		(*arg)++;
+		if (*arg >= '0' && *arg <= '9')
+		{
+			if (!d_arg->decimal_point)
+				d_arg->whole_num = d_arg->whole_num * 10 + (*arg - '0');
+			else
+			{
+				d_arg->fraction += (double)(*arg - '0') / d_arg->divisor;
+				d_arg->divisor *= 10;
+			}
+		}
+		else if (*arg == '.')
+		{
+			if (d_arg->decimal_point)
+				rt->invalid = 1;
+			d_arg->decimal_point = 1;
+		}
+		else
+			rt->invalid = 1;
+		arg++;
 	}
-	else if (**arg == '+')
-		(*arg)++;
 }
 
-double	ft_atod(char *arg)
+double	ft_atod(char *arg, t_parse *rt)
 {
 	t_atod	d_arg;
 
@@ -34,26 +47,17 @@ double	ft_atod(char *arg)
 	d_arg.divisor = 10;
 	d_arg.fraction = 0;
 	d_arg.decimal_point = 0;
-	check_neg(&arg, &d_arg.neg);
-	while (*arg)
+	while (*arg == ' ' || (*arg >= 9 && *arg <= 13))
+		arg++;
+	if (*arg == '-')
 	{
-		if (*arg >= '0' && *arg <= '9')
-		{
-			if (!d_arg.decimal_point)
-				d_arg.whole_num = d_arg.whole_num * 10 + (*arg - '0');
-			else if (d_arg.decimal_point)
-			{
-				// printf("arg = %c\n", *arg); // debug
-				d_arg.fraction += (double)(*arg - '0') / d_arg.divisor;
-				// printf("fraction = %f\n", d_arg.fraction); //debug
-				d_arg.divisor *= 10;
-			}
-		}
-		else if (*arg == '.')
-			d_arg.decimal_point = 1;
+		d_arg.neg = -1;
 		arg++;
 	}
-	// printf("result = %f\n", neg * (whole_num + fraction)); // debug
+	else if (*arg == '+')
+		arg++;
+	parse_decimal_part(arg, &d_arg, rt);
+	printf("result = %f\n", d_arg.neg * (d_arg.whole_num + d_arg.fraction)); // debug
 	return (d_arg.neg * (d_arg.whole_num + d_arg.fraction));
 }
 

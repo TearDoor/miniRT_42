@@ -29,7 +29,7 @@ typedef t_obj	*(*t_obj_cons_ptr)(t_shape *);
 // utils
 int				print_error(char *msg);
 void			filter_line(char *line, char ***info);
-double			ft_atod(char *arg);
+double			ft_atod(char *arg, t_parse *rt);
 int				validate_file(t_parse *rt);
 
 // free
@@ -43,9 +43,9 @@ int				store_info(char **info, t_parse *rt);
 int				parse_ambient(char **info, t_parse *rt);
 int				parse_camera(char **info, t_parse *rt);
 int				parse_light(char **info, t_parse *rt);
-int			parse_plane(char **info, t_parse_obj *obj);
-int			parse_sphere(char **info, t_parse_obj *obj);
-int			parse_cy_cone(char **info, t_parse_obj *obj);
+int				parse_plane(char **info, t_parse_obj *obj, t_parse *rt);
+int				parse_sphere(char **info, t_parse_obj *obj, t_parse *rt);
+int				parse_cy_cone(char **info, t_parse_obj *obj, t_parse *rt);
 
 //laod into world and camera
 void			load_camera(t_camera *cam, t_parse_camera *parse);
@@ -59,7 +59,6 @@ t_obj			*load_cone(t_shape *p_cone);
 t_obj			*load_dcone(t_shape *p_cone);
 t_obj			*load_cyl_cone(t_obj *obj, t_shape *p_cyl_cone);
 
-void			parse_cy(char **info, t_cy_cone *cy_cone);
 void			init_obj(t_parse_obj *obj, t_obj_id id, t_parse *rt);
 t_parse_light	*init_light(t_parse_light *light, t_parse *rt);
 void			init_txr_bump(t_parse_obj *obj, char **info);

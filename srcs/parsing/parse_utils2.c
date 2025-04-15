@@ -87,11 +87,3 @@ int	ft_arrlen(char **arr)
 		i++;
 	return (i);
 }
-
-void	parse_cy(char **info, t_cy_cone *cylinder)
-{
-	// printf("info[3] = %s\n", info[3]); //debug
-	// printf("info[4] = %s\n", info[4]); //debug
-	cylinder->diameter = ft_atod(info[3]);
-	cylinder->height = ft_atod(info[4]);
-}
