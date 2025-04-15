@@ -51,11 +51,20 @@ int			parse_cy_cone(char **info, t_parse_obj *obj);
 void			load_camera(t_camera *cam, t_parse_camera *parse);
 void			load_world(t_world *world, t_parse *parse);
 
+//load objects
+t_obj			*load_sphere(t_shape *p_sphere);
+t_obj			*load_plane(t_shape *p_plane);
+t_obj			*load_cyl(t_shape *p_cyl);
+t_obj			*load_cone(t_shape *p_cone);
+t_obj			*load_dcone(t_shape *p_cone);
+t_obj			*load_cyl_cone(t_obj *obj, t_shape *p_cyl_cone);
+
 void			parse_cy(char **info, t_cy_cone *cy_cone);
 void			init_obj(t_parse_obj *obj, t_obj_id id, t_parse *rt);
 t_parse_light	*init_light(t_parse_light *light, t_parse *rt);
 void			init_txr_bump(t_parse_obj *obj, char **info);
 int				ft_arrlen(char **arr);
+void			align_orientation(t_obj *obj, t_tuple orient);
 
 int				check_coords_vector(char **info, char ***vector, char ***coords);
 int				check_color(char **info, char ***color, char ***coords, char ***vector);

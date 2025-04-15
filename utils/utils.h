@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 10:16:09 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/02 18:38:21 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/12 22:04:29 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ t_canvas	canvas_from_ppm(char *filename);
 
 int			equal(double a, double b);
 int			solve_quadratic(double a, double b, double c, double roots[2]);
-void		lstadd_sorted(t_list **lst, t_list *nw, \
-							int (*cmp)(t_list *, t_list *));
+void		lstadd_sorted(t_list **lst, t_list *nw,
+				int (*cmp)(t_list *, t_list *));
 double		sq(double x);
 void		free_split(void **split);
 

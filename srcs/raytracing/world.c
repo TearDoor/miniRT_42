@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 17:23:10 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/05 21:50:00 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/13 21:03:52 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_world	new_world(void)
 
 	new.objs = NULL;
 	new.lights = NULL;
+	new.ambient = color(0, 0, 0);
 	new.obj_count = 0;
 	return (new);
 }

@@ -58,7 +58,7 @@ int	store_info(char **info, t_parse *rt)
 	else if (ft_strcmp(info[0], "sc") == 0)
 		return (parse_shape(SINGLE_CONE, info, rt));
 	else if (ft_strcmp(info[0], "dc") == 0)
-		return (parse_shape(DOUBLE_CONE, info, rt));	
+		return (parse_shape(DOUBLE_CONE, info, rt));
 	return (0);
 }
 

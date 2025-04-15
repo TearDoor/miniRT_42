@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:26:44 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/07 21:56:39 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/13 21:27:14 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 # include "matrix.h"
 # include "pattern.h"
 
-# define CYL_MAX 1
-# define CYL_MIN -1
+# define CYL_MAX 0.5
+# define CYL_MIN -0.5
 # define CONE_MAX 1
 # define CONE_MIN 0
+# define DCONE_MIN -1
 
 struct	s_ray;
 
@@ -41,6 +42,7 @@ typedef enum e_obj_type
 	OBJ_PLANE,
 	OBJ_CYL,
 	OBJ_CONE,
+	OBJ_DCONE,
 }	t_obj_type;
 
 typedef struct s_obj
@@ -59,10 +61,13 @@ t_obj		*sphere(void);
 t_obj		*plane(void);
 t_obj		*cylinder(void);
 t_obj		*cone(void);
+t_tuple		dcone_normal_at(t_tuple point);
 
 /* utils */
 void		apply_transform(t_obj *o, t_mat4 m);
 int			check_bounds(double t, struct s_ray ray, double max, double min);
 void		free_object(void *ptr);
+double		get_cone_min(t_obj_type type);
+int			cone_check_caps(struct s_ray ray, double t, double y);
 
 #endif

@@ -3,11 +3,12 @@ NAME	=	miniRT
 vpath %.c	srcs tests srcs/minilibx srcs/objects srcs/raytracing srcs/patterns srcs/parsing
 
 SRC		=	main.c simple_utils.c init_rt.c \
-			parse.c parse_shape.c parse_utils.c parse_utils2.c free.c load_parse.c checking.c\
+			parse.c parse_shape.c parse_utils.c parse_utils2.c free.c load_parse.c \
+			load_objects.c load_objects_utils.c checking.c\
 			color_at.c light.c lighting.c shadows.c \
 			rays.c intersect.c intersect_utils.c world.c camera.c render.c \
 			mlx_showimage.c keys.c  key_utils.c mouse_control.c mouse_utils.c
-SRC		+=	objects.c sphere.c plane.c cylinder.c cone.c 
+SRC		+=	objects.c sphere.c plane.c cylinder.c cone.c cone_utils.c
 SRC		+=	pattern.c stripes.c gradient.c rings.c checkers.c \
 			uv_pattern.c uv_checkers.c uv_image.c normalmap.c \
 			mappings.c
@@ -27,18 +28,18 @@ LFT_DIR	= ./libft_42
 LIBFT	= $(LFT_DIR)/libft.a
 
 CC		=	cc
-CFLAGS	=	-Iinclude -I$(UTIL_DIR) -I$(LFT_DIR) -fsanitize=address -g3
-CsFLAGS	+=	-Wall -Wextra 
+CFLAGS	=	-I./include -I$(UTIL_DIR) -I$(LFT_DIR)
+CsFLAGS	+=	-Wall -Wextra
 RM		=	rm -rf
 
 all: $(NAME)
 
 $(NAME): $(OBJS) | $(LIBUTIL) $(LIBFT)
 			@$(CC) $(CFLAGS) -o $@ $^ $(LIBUTIL) $(LIBFT) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
-			@echo "miniRT compiled             "
+			@echo "miniRT compiled                 "
 
 $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
-			@printf "\rCompiling %s            " $@
+			@printf "\rCompiling %s                " $@
 			@$(CC) $(CFLAGS) -c $< -o $@ -Imlx_linux
 			@printf "\r"
 

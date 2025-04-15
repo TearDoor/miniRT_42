@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:57:51 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/10 17:11:56 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/14 13:10:54 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ t_light	*point_light(t_color color, t_tuple position, double ratio)
 	new_light = malloc(sizeof(t_light));
 	new_light->intensity = color_scalar_mult(color, ratio);
 	new_light->position = position;
+	new_light->on = 1;
 	return (new_light);
 }
 

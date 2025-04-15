@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/10 18:23:48 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/14 13:09:54 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_light
 {
 	t_color	intensity;
 	t_tuple	position;
+	int		on;
 }	t_light;
 
 typedef struct s_lightparams

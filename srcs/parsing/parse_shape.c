@@ -48,10 +48,10 @@ int	parse_cy_cone(char **info, t_parse_obj *obj)
 		// printf("color = %s\n", color[i]); // debug
 	}
 	parse_cy(info, &cy_cone);
+	cy_cone.vector = vector_normalize(cy_cone.vector);
 	cy_cone.color.r = ft_atod(color[0]) / 255;
 	cy_cone.color.g = ft_atod(color[1]) / 255;
 	cy_cone.color.b = ft_atod(color[2]) / 255;
-	printf("cy_cone color b = %f\n", cy_cone.color.b); // debug
 	free_arr(coords);
 	free_arr(vector);
 	free_arr(color);
@@ -76,6 +76,7 @@ int	parse_plane(char **info, t_parse_obj *obj)
 		// printf("coords = %f\n", plane.coordinate[i]); // debug
 		plane.vector.elems[i] = ft_atod(vector[i]);
 	}
+	plane.vector = vector_normalize(plane.vector);
 	plane.color.r = ft_atod(color[0]) / 255;
 	plane.color.g = ft_atod(color[1]) / 255;
 	plane.color.b = ft_atod(color[2]) / 255;
@@ -99,8 +100,8 @@ int	parse_sphere(char **info, t_parse_obj *obj)
 	while (++i < NUM_ARG_FIXED)
 	{
 		sphere.coordinate.elems[i] = ft_atod(coords[i]);
-		printf("coords = %f\n", sphere.coordinate.elems[i]); // debug
 	}
+	print_tuple(sphere.coordinate);
 	sphere.color.r = ft_atod(color[0]) / 255;
 	sphere.color.g = ft_atod(color[1]) / 255;
 	sphere.color.b = ft_atod(color[2]) / 255;

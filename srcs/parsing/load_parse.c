@@ -6,17 +6,17 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:00:11 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/11 16:55:09 by hni-xuan         ###   ########.fr       */
+/*   Updated: 2025/04/13 21:08:22 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/parse.h"
-#include "../../include/raytracing.h"
-#include "../../include/minirt.h"
+#include "parse.h"
+#include "raytracing.h"
+#include "minirt.h"
 
 double	deg_to_rad(int deg)
 {
-	return ((double)deg * (M_PI / 180));
+	return ((double)deg * (M_PI / 180.0));
 }
 
 void	load_camera(t_camera *cam, t_parse_camera *p_cam)
@@ -28,7 +28,7 @@ void	load_camera(t_camera *cam, t_parse_camera *p_cam)
 	init_view_matrix(cam, p_cam->coordinate, to_point, vector(0, 1, 0));
 }
 
-void	load_lights(t_world *world, t_parse_light *p_light)
+static void	load_lights(t_world *world, t_parse_light *p_light)
 {
 	t_parse_light	*ptr;
 	t_light			*new_light;
@@ -42,26 +42,23 @@ void	load_lights(t_world *world, t_parse_light *p_light)
 	}
 }
 
-t_obj	*load_sphere(t_shape *p_sphere)
-{
-	t_obj	*new_sphere;
-
-	new_sphere = plane();
-	new_sphere->material.color = p_sphere->plane.color;
-	return (new_sphere);
-}
-
-void	load_objects(t_world *world, t_parse_obj *p_obj_list)
+static void	load_objects(t_world *world, t_parse_obj *p_obj_list)
 {
 	t_parse_obj				*ptr;
 	t_obj					*new_obj;
 	const t_obj_cons_ptr	obj_cons[] = {
 	[SPHERE] = load_sphere,
+	[PLANE] = load_plane,
+	[CYLINDER] = load_cyl,
+	[SINGLE_CONE] = load_cone,
+	[DOUBLE_CONE] = load_dcone,
 	};
 
 	ptr = p_obj_list;
 	while (ptr)
 	{
+		new_obj = obj_cons[ptr->id](&ptr->shape);
+		add_obj_to_world(world, new_obj);
 		ptr = ptr->next;
 	}
 }

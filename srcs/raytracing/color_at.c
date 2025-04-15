@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:22:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/10 18:03:22 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/14 14:22:14 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_color	shade_hit(t_world world, t_comps comp)
 	t_list			*lights_node;
 	t_light			*light;
 
-	final_color = color(0, 0, 0);
+	final_color = color_mult(world.ambient, comp.obj->material.color);
 	params.m = comp.obj->material;
 	params.obj = comp.obj;
 	params.point = comp.over_point;
@@ -30,9 +30,12 @@ static t_color	shade_hit(t_world world, t_comps comp)
 	while (lights_node)
 	{
 		light = (t_light *)lights_node->content;
-		params.in_shadow = is_shadowed(world, comp.over_point, light);
-		params.light = *light;
-		final_color = color_add(final_color, lighting(params));
+		if (light->on == 1)
+		{
+			params.in_shadow = is_shadowed(world, comp.over_point, light);
+			params.light = *light;
+			final_color = color_add(final_color, lighting(params));
+		}
 		lights_node = lights_node->next;
 	}
 	return (final_color);

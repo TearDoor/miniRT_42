@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:35:21 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/03 20:14:46 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:50:25 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,13 @@ t_mat4	matrix_invert(t_mat4 mat);
 double	determinant3(double mat3[3][3]);
 
 t_mat4	translate_mat(double x, double y, double z);
-t_mat4	delta_vector_translate(t_tuple delta);
+t_mat4	tuple_translate(t_tuple delta);
 t_mat4	scaling_mat(double x, double y, double z);
+t_mat4	equal_scaling_mat(double f);
 t_mat4	shearing_mat(t_shear params);
 t_mat4	rotation_x(double radians);
 t_mat4	rotation_y(double radians);
 t_mat4	rotation_z(double radians);
+t_mat4	rot_vector_to_vector(t_tuple v1, t_tuple v2);
 
 #endif

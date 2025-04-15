@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 10:48:35 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/05 22:50:36 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/13 20:56:18 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	scene_one(t_rt *rt)
 	t_obj	*celling;
 
 	w = new_world();
-	t_light *light1 = point_light(color(1, 1, 1), point(-5, 2, -5), 1);
+	t_light *light1 = point_light(color(1, 1, 1), point(0, 2, 0), 1);
 	add_light_to_world(&w, light1);
 	cone1 = cone();
 	apply_transform(cone1, rotation_z(M_PI / 4));
@@ -81,7 +81,8 @@ void	scene_one(t_rt *rt)
 	s3->material.specular = 0.3;
 	add_obj_to_world(&w, s3);
 	rt->cam = new_camera(WIDTH, HEIGHT, M_PI / 3);
-	init_view_matrix(&rt->cam, point(0, 1.5, -5), point(0, 1, 0), vector(0, 1, 0));
+	init_view_matrix(&rt->cam, point(0, 1.5, -5), point(0, 0, 0), vector(0, 1, 0));
+	w.ambient = color(0.1, 0.1, 0.1);
 	rt->world = w;
 	printf("count = %ld\n", w.obj_count);
 }

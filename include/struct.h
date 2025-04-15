@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 07:02:40 by root              #+#    #+#             */
-/*   Updated: 2025/04/11 17:58:54 by hni-xuan         ###   ########.fr       */
+/*   Updated: 2025/04/13 19:48:54 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ typedef struct s_parse_light
 
 typedef struct s_sphere
 {
-	t_obj_id	id;
 	t_tuple		coordinate;
 	double		diameter;
 	t_color		color;
@@ -71,7 +70,6 @@ typedef struct s_sphere
 
 typedef struct s_plane
 {
-	t_obj_id	id;
 	t_tuple		coordinate;
 	t_tuple		vector;
 	t_color		color;
@@ -79,19 +77,12 @@ typedef struct s_plane
 
 typedef struct s_cy_cone
 {
-	t_obj_id	id;
 	t_tuple		coordinate;
 	t_tuple		vector;
 	double		diameter;
 	double		height;
 	t_color		color;
 }	t_cy_cone;
-
-typedef struct s_cone
-{
-	t_obj_id	id;
-	
-}	t_cone;
 
 typedef union s_shape
 {
