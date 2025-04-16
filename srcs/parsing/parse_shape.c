@@ -6,51 +6,11 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:14:47 by root              #+#    #+#             */
-/*   Updated: 2025/04/16 17:26:32 by hni-xuan         ###   ########.fr       */
+/*   Updated: 2025/04/16 17:39:26 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/parse.h"
-
-int	check_bump_file(t_parse_obj *obj)
-{
-	if (obj->bump_file)
-	{
-		if (access(obj->bump_file, F_OK) == -1)
-		{
-			print_error("Bump file not found");
-			return (1);
-		}
-		if (ft_strlen(obj->bump_file) < 4
-			|| ft_strcmp(obj->bump_file
-				+ ft_strlen(obj->bump_file) - 4, ".ppm") != 0)
-		{
-			print_error("Bump file must be .ppm");
-			return (1);
-		}
-	}
-	return (0);
-}
-
-int	check_texture_file(t_parse_obj *obj)
-{
-	if (obj->texture_file)
-	{
-		if (access(obj->texture_file, F_OK) == -1)
-		{
-			print_error("Texture file not found");
-			return (1);
-		}
-		if (ft_strlen(obj->texture_file) < 4
-			|| ft_strcmp(obj->texture_file
-				+ ft_strlen(obj->texture_file) - 4, ".ppm") != 0)
-		{
-			print_error("Texture file must be .ppm");
-			return (1);
-		}
-	}
-	return (0);
-}
 
 int	parse_shape(t_obj_id id, char **info, t_parse *rt)
 {

@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:28:10 by root              #+#    #+#             */
-/*   Updated: 2025/04/14 16:54:01 by hni-xuan         ###   ########.fr       */
+/*   Updated: 2025/04/16 17:40:14 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,7 @@ void			align_orientation(t_obj *obj, t_tuple orient);
 int				check_coords_vector(char **info, char ***vector, char ***coords);
 int				check_color(char **info, char ***color, char ***coords, char ***vector);
 int				check_arrlen(char **arr, int length);
+int				check_texture_file(t_parse_obj *obj);
+int				check_bump_file(t_parse_obj *obj);
 
 #endif
