@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 04:15:46 by root              #+#    #+#             */
-/*   Updated: 2025/04/11 18:00:09 by hni-xuan         ###   ########.fr       */
+/*   Updated: 2025/04/16 17:30:30 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	init_txr_bump(t_parse_obj *obj, char **info)
 				obj->bump_file = info[5] + 5;
 		}
 	}
-	else if (obj->id == CYLINDER)
+	else if (obj->id == CYLINDER || obj->id == SINGLE_CONE || obj->id == DOUBLE_CONE)
 	{
 		if (ft_arrlen(info) > 6)
 		{
@@ -73,9 +73,10 @@ void	init_txr_bump(t_parse_obj *obj, char **info)
 				obj->bump_file = info[6] + 5;
 			if (ft_strncmp(info[7], "bump", 4) == 0)
 				obj->bump_file = info[7] + 5;
-			// printf("info[5] = %s\n", obj->bump_file); //debug
 		}
 	}
+	printf("texture = %s\n", obj->texture_file); // debug
+	printf("bump = %s\n", obj->bump_file); // debug
 }
 
 int	ft_arrlen(char **arr)
@@ -86,12 +87,4 @@ int	ft_arrlen(char **arr)
 	while (arr[i])
 		i++;
 	return (i);
-}
-
-void	parse_cy(char **info, t_cy_cone *cylinder)
-{
-	// printf("info[3] = %s\n", info[3]); //debug
-	// printf("info[4] = %s\n", info[4]); //debug
-	cylinder->diameter = ft_atod(info[3]);
-	cylinder->height = ft_atod(info[4]);
 }

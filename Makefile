@@ -28,7 +28,7 @@ LFT_DIR	= ./libft_42
 LIBFT	= $(LFT_DIR)/libft.a
 
 CC		=	cc
-CFLAGS	=	-I./include -I$(UTIL_DIR) -I$(LFT_DIR)
+CFLAGS	=	-I./include -I$(UTIL_DIR) -I$(LFT_DIR) 
 CsFLAGS	+=	-Wall -Wextra
 RM		=	rm -rf
 
