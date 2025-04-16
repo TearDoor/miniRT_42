@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 14:52:59 by root              #+#    #+#             */
-/*   Updated: 2025/04/11 17:38:42 by hni-xuan         ###   ########.fr       */
+/*   Updated: 2025/04/16 14:59:24 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	free_shape(t_parse *rt)
 	while (light)
 	{
 		tmp_light = light;
-		printf("free tmp_light = %d\n", tmp_light->id); //debug
+		// printf("free tmp_light = %d\n", tmp_light->id); //debug
 		light = light->next;
 		free(tmp_light);
 	}
@@ -32,7 +32,7 @@ void	free_shape(t_parse *rt)
 	{
 		tmp = obj;
 		obj = obj->next;
-		printf("free id = %d\n", tmp->id);
+		// printf("free id = %d\n", tmp->id); // debug
 		free(tmp);
 	}
 	free(rt);

@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 06:34:22 by root              #+#    #+#             */
-/*   Updated: 2025/04/14 16:39:29 by hni-xuan         ###   ########.fr       */
+/*   Updated: 2025/04/16 14:59:50 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ int	parse_file(int fd, t_parse *rt)
 		free(line);
 	if (!rt->invalid && validate_file(rt))
 		rt->invalid = 1;
+	if (rt->decimal_error)
+	{
+		rt->invalid = 1;
+		print_error("Invalid decimal number");
+	}
 	close(fd);
 	// printf("invalid = %d\n", invalid); // debug
 	return (rt->invalid);
@@ -45,7 +50,7 @@ int	store_info(char **info, t_parse *rt)
 		return (parse_ambient(info, rt));
 	else if (ft_strcmp(info[0], "C") == 0)
 		return (parse_camera(info, rt));
-	else if (ft_strcmp(info[0], "L") == 0)
+	else if (ft_strcmp(info[0], "L") == 0 || ft_strcmp(info[0], "l") == 0)
 		return (parse_light(info, rt));
 	else if (ft_strcmp(info[0], "pl") == 0)
 		return (parse_shape(PLANE, info, rt));
@@ -57,6 +62,8 @@ int	store_info(char **info, t_parse *rt)
 		return (parse_shape(SINGLE_CONE, info, rt));
 	else if (ft_strcmp(info[0], "dc") == 0)
 		return (parse_shape(DOUBLE_CONE, info, rt));
+	else
+		return (print_error("Invalid Identifier"));
 	return (0);
 }
 

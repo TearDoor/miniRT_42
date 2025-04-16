@@ -6,11 +6,51 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:14:47 by root              #+#    #+#             */
-/*   Updated: 2025/04/14 16:56:21 by hni-xuan         ###   ########.fr       */
+/*   Updated: 2025/04/16 17:26:32 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/parse.h"
+
+int	check_bump_file(t_parse_obj *obj)
+{
+	if (obj->bump_file)
+	{
+		if (access(obj->bump_file, F_OK) == -1)
+		{
+			print_error("Bump file not found");
+			return (1);
+		}
+		if (ft_strlen(obj->bump_file) < 4
+			|| ft_strcmp(obj->bump_file
+				+ ft_strlen(obj->bump_file) - 4, ".ppm") != 0)
+		{
+			print_error("Bump file must be .ppm");
+			return (1);
+		}
+	}
+	return (0);
+}
+
+int	check_texture_file(t_parse_obj *obj)
+{
+	if (obj->texture_file)
+	{
+		if (access(obj->texture_file, F_OK) == -1)
+		{
+			print_error("Texture file not found");
+			return (1);
+		}
+		if (ft_strlen(obj->texture_file) < 4
+			|| ft_strcmp(obj->texture_file
+				+ ft_strlen(obj->texture_file) - 4, ".ppm") != 0)
+		{
+			print_error("Texture file must be .ppm");
+			return (1);
+		}
+	}
+	return (0);
+}
 
 int	parse_shape(t_obj_id id, char **info, t_parse *rt)
 {
@@ -19,14 +59,15 @@ int	parse_shape(t_obj_id id, char **info, t_parse *rt)
 	printf("check_id = %d\n", id);
 	obj = ft_calloc(sizeof(t_parse_obj), 1);
 	init_obj(obj, id, rt);
-	printf("bump = %s\n", obj->bump_file); //debug
-	if (id == PLANE)
-	return (parse_plane(info, obj, rt));
-	else if (id == CYLINDER || id == SINGLE_CONE || id == DOUBLE_CONE)
-	return (parse_cy_cone(info, obj, rt));
-	else if (id == SPHERE)
-	return (parse_sphere(info, obj, rt));
 	init_txr_bump(obj, info);
+	if (check_texture_file(obj) || check_bump_file(obj))
+		return (1);
+	if (id == PLANE)
+		return (parse_plane(info, obj, rt));
+	else if (id == CYLINDER || id == SINGLE_CONE || id == DOUBLE_CONE)
+		return (parse_cy_cone(info, obj, rt));
+	else if (id == SPHERE)
+		return (parse_sphere(info, obj, rt));
 	return (0);
 }
 
@@ -70,7 +111,7 @@ int	parse_plane(char **info, t_parse_obj *obj, t_parse *rt)
 
 	i = -1;
 	if (check_coords_vector(info, &vector, &coords) || check_color(info, &color, &coords, &vector))
-		return (print_error("Invalid Argument for plane"));
+		return (print_error("Invalid Argument for Plane"));
 	while (++i < NUM_ARG_FIXED)
 	{
 		plane.coordinate.elems[i] = ft_atod(coords[i], rt);
@@ -97,11 +138,12 @@ int	parse_sphere(char **info, t_parse_obj *obj, t_parse *rt)
 
 	i = -1;
 	if (check_coords_vector(info, NULL, &coords) || check_color(info, &color, &coords, NULL))
-		return (print_error("Invalid Argument for sphere"));
+		return (print_error("Invalid Argument for Sphere"));
 	while (++i < NUM_ARG_FIXED)
 	{
 		sphere.coordinate.elems[i] = ft_atod(coords[i], rt);
 	}
+	sphere.coordinate.w = 1;
 	print_tuple(sphere.coordinate);
 	sphere.color.r = ft_atod(color[0], rt) / 255;
 	sphere.color.g = ft_atod(color[1], rt) / 255;

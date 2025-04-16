@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 07:02:40 by root              #+#    #+#             */
-/*   Updated: 2025/04/13 19:48:54 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/16 14:57:49 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ typedef struct s_parse
 	t_ambient		ambient;
 	t_parse_camera	camera;
 	int				invalid;
+	int				decimal_error;
 }	t_parse;
 
 #endif
