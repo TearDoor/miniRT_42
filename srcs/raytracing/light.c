@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:57:51 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/14 13:10:54 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/16 22:20:19 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ t_mat4	tbn_matrix(t_tuple normal)
 	up = vector(0, 1, 0);
 	if (fabs(vector_dot_product(up, normal)) >= 0.99)
 		up = vector(1, 0, 0);
-	tangent = vector_cross_product(up, normal);
+	tangent = vector_cross_product(normal, up);
 	tangent = vector_normalize(tangent);
-	bitangent = vector_cross_product(normal, tangent);
+	bitangent = vector_cross_product(tangent, normal);
 	bitangent = vector_normalize(bitangent);
 	return (
 		(t_mat4){{

@@ -6,39 +6,48 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:22:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/14 14:22:14 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/16 18:35:11 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pattern.h"
 #include "raytracing.h"
 
-static t_color	shade_hit(t_world world, t_comps comp)
+static t_color	calculate_final_color(t_world *world, t_lightparams params)
 {
-	t_lightparams	params;
-	t_color			final_color;
-	t_list			*lights_node;
-	t_light			*light;
+	t_list	*lights_node;
+	t_light	*light;
+	t_color	final_color;
 
-	final_color = color_mult(world.ambient, comp.obj->material.color);
-	params.m = comp.obj->material;
-	params.obj = comp.obj;
-	params.point = comp.over_point;
-	params.eye_vec = comp.eyev;
-	params.normal_vec = comp.normalv;
-	lights_node = world.lights;
+	final_color = color_mult(world->ambient, params.m.color);
+	lights_node = world->lights;
 	while (lights_node)
 	{
 		light = (t_light *)lights_node->content;
 		if (light->on == 1)
 		{
-			params.in_shadow = is_shadowed(world, comp.over_point, light);
+			params.in_shadow = is_shadowed(*world, params.point, light);
 			params.light = *light;
 			final_color = color_add(final_color, lighting(params));
 		}
 		lights_node = lights_node->next;
 	}
 	return (final_color);
+}
+
+static t_color	shade_hit(t_world world, t_comps comp)
+{
+	t_lightparams	params;
+
+	params.m = comp.obj->material;
+	params.obj = comp.obj;
+	params.point = comp.over_point;
+	params.eye_vec = comp.eyev;
+	params.normal_vec = comp.normalv;
+	if (params.m.pattern != NULL)
+		params.m.color = pattern_at_shape(params.m.pattern,
+				params.obj, params.point);
+	return (calculate_final_color(&world, params));
 }
 
 static t_comps	prepare_computations(t_intersect *i, t_ray r)

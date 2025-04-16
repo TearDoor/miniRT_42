@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:31:41 by root              #+#    #+#             */
-/*   Updated: 2025/04/16 17:39:33 by hni-xuan         ###   ########.fr       */
+/*   Updated: 2025/04/16 21:34:15 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	check_coords_vector(char **info, char ***vector, char ***coords)
 int	check_color(char **info, char ***color, char ***coords, char ***vector)
 {
 	if (ft_strcmp(info[0], "pl") == 0 || ft_strcmp(info[0], "L") == 0
-		|| ft_strcmp(info[0], "sp") == 0)
+		|| ft_strcmp(info[0], "sp") == 0 || ft_strcmp(info[0], "l") == 0)
 		*color = ft_split(info[3], ',');
 	else if (ft_strcmp(info[0], "cy") == 0 || ft_strcmp(info[0], "sc") == 0
 		|| ft_strcmp(info[0], "dc") == 0)

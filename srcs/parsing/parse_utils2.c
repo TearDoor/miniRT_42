@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 04:15:46 by root              #+#    #+#             */
-/*   Updated: 2025/04/16 17:30:30 by hni-xuan         ###   ########.fr       */
+/*   Updated: 2025/04/16 21:27:38 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,11 @@ void	init_txr_bump(t_parse_obj *obj, char **info)
 		if (ft_arrlen(info) > 4)
 		{
 			if (ft_strncmp(info[4], "txr", 3) == 0)
-				obj->texture_file = info[4] + 4;
+				obj->texture_file = ft_strdup(info[4] + 4);
 			else if (ft_strncmp(info[4], "bump", 4) == 0)
-				obj->bump_file = info[4] + 5;
+				obj->bump_file = ft_strdup(info[4] + 5);
 			if (ft_strncmp(info[5], "bump", 4) == 0)
-				obj->bump_file = info[5] + 5;
+				obj->bump_file = ft_strdup(info[5] + 5);
 		}
 	}
 	else if (obj->id == CYLINDER || obj->id == SINGLE_CONE || obj->id == DOUBLE_CONE)
@@ -75,8 +75,6 @@ void	init_txr_bump(t_parse_obj *obj, char **info)
 				obj->bump_file = info[7] + 5;
 		}
 	}
-	printf("texture = %s\n", obj->texture_file); // debug
-	printf("bump = %s\n", obj->bump_file); // debug
 }
 
 int	ft_arrlen(char **arr)
