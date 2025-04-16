@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:00:11 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/13 21:08:22 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/16 21:48:44 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,13 @@ static void	load_objects(t_world *world, t_parse_obj *p_obj_list)
 	while (ptr)
 	{
 		new_obj = obj_cons[ptr->id](&ptr->shape);
+		if (ptr->texture_file)
+		{
+			set_img_from_file(new_obj, ptr->texture_file);
+			set_pattern(new_obj, uv_image(new_obj->material.image));
+		}
+		if (ptr->bump_file)
+			set_normal_from_file(new_obj, ptr->bump_file);
 		add_obj_to_world(world, new_obj);
 		ptr = ptr->next;
 	}

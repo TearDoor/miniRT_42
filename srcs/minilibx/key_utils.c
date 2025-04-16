@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 21:42:04 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/14 15:59:47 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/16 21:55:22 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,17 @@ int	camera_transform(t_keycodes key, t_rt *rt)
 static int	light_transform(t_keycodes key, t_light *light)
 {
 	if (key == KEY_W)
-		++light->position.y;
+		light->position.y += 5;
 	else if (key == KEY_S)
-		--light->position.y;
+		light->position.y -= 5;
 	else if (key == KEY_A)
-		--light->position.x;
+		light->position.x -= 5;
 	else if (key == KEY_D)
-		++light->position.x;
+		light->position.x += 5;
 	else if (key == KEY_R)
-		++light->position.z;
+		light->position.z += 5;
 	else if (key == KEY_F)
-		--light->position.z;
+		light->position.z -= 5;
 	else if (key == KEY_Q)
 		light->on *= -1;
 	else

@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 14:52:59 by root              #+#    #+#             */
-/*   Updated: 2025/04/16 14:59:24 by hni-xuan         ###   ########.fr       */
+/*   Updated: 2025/04/16 22:25:46 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ void	free_shape(t_parse *rt)
 	while (obj)
 	{
 		tmp = obj;
+		if (tmp->texture_file)
+			free(tmp->texture_file);
+		if (tmp->bump_file)
+			free(tmp->bump_file);
 		obj = obj->next;
 		// printf("free id = %d\n", tmp->id); // debug
 		free(tmp);

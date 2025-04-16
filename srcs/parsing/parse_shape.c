@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:14:47 by root              #+#    #+#             */
-/*   Updated: 2025/04/16 17:39:26 by hni-xuan         ###   ########.fr       */
+/*   Updated: 2025/04/16 21:38:19 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	parse_shape(t_obj_id id, char **info, t_parse *rt)
 	obj = ft_calloc(sizeof(t_parse_obj), 1);
 	init_obj(obj, id, rt);
 	init_txr_bump(obj, info);
+	printf("texture = %s\n", obj->texture_file); // debug
+	printf("bump = %s\n", obj->bump_file); // debug
 	if (check_texture_file(obj) || check_bump_file(obj))
 		return (1);
 	if (id == PLANE)
@@ -50,6 +52,7 @@ int	parse_cy_cone(char **info, t_parse_obj *obj, t_parse *rt)
 	}
 	cy_cone.diameter = ft_atod(info[3], rt);
 	cy_cone.height = ft_atod(info[4], rt);
+	cy_cone.vector.w = 0;
 	cy_cone.vector = vector_normalize(cy_cone.vector);
 	cy_cone.color.r = ft_atod(color[0], rt) / 255;
 	cy_cone.color.g = ft_atod(color[1], rt) / 255;
@@ -78,6 +81,7 @@ int	parse_plane(char **info, t_parse_obj *obj, t_parse *rt)
 		// printf("coords = %f\n", plane.coordinate[i]); // debug
 		plane.vector.elems[i] = ft_atod(vector[i], rt);
 	}
+	plane.vector.w = 0;
 	plane.vector = vector_normalize(plane.vector);
 	plane.color.r = ft_atod(color[0], rt) / 255;
 	plane.color.g = ft_atod(color[1], rt) / 255;
