@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/14 13:09:54 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/17 14:42:42 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include "matrix.h"
 # include "pattern.h"
 # include "objects.h"
+
+# define MAX_REFLECT 4
 
 typedef struct s_ray
 {
@@ -64,6 +66,7 @@ typedef struct s_comps
 	t_tuple	point;
 	t_tuple	eyev;
 	t_tuple	normalv;
+	t_tuple	reflectv;
 	int		inside;
 	t_tuple	over_point;
 }	t_comps;
@@ -107,7 +110,7 @@ t_ray		transform_ray(t_ray ray, t_mat4 transform);
 t_tuple		normal_at(t_obj *obj, t_tuple point);
 t_tuple		reflect(t_tuple v_in, t_tuple normal);
 t_color		lighting(t_lightparams params);
-t_color		color_at(t_world w, t_ray r);
+t_color		color_at(t_world w, t_ray r, int remaining);
 int			is_shadowed(t_world w, t_tuple point, t_light *light);
 
 /* views and cameras */

@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:22:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/16 18:35:11 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/17 14:43:26 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,23 @@ static t_color	calculate_final_color(t_world *world, t_lightparams params)
 	return (final_color);
 }
 
-static t_color	shade_hit(t_world world, t_comps comp)
+t_color	reflected_color(const t_world *w, const t_comps *comps, int remaining)
+{
+	t_ray	reflect_ray;
+	t_color	refl_color;
+
+	if (equal(comps->obj->material.reflective, 0.0) || remaining == 0)
+		return (color(0, 0, 0));
+	reflect_ray = ray(comps->over_point, comps->reflectv);
+	refl_color = color_at(*w, reflect_ray, remaining - 1);
+	return (color_scalar_mult(refl_color, comps->obj->material.reflective));
+}
+
+static t_color	shade_hit(t_world world, t_comps comp, int remaining)
 {
 	t_lightparams	params;
+	t_color			surface_color;
+	t_color			reflect_color;
 
 	params.m = comp.obj->material;
 	params.obj = comp.obj;
@@ -47,7 +61,9 @@ static t_color	shade_hit(t_world world, t_comps comp)
 	if (params.m.pattern != NULL)
 		params.m.color = pattern_at_shape(params.m.pattern,
 				params.obj, params.point);
-	return (calculate_final_color(&world, params));
+	surface_color = calculate_final_color(&world, params);
+	reflect_color = reflected_color(&world, &comp, remaining);
+	return (color_add(surface_color, reflect_color));
 }
 
 static t_comps	prepare_computations(t_intersect *i, t_ray r)
@@ -59,6 +75,7 @@ static t_comps	prepare_computations(t_intersect *i, t_ray r)
 	comps.point = position(r, comps.t);
 	comps.eyev = tuple_negate(r.direction);
 	comps.normalv = normal_at(comps.obj, comps.point);
+	comps.reflectv = reflect(r.direction, comps.normalv);
 	if (vector_dot_product(comps.normalv, comps.eyev) < 0)
 	{
 		comps.inside = 1;
@@ -71,7 +88,7 @@ static t_comps	prepare_computations(t_intersect *i, t_ray r)
 	return (comps);
 }
 
-t_color	color_at(t_world w, t_ray r)
+t_color	color_at(t_world w, t_ray r, int remaining)
 {
 	t_list		*intersections;
 	t_intersect	*hit;
@@ -86,5 +103,5 @@ t_color	color_at(t_world w, t_ray r)
 	}
 	comp = prepare_computations(hit, r);
 	ft_lstclear(&intersections, free);
-	return (shade_hit(w, comp));
+	return (shade_hit(w, comp, remaining));
 }

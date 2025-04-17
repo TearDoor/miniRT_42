@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 17:56:54 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/06 21:39:16 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/17 14:11:06 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static t_material	default_material(void)
 		.diffuse = 0.9,
 		.specular = 0.9,
 		.shininess = 200,
+		.reflective = 0.0,
 		.pattern = NULL,
 		.image = NULL,
 		.normalmap = NULL,

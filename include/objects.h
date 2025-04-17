@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:26:44 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/13 21:27:14 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/17 14:10:23 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_material
 	double		diffuse;
 	double		specular;
 	double		shininess;
+	double		reflective;
 	t_pattern	*pattern;
 	t_canvas	*normalmap;
 	t_canvas	*image;
