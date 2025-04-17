@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 10:48:35 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/17 14:59:28 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/17 20:42:59 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,9 @@ void	scene_one(t_rt *rt)
 	apply_transform(celling, translate_mat(0, 4, 0));
 	celling->material.pattern = stripe_pattern(color(0,0,0), color(0.8,0.8,0.8));
 	add_obj_to_world(&w, celling);
-	s1 = sphere();
+	s1 = glass_sphere();
 	apply_transform(s1, translate_mat(0, 1, 0));
-	s1->material.color = color(0.1, 1, 0.5);
-	s1->material.diffuse = 0.7;
-	s1->material.specular = 0.3;
+	s1->material.color = color(0.1, 0.5, 0.5);
 	add_obj_to_world(&w, s1);
 	s2 = sphere();
 	apply_transform(s2, scaling_mat(0.5, 0.5, 0.5));

@@ -1,0 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   refract_test.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/17 15:19:35 by tkok-kea          #+#    #+#             */
+/*   Updated: 2025/04/17 21:38:07 by tkok-kea         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minirt.h"
+
+void	refract_test(t_rt *rt)
+{
+	rt->world = default_world();
+	rt->cam = new_camera(WIDTH, HEIGHT, M_PI / 2);
+	init_view_matrix(&rt->cam, point(0, 0, -4), point(0, 0, -3), vector(0, 1, 0));
+	t_obj	*plane1 = plane();
+	apply_transform(plane1, translate_mat(0, -1, 0));
+	set_pattern(plane1, bw_checkers());
+	add_obj_to_world(&rt->world, plane1);
+	t_obj	*small_ball = sphere();
+	set_pattern(small_ball, bw_uv_checkers(20, 10));
+	apply_transform(small_ball, equal_scaling_mat(0.3));
+	add_obj_to_world(&rt->world, small_ball);
+	t_obj	*ball = glass_sphere();
+	apply_transform(ball, translate_mat(0, 1, 0));
+	ball->material.color = color(1, 1, 1);
+	ball->material.diffuse = 0.5;
+	ball->material.reflective = 0.5;
+	add_obj_to_world(&rt->world, ball);
+	// t_obj *a = glass_sphere();
+	// t_obj *b = glass_sphere();
+	// t_obj *c = glass_sphere();
+	// t_light *light1 = point_light(color(1, 1, 1), point(2, 2, -3), 1);
+	// rt->world = new_world();
+	// add_light_to_world(&rt->world, light1);
+	// apply_transform(a, equal_scaling_mat(2.0));
+	// apply_transform(b, translate_mat(0, 0, 0.25));
+	// apply_transform(c, translate_mat(0, 0, -0.25));
+	// add_obj_to_world(&rt->world, a);
+	// add_obj_to_world(&rt->world, b);
+	// add_obj_to_world(&rt->world, c);
+}

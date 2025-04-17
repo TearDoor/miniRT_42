@@ -5,7 +5,7 @@ vpath %.c	srcs tests srcs/minilibx srcs/objects srcs/raytracing srcs/patterns sr
 SRC		=	main.c simple_utils.c init_rt.c \
 			parse.c parse_shape.c parse_utils.c parse_utils2.c free.c load_parse.c \
 			load_objects.c load_objects_utils.c checking.c\
-			color_at.c light.c lighting.c shadows.c \
+			color_at.c light.c lighting.c shadows.c refraction.c \
 			rays.c intersect.c intersect_utils.c world.c camera.c render.c \
 			mlx_showimage.c keys.c  key_utils.c mouse_control.c mouse_utils.c
 SRC		+=	objects.c sphere.c plane.c cylinder.c cone.c cone_utils.c
@@ -14,7 +14,7 @@ SRC		+=	pattern.c stripes.c gradient.c rings.c checkers.c \
 			mappings.c
 
 # test scenes
-SRC		+=	cannon.c scene1.c earth.c leak_test.c mapping_test.c
+SRC		+=	cannon.c scene1.c earth.c leak_test.c mapping_test.c refract_test.c
 
 OBJ_DIR	= objs
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))

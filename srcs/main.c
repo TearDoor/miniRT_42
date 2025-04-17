@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:38:46 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/17 14:30:05 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/17 20:44:13 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char *argv[])
 	// load_camera(&rt.cam, &parse_data->camera);
 	// load_world(&rt.world, parse_data);
 	// free_shape(parse_data);
-	scene_one(&rt);
+	refract_test(&rt);
 	ft_mlx_hooks(&rt);
 	mlx_showimg(&rt);
 	mlx_loop(rt.mlx);

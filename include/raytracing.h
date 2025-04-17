@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/17 14:42:42 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/17 18:27:11 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,12 @@
 # include "pattern.h"
 # include "objects.h"
 
+//max bounce for reflections
 # define MAX_REFLECT 4
+
+//refractive index
+# define VACUUM 1.0
+# define GLASS 1.5
 
 typedef struct s_ray
 {
@@ -69,6 +74,9 @@ typedef struct s_comps
 	t_tuple	reflectv;
 	int		inside;
 	t_tuple	over_point;
+	double	n1;
+	double	n2;
+	t_tuple	under_point;
 }	t_comps;
 
 typedef struct s_camera
@@ -112,6 +120,10 @@ t_tuple		reflect(t_tuple v_in, t_tuple normal);
 t_color		lighting(t_lightparams params);
 t_color		color_at(t_world w, t_ray r, int remaining);
 int			is_shadowed(t_world w, t_tuple point, t_light *light);
+
+/* refraction */
+t_obj		*glass_sphere(void);
+void		calculate_n(t_intersect *hit, t_comps *comps, t_list *xs);
 
 /* views and cameras */
 void		init_view_matrix(t_camera *cam, t_tuple from, t_tuple to,
