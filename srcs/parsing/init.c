@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 04:15:46 by root              #+#    #+#             */
-/*   Updated: 2025/04/18 00:33:02 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/18 16:48:51 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@ void	init_obj(t_parse_obj *obj, t_obj_id id, t_parse *rt)
 	t_parse_obj	*tmp;
 
 	obj->id = id;
-	// printf("obj_id = %d\n", obj->id);
 	if (!(rt->obj_list))
 		rt->obj_list = obj;
 	else
 	{
-		// printf("Im here to add to the linked list\n");
 		tmp = rt->obj_list;
 		while (tmp->next)
 			tmp = tmp->next;

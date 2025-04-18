@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 14:52:59 by root              #+#    #+#             */
-/*   Updated: 2025/04/18 11:07:22 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/18 16:50:48 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	free_shape(t_parse *rt)
 	while (light)
 	{
 		tmp_light = light;
-		// printf("free tmp_light = %d\n", tmp_light->id); //debug
 		light = light->next;
 		free(tmp_light);
 	}
@@ -31,14 +30,11 @@ void	free_shape(t_parse *rt)
 	while (obj)
 	{
 		tmp = obj;
-		if (tmp->texture_file
-				&& access(tmp->texture_file, F_OK) != -1)
+		if (tmp->texture_file && access(tmp->texture_file, F_OK) != -1)
 			free(tmp->texture_file);
-		if (tmp->bump_file
-				&& access(tmp->bump_file, F_OK) != -1)
+		if (tmp->bump_file && access(tmp->bump_file, F_OK) != -1)
 			free(tmp->bump_file);
 		obj = obj->next;
-		// printf("free id = %d\n", tmp->id); // debug
 		free(tmp);
 	}
 	free(rt);

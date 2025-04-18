@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 06:34:58 by root              #+#    #+#             */
-/*   Updated: 2025/04/16 15:28:59 by hni-xuan         ###   ########.fr       */
+/*   Updated: 2025/04/18 16:48:07 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ double	ft_atod(char *arg, t_parse *rt)
 	else if (*arg == '+')
 		arg++;
 	parse_decimal_part(arg, &d_arg, rt);
-	// printf("result = %f\n", d_arg.neg * (d_arg.whole_num + d_arg.fraction)); // debug
 	return (d_arg.neg * (d_arg.whole_num + d_arg.fraction));
 }
 
@@ -72,7 +71,6 @@ void	filter_line(char *line, char ***info)
 	while (line && line[++i])
 		if (line[i] == '\t' || line[i] == '\n')
 			line[i] = ' ';
-	// printf("line = (%s)\n", line);
 	*info = ft_split(line, ' ');
 }
 

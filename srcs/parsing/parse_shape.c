@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:14:47 by root              #+#    #+#             */
-/*   Updated: 2025/04/16 21:38:19 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/18 16:45:15 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	parse_cy_cone(char **info, t_parse_obj *obj, t_parse *rt)
 	char		**coords;
 	char		**vector;
 	char		**color;
-	
+
 	if (check_coords_vector(info, &vector, &coords)
 		|| check_color(info, &color, &coords, &vector))
 		return (print_error("Invalid Argument for Cylinder or Cone"));
@@ -71,7 +71,6 @@ int	parse_plane(char **info, t_parse_obj *obj, t_parse *rt)
 		|| check_color(info, &color, &coords, &vector))
 		return (print_error("Invalid Argument for Plane"));
 	init_plane(&plane, coords, vector, rt);
-	printf("plane = %f\n", plane.coordinate.elems[0]); // debug
 	plane.color.r = ft_atod(color[0], rt) / 255;
 	plane.color.g = ft_atod(color[1], rt) / 255;
 	plane.color.b = ft_atod(color[2], rt) / 255;
@@ -90,7 +89,8 @@ int	parse_sphere(char **info, t_parse_obj *obj, t_parse *rt)
 	int			i;
 
 	i = -1;
-	if (check_coords_vector(info, NULL, &coords) || check_color(info, &color, &coords, NULL))
+	if (check_coords_vector(info, NULL, &coords)
+		|| check_color(info, &color, &coords, NULL))
 		return (print_error("Invalid Argument for Sphere"));
 	while (++i < NUM_ARG_FIXED)
 		sphere.coordinate.elems[i] = ft_atod(coords[i], rt);
