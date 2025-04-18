@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:26:44 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/17 15:01:29 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/18 17:29:36 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_material
 	double		reflective;
 	double		transparency;
 	double		refractive_index;
+	int			cast_shadow;
 	t_pattern	*pattern;
 	t_canvas	*normalmap;
 	t_canvas	*image;

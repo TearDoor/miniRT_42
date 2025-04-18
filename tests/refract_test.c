@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:19:35 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/17 21:38:07 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/18 17:32:03 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,12 @@ void	refract_test(t_rt *rt)
 	t_obj	*plane1 = plane();
 	apply_transform(plane1, translate_mat(0, -1, 0));
 	add_obj_to_world(&rt->world, plane1);
-	plane1->material.reflective = 0.5;
-	plane1->material.transparency = 0.8;
+	plane1->material.reflective = 0.9;
+	plane1->material.transparency = 0.9;
 	plane1->material.refractive_index = 1.5;
+	plane1->material.shininess = 300;
+	plane1->material.specular = 1;
+	plane1->material.cast_shadow = 0;
 	t_obj	*far_wall = plane();
 	apply_transform(far_wall, rotation_x(M_PI / 2));
 	apply_transform(far_wall, translate_mat(0, 0, 10));
@@ -36,11 +39,14 @@ void	refract_test(t_rt *rt)
 	set_pattern(small_ball, bw_uv_checkers(20, 10));
 	apply_transform(small_ball, equal_scaling_mat(0.3));
 	add_obj_to_world(&rt->world, small_ball);
-	t_obj	*ball = glass_sphere();
+	t_obj	*ball = sphere();
 	apply_transform(ball, translate_mat(0, 1, 0));
 	ball->material.color = color(1, 1, 1);
-	ball->material.diffuse = 0.5;
-	ball->material.reflective = 0.5;
+	ball->material.ambient = 0.1;
+	ball->material.diffuse = 0.2;
+	ball->material.reflective = 0.9;
+	ball->material.shininess = 300;
+	ball->material.specular = 1;
 	add_obj_to_world(&rt->world, ball);
 	// t_obj *a = glass_sphere();
 	// t_obj *b = glass_sphere();
