@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 14:52:59 by root              #+#    #+#             */
-/*   Updated: 2025/04/16 22:25:46 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/18 11:07:22 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ void	free_shape(t_parse *rt)
 	while (obj)
 	{
 		tmp = obj;
-		if (tmp->texture_file)
+		if (tmp->texture_file
+				&& access(tmp->texture_file, F_OK) != -1)
 			free(tmp->texture_file);
-		if (tmp->bump_file)
+		if (tmp->bump_file
+				&& access(tmp->bump_file, F_OK) != -1)
 			free(tmp->bump_file);
 		obj = obj->next;
 		// printf("free id = %d\n", tmp->id); // debug
@@ -50,4 +52,11 @@ void	free_arr(char **arr)
 	while (arr[++i])
 		free(arr[i]);
 	free(arr);
+}
+
+int	print_error(char *msg)
+{
+	ft_putstr_fd("Error: ", 2);
+	ft_putendl_fd(msg, 2);
+	return (1);
 }

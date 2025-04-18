@@ -20,10 +20,12 @@ int	parse_shape(t_obj_id id, char **info, t_parse *rt)
 	obj = ft_calloc(sizeof(t_parse_obj), 1);
 	init_obj(obj, id, rt);
 	init_txr_bump(obj, info);
-	printf("texture = %s\n", obj->texture_file); // debug
-	printf("bump = %s\n", obj->bump_file); // debug
-	if (check_texture_file(obj) || check_bump_file(obj))
-		return (1);
+	if (obj->texture_file)
+		if (check_texture_file(obj))
+			return (1);
+	if (obj->bump_file)
+		if (check_bump_file(obj))
+			return (1);
 	if (id == PLANE)
 		return (parse_plane(info, obj, rt));
 	else if (id == CYLINDER || id == SINGLE_CONE || id == DOUBLE_CONE)
@@ -39,21 +41,13 @@ int	parse_cy_cone(char **info, t_parse_obj *obj, t_parse *rt)
 	char		**coords;
 	char		**vector;
 	char		**color;
-	int			i;
-
-	i = -1;
-	if (check_coords_vector(info, &vector, &coords) || check_color(info, &color, &coords, &vector))
+	
+	if (check_coords_vector(info, &vector, &coords)
+		|| check_color(info, &color, &coords, &vector))
 		return (print_error("Invalid Argument for Cylinder or Cone"));
-	while (++i < NUM_ARG_FIXED)
-	{
-		cy_cone.coordinate.elems[i] = ft_atod(coords[i], rt);
-		cy_cone.vector.elems[i] = ft_atod(vector[i], rt);
-		// printf("color = %s\n", color[i]); // debug
-	}
+	init_cy_cone(&cy_cone, coords, vector, rt);
 	cy_cone.diameter = ft_atod(info[3], rt);
 	cy_cone.height = ft_atod(info[4], rt);
-	cy_cone.vector.w = 0;
-	cy_cone.vector = vector_normalize(cy_cone.vector);
 	cy_cone.color.r = ft_atod(color[0], rt) / 255;
 	cy_cone.color.g = ft_atod(color[1], rt) / 255;
 	cy_cone.color.b = ft_atod(color[2], rt) / 255;
@@ -73,16 +67,11 @@ int	parse_plane(char **info, t_parse_obj *obj, t_parse *rt)
 	int		i;
 
 	i = -1;
-	if (check_coords_vector(info, &vector, &coords) || check_color(info, &color, &coords, &vector))
+	if (check_coords_vector(info, &vector, &coords)
+		|| check_color(info, &color, &coords, &vector))
 		return (print_error("Invalid Argument for Plane"));
-	while (++i < NUM_ARG_FIXED)
-	{
-		plane.coordinate.elems[i] = ft_atod(coords[i], rt);
-		// printf("coords = %f\n", plane.coordinate[i]); // debug
-		plane.vector.elems[i] = ft_atod(vector[i], rt);
-	}
-	plane.vector.w = 0;
-	plane.vector = vector_normalize(plane.vector);
+	init_plane(&plane, coords, vector, rt);
+	printf("plane = %f\n", plane.coordinate.elems[0]); // debug
 	plane.color.r = ft_atod(color[0], rt) / 255;
 	plane.color.g = ft_atod(color[1], rt) / 255;
 	plane.color.b = ft_atod(color[2], rt) / 255;
@@ -104,9 +93,7 @@ int	parse_sphere(char **info, t_parse_obj *obj, t_parse *rt)
 	if (check_coords_vector(info, NULL, &coords) || check_color(info, &color, &coords, NULL))
 		return (print_error("Invalid Argument for Sphere"));
 	while (++i < NUM_ARG_FIXED)
-	{
 		sphere.coordinate.elems[i] = ft_atod(coords[i], rt);
-	}
 	sphere.coordinate.w = 1;
 	print_tuple(sphere.coordinate);
 	sphere.color.r = ft_atod(color[0], rt) / 255;

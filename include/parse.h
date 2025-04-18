@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:28:10 by root              #+#    #+#             */
-/*   Updated: 2025/04/16 18:36:35 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/17 19:56:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include <unistd.h>
 
 # define NUM_ARG_FIXED 3
 # define RESET_COLOR "\033[0m"
@@ -31,6 +32,8 @@ int				print_error(char *msg);
 void			filter_line(char *line, char ***info);
 double			ft_atod(char *arg, t_parse *rt);
 int				validate_file(t_parse *rt);
+int				ft_arrlen(char **arr);
+void			align_orientation(t_obj *obj, t_tuple orient);
 
 // free
 void			free_arr(char **arr);
@@ -59,12 +62,17 @@ t_obj			*load_cone(t_shape *p_cone);
 t_obj			*load_dcone(t_shape *p_cone);
 t_obj			*load_cyl_cone(t_obj *obj, t_shape *p_cyl_cone);
 
+// init
 void			init_obj(t_parse_obj *obj, t_obj_id id, t_parse *rt);
 t_parse_light	*init_light(t_parse_light *light, t_parse *rt);
 void			init_txr_bump(t_parse_obj *obj, char **info);
-int				ft_arrlen(char **arr);
-void			align_orientation(t_obj *obj, t_tuple orient);
+void			init_txr_bump2(t_parse_obj *obj, char **info);
+void			init_cy_cone(t_cy_cone *cy_cone, char **coords,
+					char **vector, t_parse *rt);
+void			init_plane(t_plane *plane, char **coords,
+					char **vector, t_parse *rt);
 
+// checking
 int				check_coords_vector(char **info, char ***vector,
 					char ***coords);
 int				check_color(char **info, char ***color, char ***coords,

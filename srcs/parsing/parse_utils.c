@@ -76,13 +76,6 @@ void	filter_line(char *line, char ***info)
 	*info = ft_split(line, ' ');
 }
 
-int	print_error(char *msg)
-{
-	ft_putstr_fd("Error: ", 2);
-	ft_putendl_fd(msg, 2);
-	return (1);
-}
-
 int	validate_file(t_parse *rt)
 {
 	if (!rt->ambient.id)
@@ -92,4 +85,14 @@ int	validate_file(t_parse *rt)
 	if (!rt->light_list)
 		return (print_error("Missing light (L)"));
 	return (0);
+}
+
+int	ft_arrlen(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
 }
