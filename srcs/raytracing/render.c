@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 21:41:08 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/12 23:18:36 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/17 14:43:06 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	render_to_mlximg(t_camera *cam, t_world *w, t_imgdata *img)
 		while (i < cam->hsize)
 		{
 			r = ray_for_pixel(*cam, i, j);
-			clr = color_at(*w, r);
+			clr = color_at(*w, r, MAX_REFLECT);
 			ft_mlx_pixel_put(img, i, j, clr);
 			i++;
 		}
@@ -99,7 +99,7 @@ void	render_mlximg_lowres(t_camera *cam, t_world *w, t_imgdata *img)
 		while (i < cam->hsize / scale)
 		{
 			r = ray_for_pixel(*cam, i * scale, j * scale);
-			clr = color_at(*w, r);
+			clr = color_at(*w, r, MAX_REFLECT);
 			lowres_pixel_put(img, i, j, clr);
 			i++;
 		}
