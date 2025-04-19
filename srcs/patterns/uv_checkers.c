@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 12:43:24 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/17 12:50:14 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/19 23:46:25 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,5 @@ t_pattern	*uv_checkers(double width, double height, t_color a, t_color b)
 
 t_pattern	*bw_uv_checkers(float width, float height)
 {
-	return (uv_checkers(width, height, color(1, 1, 1), color(0, 0, 0)));
+	return (uv_checkers(width, height, color(1, 1, 1), color(0.2, 0.2, 0.2)));
 }

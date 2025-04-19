@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:38:46 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/18 16:40:17 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/19 22:11:55 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,9 @@ int	main(int argc, char *argv[])
 		exit(1);
 	}
 	init_rt(argv[1], &rt);
-	// load_camera(&rt.cam, &parse_data->camera);
-	// load_world(&rt.world, parse_data);
+	load_camera(&rt.cam, &parse_data->camera);
+	load_world(&rt.world, parse_data);
 	free_shape(parse_data);
-	refract_test(&rt);
 	ft_mlx_hooks(&rt);
 	mlx_showimg(&rt);
 	mlx_loop(rt.mlx);

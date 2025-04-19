@@ -6,7 +6,7 @@
 /*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:14:47 by root              #+#    #+#             */
-/*   Updated: 2025/04/18 16:45:15 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/19 22:13:01 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	parse_shape(t_obj_id id, char **info, t_parse *rt)
 {
 	t_parse_obj	*obj;
 
-	printf("check_id = %d\n", id);
 	obj = ft_calloc(sizeof(t_parse_obj), 1);
 	init_obj(obj, id, rt);
 	init_txr_bump(obj, info);
@@ -95,7 +94,6 @@ int	parse_sphere(char **info, t_parse_obj *obj, t_parse *rt)
 	while (++i < NUM_ARG_FIXED)
 		sphere.coordinate.elems[i] = ft_atod(coords[i], rt);
 	sphere.coordinate.w = 1;
-	print_tuple(sphere.coordinate);
 	sphere.color.r = ft_atod(color[0], rt) / 255;
 	sphere.color.g = ft_atod(color[1], rt) / 255;
 	sphere.color.b = ft_atod(color[2], rt) / 255;

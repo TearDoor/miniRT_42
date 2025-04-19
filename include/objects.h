@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:26:44 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/18 17:29:36 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/19 22:50:55 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_material
 	t_pattern	*pattern;
 	t_canvas	*normalmap;
 	t_canvas	*image;
+	t_pattern	*def_checkers;
 }	t_material;
 
 typedef enum e_obj_type
@@ -58,6 +59,7 @@ typedef struct s_obj
 	void			(*local_intersect)(struct s_obj*, struct s_ray, t_list **);
 	t_tuple			(*local_normal_at)(t_tuple);
 	t_map_funcptr	mapping_func;
+	int				checkered;
 }	t_obj;
 
 t_obj		*new_obj(void);

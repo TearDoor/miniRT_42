@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 17:56:54 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/18 17:29:49 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/19 23:36:30 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static t_material	default_material(void)
 		.pattern = NULL,
 		.image = NULL,
 		.normalmap = NULL,
+		.def_checkers = NULL,
 	});
 }
 
@@ -40,6 +41,7 @@ t_obj	*new_obj(void)
 	newobj->material = default_material();
 	newobj->local_intersect = NULL;
 	newobj->local_normal_at = NULL;
+	newobj->checkered = -1;
 	return (newobj);
 }
 
@@ -77,5 +79,7 @@ void	free_object(void *ptr)
 	}
 	if (obj->material.pattern != NULL)
 		free(obj->material.pattern);
+	if (obj->material.def_checkers != NULL)
+		free(obj->material.def_checkers);
 	free(obj);
 }

@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 14:38:36 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/07 20:47:07 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/19 23:49:11 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int	keypress(t_keycodes key, t_rt *rt)
 	if (change_mode(key, &rt->controlling))
 		return (0);
 	if (ctrl_funcs[rt->controlling](key, rt))
-		return (0);
-	if (key == BSPC)
+		;
+	else if (key == BSPC)
 		rt->cam.transform = rt->cam.initial_transform;
 	else if (key == SPC)
 		toggle_lowres(&rt->low_res);

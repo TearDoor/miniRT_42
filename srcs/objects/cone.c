@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:33:42 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/14 19:18:46 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/19 23:34:59 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,7 @@ t_obj	*cone(void)
 	new_cone->local_intersect = &cone_intersect;
 	new_cone->local_normal_at = &cone_normal_at;
 	new_cone->mapping_func = &cylindrical_map;
+	new_cone->material.def_checkers = bw_uv_checkers(20, 4);
+	new_cone->material.def_checkers->mapping_func = &cylindrical_map;
 	return (new_cone);
 }

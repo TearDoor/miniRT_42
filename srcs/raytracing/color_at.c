@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:22:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/19 21:49:22 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/19 23:09:05 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@ static t_color	shade_hit(t_world world, t_comps comp, int remaining)
 	params.point = comp.over_point;
 	params.eye_vec = comp.eyev;
 	params.normal_vec = comp.normalv;
-	if (params.m.pattern != NULL)
+	if (params.obj->checkered == 1)
+		params.m.color = pattern_at_shape(params.m.def_checkers,
+				params.obj, params.point);
+	else if (params.m.pattern != NULL)
 		params.m.color = pattern_at_shape(params.m.pattern,
 				params.obj, params.point);
 	surface_color = total_surface_color(&world, params);

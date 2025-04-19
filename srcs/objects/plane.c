@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 17:26:17 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/03/24 20:22:07 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/19 23:41:59 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,9 @@ t_obj	*plane(void)
 	new_plane->local_normal_at = &plane_normal_at;
 	new_plane->local_intersect = &plane_intersection;
 	new_plane->mapping_func = &planar_map;
+	new_plane->material.def_checkers = bw_uv_checkers(2, 2);
+	set_pattern_transform(new_plane->material.def_checkers,
+		equal_scaling_mat(10));
+	new_plane->material.def_checkers->mapping_func = &planar_map;
 	return (new_plane);
 }
