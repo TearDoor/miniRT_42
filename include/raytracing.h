@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:48:20 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/17 18:27:11 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/19 21:50:24 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,21 @@ typedef struct s_light
 	int		on;
 }	t_light;
 
+typedef struct s_comps
+{
+	double	t;
+	t_obj	*obj;
+	t_tuple	point;
+	t_tuple	eyev;
+	t_tuple	normalv;
+	t_tuple	reflectv;
+	int		inside;
+	t_tuple	over_point;
+	double	n1;
+	double	n2;
+	t_tuple	under_point;
+}	t_comps;
+
 typedef struct s_lightparams
 {
 	t_material	m;
@@ -64,21 +79,6 @@ typedef struct s_intersect
 	t_obj	*obj;
 }	t_intersect;
 
-typedef struct s_comps
-{
-	double	t;
-	t_obj	*obj;
-	t_tuple	point;
-	t_tuple	eyev;
-	t_tuple	normalv;
-	t_tuple	reflectv;
-	int		inside;
-	t_tuple	over_point;
-	double	n1;
-	double	n2;
-	t_tuple	under_point;
-}	t_comps;
-
 typedef struct s_camera
 {
 	int		hsize;
@@ -91,6 +91,14 @@ typedef struct s_camera
 	double	half_height;
 	double	pix_size;
 }	t_camera;
+
+typedef struct s_refrparams
+{
+	double	n_ratio;
+	double	cos_i;
+	double	sin2_t;
+	double	cos_t;
+}	t_refrparams;
 
 /* Constructors */
 t_ray		ray(t_tuple point, t_tuple vector);
@@ -123,7 +131,12 @@ int			is_shadowed(t_world w, t_tuple point, t_light *light);
 
 /* refraction */
 t_obj		*glass_sphere(void);
+t_color		reflected_color(const t_world *w, const t_comps *comps,
+				int remaining);
 void		calculate_n(t_intersect *hit, t_comps *comps, t_list *xs);
+t_color		refracted_color(const t_world *w, const t_comps *comps,
+				int remaining);
+double		schlick(t_comps *comps);
 
 /* views and cameras */
 void		init_view_matrix(t_camera *cam, t_tuple from, t_tuple to,

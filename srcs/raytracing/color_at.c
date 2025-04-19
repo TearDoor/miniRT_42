@@ -6,15 +6,14 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:22:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/17 22:03:11 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/19 21:49:22 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pattern.h"
 #include "raytracing.h"
-#include <math.h>
 
-static t_color	calculate_final_color(t_world *world, t_lightparams params)
+static t_color	total_surface_color(t_world *world, t_lightparams params)
 {
 	t_list	*lights_node;
 	t_light	*light;
@@ -36,76 +35,15 @@ static t_color	calculate_final_color(t_world *world, t_lightparams params)
 	return (final_color);
 }
 
-/*
- * fires a ray from the surface of obj along the reflect vector
- * has a remaining argument to prevent infinite recursion
- * if two surfaces are parallel to each other
-*/
-t_color	reflected_color(const t_world *w, const t_comps *comps, int remaining)
+static t_color	apply_fresnel(t_comps *comps,
+							t_color surface, t_color reflect, t_color refract)
 {
-	t_ray	reflect_ray;
-	t_color	refl_color;
+	double	reflectance;
 
-	if (equal(comps->obj->material.reflective, 0.0) || remaining == 0)
-		return (color(0, 0, 0));
-	reflect_ray = ray(comps->over_point, comps->reflectv);
-	refl_color = color_at(*w, reflect_ray, remaining - 1);
-	return (color_scalar_mult(refl_color, comps->obj->material.reflective));
-}
-
-/*
- * approximation of the Fresnel effect
- * (where steep angle = weak reflection; shallow angle = strong reflection)
- * calculates reflectance which is the ratio of reflected vs refracted light
- */
-double	schlick(t_comps *comps)
-{
-	double	cos;
-	double	n;
-	double	sin2_t;
-	double	cos_t;
-	double	r0;
-
-	cos = vector_dot_product(comps->eyev, comps->normalv);
-	if (comps->n1 > comps->n2)
-	{
-		n = comps->n1 / comps->n2;
-		sin2_t = sq(n) * (1.0 - sq(cos));
-		if (sin2_t > 1.0)
-			return (1.0);
-		cos_t = sqrt(1.0 - sin2_t);
-		cos = cos_t;
-	}
-	r0 = sq((comps->n1 - comps->n2) / (comps->n1 + comps->n2));
-	return (r0 + (1 - r0) * pow((1 - cos), 5));
-}
-
-/*
- * Snell's law to calculate reflected color under total internal reflection
-*/
-t_color	refracted_color(const t_world *w, const t_comps *comps, int remaining)
-{
-	double	n_ratio;
-	double	cos_i;
-	double	sin2_t;
-	double	cos_t;
-	t_tuple	direction;
-	t_ray	refract_ray;
-	t_color	refr_color;
-
-	if (equal(comps->obj->material.transparency, 0.0) || remaining == 0)
-		return (color(0, 0, 0));
-	n_ratio = comps->n1 / comps->n2;
-	cos_i = vector_dot_product(comps->eyev, comps->normalv);
-	sin2_t = sq(n_ratio) * (1 - sq(cos_i));
-	if (sin2_t > 1)
-		return (color(0, 0, 0));
-	cos_t = sqrt(1.0 - sin2_t);
-	direction = tuple_scalar_mult(comps->normalv, n_ratio * cos_i - cos_t);
-	direction = tuple_subtract(direction, tuple_scalar_mult(comps->eyev, n_ratio));
-	refract_ray = ray(comps->under_point, direction);
-	refr_color = color_at(*w, refract_ray, remaining - 1);
-	return (color_scalar_mult(refr_color, comps->obj->material.transparency));
+	reflectance = schlick(comps);
+	reflect = color_scalar_mult(reflect, reflectance);
+	refract = color_scalar_mult(refract, (1 - reflectance));
+	return (color_add(color_add(surface, reflect), refract));
 }
 
 static t_color	shade_hit(t_world world, t_comps comp, int remaining)
@@ -114,7 +52,6 @@ static t_color	shade_hit(t_world world, t_comps comp, int remaining)
 	t_color			surface_color;
 	t_color			reflect_color;
 	t_color			refract_color;
-	double			reflectance;
 
 	params.m = comp.obj->material;
 	params.obj = comp.obj;
@@ -124,18 +61,15 @@ static t_color	shade_hit(t_world world, t_comps comp, int remaining)
 	if (params.m.pattern != NULL)
 		params.m.color = pattern_at_shape(params.m.pattern,
 				params.obj, params.point);
-	surface_color = calculate_final_color(&world, params);
+	surface_color = total_surface_color(&world, params);
 	reflect_color = reflected_color(&world, &comp, remaining);
 	refract_color = refracted_color(&world, &comp, remaining);
 	if (params.m.reflective > 0 && params.m.transparency > 0)
-	{
-		reflectance = schlick(&comp);
-		reflect_color = color_scalar_mult(reflect_color, reflectance);
-		refract_color = color_scalar_mult(refract_color, (1 - reflectance));
-		return (color_add(color_add(surface_color, reflect_color), refract_color));
-	}
+		return (apply_fresnel(&comp, surface_color, reflect_color,
+				refract_color));
 	else
-		return (color_add(color_add(surface_color, reflect_color), refract_color));
+		return (color_add(color_add(surface_color, reflect_color),
+				refract_color));
 }
 
 static t_comps	prepare_computations(t_intersect *hit, t_ray r, t_list *xs)

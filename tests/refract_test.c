@@ -6,11 +6,22 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:19:35 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/18 17:32:03 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/19 21:48:41 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+// a helper function to create a glassy sphere
+t_obj	*glass_sphere(void)
+{
+	t_obj	*gsphere;
+
+	gsphere = sphere();
+	gsphere->material.transparency = 1.0;
+	gsphere->material.refractive_index = 1.5;
+	return (gsphere);
+}
 
 void	refract_test(t_rt *rt)
 {
@@ -20,6 +31,7 @@ void	refract_test(t_rt *rt)
 	t_obj	*plane1 = plane();
 	apply_transform(plane1, translate_mat(0, -1, 0));
 	add_obj_to_world(&rt->world, plane1);
+	plane1->material.color = color(0, 0, 0.4);
 	plane1->material.reflective = 0.9;
 	plane1->material.transparency = 0.9;
 	plane1->material.refractive_index = 1.5;
