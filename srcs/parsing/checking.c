@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:31:41 by root              #+#    #+#             */
-/*   Updated: 2025/04/18 11:02:44 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/18 16:48:31 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	check_arrlen(char **arr, int length)
 {
-	// printf("arr_len in check_arrlen = %d\n", ft_arrlen(arr)); // debug
 	if (ft_arrlen(arr) != length)
 		return (1);
 	return (0);
@@ -71,8 +70,9 @@ int	check_bump_file(t_parse_obj *obj)
 	{
 		if (access(obj->bump_file, F_OK) == -1)
 		{
-			printf("bump = (%s)\n", obj->bump_file); // debug
 			print_error("Bump file not found");
+			free(obj->bump_file);
+			obj->bump_file = NULL;
 			return (1);
 		}
 		if (ft_strlen(obj->bump_file) < 4
@@ -90,10 +90,11 @@ int	check_texture_file(t_parse_obj *obj)
 {
 	if (obj->texture_file)
 	{
-		// printf("texture = (%s)\n", obj->texture_file); // debug
 		if (access(obj->texture_file, F_OK) == -1)
 		{
 			print_error("Texture file not found");
+			free(obj->texture_file);
+			obj->texture_file = NULL;
 			return (1);
 		}
 		if (ft_strlen(obj->texture_file) < 4

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hni-xuan <hni-xuan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hni-xuan <hni-xuan@student.42.fr>              +#+  +:+       +#+    */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 19:54:13 by hni-xuan            #+#    #+#             */
-/*   Updated: 2025/04/17 19:54:13 by hni-xuan           ###   ########.fr       */
+/*   Created: 2025/04/17 19:54:13 by hni-xuan            #+#    #+#           */
+/*   Updated: 2025/04/18 16:49:43 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ t_parse_light	*init_light(t_parse_light *light, t_parse *rt)
 		rt->light_list = light;
 	else
 	{
-		// printf("this should be printed when got more than 2 L\n");
 		tmp = rt->light_list;
 		while (tmp->next)
 			tmp = tmp->next;
@@ -31,7 +30,8 @@ t_parse_light	*init_light(t_parse_light *light, t_parse *rt)
 	return (light);
 }
 
-void	init_cy_cone(t_cy_cone *cy_cone, char **coords, char **vector, t_parse *rt)
+void	init_cy_cone(t_cy_cone *cy_cone, char **coords,
+			char **vector, t_parse *rt)
 {
 	int		i;
 
@@ -40,7 +40,6 @@ void	init_cy_cone(t_cy_cone *cy_cone, char **coords, char **vector, t_parse *rt)
 	{
 		cy_cone->coordinate.elems[i] = ft_atod(coords[i], rt);
 		cy_cone->vector.elems[i] = ft_atod(vector[i], rt);
-		// printf("cy_cone = %f\n", cy_cone->coordinate.elems[i]); // debug
 	}
 	cy_cone->coordinate.w = 1;
 	cy_cone->vector.w = 0;

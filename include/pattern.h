@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 17:26:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/10 15:48:17 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/19 22:42:59 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,9 @@ t_pattern	*ring_pattern(t_color a, t_color b);
 t_pattern	*bw_ring(void);
 t_pattern	*checkers_pattern(t_color a, t_color b);
 t_pattern	*bw_checkers(void);
+
+//default preset checker patterns used in the program
+t_pattern	*sphere_checkers(void);
 
 t_point2d	spherical_map(t_tuple p);
 t_point2d	cylindrical_map(t_tuple p);

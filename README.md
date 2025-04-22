@@ -48,6 +48,7 @@ example
 * `TAB` changes the current selected object
 * If currently mouse is holding object, the object will be the controlled object
 * `WS, AD, QE` rotates the object around its X,Y, and Z axis 
+* `C` toggles checkered pattern
 
 ## References
 [The Ray Tracer Challenge](http://raytracerchallenge.com) - Most of the methods of implementing a raytracer is based on this book

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 06:34:22 by root              #+#    #+#             */
-/*   Updated: 2025/04/18 10:53:20 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/18 16:48:07 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,11 @@ int	parse_file(int fd, t_parse *rt)
 		print_error("Invalid decimal number");
 	}
 	close(fd);
-	// printf("invalid = %d\n", invalid); // debug
 	return (rt->invalid);
 }
 
 int	store_info(char **info, t_parse *rt)
 {
-	printf("info[0]= %s\n", info[0]); // debug
 	if (!info || !info[0])
 		return (0);
 	else if (ft_strcmp(info[0], "A") == 0)
@@ -87,9 +85,7 @@ int	parse_ambient(char **info, t_parse *rt)
 	ambient.color.r = ft_atod(color[0], rt) / 255;
 	ambient.color.g = ft_atod(color[1], rt) / 255;
 	ambient.color.b = ft_atod(color[2], rt) / 255;
-	printf("ambient color b = %f\n", ambient.color.b); // debug
 	rt->ambient = ambient;
-	print_color(ambient.color); // debug
 	free_arr(color);
 	return (0);
 }
@@ -117,7 +113,6 @@ int	parse_camera(char **info, t_parse *rt)
 	camera.coordinate.w = 1;
 	camera.vector.w = 0;
 	camera.fov = ft_atoi(info[3]);
-	// printf("fov = %d\n", camera.fov); //debug
 	rt->camera = camera;
 	free_arr(coords);
 	free_arr(vector);
@@ -137,13 +132,13 @@ int	parse_light(char **info, t_parse *rt)
 	light = NULL;
 	light = init_light(light, rt);
 	light->id = LIGHT;
-	if (check_coords_vector(info, NULL, &coords) || check_color(info, &color, &coords, NULL))
+	if (check_coords_vector(info, NULL, &coords)
+		|| check_color(info, &color, &coords, NULL))
 		return (print_error("Invalid arguments for Light (coords or color)"));
 	light->ratio = ft_atod(info[2], rt);
 	while (++i < NUM_ARG_FIXED)
 		light->coordinate.elems[i] = ft_atod(coords[i], rt);
 	light->coordinate.w = 1;
-	print_tuple(light->coordinate); // debug
 	light->color.r = ft_atod(color[0], rt) / 255;
 	light->color.g = ft_atod(color[1], rt) / 255;
 	light->color.b = ft_atod(color[2], rt) / 255;

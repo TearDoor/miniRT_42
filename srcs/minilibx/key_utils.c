@@ -6,7 +6,7 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 21:42:04 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/16 21:55:22 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/19 23:23:39 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	light_control(t_keycodes key, t_rt *rt)
 */
 static int	obj_transform(t_keycodes key, t_obj *obj)
 {
-	const t_key_transform	cam_keys[] = {
+	const t_key_transform	obj_keys[] = {
 	{KEY_Q, rotation_z(-M_PI / 16)}, {KEY_E, rotation_z(M_PI / 16)},
 	{KEY_W, rotation_x(-M_PI / 16)}, {KEY_S, rotation_x(M_PI / 16)},
 	{KEY_A, rotation_y(M_PI / 16)}, {KEY_D, rotation_y(-M_PI / 16)},
@@ -104,7 +104,7 @@ static int	obj_transform(t_keycodes key, t_obj *obj)
 	const t_key_transform	*ptr;
 	t_tuple					pos;
 
-	ptr = cam_keys;
+	ptr = obj_keys;
 	while (ptr->key != 0)
 	{
 		if (key == ptr->key)
@@ -138,10 +138,11 @@ int	obj_control(t_keycodes key, t_rt *rt)
 		selected_obj = rt->mouse.held_obj;
 	else
 		selected_obj = selected_obj_node->content;
-	if (obj_transform(key, selected_obj))
+	if (obj_transform(key, selected_obj) || key == KEY_C)
 	{
+		if (key == KEY_C)
+			selected_obj->checkered *= -1;
 		rt->low_res = 1;
-		mlx_showimg(rt);
 		return (1);
 	}
 	else

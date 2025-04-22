@@ -6,14 +6,14 @@
 /*   By: tkok-kea <tkok-kea@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:22:33 by tkok-kea          #+#    #+#             */
-/*   Updated: 2025/04/16 18:35:11 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/19 23:09:05 by tkok-kea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pattern.h"
 #include "raytracing.h"
 
-static t_color	calculate_final_color(t_world *world, t_lightparams params)
+static t_color	total_surface_color(t_world *world, t_lightparams params)
 {
 	t_list	*lights_node;
 	t_light	*light;
@@ -35,30 +35,56 @@ static t_color	calculate_final_color(t_world *world, t_lightparams params)
 	return (final_color);
 }
 
-static t_color	shade_hit(t_world world, t_comps comp)
+static t_color	apply_fresnel(t_comps *comps,
+							t_color surface, t_color reflect, t_color refract)
+{
+	double	reflectance;
+
+	reflectance = schlick(comps);
+	reflect = color_scalar_mult(reflect, reflectance);
+	refract = color_scalar_mult(refract, (1 - reflectance));
+	return (color_add(color_add(surface, reflect), refract));
+}
+
+static t_color	shade_hit(t_world world, t_comps comp, int remaining)
 {
 	t_lightparams	params;
+	t_color			surface_color;
+	t_color			reflect_color;
+	t_color			refract_color;
 
 	params.m = comp.obj->material;
 	params.obj = comp.obj;
 	params.point = comp.over_point;
 	params.eye_vec = comp.eyev;
 	params.normal_vec = comp.normalv;
-	if (params.m.pattern != NULL)
+	if (params.obj->checkered == 1)
+		params.m.color = pattern_at_shape(params.m.def_checkers,
+				params.obj, params.point);
+	else if (params.m.pattern != NULL)
 		params.m.color = pattern_at_shape(params.m.pattern,
 				params.obj, params.point);
-	return (calculate_final_color(&world, params));
+	surface_color = total_surface_color(&world, params);
+	reflect_color = reflected_color(&world, &comp, remaining);
+	refract_color = refracted_color(&world, &comp, remaining);
+	if (params.m.reflective > 0 && params.m.transparency > 0)
+		return (apply_fresnel(&comp, surface_color, reflect_color,
+				refract_color));
+	else
+		return (color_add(color_add(surface_color, reflect_color),
+				refract_color));
 }
 
-static t_comps	prepare_computations(t_intersect *i, t_ray r)
+static t_comps	prepare_computations(t_intersect *hit, t_ray r, t_list *xs)
 {
 	t_comps	comps;
 
-	comps.t = i->t;
-	comps.obj = i->obj;
+	comps.t = hit->t;
+	comps.obj = hit->obj;
 	comps.point = position(r, comps.t);
 	comps.eyev = tuple_negate(r.direction);
 	comps.normalv = normal_at(comps.obj, comps.point);
+	comps.reflectv = reflect(r.direction, comps.normalv);
 	if (vector_dot_product(comps.normalv, comps.eyev) < 0)
 	{
 		comps.inside = 1;
@@ -68,10 +94,13 @@ static t_comps	prepare_computations(t_intersect *i, t_ray r)
 		comps.inside = 0;
 	comps.over_point = tuple_add(comps.point,
 			tuple_scalar_mult(comps.normalv, EPSILON));
+	comps.under_point = tuple_subtract(comps.point,
+			tuple_scalar_mult(comps.normalv, EPSILON));
+	calculate_n(hit, &comps, xs);
 	return (comps);
 }
 
-t_color	color_at(t_world w, t_ray r)
+t_color	color_at(t_world w, t_ray r, int remaining)
 {
 	t_list		*intersections;
 	t_intersect	*hit;
@@ -84,7 +113,7 @@ t_color	color_at(t_world w, t_ray r)
 		ft_lstclear(&intersections, free);
 		return (w.ambient);
 	}
-	comp = prepare_computations(hit, r);
+	comp = prepare_computations(hit, r, intersections);
 	ft_lstclear(&intersections, free);
-	return (shade_hit(w, comp));
+	return (shade_hit(w, comp, remaining));
 }
