@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_shape.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:14:47 by root              #+#    #+#             */
-/*   Updated: 2025/04/19 22:13:01 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/22 22:07:21 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	parse_cy_cone(char **info, t_parse_obj *obj, t_parse *rt)
 	char		**vector;
 	char		**color;
 
+	if (check_arrlen(info, 6))
+		return (print_error("Invalid arguments for Cylinder or Cone"));
 	if (check_coords_vector(info, &vector, &coords)
 		|| check_color(info, &color, &coords, &vector))
 		return (print_error("Invalid Argument for Cylinder or Cone"));
@@ -66,6 +68,8 @@ int	parse_plane(char **info, t_parse_obj *obj, t_parse *rt)
 	int		i;
 
 	i = -1;
+	if (check_arrlen(info, 4))
+		return (print_error("Invalid arguments for Plane"));
 	if (check_coords_vector(info, &vector, &coords)
 		|| check_color(info, &color, &coords, &vector))
 		return (print_error("Invalid Argument for Plane"));
@@ -88,6 +92,8 @@ int	parse_sphere(char **info, t_parse_obj *obj, t_parse *rt)
 	int			i;
 
 	i = -1;
+	if (check_arrlen(info, 4))
+		return (print_error("Invalid arguments for Sphere"));
 	if (check_coords_vector(info, NULL, &coords)
 		|| check_color(info, &color, &coords, NULL))
 		return (print_error("Invalid Argument for Sphere"));
