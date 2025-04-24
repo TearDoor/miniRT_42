@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 04:15:46 by root              #+#    #+#             */
-/*   Updated: 2025/04/18 16:48:51 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/24 18:41:13 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,25 @@ void	init_txr_bump2(t_parse_obj *obj, char **info)
 		if (ft_arrlen(info) > 6)
 		{
 			if (ft_strncmp(info[6], "txr:", 4) == 0)
-				obj->texture_file = info[6] + 4;
+				obj->texture_file = ft_strdup(info[6] + 4);
 			else if (ft_strncmp(info[6], "bump:", 5) == 0)
-				obj->bump_file = info[6] + 5;
+				obj->bump_file = ft_strdup(info[6] + 5);
 			if (info[7])
 				if (ft_strncmp(info[7], "bump:", 5) == 0)
-					obj->bump_file = info[7] + 5;
+					obj->bump_file = ft_strdup(info[7] + 5);
 		}
+	}
+}
+
+void	init_camera(char **coords, char **vector,
+			t_parse_camera *camera, t_parse *rt)
+{
+	int	i;
+
+	i = -1;
+	while (++i < NUM_ARG_FIXED)
+	{
+		camera->coordinate.elems[i] = ft_atod(coords[i], rt);
+		camera->vector.elems[i] = ft_atod(vector[i], rt);
 	}
 }

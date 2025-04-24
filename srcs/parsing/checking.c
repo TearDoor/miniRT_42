@@ -3,23 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   checking.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:31:41 by root              #+#    #+#             */
-/*   Updated: 2025/04/18 16:48:31 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/23 18:48:47 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/parse.h"
 
-int	check_arrlen(char **arr, int length)
+int	check_vector_range(char **vector, t_parse *rt)
 {
-	if (ft_arrlen(arr) != length)
-		return (1);
+	int	i;
+
+	i = -1;
+	while (++i < NUM_ARG_FIXED)
+		if (ft_atod(vector[i], rt) < -1 || ft_atod(vector[i], rt) > 1)
+			return (1);
 	return (0);
 }
 
-int	check_coords_vector(char **info, char ***vector, char ***coords)
+int	check_coords_vector(char **info, char ***vector,
+	char ***coords, t_parse *rt)
 {
 	if (coords)
 	{
@@ -33,7 +38,7 @@ int	check_coords_vector(char **info, char ***vector, char ***coords)
 	if (vector)
 	{
 		*vector = ft_split(info[2], ',');
-		if (check_arrlen(*vector, 3))
+		if (check_arrlen(*vector, 3) || check_vector_range(*vector, rt))
 		{
 			free_arr(*vector);
 			if (coords)
@@ -41,6 +46,17 @@ int	check_coords_vector(char **info, char ***vector, char ***coords)
 			return (1);
 		}
 	}
+	return (0);
+}
+
+int	check_color_range(char **color)
+{
+	int	i;
+
+	i = -1;
+	while (++i < NUM_ARG_FIXED)
+		if (ft_atoi(color[i]) > 255 || ft_atoi(color[i]) < 0)
+			return (1);
 	return (0);
 }
 
@@ -52,7 +68,7 @@ int	check_color(char **info, char ***color, char ***coords, char ***vector)
 	else if (ft_strcmp(info[0], "cy") == 0 || ft_strcmp(info[0], "sc") == 0
 		|| ft_strcmp(info[0], "dc") == 0)
 		*color = ft_split(info[5], ',');
-	if (check_arrlen(*color, 3))
+	if (check_arrlen(*color, 3) || check_color_range(*color))
 	{
 		if (vector)
 			free_arr(*vector);
@@ -60,50 +76,6 @@ int	check_color(char **info, char ***color, char ***coords, char ***vector)
 			free_arr(*coords);
 		free_arr(*color);
 		return (1);
-	}
-	return (0);
-}
-
-int	check_bump_file(t_parse_obj *obj)
-{
-	if (obj->bump_file)
-	{
-		if (access(obj->bump_file, F_OK) == -1)
-		{
-			print_error("Bump file not found");
-			free(obj->bump_file);
-			obj->bump_file = NULL;
-			return (1);
-		}
-		if (ft_strlen(obj->bump_file) < 4
-			|| ft_strcmp(obj->bump_file
-				+ ft_strlen(obj->bump_file) - 4, ".ppm") != 0)
-		{
-			print_error("Bump file must be .ppm");
-			return (1);
-		}
-	}
-	return (0);
-}
-
-int	check_texture_file(t_parse_obj *obj)
-{
-	if (obj->texture_file)
-	{
-		if (access(obj->texture_file, F_OK) == -1)
-		{
-			print_error("Texture file not found");
-			free(obj->texture_file);
-			obj->texture_file = NULL;
-			return (1);
-		}
-		if (ft_strlen(obj->texture_file) < 4
-			|| ft_strcmp(obj->texture_file
-				+ ft_strlen(obj->texture_file) - 4, ".ppm") != 0)
-		{
-			print_error("Texture file must be .ppm");
-			return (1);
-		}
 	}
 	return (0);
 }

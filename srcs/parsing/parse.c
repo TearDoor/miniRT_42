@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hni-xuan <hni-xuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 06:34:22 by root              #+#    #+#             */
-/*   Updated: 2025/04/18 16:48:07 by tkok-kea         ###   ########.fr       */
+/*   Updated: 2025/04/23 18:47:35 by hni-xuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,11 @@ int	parse_ambient(char **info, t_parse *rt)
 		return (print_error("Too many A argument"));
 	ambient.id = AMBIENT;
 	ambient.ratio = ft_atod(info[1], rt);
+	if (ambient.ratio > 1.0 || ambient.ratio < 0.0)
+		return (print_error("Invalid arguments for Ambient (ratio)"));
 	color = ft_split(info[2], ',');
-	if (ft_arrlen(color) != 3)
-	{
-		free_arr(color);
+	if (check_color(info, &color, NULL, NULL))
 		return (print_error("Invalid arguments for Ambient (color)"));
-	}
 	ambient.color.r = ft_atod(color[0], rt) / 255;
 	ambient.color.g = ft_atod(color[1], rt) / 255;
 	ambient.color.b = ft_atod(color[2], rt) / 255;
@@ -95,24 +94,20 @@ int	parse_camera(char **info, t_parse *rt)
 	t_parse_camera	camera;
 	char			**coords;
 	char			**vector;
-	int				i;
 
-	i = -1;
 	if (check_arrlen(info, 4))
 		return (print_error("Invalid arguments for Camera"));
 	if (rt->camera.id)
 		return (print_error("Too many C argument"));
 	camera.id = CAMERA;
-	if (check_coords_vector(info, &vector, &coords))
+	if (check_coords_vector(info, &vector, &coords, rt))
 		return (print_error("Invalid arg for Camera (vector or coords)"));
-	while (++i < NUM_ARG_FIXED)
-	{
-		camera.coordinate.elems[i] = ft_atod(coords[i], rt);
-		camera.vector.elems[i] = ft_atod(vector[i], rt);
-	}
+	init_camera(coords, vector, &camera, rt);
 	camera.coordinate.w = 1;
 	camera.vector.w = 0;
 	camera.fov = ft_atoi(info[3]);
+	if (camera.fov < 0 || camera.fov > 180)
+		return (print_error("Invalid arguments for Camera (FOV)"));
 	rt->camera = camera;
 	free_arr(coords);
 	free_arr(vector);
@@ -132,7 +127,7 @@ int	parse_light(char **info, t_parse *rt)
 	light = NULL;
 	light = init_light(light, rt);
 	light->id = LIGHT;
-	if (check_coords_vector(info, NULL, &coords)
+	if (check_coords_vector(info, NULL, &coords, rt)
 		|| check_color(info, &color, &coords, NULL))
 		return (print_error("Invalid arguments for Light (coords or color)"));
 	light->ratio = ft_atod(info[2], rt);

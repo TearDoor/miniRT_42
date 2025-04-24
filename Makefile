@@ -4,7 +4,7 @@ vpath %.c	srcs tests srcs/minilibx srcs/objects srcs/raytracing srcs/patterns sr
 
 SRC		=	main.c simple_utils.c init_rt.c \
 			parse.c parse_shape.c parse_utils.c init.c init2.c free.c load_parse.c \
-			load_objects.c load_objects_utils.c checking.c\
+			load_objects.c load_objects_utils.c checking.c checking2.c\
 			color_at.c light.c lighting.c shadows.c refraction.c \
 			rays.c intersect.c intersect_utils.c world.c camera.c render.c \
 			mlx_showimage.c keys.c  key_utils.c mouse_control.c mouse_utils.c
