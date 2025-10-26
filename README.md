@@ -8,7 +8,7 @@ clone the submodules [libft](https://github.com/TearDoor/libft_42) and [minilibx
 git submodule update --init --recursive
 ```
 Then, cd into mlx_linux and run `./configure` or `make` to compile mlx
-* Note on Arch(or any modern C compiler) before compiling go to `mlx_linux/test` 
+* Note on Arch(or any system using modern C compiler) before compiling go to `mlx_linux/test` 
 and modify `Makefile.mk` - add `-std=gnu90` to CFLAGS
 
 #### How to run the program
